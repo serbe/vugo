@@ -1,5 +1,8 @@
 <template>
-    <h2>Home</h2>
+  <div>
+    <router-link to="/">ЕДДС</router-link>
+    <router-link to="/companies">Организации</router-link>
+  </div>
 </template>
 
 <script>
