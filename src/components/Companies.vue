@@ -3,7 +3,7 @@
 
     <h2 class="has-text-centered">Справочник организаций</h2>
     <p>
-      <a class="button" href="/company/edit">Добавить</a>
+      <a class="button" href="/company/">Добавить</a>
     </p>
     <p class="control">
       <input class="input is-expanded" type="search" placeholder="Поиск" onkeyup="filter(this)" autofocus>
@@ -16,65 +16,40 @@
           <th class="t20 is-hidden-mobile"><a>Сфера деятельности</a></th>
           <th class="t10"><a>Телефон</a></th>
           <th class="t10 is-hidden-mobile"><a>Факс</a></th>
-          <th class="t10 is-hidden-touch is-hidden-desktop-only"><a>Даты тренировок</a></th>
+          <th class="t10 is-hidden-touch is-hidden-desktop-only"><a>Тренировки</a></th>
         </tr>
       </thead>
       <tbody>
-          <!--{{ range $company := .CompaniesList }}-->
         <tr v-for="(item, idx) in companies">
-          <td class="tvm"><a href="/company/edit/">{{ item.name }}</a></td>
-          <td class="tvm is-hidden-touch">{{ item.Address }}</td>
-          <td class="tvm is-hidden-mobile">{{ item.ScopeName }}</td>
+          <td class="tvm"><router-link :to="'/company/' + item.id">{{ item.name }}</router-link></td>
+          <td class="tvm is-hidden-touch">{{ item.address }}</td>
+          <td class="tvm is-hidden-mobile">{{ item.scope_name }}</td>
           <td class="has-text-right tvm">
-            <!--{{ range $phone := $company.Phones }}
-            <span class="phoneNumber">{{ $phone }}</span>
-            <br/>
-            {{ end }}-->
+            <span v-for="phone in item.phones">{{ phone }}<br></span>
           </td>
           <td class="has-text-right tvm is-hidden-mobile">
-            <!--{{ range $fax := $company.Faxes }}
-            <span class="phoneNumber">{{ $fax }}</span>
-            <br/>
-            {{ end }}-->
+            <span v-for="fax in item.faxes">{{ fax }}<br></span>
           </td>
           <td class="has-text-centered tvm is-hidden-touch is-hidden-desktop-only">
-            <!--{{ range $practice := $company.Practices }}
-            <span class="practice">{{ $practice }}</span>
-            <br/>
-            {{ end }}-->
+            <span v-for="practice in item.practices">{{ practice }}<br></span>
           </td>
         </tr>
       </tbody>
     </table>
+    <nav class="pagination is-centered">
+      <a class="pagination-previous">Previous</a>
+      <a class="pagination-next">Next page</a>
+      <ul class="pagination-list">
+        <li><a class="pagination-link">1</a></li>
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><a class="pagination-link">45</a></li>
+        <li><a class="pagination-link is-current">46</a></li>
+        <li><a class="pagination-link">47</a></li>
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><a class="pagination-link">86</a></li>
+      </ul>
+    </nav>
   </div>
-
-  <!--<el-table :data="companies" stripe style="width: 100%">
-    <el-table-column prop="name" label="Наименование">
-      <template scope="scope">
-        <router-link :to="'company/' + scope.row.id">{{ scope.row.name }}</router-link>
-      </template>
-    </el-table-column>
-    <el-table-column prop="address" label="Адрес"></el-table-column>
-    <el-table-column prop="scope_name" label="Сфера деятельности"></el-table-column>
-    <el-table-column prop="phones" label="Телефон" width="150">
-      <template scope="scope">
-        <span v-for="item in scope.row.phones">{{ item }}<br></span>
-      </template>
-    </el-table-column>
-    <el-table-column prop="faxes" label="Факс" width="150">
-      <template scope="scope">
-        <span v-for="item in scope.row.faxes">{{ item }}<br></span>
-      </template>
-    </el-table-column>
-    <el-table-column prop="practices" label="Тренировки" width="120">
-      <template scope="scope">
-        <span v-for="item in scope.row.practices">{{ item }}<br></span>
-      </template>
-    </el-table-column>
-  </el-table>-->
-  <!--<ul>
-    <li v-for="(item, id) in companies">{{ item.name }}</li>
-  </ul>-->
 </template>
 
 <script>
@@ -97,27 +72,6 @@
         })
       })
     }
-    // created: function () {
-    //   this.fetchData()
-    // },
-    // methods: {
-    //   fetchData: function () {
-    //     axios.get('http://localhost:9090/api/companies')
-    //     .then(response => {
-    //       const jsondata = response.data
-    //       if (jsondata) {
-    //         this.companiesList = jsondata.companies_list
-    //         this.isLoaded = true
-    //         this.companies = this.companiesList.filter((c, i) => {
-    //           return i >= this.paginate * 50 && i < (this.paginate + 1) * 50
-    //         })
-    //       }
-    //     })
-    //     .catch(e => {
-    //       console.log(e)
-    //     })
-    //   }
-    // }
   }
 </script>
 
@@ -125,16 +79,16 @@
   a {
     color: #1f2d3d;
     text-decoration: none;
-    word-break: break-word !important;
+    /*word-break: break-word !important;*/
   }
 
-  div .cell {
-    word-break: break-word !important;
+  th {
+    vertical-align: middle;
   }
 
-  .fixed_table {
+  /*.fixed_table {
       table-layout: fixed !important;
-  }
+  }*/
 
   .t10 {
       width: 10% !important;
@@ -154,10 +108,5 @@
 
   .t50 {
       width: 50% !important;
-  }
-
-  .table a {
-      border-bottom-style: none !important;
-      color: #222324;
   }
 </style>
