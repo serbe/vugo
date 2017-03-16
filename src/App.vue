@@ -15,6 +15,8 @@ export default {
 }
 </script>
 
-<style lang="sass">
-@import "node_modules/bulma/bulma"
+<style lang="scss">
+@import "~bulma";
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
 </style>
