@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Companies from '@/components/Companies'
+import Company from '@/components/Company'
 
 import NotFoundComponent from '@/components/NotFoundComponent'
 
@@ -25,6 +26,11 @@ export default new Router({
       path: '/companies',
       name: 'companies',
       component: Companies
+    },
+    {
+      path: '/company/:id',
+      name: 'company',
+      component: Company
     },
     {
       path: '*',

@@ -109,4 +109,8 @@
   .t50 {
       width: 50% !important;
   }
+
+  nav li {
+    list-style-type: none;
+  }
 </style>
