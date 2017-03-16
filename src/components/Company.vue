@@ -3,52 +3,51 @@
 
     <form :model="company" id="company">
         <!--<input type="text" class="hide" name="company-id" id="company-id" value='{{ .Company.ID }}'>-->
-        <label class="label">Наименование организации:</label>
-        <p class="control">
+        <div class="field">
+          <label class="label">Наименование организации:</label>
+          <p class="control has-icon">
             <input class="input" type="text" v-model="company.name" placeholder="Наименование организации" required autocomplete="organization">
-        </p>
-        <!--<label class="label" for="company-scope">Сфера деятельности:</label>
-        <div class="control dropdown-search">
-            <div class="select is-fullwidth">
-                <input type="text" class="hide search-id" name="company-scope-id" value='{{ .Company.ScopeID }}'>
-                <input class="input select-input" type="text" name="company-scope" id="company-scope" placeholder="Сфера деятельности" onkeyup="filterClass(this)" onfocus="vd(this)" data-id="{{ .Company.ScopeID }}" autocomplete="off">
-                <div class="select-box">
-                    <div class="select-item" data-id="0" onclick="sic(this)"></div>
-                    {{ range $scope := .ScopesSelect }}
-                    <div class="select-item" data-id="{{ $scope.ID }}" onclick="sic(this)">{{ $scope.Name }}</div>
-                    {{ end }}
-                </div>
-            </div>
-        </div>-->
-        <label class="label">Адрес:</label>
-        <p class="control">
+            <span class="icon is-small">
+              <i class="fa fa-building"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <label class="label" >Сфера деятельности:</label>
+          <select v-model="company.scope.name">
+            <option></option>
+            <option v-for="scope in scopes" :key="scope.id">{{ scope.name }}</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="label">Адрес:</label>
+          <p class="control has-icon">
             <input class="input" type="text" v-model="company.address" placeholder="Адрес организации" autocomplete="shipping street-address">
-        </p>
+            <span class="icon is-small">
+              <i class="fa fa-address-card"></i>
+            </span>
+          </p>
+        </div>
+        <label v-if="company.emails" class="label">Почта:</label>
         <template v-for="(email, index) in company.emails">
-          <label class="label">Почта:</label>
-            <div class="control is-grouped is-gapless">
-              <p class="control is-expanded has-icon">
-                <input class="input" type="email" placeholder="Электронный адрес" v-model="email" autocomplete="email">
-                <span class="icon is-small">
-                  <i class="fa fa-email"></i>
-                </span>
-              </p>
-              <p class="control">
-                <a class="button add">+</a>
-              </p>
-              <p class="control">
-                <a class="button is-danger del">-</a>
-              </p>
-            </div>
-          </template>
-            <!--</div>-->
-            <!--<div class="column is-one-third">
-                <div class="phones-group" id="phones-group">
-                    {{ if .Company.Phones }}
-                        {{ range $index, $phone := .Company.Phones }}
-                            {{ if eq $index 0 }}
-                            <label class="label" for="phone">Телефоны:</label>
-                            {{ end }}
+          <div class="field control has-addons">
+            <p class="control has-icon">
+              <input class="input" type="email" placeholder="Электронный адрес" :value="email.email" autocomplete="email">
+              <span class="icon is-small">
+                <i class="fa fa-envelope"></i>
+              </span>
+            </p>
+            <p class="control">
+              <a class="button">+</a>
+            </p>
+            <p class="control">
+              <a class="button is-danger">-</a>
+            </p>
+          </div>
+        </template>
+        <label class="label" v-if="company.phones">Телефоны:</label>
+
+<!--                            {{ end }}
                             <div class="control is-grouped is-gapless">
                                 <p class="control is-expanded">
                                     <input type="tel" class="input phone-input" name="phone[]" id="phone" placeholder="Телефон" value="{{ $phone.Phone }}" autocomplete="tel">
