@@ -25,21 +25,21 @@
             <input class="input" type="text" v-model="company.address" placeholder="Адрес организации" autocomplete="shipping street-address">
         </p>
         <template v-for="(email, index) in company.emails">
-            <label class="label">Почта:</label>
-            <!--<div class="control is-grouped is-gapless">
-                <p class="control is-expanded has-icon">
-                    <input type="email" class="input email-input" name="email[]" id="email" placeholder="Электронный адрес" value="{{ $email.Email }}" autocomplete="email">
-                    <span class="icon is-small">
-                    <i class="fa fa-email"></i>
-                    </span>
-                </p>
-                <p class="control">
-                    <a class="button add" onclick="addEBtn(this)">+</a>
-                </p>
-                <p class="control">
-                    <a class="button is-danger del{{ if eq $index 0 }} is-disabled {{ end }}">-</a>
-                </p>
-            </div>-->
+          <label class="label">Почта:</label>
+            <div class="control is-grouped is-gapless">
+              <p class="control is-expanded has-icon">
+                <input class="input" type="email" placeholder="Электронный адрес" v-model="email" autocomplete="email">
+                <span class="icon is-small">
+                  <i class="fa fa-email"></i>
+                </span>
+              </p>
+              <p class="control">
+                <a class="button add">+</a>
+              </p>
+              <p class="control">
+                <a class="button is-danger del">-</a>
+              </p>
+            </div>
           </template>
             <!--</div>-->
             <!--<div class="column is-one-third">
