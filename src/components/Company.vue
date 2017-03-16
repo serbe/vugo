@@ -3,10 +3,10 @@
 
     <form :model="company" id="company">
         <!--<input type="text" class="hide" name="company-id" id="company-id" value='{{ .Company.ID }}'>-->
-        <label class="label" for="company-name">Наименование организации:</label>
-        <div class="control">
-            <input type="text" class="input" name="company-name" id="company-name" placeholder="Наименование организации" required v-model="company.name" autocomplete="organization">
-        </div>
+        <label class="label">Наименование организации:</label>
+        <p class="control">
+            <input class="input" type="text" v-model="company.name" placeholder="Наименование организации" required autocomplete="organization">
+        </p>
         <!--<label class="label" for="company-scope">Сфера деятельности:</label>
         <div class="control dropdown-search">
             <div class="select is-fullwidth">
@@ -20,50 +20,29 @@
                 </div>
             </div>
         </div>-->
-        <label class="label" for="company-address">Адрес:</label>
-        <div class="control">
-            <input type="text" class="input" name="company-address" id="company-address" placeholder="Адрес организации" v-model="company.address" autocomplete="shipping street-address">
-        </div>
-        <!--<div class="columns">
-            <div class="column is-one-third">
-                <div class="emails-group" id="emails-group">
-                    {{ if .Company.Emails }}
-                        {{ range $index, $email := .Company.Emails }}
-                            {{ if eq $index 0 }}
-                            <label class="label" for="email">Почта:</label>
-                            {{ end }}
-                            <div class="control is-grouped is-gapless">
-                                <p class="control is-expanded has-icon">
-                                    <input type="email" class="input email-input" name="email[]" id="email" placeholder="Электронный адрес" value="{{ $email.Email }}" autocomplete="email">
-                                    <span class="icon is-small">
-                                    <i class="fa fa-email"></i>
-                                    </span>
-                                </p>
-                                <p class="control">
-                                    <a class="button add" onclick="addEBtn(this)">+</a>
-                                </p>
-                                <p class="control">
-                                    <a class="button is-danger del{{ if eq $index 0 }} is-disabled {{ end }}">-</a>
-                                </p>
-                            </div>
-                        {{ end }}
-                    {{ else }}
-                        <label class="label" for="email">Почта:</label>
-                        <div class="control is-grouped is-gapless">
-                            <p class="control is-expanded">
-                                <input type="email" class="input email-input" name="email[]" id="email" placeholder="Электронный адрес" autocomplete="email">
-                            </p>
-                            <p class="control">
-                                <a class="button add" onclick="addEBtn(this)">+</a>
-                            </p>
-                            <p class="control">
-                                <a class="button is-danger del is-disabled">-</a>
-                            </p>
-                        </div>
-                    {{ end }}
-                </div>
-            </div>
-            <div class="column is-one-third">
+        <label class="label">Адрес:</label>
+        <p class="control">
+            <input class="input" type="text" v-model="company.address" placeholder="Адрес организации" autocomplete="shipping street-address">
+        </p>
+        <template v-for="(email, index) in company.emails">
+            <label class="label">Почта:</label>
+            <!--<div class="control is-grouped is-gapless">
+                <p class="control is-expanded has-icon">
+                    <input type="email" class="input email-input" name="email[]" id="email" placeholder="Электронный адрес" value="{{ $email.Email }}" autocomplete="email">
+                    <span class="icon is-small">
+                    <i class="fa fa-email"></i>
+                    </span>
+                </p>
+                <p class="control">
+                    <a class="button add" onclick="addEBtn(this)">+</a>
+                </p>
+                <p class="control">
+                    <a class="button is-danger del{{ if eq $index 0 }} is-disabled {{ end }}">-</a>
+                </p>
+            </div>-->
+          </template>
+            <!--</div>-->
+            <!--<div class="column is-one-third">
                 <div class="phones-group" id="phones-group">
                     {{ if .Company.Phones }}
                         {{ range $index, $phone := .Company.Phones }}
