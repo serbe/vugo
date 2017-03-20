@@ -4,6 +4,7 @@
     <form :model="company"
           id="company">
       <!--<input type="text" class="hide" name="company-id" id="company-id" value='{{ .Company.ID }}'>-->
+      <BInput type="text" label="Test" placeholder="Write test text" :v-model="test"/>
 
       <div class="field">
         <label class="label">Наименование организации:</label>
@@ -15,8 +16,8 @@
                  required
                  autocomplete="organization">
           <span class="icon is-small">
-                <i class="fa fa-building"></i>
-              </span>
+            <i class="fa fa-building"></i>
+          </span>
         </p>
       </div>
 
@@ -42,8 +43,8 @@
                  placeholder="Адрес организации"
                  autocomplete="shipping street-address">
           <span class="icon is-small">
-                <i class="fa fa-address-card"></i>
-              </span>
+            <i class="fa fa-address-card"></i>
+          </span>
         </p>
       </div>
 
@@ -60,14 +61,14 @@
                          :value="email.email"
                          autocomplete="email">
                   <span class="icon is-small">
-                        <i class="fa fa-envelope"></i>
-                      </span>
+                    <i class="fa fa-envelope"></i>
+                  </span>
                 </p>
                 <p class="control">
                   <a class="button is-danger">
                     <span class="icon is-small">
-                          <i class="fa fa-minus"></i>
-                        </span>
+                      <i class="fa fa-minus"></i>
+                    </span>
                   </a>
                 </p>
               </div>
@@ -80,14 +81,14 @@
                        v-model="newEmail"
                        autocomplete="email">
                 <span class="icon is-small">
-                      <i class="fa fa-envelope"></i>
-                    </span>
+                  <i class="fa fa-envelope"></i>
+                </span>
               </p>
               <p class="control">
                 <a class="button is-success">
                   <span class="icon is-small">
-                        <i class="fa fa-plus"></i>
-                      </span>
+                    <i class="fa fa-plus"></i>
+                  </span>
                 </a>
               </p>
             </div>
@@ -106,14 +107,14 @@
                          :value="phone.phone"
                          autocomplete="tel">
                   <span class="icon is-small">
-                        <i class="fa fa-phone"></i>
-                      </span>
+                    <i class="fa fa-phone"></i>
+                  </span>
                 </p>
                 <p class="control">
                   <a class="button is-danger">
                     <span class="icon is-small">
-                          <i class="fa fa-minus"></i>
-                        </span>
+                      <i class="fa fa-minus"></i>
+                    </span>
                   </a>
                 </p>
               </div>
@@ -126,14 +127,14 @@
                        v-model="newPhone"
                        autocomplete="tel">
                 <span class="icon is-small">
-                      <i class="fa fa-phone"></i>
-                    </span>
+                  <i class="fa fa-phone"></i>
+                </span>
               </p>
               <p class="control">
                 <a class="button is-success">
                   <span class="icon is-small">
-                        <i class="fa fa-plus"></i>
-                      </span>
+                    <i class="fa fa-plus"></i>
+                  </span>
                 </a>
               </p>
             </div>
@@ -152,14 +153,14 @@
                          :value="fax.phone"
                          autocomplete="tel">
                   <span class="icon is-small">
-                        <i class="fa fa-fax"></i>
-                      </span>
+                    <i class="fa fa-fax"></i>
+                  </span>
                 </p>
                 <p class="control">
                   <a class="button is-danger">
                     <span class="icon is-small">
-                          <i class="fa fa-minus"></i>
-                        </span>
+                      <i class="fa fa-minus"></i>
+                    </span>
                   </a>
                 </p>
               </div>
@@ -172,14 +173,14 @@
                        v-model="newFax"
                        autocomplete="tel">
                 <span class="icon is-small">
-                      <i class="fa fa-fax"></i>
-                    </span>
+                  <i class="fa fa-fax"></i>
+                </span>
               </p>
               <p class="control">
                 <a class="button is-success">
                   <span class="icon is-small">
-                        <i class="fa fa-plus"></i>
-                      </span>
+                    <i class="fa fa-plus"></i>
+                  </span>
                 </a>
               </p>
             </div>
@@ -272,10 +273,15 @@
 
 <script>
 import axios from 'axios'
+import BInput from '../elements/Input'
 export default {
   name: 'company',
+  components: {
+    BInput
+  },
   data () {
     return {
+      test: '',
       scopes: [{
         id: 0,
         name: ''
@@ -333,6 +339,14 @@ export default {
       console.log('delete!')
     },
     fetchData () {
+      // fetch('http://localhost:9090/api/companies').then(r => r.json()).then((data) => {
+      //   this.companiesList = data.companies_list
+      //   this.isLoaded = true
+      //   this.companies = this.companiesList.filter((c, i) => {
+      //     return i >= this.paginate * 50 && i < (this.paginate + 1) * 50
+      //   })
+      // })
+
       axios.get('http://localhost:9090/api/company/' + this.$route.params.id)
         .then(response => {
           const jsondata = response.data
@@ -360,5 +374,9 @@ export default {
 <style scoped>
 .columns {
   margin-bottom: -0.25rem !important;
+}
+
+.field .is-grouped {
+  margin-bottom: 0 !important;
 }
 </style>
