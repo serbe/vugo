@@ -4,7 +4,7 @@
     <form :model="company"
           id="company">
       <!--<input type="text" class="hide" name="company-id" id="company-id" value='{{ .Company.ID }}'>-->
-      <BInput type="text" label="Test" placeholder="Write test text" :v-model="test"/>
+      <vue-input type="text" label="Test" placeholder="Write test text" :v-model="test"/>
 
       <div class="field">
         <label class="label">Наименование организации:</label>
@@ -273,11 +273,11 @@
 
 <script>
 import axios from 'axios'
-import BInput from '../elements/Input'
+import input from '../elements/Input'
 export default {
   name: 'company',
   components: {
-    BInput
+    'vue-input': input
   },
   data () {
     return {

@@ -1,17 +1,18 @@
 <template>
   <div class="field">
-    <label v-if="label" class="label" :name="name" :placeholder="placeholder">{{ label }}</label>
+    <label v-if="label" class="label" :name="name" :placeholder="placeholder" v-model="value">{{ label }}</label>
     <p class="control">
-      <input class="input" :type="type" :placeholder="placeholder">
+      <input class="input" :type="type" :placeholder="placeholder" >
     </p>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'BInput',
+    name: 'vue-input',
     data () {
       return {
+        value: ''
       }
     },
     props: {
