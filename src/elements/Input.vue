@@ -2,7 +2,14 @@
   <div class="field">
     <label v-if="label" class="label">{{ label }}</label>
     <p :class="classList">
-      <input class="input" :type="type" :name="name" :placeholder="placeholder" :value="value" @input="value = $emit('input', $event.target.value)" :autocomplete="autocomplete">
+      <input class="input" v-if="type=='text'"
+        type="text"
+        ref="input"
+        :name="name"
+        :placeholder="placeholder"
+        v-bind:value="value"
+        v-on:input="updateValue($event.target.value)"
+        :autocomplete="autocomplete">
       <span v-if="icon" class="icon is-small">
         <i :class="'fa fa-' + icon"></i>
       </span>
@@ -13,15 +20,8 @@
 <script>
   export default {
     name: 'vue-input',
-    data () {
-      return {
-      }
-    },
     props: {
-      value: {
-        type: String,
-        default: false
-      },
+      value: '',
       type: {
         type: String,
         required: true
@@ -59,6 +59,15 @@
           res.push('has-icon')
         }
         return res
+      }
+    },
+    methods: {
+      updateValue: function (value) {
+        var formattedValue = value.trim()
+        if (formattedValue !== value) {
+          this.$refs.input.value = formattedValue
+        }
+        this.$emit('input', formattedValue)
       }
     }
   }

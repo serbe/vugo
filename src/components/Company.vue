@@ -4,21 +4,9 @@
     <form :model="company"
           id="company">
       <!--<input type="text" class="hide" name="company-id" id="company-id" value='{{ .Company.ID }}'>-->
-      <vue-input type="text" label="Test" placeholder="Write test text" v-model="company.name"/>
 
       <div class="field">
-        <label class="label">Наименование организации:</label>
-        <p class="control has-icon">
-          <input class="input"
-                 type="text"
-                 v-model="company.name"
-                 placeholder="Наименование организации"
-                 required
-                 autocomplete="organization">
-          <span class="icon is-small">
-            <i class="fa fa-building"></i>
-          </span>
-        </p>
+        <vue-input type="text" label="Наименование организации:" placeholder="Наименование организации" icon="building" v-model="company.name"/>
       </div>
 
       <div class="field">
@@ -35,17 +23,7 @@
       </div>
 
       <div class="field">
-        <label class="label">Адрес:</label>
-        <p class="control has-icon">
-          <input class="input"
-                 type="text"
-                 v-model="company.address"
-                 placeholder="Адрес организации"
-                 autocomplete="shipping street-address">
-          <span class="icon is-small">
-            <i class="fa fa-address-card"></i>
-          </span>
-        </p>
+        <vue-input type="text" label="Адрес:" placeholder="Адрес" icon="address-card" v-model="company.address"/>
       </div>
 
       <div class="columns is-gapless">
@@ -236,15 +214,7 @@
       </div>
 
       <div class="field">
-        <label class="label">Заметка:</label>
-        <div class="control">
-          <input type="text"
-                 class="input"
-                 name="company-note"
-                 id="company-note"
-                 placeholder="Заметка"
-                 v-model="company.note">
-        </div>
+        <vue-input type="text" label="Заметка:" placeholder="Заметка" icon="comment" v-model="company.note"/>
       </div>
 
       <div class="field">
