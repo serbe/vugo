@@ -4,7 +4,7 @@
     <form :model="company"
           id="company">
       <!--<input type="text" class="hide" name="company-id" id="company-id" value='{{ .Company.ID }}'>-->
-      <vue-input type="text" label="Test" placeholder="Write test text" :v-model="test"/>
+      <vue-input type="text" label="Test" placeholder="Write test text" v-model="company.name"/>
 
       <div class="field">
         <label class="label">Наименование организации:</label>
