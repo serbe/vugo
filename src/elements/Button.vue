@@ -1,40 +1,57 @@
 <template>
-  <button :class="classList" :disabled="disabled" @click="click"><slot></slot></button>
+  <div class="field">
+    <p class="control">
+      <a :class="aClassList" @click="click">
+        <span v-if="icon" class="icon is-small">
+          <i :class="'fa fa-' + icon"></i>
+        </span>
+        <template v-if="text" >{{ text }}</template>
+      </a>
+    </p>
+  </div>
 </template>
 
 <script>
-  var buttonTypeArr = ['default', 'primary', 'success', 'warning', 'info', 'danger']
-  var buttonSizes = {
-    'large': 'lg',
-    'small': 'sm'
-  }
   export default {
+    name: 'vue-button',
     props: {
-      type: {
-        type: String,
-        default: 'default'
+      text: {
+        type: [String, Boolean],
+        default: false,
+        required: false
+      },
+      icon: {
+        type: [String, Boolean],
+        required: false,
+        default: false
+      },
+      color: {
+        type: [String, Boolean],
+        default: false,
+        required: false
       },
       size: {
-        type: String,
-        default: ''
+        type: [String, Boolean],
+        default: false,
+        required: false
       },
-      disabled: Boolean
-      // TODO Bootstrap 没有 幽灵按钮的 UI
+      state: {
+        type: [String, Boolean],
+        default: false,
+        required: false
+      }
     },
     computed: {
-      classList () {
-        var res = ['btn']
-        if (buttonTypeArr.indexOf(this.type) !== -1) {
-          res.push(`btn-${this.type}`)
-        } else {
-          console.warn(`invalid type:${this.type}`)
+      aClassList () {
+        var res = ['button']
+        if (this.color) {
+          res.push(this.color.split(' ').map(e => { return 'is-' + e }))
         }
         if (this.size) {
-          if (buttonSizes[this.size]) {
-            res.push(`btn-${buttonSizes[this.size]}`)
-          } else {
-            console.warn(`invalid size:${this.size}`)
-          }
+          res.push(this.size.split(' ').map(e => { return 'is-' + e }))
+        }
+        if (this.state) {
+          res.push(this.state.split(' ').map(e => { return 'is-' + e }))
         }
         return res
       }
