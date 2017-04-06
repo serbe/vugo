@@ -20,20 +20,15 @@
 
       <vue-input v-model="company.address" type="text" label placeholder="Адрес" icon="address-card"/>
 
-      <div class="columns is-gapless">
+      <div class="columns">
         <div class="column">
           <div class="field">
             <label class="label">Почта</label>
             <template v-for="(email, index) in company.emails">
-              <div class="field has-addons is-marginless">
+              <div class="field">
                 <vue-input :value="email.email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email"/>
-                <vue-button color="danger" icon="minus"/>
               </div>
             </template>
-            <div class="field has-addons">
-              <vue-input v-model="newEmail" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email"/>
-              <vue-button color="success" icon="plus"/>
-            </div>
           </div>
         </div>
 
@@ -41,15 +36,10 @@
           <div class="field">
             <label class="label">Телефон</label>
             <template v-for="(phone, index) in company.phones">
-              <div class="field has-addons is-marginless">
+              <div class="field">
                 <vue-input :value="phone.phone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel"/>
-                <vue-button color="danger" icon="minus"/>
               </div>
             </template>
-            <div class="field has-addons">
-              <vue-input v-model="newPhone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel"/>
-              <vue-button color="success" icon="plus"/>
-            </div>
           </div>
         </div>
 
@@ -57,28 +47,23 @@
           <div class="field">
             <label class="label">Факс</label>
             <template v-for="(fax, index) in company.faxes">
-              <div class="field has-addons is-marginless">
+              <div class="field">
                 <vue-input :value="fax.phone" type="tel" placeholder="Факс" icon="fax" autocomplete="tel"/>
-                <vue-button color="danger" icon="minus"/>
               </div>
             </template>
-            <div class="field has-addons">
-              <vue-input v-model="newFax" type="tel" placeholder="Факс" icon="fax" autocomplete="tel"/>
-              <vue-button color="success" icon="plus"/>
-            </div>
           </div>
         </div>
       </div>
 
       <div class="field">
-        <label class="label" v-if="company.practices.length > 0">Тренировки</label>
+        <label class="label" v-if="company.practices">Тренировки</label>
         <template v-for="practice in company.practices">
           <vue-input type="text" :hyper="'/practice/' + practice.id" state="disabled" :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic"/>
         </template>
       </div>
 
       <div class="field">
-        <label class="label" v-if="company.contacts.length > 0">Сотрудники</label>
+        <label class="label" v-if="company.contacts">Сотрудники</label>
         <template v-for="contact in company.contacts">
           <vue-input type="text" :hyper="'/contact/' + contact.id" state="disabled marginless" :value="contact.name + ' - ' + contact.post_name"/>
         </template>
@@ -92,7 +77,7 @@
             <vue-button text="Сохранить" color="primary" @click="submit"/>
           </div>
           <div class="column is-2">
-            <vue-button text="Закрыть"/>
+            <vue-button text="Закрыть" @click="close"/>
           </div>
           <div class="column is-2 is-offset-2">
             <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"/>
@@ -115,19 +100,17 @@ export default {
   },
   data () {
     return {
-      scopes: [{
-        id: 0,
-        name: ''
-      }],
+      title: '',
       company: {
         id: 0,
         name: '',
-        scope_id: '',
+        address: '',
         scope: {
           id: 0,
           name: ''
         },
-        address: '',
+        scope_id: 0,
+        note: '',
         emails: [{
           id: 0,
           email: ''
@@ -142,9 +125,8 @@ export default {
         }],
         practices: [{
           id: 0,
-          date_of_practice: '',
+          date_str: '',
           kind: {
-            id: 0,
             name: ''
           },
           topic: ''
@@ -152,13 +134,15 @@ export default {
         contacts: [{
           id: 0,
           name: '',
-          post_name: ''
-        }],
-        note: ''
+          department_name: '',
+          post_name: '',
+          post_go_name: ''
+        }]
       },
-      newEmail: '',
-      newPhone: '',
-      newFax: ''
+      scopes: [{
+        id: 0,
+        name: ''
+      }]
     }
   },
   mounted: function () {
@@ -166,13 +150,16 @@ export default {
   },
   methods: {
     submit () {
-      axios.post('http://localhost:9090/api/company', this.company)
+      axios.post('http://localhost:9090/companies', this.company)
       .then(function (data) {
         console.log('Request succeeded with JSON response', data)
       })
       .catch(function (error) {
         console.log('Request failed', error)
       })
+    },
+    close () {
+      console.log(this.company)
     },
     onSubmit () {
       console.log('submit!')
@@ -181,17 +168,20 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      axios.get('http://localhost:9090/api/company/' + this.$route.params.id)
+      axios.get('http://localhost:9090/companies/' + this.$route.params.id)
         .then(response => {
           const jsondata = response.data
           if (jsondata) {
             this.company = jsondata.company
-            this.scopes = jsondata.scopes_select
+            this.scopes = jsondata.scopes
+            this.company.emails ? this.company.emails.push({id: 0, email: ''}) : this.company.emails = [].push({id: 0, email: ''})
+            this.company.phones ? this.company.phones.push({id: 0, phone: ''}) : this.company.phones = [].push({id: 0, phone: ''})
+            this.company.faxes ? this.company.faxes.push({id: 0, phone: ''}) : this.company.faxes = [].push({id: 0, phone: ''})
             this.isLoaded = true
           }
         })
         .catch(e => {
-          console.log('Error ' + e)
+          // console.log('Error ' + e)
         })
     }
   }

@@ -64,8 +64,8 @@
       paginate: 0
     }),
     mounted () {
-      fetch('http://localhost:9090/api/companies').then(r => r.json()).then((data) => {
-        this.companiesList = data.companies_list
+      fetch('http://localhost:9090/companies').then(r => r.json()).then((data) => {
+        this.companiesList = data.companies
         this.isLoaded = true
         this.companies = this.companiesList.filter((c, i) => {
           return i >= this.paginate * 50 && i < (this.paginate + 1) * 50
