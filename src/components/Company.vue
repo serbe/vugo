@@ -150,21 +150,27 @@ export default {
   },
   methods: {
     submit () {
-      axios.post('http://localhost:9090/companies', this.company)
-      .then(function (data) {
-        console.log('Request succeeded with JSON response', data)
+      let url = 'http://localhost:9090/companies'
+      if (this.$route.params.id !== '') {
+        url = url + '/' + this.$route.params.id
+      }
+      let jdata = this.company
+      jdata.emails = jdata.emails.filter((e, i) => {
+        return e.email && e.email !== ''
       })
-      .catch(function (error) {
-        console.log('Request failed', error)
+      jdata.phones = jdata.phones.filter((p, i) => {
+        return p.phone && p.phone !== ''
       })
+      jdata.faxes = jdata.faxes.filter((f, i) => {
+        return f.phone && f.phone !== ''
+      })
+      axios.put(url, jdata)
+      this.$router.push('/companies')
     },
     close () {
-      console.log(this.company)
+      this.$router.push('/companies')
     },
-    onSubmit () {
-      console.log('submit!')
-    },
-    onDelete () {
+    delete () {
       console.log('delete!')
     },
     fetchData () {
@@ -174,9 +180,9 @@ export default {
           if (jsondata) {
             this.company = jsondata.company
             this.scopes = jsondata.scopes
-            this.company.emails ? this.company.emails.push({id: 0, email: ''}) : this.company.emails = [].push({id: 0, email: ''})
-            this.company.phones ? this.company.phones.push({id: 0, phone: ''}) : this.company.phones = [].push({id: 0, phone: ''})
-            this.company.faxes ? this.company.faxes.push({id: 0, phone: ''}) : this.company.faxes = [].push({id: 0, phone: ''})
+            this.company.emails ? this.company.emails.push({id: this.company.emails.length + 1, email: ''}) : this.company.emails = [{id: 1, email: ''}]
+            this.company.phones ? this.company.phones.push({id: this.company.phones.length + 1, phone: ''}) : this.company.phones = [{id: 1, phone: ''}]
+            this.company.faxes ? this.company.faxes.push({id: this.company.faxes.length + 1, phone: ''}) : this.company.faxes = [{id: 1, phone: ''}]
             this.isLoaded = true
           }
         })
