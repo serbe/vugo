@@ -1,7 +1,6 @@
 <template>
   <div class="content">
     <form :model="company" id="company">
-      <!--<input type="text" class="hide" name="company-id" id="company-id" value='{{ .Company.ID }}'>-->
 
       <vue-input v-model="company.name" type="text" label placeholder="Наименование организации" icon="building"/>
 
@@ -90,8 +89,8 @@
 
 <script>
 import axios from 'axios'
-import input from '../elements/Input'
-import button from '../elements/Button'
+import input from '../../elements/Input'
+import button from '../../elements/Button'
 export default {
   name: 'company',
   components: {
@@ -187,7 +186,7 @@ export default {
           }
         })
         .catch(e => {
-          // console.log('Error ' + e)
+          console.log('Error ')
         })
     }
   }
