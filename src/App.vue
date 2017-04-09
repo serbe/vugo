@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <!--<section class="section">-->
+      <vue-navigation/>
       <div class="container">
         <!--<img src="./assets/logo.png">-->
         <router-view></router-view>
@@ -10,8 +11,12 @@
 </template>
 
 <script>
+import navigation from '@/components/Navigation'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    'vue-navigation': navigation
+  }
 }
 </script>
 

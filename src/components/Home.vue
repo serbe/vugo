@@ -1,8 +1,6 @@
 <template>
   <div>
-    <router-link to="/">ЕДДС</router-link>
-    <router-link to="/contacts">Контакты</router-link>
-    <router-link to="/companies">Организации</router-link>
+
   </div>
 </template>
 
