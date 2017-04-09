@@ -2,18 +2,7 @@
   <div class="content">
     <form :model="contact" id="contact">
 
-      <div class="columns">
-        <div class = "column">
-          <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" icon="user"/>
-        </div>
-
-        <div class="column">
-          <label class="label">Дата рождения:</label>
-          <div class="control i150">
-            <input type="text" class="input" v-model="birthday" placeholder="DD.MM.YYYY">
-          </div>
-        </div>
-      </div>
+      <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" icon="user"/>
 
       <div class="field">
         <label class="label">Организация</label>
@@ -155,6 +144,13 @@
           <vue-input type="text" :hyper="'/contact/' + contact.id" state="disabled marginless" :value="contact.name + ' - ' + contact.post_name"/>
         </template>
       </div>-->
+
+      <div class="field">
+        <label class="label">Дата рождения</label>
+        <div class="control i150">
+          <input type="text" class="input" v-model="birthday" placeholder="DD.MM.YYYY">
+        </div>
+      </div>
 
       <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="contact.note"/>
 

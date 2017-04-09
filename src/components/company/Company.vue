@@ -57,7 +57,7 @@
       <div class="field">
         <label class="label" v-if="company.practices">Тренировки</label>
         <template v-for="practice in company.practices">
-          <vue-input type="text" :hyper="'/practice/' + practice.id" state="disabled" :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic"/>
+          <vue-input type="text" :hyper="'/practice/' + practice.id" state="disabled" :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic"/>
         </template>
       </div>
 
@@ -125,9 +125,7 @@ export default {
         practices: [{
           id: 0,
           date_str: '',
-          kind: {
-            name: ''
-          },
+          kind_name: '',
           topic: ''
         }],
         contacts: [{
