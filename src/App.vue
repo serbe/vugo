@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <!--<section class="section">-->
       <vue-navigation/>
+      <section class="section">
       <div class="container">
         <!--<img src="./assets/logo.png">-->
         <router-view></router-view>
       </div>
-    <!--</section>-->
+      </section>
   </div>
 </template>
 
@@ -24,4 +24,8 @@ export default {
 @import "~bulma";
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
+
+.section {
+      padding-top: 1.5rem;
+}
 </style>

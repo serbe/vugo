@@ -1,12 +1,12 @@
 <template>
   <div class="content">
 
-    <h2 class="has-text-centered">Справочник организаций</h2>
+    <!--<h2 class="has-text-centered">Справочник организаций</h2>-->
     <p>
       <a class="button" href="/company/">Добавить</a>
     </p>
     <p class="control">
-      <input class="input is-expanded" type="search" placeholder="Поиск" onkeyup="filter(this)" autofocus>
+      <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
     <table class="table is-striped fixed_table">
       <thead>
@@ -61,16 +61,48 @@
       isLoaded: false,
       searchText: '',
       column: 'name',
-      paginate: 0
+      paginate: 0,
+      query: ''
     }),
     mounted () {
       fetch('http://localhost:9090/companies').then(r => r.json()).then((data) => {
         this.companiesList = data.companies
         this.isLoaded = true
-        this.companies = this.companiesList.filter((c, i) => {
+        this.getCompanies()
+      })
+    },
+    watch: {
+      query: function (val, oldVal) {
+        this.query = val
+        if ((val.trim().length > 1) || (val.length === 0 && oldVal.length > 0)) {
+          this.getCompanies()
+        }
+      }
+    },
+    methods: {
+      getCompanies () {
+        let queryArr = this.query.toLowerCase().split(' ')
+        let companies = this.companiesList.filter((c) => {
+          let str = [c.name, c.address, c.scope_name]
+          if (c.phone) {
+            str.push(c.phone.join(' '))
+          }
+          if (c.fax) {
+            str.push(c.fax.join(' '))
+          }
+          if (c.practice) {
+            str.push(c.practice.join(' '))
+          }
+          str = str.join(' ').toLowerCase()
+          let filterQuery = queryArr.filter((q) => {
+            return str.includes(q)
+          })
+          return filterQuery.length === queryArr.length
+        })
+        this.companies = companies.filter((c, i) => {
           return i >= this.paginate * 50 && i < (this.paginate + 1) * 50
         })
-      })
+      }
     }
   }
 </script>
