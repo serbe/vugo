@@ -6,7 +6,7 @@
       <a class="button" href="/contact/">Добавить</a>
     </p>
     <p class="control">
-      <input class="input is-expanded" type="search" placeholder="Поиск" onkeyup="filter(this)" autofocus>
+      <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
     <table class="table is-striped fixed_table">
       <thead>
@@ -57,16 +57,46 @@
       isLoaded: false,
       searchText: '',
       column: 'name',
-      paginate: 0
+      paginate: 0,
+      query: ''
     }),
     mounted () {
       fetch('http://localhost:9090/contacts').then(r => r.json()).then((data) => {
-        this.contactsList = data.contacts
+        this.contactsList = this.createContactsList(data.contacts)
         this.isLoaded = true
-        this.contacts = this.contactsList.filter((c, i) => {
+        this.filterContacts()
+      })
+    },
+    watch: {
+      query: function (val, oldVal) {
+        this.query = val
+        this.filterContacts()
+      }
+    },
+    methods: {
+      createContactsList (contacts) {
+        let list = contacts.map(c => {
+          let str = [c.name, c.company_name, c.post_name]
+          if (c.phone) {
+            str.push(c.phone.join(' '))
+          }
+          if (c.fax) {
+            str.push(c.fax.join(' '))
+          }
+          c.str = str.join(' ').toLowerCase()
+          return c
+        })
+        return list
+      },
+      filterContacts () {
+        let queryArr = this.query.toLowerCase().split(' ')
+        let contacts = this.contactsList.filter((c) => {
+          return queryArr.every(e => c.str.includes(e))
+        })
+        this.contacts = contacts.filter((c, i) => {
           return i >= this.paginate * 50 && i < (this.paginate + 1) * 50
         })
-      })
+      }
     }
   }
 </script>

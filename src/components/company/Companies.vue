@@ -66,23 +66,20 @@
     }),
     mounted () {
       fetch('http://localhost:9090/companies').then(r => r.json()).then((data) => {
-        this.companiesList = data.companies
+        this.companiesList = this.createCompaniesList(data.companies)
         this.isLoaded = true
-        this.getCompanies()
+        this.filterCompanies()
       })
     },
     watch: {
       query: function (val, oldVal) {
         this.query = val
-        if ((val.trim().length > 1) || (val.length === 0 && oldVal.length > 0)) {
-          this.getCompanies()
-        }
+        this.filterCompanies()
       }
     },
     methods: {
-      getCompanies () {
-        let queryArr = this.query.toLowerCase().split(' ')
-        let companies = this.companiesList.filter((c) => {
+      createCompaniesList (companies) {
+        let list = companies.map(c => {
           let str = [c.name, c.address, c.scope_name]
           if (c.phone) {
             str.push(c.phone.join(' '))
@@ -93,11 +90,15 @@
           if (c.practice) {
             str.push(c.practice.join(' '))
           }
-          str = str.join(' ').toLowerCase()
-          let filterQuery = queryArr.filter((q) => {
-            return str.includes(q)
-          })
-          return filterQuery.length === queryArr.length
+          c.str = str.join(' ').toLowerCase()
+          return c
+        })
+        return list
+      },
+      filterCompanies () {
+        let queryArr = this.query.toLowerCase().split(' ')
+        let companies = this.companiesList.filter((c) => {
+          return queryArr.every(e => c.str.includes(e))
         })
         this.companies = companies.filter((c, i) => {
           return i >= this.paginate * 50 && i < (this.paginate + 1) * 50
