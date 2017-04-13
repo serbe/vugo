@@ -79,7 +79,8 @@
         this.$emit('input', val)
       },
       onBlur (event) {
-        this.$emit('blur', event)
+        let ret = {id: this.id, event: event}
+        this.$emit('blur', ret)
       }
     },
     props: {
@@ -129,6 +130,11 @@
         default: false
       },
       hyper: {
+        type: [String, Boolean],
+        required: false,
+        default: false
+      },
+      id: {
         type: [String, Boolean],
         required: false,
         default: false

@@ -25,7 +25,7 @@
             <label class="label">Почта</label>
             <template v-for="(email, index) in company.emails">
               <div class="field">
-                <vue-input :value="email.email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email" @keyup="emailClick"/>
+                <vue-input :value="email.email" :id="'email_' + index" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email" @blur="blurEmail"/>
               </div>
             </template>
           </div>
@@ -36,7 +36,7 @@
             <label class="label">Телефон</label>
             <template v-for="(phone, index) in company.phones">
               <div class="field">
-                <vue-input :value="phone.phone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel"/>
+                <vue-input :value="phone.phone" :id="'phone_' + index" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel" @blur="blurPhone"/>
               </div>
             </template>
           </div>
@@ -47,7 +47,7 @@
             <label class="label">Факс</label>
             <template v-for="(fax, index) in company.faxes">
               <div class="field">
-                <vue-input :value="fax.phone" type="tel" placeholder="Факс" icon="fax" autocomplete="tel"/>
+                <vue-input :value="fax.phone" type="tel" placeholder="Факс" icon="fax" autocomplete="tel" @blur="blurFax"/>
               </div>
             </template>
           </div>
@@ -145,8 +145,41 @@ export default {
     this.fetchData()
   },
   methods: {
-    emailClick: function (event) {
-      console.log(event)
+    blurEmail: function (val) {
+      let index = val.id[6]
+      if (this.company.emails[index].email !== val.event.target.value) {
+        this.company.emails[index].email = val.event.target.value
+        if (val.event.target.value !== '' && (this.company.emails.length - 1).toString() === index) {
+          this.company.emails.push({id: this.company.emails.length + 1, email: ''})
+        }
+      }
+      // if (this.company.emails.length > 1 && this.company.emails[this.company.emails.length - 1].value === '' && this.company.emails[this.company.emails.length - 2].value === '') {
+      //   this.company.emails.pop()
+      // }
+    },
+    blurPhone: function (val) {
+      let index = val.id[6]
+      if (this.company.phones[index].phone !== val.event.target.value) {
+        this.company.phones[index].phone = val.event.target.value
+        if (val.event.target.value !== '' && (this.company.phones.length - 1).toString() === index) {
+          this.company.phones.push({id: this.company.phones.length + 1, phone: ''})
+        }
+      }
+      // if (this.company.emails.length > 1 && this.company.emails[this.company.emails.length - 1].value === '' && this.company.emails[this.company.emails.length - 2].value === '') {
+      //   this.company.emails.pop()
+      // }
+    },
+    blurFax: function (val) {
+      let index = val.id[4]
+      if (this.company.faxes[index].phone !== val.event.target.value) {
+        this.company.faxes[index].phone = val.event.target.value
+        if (val.event.target.value !== '' && (this.company.faxes.length - 1).toString() === index) {
+          this.company.faxes.push({id: this.company.faxes.length + 1, phone: ''})
+        }
+      }
+      // if (this.company.emails.length > 1 && this.company.emails[this.company.emails.length - 1].value === '' && this.company.emails[this.company.emails.length - 2].value === '') {
+      //   this.company.emails.pop()
+      // }
     },
     submit () {
       let url = 'http://localhost:9090/companies'
