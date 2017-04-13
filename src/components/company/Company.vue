@@ -25,7 +25,7 @@
             <label class="label">Почта</label>
             <template v-for="(email, index) in company.emails">
               <div class="field">
-                <vue-input :value="email.email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email"/>
+                <vue-input :value="email.email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email" @keyup="emailClick"/>
               </div>
             </template>
           </div>
@@ -88,9 +88,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-import input from '../../elements/Input'
-import button from '../../elements/Button'
+import input from '@/elements/Input'
+import button from '@/elements/Button'
 export default {
   name: 'company',
   components: {
@@ -146,22 +145,32 @@ export default {
     this.fetchData()
   },
   methods: {
+    emailClick: function (event) {
+      console.log(event)
+    },
     submit () {
       let url = 'http://localhost:9090/companies'
       if (this.$route.params.id !== '') {
         url = url + '/' + this.$route.params.id
       }
-      let jdata = this.company
-      jdata.emails = jdata.emails.filter((e, i) => {
+      let values = this.company
+      values.emails = values.emails.filter((e, i) => {
         return e.email && e.email !== ''
       })
-      jdata.phones = jdata.phones.filter((p, i) => {
+      values.phones = values.phones.filter((p, i) => {
         return p.phone && p.phone !== ''
       })
-      jdata.faxes = jdata.faxes.filter((f, i) => {
+      values.faxes = values.faxes.filter((f, i) => {
         return f.phone && f.phone !== ''
       })
-      axios.put(url, jdata)
+      fetch(url, {
+        method: 'PUT',
+        mode: 'cors',
+        body: JSON.stringify(values)
+      })
+      .then(function (res) {
+        console.log(res)
+      })
       this.$router.push('/companies')
     },
     close () {
@@ -171,21 +180,16 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      axios.get('http://localhost:9090/companies/' + this.$route.params.id)
-        .then(response => {
-          const jsondata = response.data
-          if (jsondata) {
-            this.company = jsondata.company
-            this.scopes = jsondata.scopes
-            this.company.emails ? this.company.emails.push({id: this.company.emails.length + 1, email: ''}) : this.company.emails = [{id: 1, email: ''}]
-            this.company.phones ? this.company.phones.push({id: this.company.phones.length + 1, phone: ''}) : this.company.phones = [{id: 1, phone: ''}]
-            this.company.faxes ? this.company.faxes.push({id: this.company.faxes.length + 1, phone: ''}) : this.company.faxes = [{id: 1, phone: ''}]
-            this.isLoaded = true
-          }
-        })
-        .catch(e => {
-          console.log('Error ')
-        })
+      fetch('http://localhost:9090/companies/' + this.$route.params.id)
+      .then(r => r.json())
+      .then((data) => {
+        this.company = data.company
+        this.scopes = data.scopes
+        this.company.emails ? this.company.emails.push({id: this.company.emails.length + 1, email: ''}) : this.company.emails = [{id: 1, email: ''}]
+        this.company.phones ? this.company.phones.push({id: this.company.phones.length + 1, phone: ''}) : this.company.phones = [{id: 1, phone: ''}]
+        this.company.faxes ? this.company.faxes.push({id: this.company.faxes.length + 1, phone: ''}) : this.company.faxes = [{id: 1, phone: ''}]
+        this.isLoaded = true
+      })
     }
   }
 }

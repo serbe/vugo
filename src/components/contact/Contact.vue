@@ -145,12 +145,12 @@
         </template>
       </div>-->
 
-      <div class="field">
+      <!--<div class="field">
         <label class="label">Дата рождения</label>
         <div class="control i150">
           <input type="text" class="input" v-model="birthday" placeholder="DD.MM.YYYY">
         </div>
-      </div>
+      </div>-->
 
       <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="contact.note"/>
 
@@ -172,9 +172,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-import input from '../../elements/Input'
-import button from '../../elements/Button'
+import input from '@/elements/Input'
+import button from '@/elements/Button'
 export default {
   name: 'contact',
   components: {
@@ -235,7 +234,7 @@ export default {
         id: 0,
         name: ''
       }],
-      posts_do: [{
+      posts_go: [{
         id: 0,
         name: ''
       }],
@@ -258,17 +257,24 @@ export default {
       if (this.$route.params.id !== '') {
         url = url + '/' + this.$route.params.id
       }
-      let jdata = this.contact
-      jdata.emails = jdata.emails.filter((e, i) => {
+      let values = this.contact
+      values.emails = values.emails.filter((e, i) => {
         return e.email && e.email !== ''
       })
-      jdata.phones = jdata.phones.filter((p, i) => {
+      values.phones = values.phones.filter((p, i) => {
         return p.phone && p.phone !== ''
       })
-      jdata.faxes = jdata.faxes.filter((f, i) => {
+      values.faxes = values.faxes.filter((f, i) => {
         return f.phone && f.phone !== ''
       })
-      axios.put(url, jdata)
+      fetch(url, {
+        method: 'PUT',
+        mode: 'cors',
+        body: JSON.stringify(values)
+      })
+      .then(function (res) {
+        console.log(res)
+      })
       this.$router.push('/contacts')
     },
     close () {
@@ -278,25 +284,20 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      axios.get('http://localhost:9090/contacts/' + this.$route.params.id)
-        .then(response => {
-          const jsondata = response.data
-          if (jsondata) {
-            this.contact = jsondata.contact
-            this.companies = jsondata.companies
-            this.posts = jsondata.posts
-            this.departments = jsondata.departments
-            this.posts_go = jsondata.posts_go
-            this.ranks = jsondata.ranks
-            this.contact.emails ? this.contact.emails.push({id: this.contact.emails.length + 1, email: ''}) : this.contact.emails = [{id: 1, email: ''}]
-            this.contact.phones ? this.contact.phones.push({id: this.contact.phones.length + 1, phone: ''}) : this.contact.phones = [{id: 1, phone: ''}]
-            this.contact.faxes ? this.contact.faxes.push({id: this.contact.faxes.length + 1, phone: ''}) : this.contact.faxes = [{id: 1, phone: ''}]
-            this.isLoaded = true
-          }
-        })
-        .catch(e => {
-          console.log('Error ')
-        })
+      fetch('http://localhost:9090/contacts/' + this.$route.params.id)
+      .then(r => r.json())
+      .then((data) => {
+        this.contact = data.contact
+        this.companies = data.companies
+        this.posts = data.posts
+        this.departments = data.departments
+        this.posts_go = data.posts_go
+        this.ranks = data.ranks
+        this.contact.emails ? this.contact.emails.push({id: this.contact.emails.length + 1, email: ''}) : this.contact.emails = [{id: 1, email: ''}]
+        this.contact.phones ? this.contact.phones.push({id: this.contact.phones.length + 1, phone: ''}) : this.contact.phones = [{id: 1, phone: ''}]
+        this.contact.faxes ? this.contact.faxes.push({id: this.contact.faxes.length + 1, phone: ''}) : this.contact.faxes = [{id: 1, phone: ''}]
+        this.isLoaded = true
+      })
     }
   }
 }
