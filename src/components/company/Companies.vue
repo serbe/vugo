@@ -2,7 +2,7 @@
   <div>
 
     <!--<h2 class="has-text-centered">Справочник организаций</h2>-->
-    <a class="button" href="/company/">Добавить</a>
+    <a class="button mb1" href="/company/">Добавить</a>
     <b-field>
       <b-input placeholder="Поиск..." icon="search" v-model="query" autofocus>
       </b-input>
@@ -19,16 +19,18 @@
       :paginated="isPaginated"
       :per-page="perPage"
       :pagination-simple="isPaginationSimple"
+      :html="isHtml"
       default-sort="name"
       @check="checked"
-      @select="selected">
+      @select="selected"
+      @click="clicked">
 
       <b-table-column field="name" label="Наименование" sortable></b-table-column>
       <b-table-column field="address" label="Адрес" sortable></b-table-column>
       <b-table-column field="scope_name" label="Сфера деятельности" sortable></b-table-column>
       <b-table-column field="phones" label="Телефон" :format="formatArray" numeric></b-table-column>
       <b-table-column field="faxes" label="Факс" :format="formatArray" numeric></b-table-column>
-      <b-table-column field="practices" label="Тренировки" :format="formatArray" numeric></b-table-column>
+      <b-table-column field="practices" label="Тренировки" :format="formatDate" numeric></b-table-column>
 
     </b-table>
   </div>
@@ -51,7 +53,8 @@
       hasMobileCards: true,
       isPaginated: true,
       isPaginationSimple: false,
-      perPage: 50
+      perPage: 50,
+      isHtml: false
     }),
     mounted () {
       fetch('http://localhost:9090/companies').then(r => r.json()).then((data) => {
@@ -96,6 +99,19 @@
         }
         return
       },
+      formatDate (value, row) {
+        let fmt = []
+        value.map(e => {
+          let splitDate = e.split('-')
+          if (splitDate.length > 1) {
+            fmt.push(splitDate[2] + '.' + splitDate[1] + '.' + splitDate[0])
+          }
+        })
+        return fmt.join(' ')
+      },
+      clicked (row) {
+        this.$router.push('/company/' + row.id)
+      },
       checked (items, item) {
         this.checkItems = items
       },
@@ -107,45 +123,7 @@
 </script>
 
 <style scoped>
-  .section {
-    padding-top: 1.5rem !important;
-  }
-
-  a {
-    color: #1f2d3d;
-    text-decoration: none;
-    /*word-break: break-word !important;*/
-  }
-
-  th {
-    vertical-align: middle;
-  }
-
-  /*.fixed_table {
-      table-layout: fixed !important;
-  }*/
-
-  .t10 {
-      width: 10% !important;
-  }
-
-  .t20 {
-      width: 20% !important;
-  }
-
-  .t30 {
-      width: 30% !important;
-  }
-
-  .t40 {
-      width: 40% !important;
-  }
-
-  .t50 {
-      width: 50% !important;
-  }
-
-  nav li {
-    list-style-type: none;
+  .mb1 {
+    margin-bottom: 1rem;
   }
 </style>
