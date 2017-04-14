@@ -21,11 +21,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bulma";
-$fa-font-path: "~font-awesome/fonts";
-@import "~font-awesome/scss/font-awesome";
+  $fa-font-path: "~font-awesome/fonts";
+  @import "~font-awesome/scss/font-awesome";
 
-.section {
-      padding-top: 1.5rem;
-}
+
 </style>

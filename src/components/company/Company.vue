@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <!--<div class="content">-->
     <form :model="company" id="company">
 
       <vue-input v-model="company.name" type="text" label placeholder="Наименование организации" icon="building"/>
@@ -84,7 +84,7 @@
         </div>
       </div>
     </form>
-  </div>
+  <!--</div>-->
 </template>
 
 <script>
