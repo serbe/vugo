@@ -1,12 +1,16 @@
 <template>
-  <!--<div class="content">-->
     <form :model="company" id="company">
 
-      <vue-input v-model="company.name" type="text" label placeholder="Наименование организации" icon="building"/>
+      <b-field label="Наименование организации">
+        <b-input v-model="company.name" placeholder="Наименование организации" icon="building"></b-input>
+      </b-field>
 
-      <div class="field">
-        <label class="label">Сфера деятельности</label>
-        <p class="control">
+      <b-field label="Сфера деятельности">
+        <vue-select v-model="company.scope.name" placeholder="Сфера деятельности" :options="this.scopes">
+
+        </vue-select>
+
+        <!--<p class="control">
           <span class="select is-fullwidth">
             <select v-model="company.scope.name">
               <option></option>
@@ -14,61 +18,68 @@
                       :key="scope.id">{{ scope.name }}</option>
             </select>
           </span>
-        </p>
-      </div>
+        </p>-->
+      </b-field>
 
-      <vue-input v-model="company.address" type="text" label placeholder="Адрес" icon="address-card"/>
+      <b-field label="Адрес">
+        <b-input v-model="company.address" placeholder="Адрес" icon="address-card"></b-input>
+      </b-field>
 
       <div class="columns">
         <div class="column">
-          <div class="field">
-            <label class="label">Почта</label>
+          <b-field label="Почта">
             <template v-for="(email, index) in company.emails">
-              <div class="field">
-                <vue-input :value="email.email" :id="'email_' + index" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email" @blur="blurEmail"/>
-              </div>
+              <b-field>
+                <b-input v-model="company.emails[index].email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email" @blur="blurEmail"></b-input>
+              </b-field>
             </template>
-          </div>
+          </b-field>
         </div>
 
         <div class="column">
-          <div class="field">
-            <label class="label">Телефон</label>
+          <b-field label="Телефон">
             <template v-for="(phone, index) in company.phones">
-              <div class="field">
-                <vue-input :value="phone.phone" :id="'phone_' + index" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel" @blur="blurPhone"/>
-              </div>
+              <b-field>
+                <b-input v-model="company.phones[index].phone" placeholder="Телефон" icon="phone" autocomplete="tel" @blur="blurPhone"></b-input>
+              </b-field>
             </template>
-          </div>
+          </b-field>
         </div>
 
         <div class="column">
-          <div class="field">
-            <label class="label">Факс</label>
+          <b-field label="Факс">
             <template v-for="(fax, index) in company.faxes">
-              <div class="field">
-                <vue-input :value="fax.phone" :id="'fax_' + index" type="tel" placeholder="Факс" icon="fax" autocomplete="tel" @blur="blurFax"/>
-              </div>
+              <b-field>
+                <b-input v-model="company.faxes[index].phone" placeholder="Факс" icon="phone" autocomplete="tel" @blur="blurFax"></b-input>
+              </b-field>
             </template>
-          </div>
+          </b-field>
         </div>
       </div>
 
-      <div class="field">
-        <label class="label" v-if="company.practices">Тренировки</label>
+      <b-field v-if="company.practices" label="Тренировки">
         <template v-for="practice in company.practices">
-          <vue-input type="text" :hyper="'/practice/' + practice.id" state="disabled" :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic"/>
+          <b-field>
+            <a :href="'/practice/' + practice.id" state="disabled">
+              <b-input disabled :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic"></b-input>
+            </a>
+          </b-field>
         </template>
-      </div>
+      </b-field>
 
-      <div class="field">
-        <label class="label" v-if="company.contacts">Сотрудники</label>
+      <b-field v-if="company.practices" label="Сотрудники">
         <template v-for="contact in company.contacts">
-          <vue-input type="text" :hyper="'/contact/' + contact.id" state="disabled marginless" :value="contact.name + ' - ' + contact.post_name"/>
+          <b-field>
+            <a :href="'/contact/' + contact.id">
+              <b-input disabled :value="contact.name + ' - ' + contact.post_name"></b-input>
+            </a>
+          </b-field>
         </template>
-      </div>
+      </b-field>
 
-      <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="company.note"/>
+      <b-field label="Заметка">
+        <b-input v-model="company.note" placeholder="Заметка" icon="comment"></b-input>
+      </b-field>
 
       <div class="field">
         <div class="columns mt3">
@@ -84,17 +95,16 @@
         </div>
       </div>
     </form>
-  <!--</div>-->
 </template>
 
 <script>
-import input from '@/elements/Input'
 import button from '@/elements/Button'
+import select from '@/elements/Select'
 export default {
   name: 'company',
   components: {
-    'vue-input': input,
-    'vue-button': button
+    'vue-button': button,
+    'vue-select': select
   },
   data () {
     return {
@@ -148,50 +158,41 @@ export default {
   },
   methods: {
     blurEmail: function (val) {
-      let index = val.id[6]
-      if (this.company.emails[index].email !== val.event.target.value) {
-        this.company.emails[index].email = val.event.target.value
-        if (val.event.target.value !== '' && (this.company.emails.length - 1).toString() === index) {
-          this.company.emails.push({id: this.company.emails.length + 1, email: ''})
-        }
-        this.checkDelete(this.company.emails, 'email')
+      if (this.checkArray(this.company.emails, 'email')) {
+        this.company.emails.push({id: this.company.emails.length + 1, email: ''})
       }
     },
     blurPhone: function (val) {
-      let index = val.id[6]
-      if (this.company.phones[index].phone !== val.event.target.value) {
-        this.company.phones[index].phone = val.event.target.value
-        if (val.event.target.value !== '' && (this.company.phones.length - 1).toString() === index) {
-          this.company.phones.push({id: this.company.phones.length + 1, phone: ''})
-        }
-        this.checkDelete(this.company.phones, 'phone')
+      if (this.checkArray(this.company.phones, 'phone')) {
+        this.company.phones.push({id: this.company.phones.length + 1, phone: '', fax: false})
       }
     },
     blurFax: function (val) {
-      let index = val.id[4]
-      if (this.company.faxes[index].phone !== val.event.target.value) {
-        this.company.faxes[index].phone = val.event.target.value
-        if (val.event.target.value !== '' && (this.company.faxes.length - 1).toString() === index) {
-          this.company.faxes.push({id: this.company.faxes.length + 1, phone: ''})
-        }
-        this.checkDelete(this.company.faxes, 'phone')
+      if (this.checkArray(this.company.faxes, 'phone')) {
+        this.company.faxes.push({id: this.company.faxes.length + 1, phone: '', fax: true})
       }
     },
-    checkDelete (values, key) {
-      let firstElem = 0
-      let isForDelete = false
+    checkArray (values, key) {
+      let firstElem = -1
+      let emptyElem = 0
+      let fillElem = 0
       values.map((e, i) => {
         if (e[key] === '') {
-          if (firstElem === 0) {
+          if (firstElem === -1) {
             firstElem = i
-          } else {
-            isForDelete = true
           }
+          emptyElem++
+        } else {
+          fillElem++
         }
       })
-      if (isForDelete) {
+      if (emptyElem > 1) {
         values.splice(firstElem, 1)
       }
+      if (fillElem === values.length) {
+        return true
+      }
+      return false
     },
     submit () {
       let url = 'http://localhost:9090/companies'
@@ -240,12 +241,54 @@ export default {
 }
 </script>
 
-<style scoped>
-.columns {
-  margin-bottom: -0.25rem !important;
-}
-
-.field .is-grouped {
-  margin-bottom: 0 !important;
-}
+<style lang="sass">
+// Import bulma stuff
+@import '~bulma/sass/utilities/_all'
+@import "~bulma/sass/elements/button"
+@import "~bulma/sass/elements/form"
+//
+.bulma-select
+  &__container
+    @extend .select
+    position: relative
+    width: 100%
+    &:after
+      transition: all 0.2s ease
+    &--active
+      &:after
+        transform: rotate(-225deg)
+        top: 60% !important
+  &__placeholder
+    @extend select
+    box-sizing: border-box
+    text-align: left
+    width: 100%
+    &.is-hovered
+      border-radius: $input-radius $input-radius 0 0
+  &__options
+    +input
+    display: block
+    overflow: auto
+    padding: 0
+    z-index: 5
+    width: 100%
+    height: auto
+    box-sizing: border-box
+    border-top: 0
+    border-radius: 0 0 $input-radius $input-radius
+    position: absolute
+  &__option
+    width: 100%
+    text-align: left
+    border-radius: 0
+    display: block
+// Transition definition
+.vuebulmaselect-slide-fade
+  &-enter-active
+    transition: all 0.2s ease
+  &-leave-active
+    transition: all 0.1s cubic-bezier(1.0, 0.5, 0.8, 1.0)
+  &-enter, &-leave-active
+    padding-top: 10px
+    opacity: 0
 </style>
