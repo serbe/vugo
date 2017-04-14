@@ -47,7 +47,7 @@
             <label class="label">Факс</label>
             <template v-for="(fax, index) in company.faxes">
               <div class="field">
-                <vue-input :value="fax.phone" type="tel" placeholder="Факс" icon="fax" autocomplete="tel" @blur="blurFax"/>
+                <vue-input :value="fax.phone" :id="'fax_' + index" type="tel" placeholder="Факс" icon="fax" autocomplete="tel" @blur="blurFax"/>
               </div>
             </template>
           </div>
@@ -115,11 +115,13 @@ export default {
         }],
         phones: [{
           id: 0,
-          phone: ''
+          phone: '',
+          fax: false
         }],
         faxes: [{
           id: 0,
-          phone: ''
+          phone: '',
+          fax: true
         }],
         practices: [{
           id: 0,
@@ -152,10 +154,8 @@ export default {
         if (val.event.target.value !== '' && (this.company.emails.length - 1).toString() === index) {
           this.company.emails.push({id: this.company.emails.length + 1, email: ''})
         }
+        this.checkDelete(this.company.emails, 'email')
       }
-      // if (this.company.emails.length > 1 && this.company.emails[this.company.emails.length - 1].value === '' && this.company.emails[this.company.emails.length - 2].value === '') {
-      //   this.company.emails.pop()
-      // }
     },
     blurPhone: function (val) {
       let index = val.id[6]
@@ -164,10 +164,8 @@ export default {
         if (val.event.target.value !== '' && (this.company.phones.length - 1).toString() === index) {
           this.company.phones.push({id: this.company.phones.length + 1, phone: ''})
         }
+        this.checkDelete(this.company.phones, 'phone')
       }
-      // if (this.company.emails.length > 1 && this.company.emails[this.company.emails.length - 1].value === '' && this.company.emails[this.company.emails.length - 2].value === '') {
-      //   this.company.emails.pop()
-      // }
     },
     blurFax: function (val) {
       let index = val.id[4]
@@ -176,10 +174,24 @@ export default {
         if (val.event.target.value !== '' && (this.company.faxes.length - 1).toString() === index) {
           this.company.faxes.push({id: this.company.faxes.length + 1, phone: ''})
         }
+        this.checkDelete(this.company.faxes, 'phone')
       }
-      // if (this.company.emails.length > 1 && this.company.emails[this.company.emails.length - 1].value === '' && this.company.emails[this.company.emails.length - 2].value === '') {
-      //   this.company.emails.pop()
-      // }
+    },
+    checkDelete (values, key) {
+      let firstElem = 0
+      let isForDelete = false
+      values.map((e, i) => {
+        if (e[key] === '') {
+          if (firstElem === 0) {
+            firstElem = i
+          } else {
+            isForDelete = true
+          }
+        }
+      })
+      if (isForDelete) {
+        values.splice(firstElem, 1)
+      }
     },
     submit () {
       let url = 'http://localhost:9090/companies'
@@ -202,7 +214,7 @@ export default {
         body: JSON.stringify(values)
       })
       .then(function (res) {
-        console.log(res)
+        // console.log(res)
       })
       this.$router.push('/companies')
     },
@@ -219,8 +231,8 @@ export default {
         this.company = data.company
         this.scopes = data.scopes
         this.company.emails ? this.company.emails.push({id: this.company.emails.length + 1, email: ''}) : this.company.emails = [{id: 1, email: ''}]
-        this.company.phones ? this.company.phones.push({id: this.company.phones.length + 1, phone: ''}) : this.company.phones = [{id: 1, phone: ''}]
-        this.company.faxes ? this.company.faxes.push({id: this.company.faxes.length + 1, phone: ''}) : this.company.faxes = [{id: 1, phone: ''}]
+        this.company.phones ? this.company.phones.push({id: this.company.phones.length + 1, phone: '', fax: false}) : this.company.phones = [{id: 1, phone: '', fax: false}]
+        this.company.faxes ? this.company.faxes.push({id: this.company.faxes.length + 1, phone: '', fax: true}) : this.company.faxes = [{id: 1, phone: '', fax: true}]
         this.isLoaded = true
       })
     }
