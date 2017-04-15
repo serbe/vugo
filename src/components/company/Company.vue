@@ -8,7 +8,7 @@
       <b-field label="Сфера деятельности">
         <!--<v-select v-model="company.scope.name" :options="scopes"></v-select>-->
 
-        <vue-select v-model="company.scope.name" :options="scopes"></vue-select>
+        <vue-select v-model="company.scope.name" :options="scopes" placeholder="Сфера деятельности"></vue-select>
 
         <!--<p class="control">
           <span class="select is-fullwidth">

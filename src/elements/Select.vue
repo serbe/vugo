@@ -4,20 +4,20 @@
       <div class="select is-fullwidth">
           <input
             :class="inputClassList"
-            :type="type"
+            type="text"
             ref="select"
             :name="name"
             :placeholder="placeholder"
             :value="value"
             @input="onSearchInput"
             @blur="onSearchBlur">
-          <!--<input class="input select-input" type="text" name="company-scope" id="company-scope" placeholder="Сфера деятельности" onkeyup="filterClass(this)" onfocus="vd(this)" data-id="{{ .Company.ScopeID }}" autocomplete="off">
-          <div class="select-box">
-              <div class="select-item" data-id="0" onclick="sic(this)"></div>
-              {{ range $scope := .ScopesSelect }}
-              <div class="select-item" data-id="{{ $scope.ID }}" onclick="sic(this)">{{ $scope.Name }}</div>
-              {{ end }}
-          </div>-->
+          <!--<input class="input select-input" type="text" name="company-scope" id="company-scope" placeholder="Сфера деятельности" onkeyup="filterClass(this)" onfocus="vd(this)" data-id="{{ .Company.ScopeID }}" autocomplete="off">-->
+          <div class="select-box" v-show="isVisible==true">
+            <template  v-for="(item, index) in options">
+            <!--<div class="select-item" data-id="0" onclick="sic(this)"></div>-->
+              <div class="select-item" :data-id="item.id">{{ item.name }}</div>
+            </template>
+          </div>
       </div>
   </div>
 </template>
@@ -75,11 +75,13 @@ export default {
     // },
     id: {
       type: [String, Boolean],
-      required: true,
-      default: []
+      required: false,
+      default: false
     },
     options: {
-      type: [Array, Boolean]
+      type: [Array, Boolean],
+      required: true,
+      default: []
     }
   },
   // Component inner state
@@ -89,11 +91,25 @@ export default {
       opened: false,
       searchField: '',
       saveSearchField: '',
-      selected: undefined
+      selected: undefined,
+      isVisible: true
     }
   },
   // Computed properties
   computed: {
+    inputClassList () {
+      var res = ['input']
+      if (this.color) {
+        res.push(this.color.split(' ').map(e => { return 'is-' + e }))
+      }
+      if (this.size) {
+        res.push(this.size.split(' ').map(e => { return 'is-' + e }))
+      }
+      if (this.state) {
+        res.push(this.state.split(' ').map(e => { return 'is-' + e }))
+      }
+      return res
+    },
     getLabel () {
       if (this.label !== false && this.placeholder !== false && this.label === '') {
         return this.placeholder
@@ -121,11 +137,44 @@ export default {
   // When the component is created
   created () {
     // do it
-    this.selectVModel()
+    // this.selectVModel()
   }
 }
 </script>
 
 <style>
+.select-box {
+    box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);
+    /*display: inline-block;*/
+    position: absolute;
+    border: 1px solid #1fc8db;
+    /*visibility: hidden;*/
+    background-color: #FFF;
+    /*left: -1px;*/
+    /*top: 20%;*/
+    width: 100%;
+    overflow: auto;
+    z-index: 5;
+    /*margin-top: -10px;*/
+    max-height: 300px;
+}
 
+.select-item {
+    background-color: white;
+    /*border: 1px solid #d3d6db;*/
+    /*border-radius: 3px;*/
+    color: #222324;
+    height: 22px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 12px;
+    white-space: nowrap;
+    /*box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);*/
+}
+
+.select-item:hover {
+    background-color: #aeb1b5;
+}
 </style>
