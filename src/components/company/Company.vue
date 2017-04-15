@@ -6,7 +6,9 @@
       </b-field>
 
       <b-field label="Сфера деятельности">
-        <v-select v-model="selected" :options="['foo','bar']"></v-select>
+        <!--<v-select v-model="company.scope.name" :options="scopes"></v-select>-->
+
+        <vue-select v-model="company.scope.name" :options="scopes"></vue-select>
 
         <!--<p class="control">
           <span class="select is-fullwidth">
@@ -97,11 +99,15 @@
 
 <script>
 import button from '@/elements/Button'
+import select from '@/elements/Select'
+import vSelect from 'vue-select'
 
 export default {
   name: 'company',
   components: {
-    'vue-button': button
+    'vue-button': button,
+    'vue-select': select,
+    'v-select': vSelect
   },
   data () {
     return {
