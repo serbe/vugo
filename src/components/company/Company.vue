@@ -6,9 +6,7 @@
       </b-field>
 
       <b-field label="Сфера деятельности">
-        <vue-select v-model="company.scope.name" placeholder="Сфера деятельности" :options="this.scopes">
-
-        </vue-select>
+        <v-select v-model="selected" :options="['foo','bar']"></v-select>
 
         <!--<p class="control">
           <span class="select is-fullwidth">
@@ -99,12 +97,11 @@
 
 <script>
 import button from '@/elements/Button'
-import select from '@/elements/Select'
+
 export default {
   name: 'company',
   components: {
-    'vue-button': button,
-    'vue-select': select
+    'vue-button': button
   },
   data () {
     return {
@@ -150,7 +147,8 @@ export default {
       scopes: [{
         id: 0,
         name: ''
-      }]
+      }],
+      options: []
     }
   },
   mounted: function () {
@@ -242,53 +240,5 @@ export default {
 </script>
 
 <style lang="sass">
-// Import bulma stuff
-@import '~bulma/sass/utilities/_all'
-@import "~bulma/sass/elements/button"
-@import "~bulma/sass/elements/form"
-//
-.bulma-select
-  &__container
-    @extend .select
-    position: relative
-    width: 100%
-    &:after
-      transition: all 0.2s ease
-    &--active
-      &:after
-        transform: rotate(-225deg)
-        top: 60% !important
-  &__placeholder
-    @extend select
-    box-sizing: border-box
-    text-align: left
-    width: 100%
-    &.is-hovered
-      border-radius: $input-radius $input-radius 0 0
-  &__options
-    +input
-    display: block
-    overflow: auto
-    padding: 0
-    z-index: 5
-    width: 100%
-    height: auto
-    box-sizing: border-box
-    border-top: 0
-    border-radius: 0 0 $input-radius $input-radius
-    position: absolute
-  &__option
-    width: 100%
-    text-align: left
-    border-radius: 0
-    display: block
-// Transition definition
-.vuebulmaselect-slide-fade
-  &-enter-active
-    transition: all 0.2s ease
-  &-leave-active
-    transition: all 0.1s cubic-bezier(1.0, 0.5, 0.8, 1.0)
-  &-enter, &-leave-active
-    padding-top: 10px
-    opacity: 0
+
 </style>
