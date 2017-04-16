@@ -75,7 +75,6 @@
     methods: {
       onInput (event) {
         const val = event.target.value
-        this.newValue = val
         this.$emit('input', val)
       },
       onBlur (event) {

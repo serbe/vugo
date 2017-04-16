@@ -1,7 +1,7 @@
 <template>
     <div class="field">
       <label v-if="getLabel" class="label">{{ getLabel }}</label>
-      <div class="select is-fullwidth" @click="onSelectBoxClick">
+      <div class="select is-fullwidth" tabindex="-1" @blur="onBlurSelect">
           <input
             :class="inputClassList"
             type="text"
@@ -10,12 +10,13 @@
             :placeholder="placeholder"
             :value="value"
             @input="onSearchInput"
-            @blur="onSearchBlur">
+            @blur="onSearchBlur"
+            @click="onClickInput">
           <!--<input class="input select-input" type="text" name="company-scope" id="company-scope" placeholder="Сфера деятельности" onkeyup="filterClass(this)" onfocus="vd(this)" data-id="{{ .Company.ScopeID }}" autocomplete="off">-->
-          <div class="select-box" v-show="isVisible==true">
+          <div class="select-box" v-if="opened==true" tabindex="-2" @blur="onBlurSelectBox">
             <template  v-for="(item, index) in options">
             <!--<div class="select-item" data-id="0" onclick="sic(this)"></div>-->
-              <div class="select-item" :data-id="item.id">{{ item.name }}</div>
+              <div class="select-item" :data-id="item.id" @click="onClickItem">{{ item.name }}</div>
             </template>
           </div>
       </div>
@@ -23,7 +24,6 @@
 </template>
 
 <script>
-// Export the component itself
 export default {
   name: 'vue-select',
   props: {
@@ -38,21 +38,21 @@ export default {
     //   required: false,
     //   default: false
     // },
-    // color: {
-    //   type: [String, Boolean],
-    //   default: false,
-    //   required: false
-    // },
-    // size: {
-    //   type: [String, Boolean],
-    //   default: false,
-    //   required: false
-    // },
-    // state: {
-    //   type: [String, Boolean],
-    //   default: false,
-    //   required: false
-    // },
+    color: {
+      type: [String, Boolean],
+      default: false,
+      required: false
+    },
+    size: {
+      type: [String, Boolean],
+      default: false,
+      required: false
+    },
+    state: {
+      type: [String, Boolean],
+      default: false,
+      required: false
+    },
     label: {
       type: [String, Boolean],
       default: false,
@@ -63,16 +63,6 @@ export default {
       required: false,
       default: false
     },
-    // autocomplete: {
-    //   type: [String, Boolean],
-    //   required: false,
-    //   default: false
-    // },
-    // hyper: {
-    //   type: [String, Boolean],
-    //   required: false,
-    //   default: false
-    // },
     id: {
       type: [String, Boolean],
       required: false,
@@ -84,18 +74,14 @@ export default {
       default: []
     }
   },
-  // Component inner state
   data () {
-    //
     return {
       opened: false,
       searchField: '',
       saveSearchField: '',
-      selected: undefined,
-      isVisible: false
+      selected: undefined
     }
   },
-  // Computed properties
   computed: {
     inputClassList () {
       var res = ['input']
@@ -118,7 +104,6 @@ export default {
       }
     }
   },
-  // Methods
   methods: {
     onSearchInput (event) {
       // const val = event.target.value
@@ -129,10 +114,24 @@ export default {
       // let ret = {id: this.id, event: event}
       // this.$emit('blur', ret)
     },
-    onSelectBoxClick (event) {
-      if (!this.isVisible) {
-        this.isVisible = true
+    onClickInput (event) {
+      if (!this.opened) {
+        this.opened = true
       }
+    },
+    onClickItem (event) {
+      // console.log(event)
+      this.$emit('input', event.target.outerText)
+      // this.value =
+      this.opened = false
+    },
+    onBlurSelect: function (event) {
+      console.log('onBlurSelect')
+      console.log(event)
+    },
+    onBlurSelectBox: function (event) {
+      console.log('onBlurSelectBox')
+      console.log(event)
     }
   },
   // Watchers
@@ -146,6 +145,8 @@ export default {
   }
 }
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style>
 .select-box {

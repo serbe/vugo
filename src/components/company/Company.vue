@@ -19,6 +19,10 @@
         </p>-->
       </b-field>
 
+      <b-field label="Наименование организации">
+        <multiselect v-model="company.scope.name" track-by="name" label="name" :options="scopes" :custom-label="customLabel"></multiselect>
+      </b-field>
+
       <b-field label="Адрес">
         <b-input v-model="company.address" placeholder="Адрес" icon="address-card"></b-input>
       </b-field>
@@ -98,12 +102,14 @@
 <script>
 import button from '@/elements/Button'
 import select from '@/elements/Select'
+import Multiselect from 'vue-multiselect'
 
 export default {
   name: 'company',
   components: {
     'vue-button': button,
-    'vue-select': select
+    'vue-select': select,
+    Multiselect
   },
   data () {
     return {
@@ -236,6 +242,9 @@ export default {
         this.company.faxes ? this.company.faxes.push({id: this.company.faxes.length + 1, phone: '', fax: true}) : this.company.faxes = [{id: 1, phone: '', fax: true}]
         this.isLoaded = true
       })
+    },
+    customLabel (val) {
+      return val.name
     }
   }
 }
