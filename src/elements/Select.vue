@@ -1,7 +1,7 @@
 <template>
     <div class="field">
       <label v-if="getLabel" class="label">{{ getLabel }}</label>
-      <div class="select is-fullwidth">
+      <div class="select is-fullwidth" @click="onSelectBoxClick">
           <input
             :class="inputClassList"
             type="text"
@@ -92,7 +92,7 @@ export default {
       searchField: '',
       saveSearchField: '',
       selected: undefined,
-      isVisible: true
+      isVisible: false
     }
   },
   // Computed properties
@@ -128,6 +128,11 @@ export default {
     onSearchBlur (event) {
       // let ret = {id: this.id, event: event}
       // this.$emit('blur', ret)
+    },
+    onSelectBoxClick (event) {
+      if (!this.isVisible) {
+        this.isVisible = true
+      }
     }
   },
   // Watchers
