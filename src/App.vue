@@ -21,8 +21,8 @@ export default {
 </script>
 
 <style lang="scss">
+  @import "~bulma/bulma.sass";
+
   $fa-font-path: "~font-awesome/fonts";
   @import "~font-awesome/scss/font-awesome";
-
-
 </style>

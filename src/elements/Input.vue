@@ -12,7 +12,7 @@
           :value="value"
           @input="onInput"
           :autocomplete="autocomplete">
-        <span v-if="icon" class="icon is-small">
+        <span v-if="icon" class="icon">
           <i :class="'fa fa-' + icon"></i>
         </span>
       </a>
@@ -27,7 +27,7 @@
           @input="onInput"
           @blur="onBlur"
           :autocomplete="autocomplete">
-        <span v-if="icon" class="icon is-small">
+        <span v-if="icon" class="icon">
           <i :class="'fa fa-' + icon"></i>
         </span>
       </template>
@@ -86,7 +86,8 @@
       value: '',
       type: {
         type: String,
-        required: true
+        required: false,
+        default: 'text'
       },
       name: {
         type: [String, Boolean],

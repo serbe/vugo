@@ -1,12 +1,9 @@
 <template>
     <form :model="company" id="company">
 
-      <b-field label="Наименование организации">
-        <b-input v-model="company.name" placeholder="Наименование организации" icon="building"></b-input>
-      </b-field>
+      <vue-input v-model="company.name" label placeholder="Наименование организации" icon="building"/>
 
-      <b-field label="Сфера деятельности">
-        <vue-select v-model="company.scope.name" :options="scopes" placeholder="Сфера деятельности"></vue-select>
+      <vue-select v-model="company.scope.name" :options="scopes" label placeholder="Сфера деятельности"></vue-select>
 
         <!--<p class="control">
           <span class="select is-fullwidth">
@@ -17,71 +14,53 @@
             </select>
           </span>
         </p>-->
-      </b-field>
 
-      <b-field label="Наименование организации">
-        <multiselect v-model="company.scope.name" track-by="name" label="name" :options="scopes" :custom-label="customLabel"></multiselect>
-      </b-field>
-
-      <b-field label="Адрес">
-        <b-input v-model="company.address" placeholder="Адрес" icon="address-card"></b-input>
-      </b-field>
+      <vue-input v-model="company.address" label placeholder="Адрес" icon="address-card"/>
 
       <div class="columns">
         <div class="column">
-          <b-field label="Почта">
+          <div class="field">
+            <label class="label">Электронный адрес</label>
             <template v-for="(email, index) in company.emails">
-              <b-field>
-                <b-input v-model="company.emails[index].email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email" @blur="blurEmail"></b-input>
-              </b-field>
+              <vue-input v-model="company.emails[index].email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email" @blur="blurEmail"/>
             </template>
-          </b-field>
+          </div>
         </div>
 
         <div class="column">
-          <b-field label="Телефон">
+          <div class="field">
+            <label class="label">Телефон</label>
             <template v-for="(phone, index) in company.phones">
-              <b-field>
-                <b-input v-model="company.phones[index].phone" placeholder="Телефон" icon="phone" autocomplete="tel" @blur="blurPhone"></b-input>
-              </b-field>
+              <vue-input v-model="company.phones[index].phone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel" @blur="blurPhone"/>
             </template>
-          </b-field>
+          </div>
         </div>
 
         <div class="column">
-          <b-field label="Факс">
+          <div class="field">
+            <label class="label">Факс</label>
             <template v-for="(fax, index) in company.faxes">
-              <b-field>
-                <b-input v-model="company.faxes[index].phone" placeholder="Факс" icon="phone" autocomplete="tel" @blur="blurFax"></b-input>
-              </b-field>
+              <vue-input v-model="company.faxes[index].phone" type="tel" placeholder="Факс" icon="phone" autocomplete="tel" @blur="blurFax"/>
             </template>
-          </b-field>
+          </div>
         </div>
       </div>
 
-      <b-field v-if="company.practices" label="Тренировки">
+      <div class="field" v-if="company.practices">
+        <label class="label">Тренировки</label>
         <template v-for="practice in company.practices">
-          <b-field>
-            <a :href="'/practice/' + practice.id" state="disabled">
-              <b-input disabled :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic"></b-input>
-            </a>
-          </b-field>
+          <vue-input :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic" :hyper="'/practice/' + practice.id" state="disabled"/>
         </template>
-      </b-field>
+      </div>
 
-      <b-field v-if="company.practices" label="Сотрудники">
+      <div class="field" v-if="company.practices">
+        <label class="label">Сотрудники</label>
         <template v-for="contact in company.contacts">
-          <b-field>
-            <a :href="'/contact/' + contact.id">
-              <b-input disabled :value="contact.name + ' - ' + contact.post_name"></b-input>
-            </a>
-          </b-field>
+          <vue-input :value="contact.name + ' - ' + contact.post_name" :hyper="'/contact/' + contact.id" state="disabled"/>
         </template>
-      </b-field>
+      </div>
 
-      <b-field label="Заметка">
-        <b-input v-model="company.note" placeholder="Заметка" icon="comment"></b-input>
-      </b-field>
+      <vue-input v-model="company.note" label placeholder="Заметка" icon="comment"/>
 
       <div class="field">
         <div class="columns mt3">
@@ -102,14 +81,14 @@
 <script>
 import button from '@/elements/Button'
 import select from '@/elements/Select'
-import Multiselect from 'vue-multiselect'
+import input from '@/elements/Input'
 
 export default {
   name: 'company',
   components: {
     'vue-button': button,
     'vue-select': select,
-    Multiselect
+    'vue-input': input
   },
   data () {
     return {

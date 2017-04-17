@@ -1,7 +1,10 @@
 <template>
-    <div class="field">
+    <div class="field"
+      :tabindex="searchable ? -1 : 0"
+      @blur="searchable ? false : onBlurSelect"
+    >
       <label v-if="getLabel" class="label">{{ getLabel }}</label>
-      <div class="select is-fullwidth" tabindex="-1" @blur="onBlurSelect">
+      <div class="select is-fullwidth">
           <input
             :class="inputClassList"
             type="text"
@@ -12,8 +15,7 @@
             @input="onSearchInput"
             @blur="onSearchBlur"
             @click="onClickInput">
-          <!--<input class="input select-input" type="text" name="company-scope" id="company-scope" placeholder="Сфера деятельности" onkeyup="filterClass(this)" onfocus="vd(this)" data-id="{{ .Company.ScopeID }}" autocomplete="off">-->
-          <div class="select-box" v-if="opened==true" tabindex="-2" @blur="onBlurSelectBox">
+          <div class="select-box" v-if="opened==true">
             <template  v-for="(item, index) in options">
             <!--<div class="select-item" data-id="0" onclick="sic(this)"></div>-->
               <div class="select-item" :data-id="item.id" @click="onClickItem">{{ item.name }}</div>
@@ -77,6 +79,7 @@ export default {
   data () {
     return {
       opened: false,
+      searchable: true,
       searchField: '',
       saveSearchField: '',
       selected: undefined
@@ -125,12 +128,8 @@ export default {
       // this.value =
       this.opened = false
     },
-    onBlurSelect: function (event) {
+    onBlurSelect (event) {
       console.log('onBlurSelect')
-      console.log(event)
-    },
-    onBlurSelectBox: function (event) {
-      console.log('onBlurSelectBox')
       console.log(event)
     }
   },
@@ -145,8 +144,6 @@ export default {
   }
 }
 </script>
-
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style>
 .select-box {
