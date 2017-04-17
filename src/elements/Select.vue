@@ -1,24 +1,23 @@
 <template>
-    <div class="field"
-      :tabindex="searchable ? -1 : 0"
-      @blur="searchable ? false : onBlurSelect"
-    >
+    <div class="field">
       <label v-if="getLabel" class="label">{{ getLabel }}</label>
-      <div class="select is-fullwidth">
+      <div class="select is-fullwidth" @click="openOptions">
           <input
             :class="inputClassList"
             type="text"
-            ref="select"
-            :name="name"
+            ref="vueSelect"
+            autocomplete="off"
             :placeholder="placeholder"
-            :value="value"
-            @input="onSearchInput"
-            @blur="onSearchBlur"
-            @click="onClickInput">
+            tabindex="0" v-model="searchText"
+            @blur="onBlur"
+            @keydown.up="onKeyUp"
+            @keydown.down="onKeyDown"
+            @keyup.enter="onKeyEnter"
+            @keydown.delete="onKeyDelete"
+          />
           <div class="select-box" v-if="opened==true">
-            <template  v-for="(item, index) in options">
-            <!--<div class="select-item" data-id="0" onclick="sic(this)"></div>-->
-              <div class="select-item" :data-id="item.id" @click="onClickItem">{{ item.name }}</div>
+            <template  v-for="item in options">
+              <div class="select-item" @click.stop="selectItem(item)" @mousedown="mousedownItem">{{ item.text }}</div>
             </template>
           </div>
       </div>
@@ -29,17 +28,15 @@
 export default {
   name: 'vue-select',
   props: {
-    value: '',
-    name: {
-      type: [String, Boolean],
-      default: false,
-      required: false
+    selectedItem: {
+      type: Object,
+      default: () => { return { value: '', text: '' } }
     },
-    // icon: {
-    //   type: [String, Boolean],
-    //   required: false,
-    //   default: false
-    // },
+    icon: {
+      type: [String, Boolean],
+      required: false,
+      default: false
+    },
     color: {
       type: [String, Boolean],
       default: false,
@@ -65,12 +62,7 @@ export default {
       required: false,
       default: false
     },
-    id: {
-      type: [String, Boolean],
-      required: false,
-      default: false
-    },
-    options: {
+    list: {
       type: [Array, Boolean],
       required: true,
       default: []
@@ -79,10 +71,8 @@ export default {
   data () {
     return {
       opened: false,
-      searchable: true,
-      searchField: '',
-      saveSearchField: '',
-      selected: undefined
+      searchText: '',
+      mousedownState: false
     }
   },
   computed: {
@@ -105,42 +95,99 @@ export default {
       } else {
         return this.label
       }
+    },
+    filteredOptions () {
+      if (this.searchText) {
+        return this.options.filter(option => {
+          return option.text.match(new RegExp(this.searchText, 'i'))
+        })
+      } else {
+        return this.options
+      }
+    },
+    options () {
+      return this.list.map((e, i) => {
+        return { value: e[this.optionValue], text: this.buildText(e) }
+      })
+    },
+    item () {
+      if (this.selectedItem) {
+        return { value: this.selectedItem[this.optionValue], text: this.buildText(this.selectedItem) }
+      } else {
+        return { value: '', text: '' }
+      }
     }
   },
   methods: {
-    onSearchInput (event) {
-      // const val = event.target.value
-      // this.newValue = val
-      // this.$emit('input', val)
-    },
-    onSearchBlur (event) {
-      // let ret = {id: this.id, event: event}
-      // this.$emit('blur', ret)
-    },
-    onClickInput (event) {
-      if (!this.opened) {
-        this.opened = true
+    buildText (e) {
+      if (e[this.id]) {
+        if (this.name) {
+          return this.customText(e)
+        } else {
+          return e[this.optionText]
+        }
+      } else {
+        return ''
       }
     },
-    onClickItem (event) {
-      // console.log(event)
-      this.$emit('input', event.target.outerText)
-      // this.value =
+    openOptions () {
+      this.$refs.vueSelect.focus()
+      this.opened = true
+      this.mousedownState = false
+    },
+    closeOptions () {
       this.opened = false
     },
-    onBlurSelect (event) {
-      console.log('onBlurSelect')
-      console.log(event)
+    mousedownItem () {
+      this.mousedownState = true
+    },
+    selectItem (item) {
+      this.searchText = ''
+      this.closeOptions()
+      this.$emit('select', item)
+    },
+    onBlur () {
+      if (!this.mousedownState) {
+        this.searchText = ''
+        this.closeOptions()
+      }
+    },
+    onKeyUp () {
+      const selectedItemIndex = this.filteredOptions.findIndex(item => {
+        return item.selected === true
+      })
+      if (selectedItemIndex === -1) {
+        this.filteredOptions[0].selected = true
+      } else if (selectedItemIndex !== 0) {
+        this.filteredOptions[selectedItemIndex].selected = false
+        this.filteredOptions[selectedItemIndex - 1].selected = true
+      }
+    },
+    onKeyDown () {
+      const selectedItemIndex = this.filteredOptions.findIndex(item => {
+        return item.selected === true
+      })
+      if (selectedItemIndex === -1) {
+        this.filteredOptions[0].selected = true
+      } else if (selectedItemIndex !== this.filteredOptions.length - 1) {
+        this.filteredOptions[selectedItemIndex].selected = false
+        this.filteredOptions[selectedItemIndex + 1].selected = true
+      }
+    },
+    onKeyEnter () {
+      const selectedItem = this.filteredOptions.find(item => {
+        return item.selected === true
+      })
+      if (selectedItem) {
+        this.selectItem(selectedItem)
+      }
+    },
+    onKeyDelete () {
+      if (!this.searchText && this.selectedOption) {
+        this.selectItem({})
+        this.openOptions()
+      }
     }
-  },
-  // Watchers
-  watch: {
-
-  },
-  // When the component is created
-  created () {
-    // do it
-    // this.selectVModel()
   }
 }
 </script>

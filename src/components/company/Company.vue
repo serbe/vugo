@@ -3,7 +3,14 @@
 
       <vue-input v-model="company.name" label placeholder="Наименование организации" icon="building"/>
 
-      <vue-select v-model="company.scope.name" :options="scopes" label placeholder="Сфера деятельности"></vue-select>
+      <!--<vue-select v-model="company.scope.name" :options="scopes" label placeholder="Сфера деятельности"></vue-select>-->
+      <div>
+        <vue-select :list="scopes"
+                      :selected-item="scope"
+                      placeholder="select item"
+                      @select="onSelect">
+        </vue-select>
+      </div>
 
         <!--<p class="control">
           <span class="select is-fullwidth">
@@ -135,6 +142,10 @@ export default {
         id: 0,
         name: ''
       }],
+      scope: {
+        id: 0,
+        name: ''
+      },
       options: []
     }
   },
@@ -156,6 +167,9 @@ export default {
       if (this.checkArray(this.company.faxes, 'phone')) {
         this.company.faxes.push({id: this.company.faxes.length + 1, phone: '', fax: true})
       }
+    },
+    onSelect (item) {
+      this.scope = item
     },
     checkArray (values, key) {
       let firstElem = -1
