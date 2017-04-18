@@ -1,163 +1,117 @@
 <template>
-  <div class="content">
-    <form :model="contact" id="contact">
+  <form :model="contact" id="contact">
 
-      <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" icon="user"/>
+    <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" icon="user"/>
 
-      <vue-select :list="companies" :selected-item="company" label="Организация" @select="onSelectCompany" icon="building"/>
+    <vue-select :list="companies" :selected-item="contact.company" label="Организация" item-name="company" @select="onSelect" icon="building"/>
 
-      <div class="columns">
-        <div class="column is-half">
-          <div class="field">
-            <label class="label">Должность</label>
-            <p class="control">
-              <span class="select is-fullwidth">
-                <select v-model="contact.post.name">
-                  <option></option>
-                  <option v-for="post in posts"
-                          :key="post.id">{{ post.name }}</option>
-                </select>
-              </span>
-            </p>
-          </div>
-        </div>
+    <div class="columns">
+      <div class="column is-half">
+        <vue-select :list="posts" :selected-item="contact.post" label="Должность" item-name="post" @select="onSelect" icon="tag"/>
+      </div>
 
-        <div class="column is-half">
-          <div class="field">
-            <label class="label">Отдел</label>
-            <p class="control">
-              <span class="select is-fullwidth">
-                <select v-model="contact.department.name">
-                  <option></option>
-                  <option v-for="department in departments"
-                          :key="department.id">{{ department.name }}</option>
-                </select>
-              </span>
-            </p>
-          </div>
+      <div class="column is-half">
+        <vue-select :list="departments" :selected-item="contact.department" label="Отдел" item-name="department" @select="onSelect" icon="tag"/>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-half">
+        <vue-select :list="posts_go" :selected-item="contact.post_go" label="Должность ГО" item-name="post_go" @select="onSelect" icon="tag"/>
+      </div>
+
+      <div class="column is-half">
+        <vue-select :list="ranks" :selected-item="contact.rank" label="Звание" item-name="rank" @select="onSelect" icon="tag"/>
+      </div>
+    </div>
+
+    <!--<div class="field">
+      <label class="label">Сфера деятельности</label>
+      <p class="control">
+        <span class="select is-fullwidth">
+          <select v-model="contact.scope.name">
+            <option></option>
+            <option v-for="scope in scopes"
+                    :key="scope.id">{{ scope.name }}</option>
+          </select>
+        </span>
+      </p>
+    </div>-->
+
+    <!--<vue-input v-model="contact.address" type="text" label placeholder="Адрес" icon="address-card"/>-->
+
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <label class="label">Почта</label>
+          <template v-for="(email, index) in contact.emails">
+            <div class="field">
+              <vue-input :value="email.email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email"/>
+            </div>
+          </template>
         </div>
       </div>
 
-      <div class="columns">
-        <div class="column is-half">
-          <div class="field">
-            <label class="label">Должность ГО</label>
-            <p class="control">
-              <span class="select is-fullwidth">
-                <select v-model="contact.post_go.name">
-                  <option></option>
-                  <option v-for="post in posts_go"
-                          :key="post.id">{{ post.name }}</option>
-                </select>
-              </span>
-            </p>
-          </div>
-        </div>
-
-        <div class="column is-half">
-          <div class="field">
-            <label class="label">Звание</label>
-            <p class="control">
-              <span class="select is-fullwidth">
-                <select v-model="contact.rank.name">
-                  <option></option>
-                  <option v-for="rank in ranks"
-                          :key="rank.id">{{ rank.name }}</option>
-                </select>
-              </span>
-            </p>
-          </div>
+      <div class="column">
+        <div class="field">
+          <label class="label">Телефон</label>
+          <template v-for="(phone, index) in contact.phones">
+            <div class="field">
+              <vue-input :value="phone.phone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel"/>
+            </div>
+          </template>
         </div>
       </div>
 
-      <!--<div class="field">
-        <label class="label">Сфера деятельности</label>
-        <p class="control">
-          <span class="select is-fullwidth">
-            <select v-model="contact.scope.name">
-              <option></option>
-              <option v-for="scope in scopes"
-                      :key="scope.id">{{ scope.name }}</option>
-            </select>
-          </span>
-        </p>
-      </div>-->
-
-      <!--<vue-input v-model="contact.address" type="text" label placeholder="Адрес" icon="address-card"/>-->
-
-      <div class="columns">
-        <div class="column">
-          <div class="field">
-            <label class="label">Почта</label>
-            <template v-for="(email, index) in contact.emails">
-              <div class="field">
-                <vue-input :value="email.email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email"/>
-              </div>
-            </template>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="field">
-            <label class="label">Телефон</label>
-            <template v-for="(phone, index) in contact.phones">
-              <div class="field">
-                <vue-input :value="phone.phone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel"/>
-              </div>
-            </template>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="field">
-            <label class="label">Факс</label>
-            <template v-for="(fax, index) in contact.faxes">
-              <div class="field">
-                <vue-input :value="fax.phone" type="tel" placeholder="Факс" icon="fax" autocomplete="tel"/>
-              </div>
-            </template>
-          </div>
+      <div class="column">
+        <div class="field">
+          <label class="label">Факс</label>
+          <template v-for="(fax, index) in contact.faxes">
+            <div class="field">
+              <vue-input :value="fax.phone" type="tel" placeholder="Факс" icon="fax" autocomplete="tel"/>
+            </div>
+          </template>
         </div>
       </div>
+    </div>
 
-      <!--<div class="field">
-        <label class="label" v-if="contact.practices">Тренировки</label>
-        <template v-for="practice in contact.practices">
-          <vue-input type="text" :hyper="'/practice/' + practice.id" state="disabled" :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic"/>
-        </template>
+    <!--<div class="field">
+      <label class="label" v-if="contact.practices">Тренировки</label>
+      <template v-for="practice in contact.practices">
+        <vue-input type="text" :hyper="'/practice/' + practice.id" state="disabled" :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic"/>
+      </template>
+    </div>
+
+    <div class="field">
+      <label class="label" v-if="contact.contacts">Сотрудники</label>
+      <template v-for="contact in contact.contacts">
+        <vue-input type="text" :hyper="'/contact/' + contact.id" state="disabled marginless" :value="contact.name + ' - ' + contact.post_name"/>
+      </template>
+    </div>-->
+
+    <!--<div class="field">
+      <label class="label">Дата рождения</label>
+      <div class="control i150">
+        <input type="text" class="input" v-model="birthday" placeholder="DD.MM.YYYY">
       </div>
+    </div>-->
 
-      <div class="field">
-        <label class="label" v-if="contact.contacts">Сотрудники</label>
-        <template v-for="contact in contact.contacts">
-          <vue-input type="text" :hyper="'/contact/' + contact.id" state="disabled marginless" :value="contact.name + ' - ' + contact.post_name"/>
-        </template>
-      </div>-->
+    <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="contact.note"/>
 
-      <!--<div class="field">
-        <label class="label">Дата рождения</label>
-        <div class="control i150">
-          <input type="text" class="input" v-model="birthday" placeholder="DD.MM.YYYY">
+    <div class="field">
+      <div class="columns mt3">
+        <div class="column is-2 is-offset-2">
+          <vue-button text="Сохранить" color="primary" @click="submit"/>
         </div>
-      </div>-->
-
-      <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="contact.note"/>
-
-      <div class="field">
-        <div class="columns mt3">
-          <div class="column is-2 is-offset-2">
-            <vue-button text="Сохранить" color="primary" @click="submit"/>
-          </div>
-          <div class="column is-2">
-            <vue-button text="Закрыть" @click="close"/>
-          </div>
-          <div class="column is-2 is-offset-2">
-            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"/>
-          </div>
+        <div class="column is-2">
+          <vue-button text="Закрыть" @click="close"/>
+        </div>
+        <div class="column is-2 is-offset-2">
+          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"/>
         </div>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -236,20 +190,16 @@ export default {
       ranks: [{
         id: 0,
         name: ''
-      }],
-      company: {
-        id: 0,
-        name: ''
-      }
+      }]
     }
   },
   mounted: function () {
     this.fetchData()
   },
   methods: {
-    onSelectCompany (item) {
-      this.company = item
-      this.contact.company_id = item.id
+    onSelect (item, itemName) {
+      this.contact[itemName] = item
+      this.contact[itemName + '_id'] = item.id
     },
     submit () {
       let url = 'http://localhost:9090/contacts'
@@ -295,17 +245,20 @@ export default {
         this.contact.emails ? this.contact.emails.push({id: this.contact.emails.length + 1, email: ''}) : this.contact.emails = [{id: 1, email: ''}]
         this.contact.phones ? this.contact.phones.push({id: this.contact.phones.length + 1, phone: ''}) : this.contact.phones = [{id: 1, phone: ''}]
         this.contact.faxes ? this.contact.faxes.push({id: this.contact.faxes.length + 1, phone: ''}) : this.contact.faxes = [{id: 1, phone: ''}]
-        if (this.contact.company_id > 0) {
-          let company = this.companies.filter(item => {
-            return item.id === this.contact.company_id
-          })
-          if (company) {
-            this.company.id = company[0].id
-            this.company.name = company[0].name
-          }
-        }
+        this.selectInit('contact', 'companies', 'company')
         this.isLoaded = true
       })
+    },
+    selectInit (parent, list, item) {
+      if (this[parent][item + '_id'] > 0) {
+        let tmpItem = this[list].filter(itemOfList => {
+          return itemOfList.id === this[parent][item + '_id']
+        })
+        if (tmpItem) {
+          this[parent][item + '_id'] = tmpItem[0].id
+          this[parent][item].name = tmpItem[0].name
+        }
+      }
     }
   }
 }

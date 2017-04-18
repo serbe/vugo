@@ -1,7 +1,7 @@
 <template>
   <div class="field">
     <label v-if="getLabel" class="label">{{ getLabel }}</label>
-    <p :class="classList" @click="openOptions">
+    <div :class="classList" @click="openOptions">
       <input
         :class="inputClassList"
         type="text"
@@ -21,11 +21,12 @@
         <i :class="'fa fa-' + icon"></i>
       </span>
       <div class="select-box" v-if="opened==true">
+        <div class="select-item" @click.stop="selectItem({id:0,name:''})" @mousedown="mousedownItem"></div>
         <template  v-for="item in listWithFilter">
           <div class="select-item" @click.stop="selectItem(item)" @mousedown="mousedownItem">{{ item.name }}</div>
         </template>
       </div>
-    </p>
+    </div>
   </div>
 </template>
 
@@ -34,7 +35,6 @@ export default {
   name: 'vue-select',
   props: {
     selectedItem: {
-      type: Object,
       default: () => { return { id: 0, name: '' } }
     },
     icon: {
@@ -63,9 +63,16 @@ export default {
       required: false
     },
     list: {
-      type: [Array, Boolean],
       required: true,
-      default: []
+      default: [{
+        id: 0,
+        name: ''
+      }]
+    },
+    itemName: {
+      type: [String, Boolean],
+      required: false,
+      default: false
     }
   },
   data () {
@@ -140,7 +147,11 @@ export default {
     selectItem (item) {
       this.searchText = item.name
       this.closeOptions()
-      this.$emit('select', item)
+      if (this.itemName) {
+        this.$emit('select', item, this.itemName)
+      } else {
+        this.$emit('select', item)
+      }
     },
     onBlur () {
       if (!this.mousedownState) {
@@ -203,7 +214,7 @@ export default {
     border: 1px solid #1fc8db;
     /*visibility: hidden;*/
     background-color: #FFF;
-    /*left: -1px;*/
+    left: 0;
     /*top: 20%;*/
     width: 100%;
     overflow: auto;
@@ -228,6 +239,7 @@ export default {
 }
 
 .select-item:hover {
-    background-color: #aeb1b5;
+  background-color: #3273dc;
+  color: #fff;
 }
 </style>

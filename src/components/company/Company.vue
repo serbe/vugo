@@ -3,7 +3,7 @@
 
       <vue-input v-model="company.name" label placeholder="Наименование организации" icon="building"/>
 
-      <vue-select :list="scopes" :selected-item="scope" label="Сфера деятельности" @select="onSelect" icon="tag"/>
+      <vue-select :list="scopes" :selected-item="company.scope" label="Сфера деятельности" @select="onSelect" icon="tag"/>
 
       <vue-input v-model="company.address" label placeholder="Адрес" icon="address-card"/>
 
@@ -125,10 +125,6 @@ export default {
         id: 0,
         name: ''
       }],
-      scope: {
-        id: 0,
-        name: ''
-      },
       options: []
     }
   },
@@ -217,20 +213,23 @@ export default {
         this.company.emails ? this.company.emails.push({id: this.company.emails.length + 1, email: ''}) : this.company.emails = [{id: 1, email: ''}]
         this.company.phones ? this.company.phones.push({id: this.company.phones.length + 1, phone: '', fax: false}) : this.company.phones = [{id: 1, phone: '', fax: false}]
         this.company.faxes ? this.company.faxes.push({id: this.company.faxes.length + 1, phone: '', fax: true}) : this.company.faxes = [{id: 1, phone: '', fax: true}]
-        if (this.company.scope_id > 0) {
-          let scope = this.scopes.filter(item => {
-            return item.id === this.company.scope_id
-          })
-          if (scope) {
-            this.scope.id = scope[0].id
-            this.scope.name = scope[0].name
-          }
-        }
+        this.selectInit('company', 'scopes', 'scope')
         this.isLoaded = true
       })
     },
     customLabel (val) {
       return val.name
+    },
+    selectInit (parent, list, item) {
+      if (this[parent][item + '_id'] > 0) {
+        let tmpItem = this[list].filter(itemOfList => {
+          return itemOfList.id === this[parent][item + '_id']
+        })
+        if (tmpItem) {
+          this[parent][item + '_id'] = tmpItem[0].id
+          this[parent][item].name = tmpItem[0].name
+        }
+      }
     }
   }
 }
