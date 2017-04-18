@@ -77,9 +77,6 @@ export default {
       isLoaded: false
     }
   },
-  mounted: function () {
-    console.log(this.item)
-  },
   computed: {
     classList () {
       var res = ['control is-expanded select is-fullwidth']
