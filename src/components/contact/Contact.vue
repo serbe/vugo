@@ -4,18 +4,7 @@
 
       <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" icon="user"/>
 
-      <div class="field">
-        <label class="label">Организация</label>
-        <p class="control">
-          <span class="select is-fullwidth">
-            <select v-model="contact.company.name">
-              <option></option>
-              <option v-for="company in companies"
-                      :key="company.id">{{ company.name }}</option>
-            </select>
-          </span>
-        </p>
-      </div>
+      <vue-select :list="companies" :selected-item="company" label="Организация" @select="onSelectCompany" icon="building"/>
 
       <div class="columns">
         <div class="column is-half">
@@ -174,11 +163,13 @@
 <script>
 import input from '@/elements/Input'
 import button from '@/elements/Button'
+import select from '@/elements/Select'
 export default {
   name: 'contact',
   components: {
     'vue-input': input,
-    'vue-button': button
+    'vue-button': button,
+    'vue-select': select
   },
   data () {
     return {
@@ -245,13 +236,21 @@ export default {
       ranks: [{
         id: 0,
         name: ''
-      }]
+      }],
+      company: {
+        id: 0,
+        name: ''
+      }
     }
   },
   mounted: function () {
     this.fetchData()
   },
   methods: {
+    onSelectCompany (item) {
+      this.company = item
+      this.contact.company_id = item.id
+    },
     submit () {
       let url = 'http://localhost:9090/contacts'
       if (this.$route.params.id !== '') {
@@ -296,6 +295,15 @@ export default {
         this.contact.emails ? this.contact.emails.push({id: this.contact.emails.length + 1, email: ''}) : this.contact.emails = [{id: 1, email: ''}]
         this.contact.phones ? this.contact.phones.push({id: this.contact.phones.length + 1, phone: ''}) : this.contact.phones = [{id: 1, phone: ''}]
         this.contact.faxes ? this.contact.faxes.push({id: this.contact.faxes.length + 1, phone: ''}) : this.contact.faxes = [{id: 1, phone: ''}]
+        if (this.contact.company_id > 0) {
+          let company = this.companies.filter(item => {
+            return item.id === this.contact.company_id
+          })
+          if (company) {
+            this.company.id = company[0].id
+            this.company.name = company[0].name
+          }
+        }
         this.isLoaded = true
       })
     }

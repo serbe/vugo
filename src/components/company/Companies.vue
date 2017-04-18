@@ -3,7 +3,7 @@
 
     <!--<h2 class="has-text-centered">Справочник организаций</h2>-->
     <p>
-      <a class="button" href="/company/">Добавить</a>
+      <a class="button mb1" href="/company/">Добавить</a>
     </p>
     <p class="control">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
@@ -124,26 +124,19 @@
   }*/
 
   .t10 {
-      width: 10% !important;
+    width: 10% !important;
   }
 
   .t20 {
-      width: 20% !important;
+    width: 20% !important;
   }
 
   .t30 {
-      width: 30% !important;
+    width: 30% !important;
   }
 
-  .t40 {
-      width: 40% !important;
+  .mb1 {
+    margin-bottom: 1em;
   }
 
-  .t50 {
-      width: 50% !important;
-  }
-
-  nav li {
-    list-style-type: none;
-  }
 </style>

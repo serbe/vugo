@@ -3,13 +3,7 @@
 
       <vue-input v-model="company.name" label placeholder="Наименование организации" icon="building"/>
 
-      <vue-select
-        :list="scopes"
-        :selected-item="scope"
-        label="Сфера деятельности"
-        @select="onSelect"
-        icon="tag">
-      </vue-select>
+      <vue-select :list="scopes" :selected-item="scope" label="Сфера деятельности" @select="onSelect" icon="tag"/>
 
       <vue-input v-model="company.address" label placeholder="Адрес" icon="address-card"/>
 
