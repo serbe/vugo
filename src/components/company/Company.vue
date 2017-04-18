@@ -3,24 +3,13 @@
 
       <vue-input v-model="company.name" label placeholder="Наименование организации" icon="building"/>
 
-      <!--<vue-select v-model="company.scope.name" :options="scopes" label placeholder="Сфера деятельности"></vue-select>-->
-      <div>
-        <vue-select :list="scopes"
-                      :selected-item="scope"
-                      placeholder="select item"
-                      @select="onSelect">
-        </vue-select>
-      </div>
-
-        <!--<p class="control">
-          <span class="select is-fullwidth">
-            <select v-model="company.scope.name">
-              <option></option>
-              <option v-for="scope in scopes"
-                      :key="scope.id">{{ scope.name }}</option>
-            </select>
-          </span>
-        </p>-->
+      <vue-select
+        :list="scopes"
+        :selected-item="scope"
+        label="Сфера деятельности"
+        @select="onSelect"
+        icon="tag">
+      </vue-select>
 
       <vue-input v-model="company.address" label placeholder="Адрес" icon="address-card"/>
 
@@ -56,18 +45,18 @@
       <div class="field" v-if="company.practices">
         <label class="label">Тренировки</label>
         <template v-for="practice in company.practices">
-          <vue-input :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic" :hyper="'/practice/' + practice.id" state="disabled"/>
+          <vue-input :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic" :hyper="'/practice/' + practice.id" icon="history" state="disabled"/>
         </template>
       </div>
 
-      <div class="field" v-if="company.practices">
+      <div class="field" v-if="company.contacts">
         <label class="label">Сотрудники</label>
         <template v-for="contact in company.contacts">
-          <vue-input :value="contact.name + ' - ' + contact.post_name" :hyper="'/contact/' + contact.id" state="disabled"/>
+          <vue-input :value="contact.name + ' - ' + contact.post_name" :hyper="'/contact/' + contact.id" icon="user" state="disabled"/>
         </template>
       </div>
 
-      <vue-input v-model="company.note" label placeholder="Заметка" icon="comment"/>
+      <vue-input v-model="company.note" label placeholder="Заметка" icon="sticky-note"/>
 
       <div class="field">
         <div class="columns mt3">
@@ -170,6 +159,7 @@ export default {
     },
     onSelect (item) {
       this.scope = item
+      this.company.scope_id = item.id
     },
     checkArray (values, key) {
       let firstElem = -1
@@ -233,6 +223,15 @@ export default {
         this.company.emails ? this.company.emails.push({id: this.company.emails.length + 1, email: ''}) : this.company.emails = [{id: 1, email: ''}]
         this.company.phones ? this.company.phones.push({id: this.company.phones.length + 1, phone: '', fax: false}) : this.company.phones = [{id: 1, phone: '', fax: false}]
         this.company.faxes ? this.company.faxes.push({id: this.company.faxes.length + 1, phone: '', fax: true}) : this.company.faxes = [{id: 1, phone: '', fax: true}]
+        if (this.company.scope_id > 0) {
+          let scope = this.scopes.filter(item => {
+            return item.id === this.company.scope_id
+          })
+          if (scope) {
+            this.scope.id = scope[0].id
+            this.scope.name = scope[0].name
+          }
+        }
         this.isLoaded = true
       })
     },
