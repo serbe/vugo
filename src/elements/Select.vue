@@ -1,26 +1,30 @@
 <template>
-    <div class="field">
-      <label v-if="getLabel" class="label">{{ getLabel }}</label>
-      <div class="select is-fullwidth" @click="openOptions">
-          <input
-            :class="inputClassList"
-            type="text"
-            ref="vueSelect"
-            autocomplete="off"
-            :placeholder="placeholder"
-            tabindex="0" v-model="searchText"
-            @blur="onBlur"
-            @keydown.up="onKeyUp"
-            @keydown.down="onKeyDown"
-            @keyup.enter="onKeyEnter"
-            @keydown.delete="onKeyDelete"
-          />
-          <div class="select-box" v-if="opened==true">
-            <template  v-for="item in options">
-              <div class="select-item" @click.stop="selectItem(item)" @mousedown="mousedownItem">{{ item.text }}</div>
-            </template>
-          </div>
+  <div class="field">
+    <label v-if="getLabel" class="label">{{ getLabel }}</label>
+    <p :class="classList" @click="openOptions">
+      <input
+        :class="inputClassList"
+        type="text"
+        ref="vueSelect"
+        autocomplete="off"
+        :placeholder="placeholder"
+        v-model="isLoaded ? searchText : selectedItem.name"
+        tabindex="0"
+        @blur="onBlur"
+        @keydown.up="onKeyUp"
+        @keydown.down="onKeyDown"
+        @keyup.enter="onKeyEnter"
+        @keydown.delete="onKeyDelete"
+      >
+      <span v-if="icon" class="icon">
+        <i :class="'fa fa-' + icon"></i>
+      </span>
+      <div class="select-box" v-if="opened==true">
+        <template  v-for="item in filteredList">
+          <div class="select-item" @click.stop="selectItem(item)" @mousedown="mousedownItem">{{ item.name }}</div>
+        </template>
       </div>
+    </p>
   </div>
 </template>
 
@@ -30,7 +34,7 @@ export default {
   props: {
     selectedItem: {
       type: Object,
-      default: () => { return { value: '', text: '' } }
+      default: () => { return { id: 0, name: '' } }
     },
     icon: {
       type: [String, Boolean],
@@ -57,11 +61,6 @@ export default {
       default: false,
       required: false
     },
-    placeholder: {
-      type: [String, Boolean],
-      required: false,
-      default: false
-    },
     list: {
       type: [Array, Boolean],
       required: true,
@@ -71,11 +70,20 @@ export default {
   data () {
     return {
       opened: false,
-      searchText: '',
-      mousedownState: false
+      searchText: this.selectedItem.name,
+      mousedownState: false,
+      placeholder: '',
+      isLoaded: false
     }
   },
   computed: {
+    classList () {
+      var res = ['control is-expanded select is-fullwidth']
+      if (this.icon) {
+        res.push('has-icon')
+      }
+      return res
+    },
     inputClassList () {
       var res = ['input']
       if (this.color) {
@@ -96,42 +104,29 @@ export default {
         return this.label
       }
     },
-    filteredOptions () {
+    filteredList () {
       if (this.searchText) {
-        return this.options.filter(option => {
-          return option.text.match(new RegExp(this.searchText, 'i'))
+        return this.list.filter(item => {
+          return item.name.match(new RegExp(this.searchText, 'i'))
         })
       } else {
-        return this.options
+        return this.list
       }
-    },
-    options () {
-      return this.list.map((e, i) => {
-        return { value: e[this.optionValue], text: this.buildText(e) }
-      })
     },
     item () {
       if (this.selectedItem) {
-        return { value: this.selectedItem[this.optionValue], text: this.buildText(this.selectedItem) }
+        return { id: this.selectedItem.id, name: this.selectedItem.name }
       } else {
-        return { value: '', text: '' }
+        return { id: 0, name: '' }
       }
     }
   },
   methods: {
-    buildText (e) {
-      if (e[this.id]) {
-        if (this.name) {
-          return this.customText(e)
-        } else {
-          return e[this.optionText]
-        }
-      } else {
-        return ''
-      }
-    },
     openOptions () {
+      this.isLoaded = true
       this.$refs.vueSelect.focus()
+      this.searchText = ''
+      this.placeholder = this.selectedItem.name
       this.opened = true
       this.mousedownState = false
     },
@@ -142,57 +137,61 @@ export default {
       this.mousedownState = true
     },
     selectItem (item) {
-      this.searchText = ''
+      this.searchText = item.name
       this.closeOptions()
       this.$emit('select', item)
     },
     onBlur () {
       if (!this.mousedownState) {
-        this.searchText = ''
+        this.searchText = this.selectedItem.name
         this.closeOptions()
       }
     },
     onKeyUp () {
-      const selectedItemIndex = this.filteredOptions.findIndex(item => {
-        return item.selected === true
-      })
-      if (selectedItemIndex === -1) {
-        this.filteredOptions[0].selected = true
-      } else if (selectedItemIndex !== 0) {
-        this.filteredOptions[selectedItemIndex].selected = false
-        this.filteredOptions[selectedItemIndex - 1].selected = true
-      }
+      // const selectedItemIndex = this.filteredOptions.findIndex(item => {
+      //   return item.selected === true
+      // })
+      // if (selectedItemIndex === -1) {
+      //   this.filteredOptions[0].selected = true
+      // } else if (selectedItemIndex !== 0) {
+      //   this.filteredOptions[selectedItemIndex].selected = false
+      //   this.filteredOptions[selectedItemIndex - 1].selected = true
+      // }
     },
     onKeyDown () {
-      const selectedItemIndex = this.filteredOptions.findIndex(item => {
-        return item.selected === true
-      })
-      if (selectedItemIndex === -1) {
-        this.filteredOptions[0].selected = true
-      } else if (selectedItemIndex !== this.filteredOptions.length - 1) {
-        this.filteredOptions[selectedItemIndex].selected = false
-        this.filteredOptions[selectedItemIndex + 1].selected = true
-      }
+      // const selectedItemIndex = this.filteredOptions.findIndex(item => {
+      //   return item.selected === true
+      // })
+      // if (selectedItemIndex === -1) {
+      //   this.filteredOptions[0].selected = true
+      // } else if (selectedItemIndex !== this.filteredOptions.length - 1) {
+      //   this.filteredOptions[selectedItemIndex].selected = false
+      //   this.filteredOptions[selectedItemIndex + 1].selected = true
+      // }
     },
     onKeyEnter () {
-      const selectedItem = this.filteredOptions.find(item => {
-        return item.selected === true
-      })
-      if (selectedItem) {
-        this.selectItem(selectedItem)
-      }
+      // const selectedItem = this.filteredOptions.find(item => {
+      //   return item.selected === true
+      // })
+      // if (selectedItem) {
+      //   this.selectItem(selectedItem)
+      // }
     },
     onKeyDelete () {
-      if (!this.searchText && this.selectedOption) {
-        this.selectItem({})
-        this.openOptions()
-      }
+      // if (!this.searchText && this.selectedOption) {
+      //   this.selectItem({})
+      //   this.openOptions()
+      // }
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+.field {
+  margin-bottom: 0.75rem;
+}
+
 .select-box {
     box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);
     /*display: inline-block;*/
