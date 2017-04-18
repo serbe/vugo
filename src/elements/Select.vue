@@ -8,8 +8,9 @@
         ref="vueSelect"
         autocomplete="off"
         :placeholder="placeholder"
-        v-model="isLoaded ? searchText : selectedItem.name"
         tabindex="0"
+        :value="isLoaded ? searchText : this.item.name"
+        @input="onInput"
         @blur="onBlur"
         @keydown.up="onKeyUp"
         @keydown.down="onKeyDown"
@@ -20,7 +21,7 @@
         <i :class="'fa fa-' + icon"></i>
       </span>
       <div class="select-box" v-if="opened==true">
-        <template  v-for="item in filteredList">
+        <template  v-for="item in listWithFilter">
           <div class="select-item" @click.stop="selectItem(item)" @mousedown="mousedownItem">{{ item.name }}</div>
         </template>
       </div>
@@ -76,6 +77,9 @@ export default {
       isLoaded: false
     }
   },
+  mounted: function () {
+    console.log(this.item)
+  },
   computed: {
     classList () {
       var res = ['control is-expanded select is-fullwidth']
@@ -104,8 +108,8 @@ export default {
         return this.label
       }
     },
-    filteredList () {
-      if (this.searchText) {
+    listWithFilter () {
+      if (this.searchText !== '') {
         return this.list.filter(item => {
           return item.name.match(new RegExp(this.searchText, 'i'))
         })
@@ -182,6 +186,9 @@ export default {
       //   this.selectItem({})
       //   this.openOptions()
       // }
+    },
+    onInput (event) {
+      this.searchText = event.target.value
     }
   }
 }
