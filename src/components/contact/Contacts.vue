@@ -1,9 +1,7 @@
 <template>
-  <div class="content">
-
-    <h2 class="has-text-centered">Справочник контактов</h2>
+  <div>
     <p>
-      <a class="button" href="/contact/">Добавить</a>
+      <a class="button mb1" href="/contact/">Добавить</a>
     </p>
     <p class="control">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
@@ -117,26 +115,18 @@
   }*/
 
   .t10 {
-      width: 10% !important;
+    width: 10% !important;
   }
 
   .t20 {
-      width: 20% !important;
+    width: 20% !important;
   }
 
   .t30 {
-      width: 30% !important;
+    width: 30% !important;
   }
 
-  .t40 {
-      width: 40% !important;
-  }
-
-  .t50 {
-      width: 50% !important;
-  }
-
-  nav li {
-    list-style-type: none;
+  .mb1 {
+    margin-bottom: 1em;
   }
 </style>

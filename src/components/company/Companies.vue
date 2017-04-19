@@ -1,7 +1,5 @@
 <template>
   <div>
-
-    <!--<h2 class="has-text-centered">Справочник организаций</h2>-->
     <p>
       <a class="button mb1" href="/company/">Добавить</a>
     </p>

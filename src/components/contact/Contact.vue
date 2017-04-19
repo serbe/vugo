@@ -25,29 +25,22 @@
       </div>
     </div>
 
-    <!--<div class="field">
-      <label class="label">Сфера деятельности</label>
-      <p class="control">
-        <span class="select is-fullwidth">
-          <select v-model="contact.scope.name">
-            <option></option>
-            <option v-for="scope in scopes"
-                    :key="scope.id">{{ scope.name }}</option>
-          </select>
-        </span>
-      </p>
-    </div>-->
+    <vue-input v-model="contact.address" type="text" label placeholder="Адрес" icon="address-card"/>
 
-    <!--<vue-input v-model="contact.address" type="text" label placeholder="Адрес" icon="address-card"/>-->
+    <!--<div class="field">-->
+      <!--<label class="label">Дата рождения</label>-->
+      <!--<div class="control">-->
+        <!--<input type="text" class="input" v-model="birthday" placeholder="DD.MM.YYYY">-->
+        <!--<datepicker :value="contact.birthday" ></datepicker>-->
+      <!--</div>-->
+    <!--</div>-->
 
     <div class="columns">
       <div class="column">
         <div class="field">
           <label class="label">Почта</label>
           <template v-for="(email, index) in contact.emails">
-            <div class="field">
-              <vue-input :value="email.email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email"/>
-            </div>
+            <vue-input :value="email.email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email"/>
           </template>
         </div>
       </div>
@@ -56,9 +49,7 @@
         <div class="field">
           <label class="label">Телефон</label>
           <template v-for="(phone, index) in contact.phones">
-            <div class="field">
-              <vue-input :value="phone.phone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel"/>
-            </div>
+            <vue-input :value="phone.phone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel"/>
           </template>
         </div>
       </div>
@@ -67,34 +58,18 @@
         <div class="field">
           <label class="label">Факс</label>
           <template v-for="(fax, index) in contact.faxes">
-            <div class="field">
-              <vue-input :value="fax.phone" type="tel" placeholder="Факс" icon="fax" autocomplete="tel"/>
-            </div>
+            <vue-input :value="fax.phone" type="tel" placeholder="Факс" icon="fax" autocomplete="tel"/>
           </template>
         </div>
       </div>
     </div>
 
-    <!--<div class="field">
-      <label class="label" v-if="contact.practices">Тренировки</label>
+    <div class="field" v-if="contact.practices">
+      <label class="label">Тренировки</label>
       <template v-for="practice in contact.practices">
-        <vue-input type="text" :hyper="'/practice/' + practice.id" state="disabled" :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic"/>
+        <vue-input type="text" :hyper="'/practice/' + practice.id" state="disabled" :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic" icon="graduation-cap"/>
       </template>
     </div>
-
-    <div class="field">
-      <label class="label" v-if="contact.contacts">Сотрудники</label>
-      <template v-for="contact in contact.contacts">
-        <vue-input type="text" :hyper="'/contact/' + contact.id" state="disabled marginless" :value="contact.name + ' - ' + contact.post_name"/>
-      </template>
-    </div>-->
-
-    <!--<div class="field">
-      <label class="label">Дата рождения</label>
-      <div class="control i150">
-        <input type="text" class="input" v-model="birthday" placeholder="DD.MM.YYYY">
-      </div>
-    </div>-->
 
     <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="contact.note"/>
 
@@ -118,12 +93,15 @@
 import input from '@/elements/Input'
 import button from '@/elements/Button'
 import select from '@/elements/Select'
+import Datepicker from 'vuejs-datepicker'
+
 export default {
   name: 'contact',
   components: {
     'vue-input': input,
     'vue-button': button,
-    'vue-select': select
+    'vue-select': select,
+    Datepicker
   },
   data () {
     return {
@@ -265,11 +243,11 @@ export default {
 </script>
 
 <style scoped>
-.columns {
-  margin-bottom: -0.25rem !important;
-}
+  .columns {
+    margin-bottom: -0.25rem !important;
+  }
 
-.field .is-grouped {
-  margin-bottom: 0 !important;
-}
+  .field .is-grouped {
+    margin-bottom: 0 !important;
+  }
 </style>
