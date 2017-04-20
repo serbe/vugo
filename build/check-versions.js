@@ -13,6 +13,7 @@ var versionRequirements = [
     versionRequirement: packageConfig.engines.node
   },
 ]
+
 if (shell.which('npm')) {
   versionRequirements.push({
     name: 'npm',
