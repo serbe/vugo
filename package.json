@@ -16,7 +16,6 @@
     "sass-loader": "^6.0.3",
     "vue": "^2.2.6",
     "vue-router": "^2.4.0",
-    "vuejs-datepicker": "^0.7.6"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

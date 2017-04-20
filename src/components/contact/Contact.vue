@@ -25,15 +25,20 @@
       </div>
     </div>
 
-    <vue-input v-model="contact.address" type="text" label placeholder="Адрес" icon="address-card"/>
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <label class="label">Дата рождения</label>
+          <div class="control">
+            <vue-datepicker inputClass="input w300" v-model="contact.birthday" language="ru" format="yyyy-MM-dd"/>
+          </div>
+        </div>
+      </div>
 
-    <!--<div class="field">-->
-      <!--<label class="label">Дата рождения</label>-->
-      <!--<div class="control">-->
-        <!--<input type="text" class="input" v-model="birthday" placeholder="DD.MM.YYYY">-->
-        <!--<datepicker :value="contact.birthday" ></datepicker>-->
-      <!--</div>-->
-    <!--</div>-->
+      <div class="column is-three-quarters">
+        <vue-input v-model="contact.address" type="text" label placeholder="Адрес" icon="address-card"/>
+      </div>
+    </div>
 
     <div class="columns">
       <div class="column">
@@ -93,7 +98,7 @@
 import input from '@/elements/Input'
 import button from '@/elements/Button'
 import select from '@/elements/Select'
-import Datepicker from 'vuejs-datepicker'
+import datepicker from '@/elements/Datepicker'
 
 export default {
   name: 'contact',
@@ -101,7 +106,7 @@ export default {
     'vue-input': input,
     'vue-button': button,
     'vue-select': select,
-    Datepicker
+    'vue-datepicker': datepicker
   },
   data () {
     return {
@@ -249,5 +254,9 @@ export default {
 
   .field .is-grouped {
     margin-bottom: 0 !important;
+  }
+
+  .w300 {
+    width: 300px !important;
   }
 </style>
