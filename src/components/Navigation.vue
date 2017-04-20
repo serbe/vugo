@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <router-link to="/">ЕДДС</router-link>
-    <router-link to="/contacts">Контакты</router-link>
-    <router-link to="/companies">Организации</router-link>
-  </div>
+  <nav class="nav">
+    <div class="nav-left">
+      <router-link to="/" class="nav-item">ЕДДС</router-link>
+      <router-link to="/contacts" class="nav-item">Контакты</router-link>
+      <router-link to="/companies" class="nav-item">Организации</router-link>
+      <router-link to="/posts" class="nav-item">Должности</router-link>
+    </div>
+  </nav>
 </template>
 
 <script>

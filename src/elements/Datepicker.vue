@@ -80,6 +80,7 @@ import DateUtils from './utils/DateUtils.js'
 import DateLanguages from './utils/DateLanguages.js'
 
 export default {
+  name: 'vue-datepicker',
   props: {
     value: {
       validator: function (val) {
