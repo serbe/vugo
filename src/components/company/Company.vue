@@ -39,14 +39,14 @@
       <div class="field" v-if="company.practices">
         <label class="label">Тренировки</label>
         <template v-for="practice in company.practices">
-          <vue-input :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic" :hyper="'/practice/' + practice.id" icon="history" state="disabled"/>
+          <vue-input :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic" :hyper="'/practice/' + practice.id" icon="history" disabled/>
         </template>
       </div>
 
       <div class="field" v-if="company.contacts">
         <label class="label">Сотрудники</label>
         <template v-for="contact in company.contacts">
-          <vue-input :value="contact.name + ' - ' + contact.post_name" :hyper="'/contact/' + contact.id" icon="user" state="disabled"/>
+          <vue-input :value="contact.name + ' - ' + contact.post_name" :hyper="'/contact/' + contact.id" icon="user" disabled/>
         </template>
       </div>
 

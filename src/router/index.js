@@ -6,6 +6,8 @@ import Contacts from '@/components/contact/Contacts'
 import Contact from '@/components/contact/Contact'
 import Companies from '@/components/company/Companies'
 import Company from '@/components/company/Company'
+import Educations from '@/components/education/Educations'
+import Education from '@/components/education/Education'
 
 import NotFoundComponent from '@/components/NotFoundComponent'
 
@@ -43,6 +45,16 @@ export default new Router({
       path: '/company/:id',
       name: 'company',
       component: Company
+    },
+    {
+      path: '/educations',
+      name: 'educations',
+      component: Educations
+    },
+    {
+      path: '/education/:id',
+      name: 'education',
+      component: Education
     },
     {
       path: '*',

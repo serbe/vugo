@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, idx) in educations">
+        <tr v-for="(item, idx) in educations" @click="onClick(item)" class="link">
           <td class="tvm">{{ item.start_str }}</td>
           <td class="tvm">{{ item.end_str }}</td>
           <td class="tvm is-hidden-mobile">{{ item.note }}</td>
@@ -63,6 +63,9 @@
       }
     },
     methods: {
+      onClick (item) {
+        this.$router.push('/education/' + item.id)
+      },
       createEducationsList (educations) {
         let list = educations.map(e => {
           let str = [e.start_str, e.end_str, e.note]

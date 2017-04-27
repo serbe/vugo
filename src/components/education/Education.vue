@@ -90,10 +90,10 @@ export default {
     },
     fetchData () {
       fetch('http://localhost:9090/educations/' + this.$route.params.id)
-        .then(r => r.json())
-        .then((data) => {
-          this.education = data.education
-          this.isLoaded = true
+      .then(r => r.json())
+      .then((data) => {
+        this.education = data.education
+        this.isLoaded = true
       })
     }
   }

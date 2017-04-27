@@ -72,7 +72,7 @@
     <div class="field" v-if="contact.practices">
       <label class="label">Тренировки</label>
       <template v-for="practice in contact.practices">
-        <vue-input type="text" :hyper="'/practice/' + practice.id" state="disabled" :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic" icon="graduation-cap" />
+        <vue-input type="text" :hyper="'/practice/' + practice.id" disabled :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic" icon="graduation-cap" />
       </template>
     </div>
 

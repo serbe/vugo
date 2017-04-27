@@ -11,6 +11,8 @@
           :placeholder="placeholder"
           :value="value"
           @input="onInput"
+          @blur="onBlur"
+          v-bind:disabled="getDisabled"
           :autocomplete="autocomplete">
         <span v-if="icon" class="icon">
           <i :class="'fa fa-' + icon"></i>
@@ -26,6 +28,7 @@
           :value="value"
           @input="onInput"
           @blur="onBlur"
+          v-bind:disabled="getDisabled"
           :autocomplete="autocomplete">
         <span v-if="icon" class="icon">
           <i :class="'fa fa-' + icon"></i>
@@ -69,6 +72,13 @@
           return this.placeholder
         } else {
           return this.label
+        }
+      },
+      getDisabled () {
+        if (this.disabled) {
+          return 'disabled'
+        } else {
+          return false
         }
       }
     },
@@ -136,6 +146,11 @@
       },
       id: {
         type: [String, Boolean],
+        required: false,
+        default: false
+      },
+      disabled: {
+        type: Boolean,
         required: false,
         default: false
       }

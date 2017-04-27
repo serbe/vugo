@@ -203,11 +203,11 @@ export default {
 </script>
 
 <style scoped>
-.field {
-  margin-bottom: 0.75rem;
-}
+  .field {
+    margin-bottom: 0.75rem;
+  }
 
-.select-box {
+  .select-box {
     box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);
     /*display: inline-block;*/
     position: absolute;
@@ -221,9 +221,9 @@ export default {
     z-index: 5;
     /*margin-top: -10px;*/
     max-height: 300px;
-}
+  }
 
-.select-item {
+  .select-item {
     background-color: white;
     /*border: 1px solid #d3d6db;*/
     /*border-radius: 3px;*/
@@ -236,10 +236,10 @@ export default {
     font-size: 12px;
     white-space: nowrap;
     /*box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);*/
-}
+  }
 
-.select-item:hover {
-  background-color: #3273dc;
-  color: #fff;
-}
+  .select-item:hover {
+    background-color: #3273dc;
+    color: #fff;
+  }
 </style>
