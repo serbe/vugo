@@ -21,6 +21,18 @@ export default {
 </script>
 
 <style lang="scss">
+  body {
+    font-size: 0.85rem !important;
+  }
+
+  $size-1:	2.85rem;
+  $size-2:	2.35rem;
+  $size-3:	1.85rem;
+  $size-4:	1.35rem;
+  $size-5:	1.1rem;
+  $size-6:	0.85rem;
+  $size-7:	0.6rem;
+
   @import "~bulma/bulma.sass";
 
   $fa-font-path: "~font-awesome/fonts";

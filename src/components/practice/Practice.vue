@@ -1,9 +1,27 @@
 <template>
-  <form :model="department" id="department">
+  <form :model="education" id="education">
 
-    <vue-input v-model="department.name" label placeholder="Наименование отдела" icon="tag"/>
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <label class="label">Дата начала обучения</label>
+          <p class="control">
+            <vue-datepicker inputClass="input w300" v-model="education.start_date" language="ru" format="yyyy-MM-dd" />
+          </p>
+        </div>
+      </div>
 
-    <vue-input v-model="department.note" label placeholder="Заметка" icon="comment"/>
+      <div class="column">
+        <div class="field">
+          <label class="label">Дата конца обучения</label>
+          <p class="control">
+            <vue-datepicker inputClass="input w300" v-model="education.start_date" language="ru" format="yyyy-MM-dd" />
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="education.note" />
 
     <div class="field">
       <div class="columns mt3">
@@ -24,19 +42,22 @@
 <script>
 import input from '@/elements/Input'
 import button from '@/elements/Button'
+import datepicker from '@/elements/Datepicker'
 
 export default {
-  name: 'department',
+  name: 'education',
   components: {
     'vue-input': input,
-    'vue-button': button
+    'vue-button': button,
+    'vue-datepicker': datepicker
   },
   data () {
     return {
       title: '',
-      department: {
+      education: {
         id: 0,
-        name: '',
+        start_date: '',
+        end_date: '',
         note: ''
       }
     }
@@ -46,11 +67,11 @@ export default {
   },
   methods: {
     submit () {
-      let url = 'http://localhost:9090/departments'
+      let url = 'http://localhost:9090/educations'
       if (this.$route.params.id !== '') {
         url = url + '/' + this.$route.params.id
       }
-      let values = this.department
+      let values = this.education
       fetch(url, {
         method: 'PUT',
         mode: 'cors',
@@ -59,19 +80,19 @@ export default {
       .then(function (res) {
         console.log(res)
       })
-      this.$router.push('/departments')
+      this.$router.push('/educations')
     },
     close () {
-      this.$router.push('/departments')
+      this.$router.push('/educations')
     },
     delete () {
       console.log('delete!')
     },
     fetchData () {
-      fetch('http://localhost:9090/departments/' + this.$route.params.id)
+      fetch('http://localhost:9090/educations/' + this.$route.params.id)
       .then(r => r.json())
       .then((data) => {
-        this.department = data.department
+        this.education = data.education
         this.isLoaded = true
       })
     }

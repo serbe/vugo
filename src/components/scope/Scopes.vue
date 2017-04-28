@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      <a class="button mb1" href="/education/">Добавить</a>
+      <a class="button mb1" href="/rank/">Добавить</a>
     </p>
     <p class="control">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
@@ -9,15 +9,13 @@
     <table class="table is-striped fixed_table">
       <thead>
         <tr>
-          <th>Начало обучения</th>
-          <th>Конец обучения</th>
+          <th>Наименование</th>
           <th class="is-hidden-mobile"><a>Заметка</a></th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, idx) in educations" @click="onClick(item)" class="link">
-          <td class="tvm">{{ item.start_str }}</td>
-          <td class="tvm">{{ item.end_str }}</td>
+        <tr v-for="(item, idx) in ranks" @click="onClick(item)" class="link">
+          <td class="tvm">{{ item.name }}</td>
           <td class="tvm is-hidden-mobile">{{ item.note }}</td>
         </tr>
       </tbody>
@@ -40,46 +38,46 @@
 
 <script>
   export default {
-    name: 'educations',
+    name: 'ranks',
     data: () => ({
-      educations: null,
-      educationsList: null,
+      ranks: null,
+      ranksList: null,
       isLoaded: false,
       searchText: '',
       paginate: 0,
       query: ''
     }),
     mounted () {
-      fetch('http://localhost:9090/educations').then(r => r.json()).then((data) => {
-        this.educationsList = this.createEducationsList(data.educations)
+      fetch('http://localhost:9090/ranks').then(r => r.json()).then((data) => {
+        this.ranksList = this.createRanksList(data.ranks)
         this.isLoaded = true
-        this.filterEducations()
+        this.filterRanks()
       })
     },
     watch: {
       query: function (val, oldVal) {
         this.query = val
-        this.filterEducations()
+        this.filterRanks()
       }
     },
     methods: {
       onClick (item) {
-        this.$router.push('/education/' + item.id)
+        this.$router.push('/rank/' + item.id)
       },
-      createEducationsList (educations) {
-        let list = educations.map(e => {
-          let str = [e.start_str, e.end_str, e.note]
+      createRanksList (ranks) {
+        let list = ranks.map(e => {
+          let str = [e.name, e.note]
           e.str = str.join(' ').toLowerCase()
           return e
         })
         return list
       },
-      filterEducations () {
+      filterRanks () {
         let queryArr = this.query.toLowerCase().split(' ')
-        let educations = this.educationsList.filter((f) => {
+        let ranks = this.ranksList.filter((f) => {
           return queryArr.every(e => f.str.includes(e))
         })
-        this.educations = educations.filter((f, i) => {
+        this.ranks = ranks.filter((f, i) => {
           return i >= this.paginate * 50 && i < (this.paginate + 1) * 50
         })
       }
@@ -100,6 +98,22 @@
 
   th {
     vertical-align: middle;
+  }
+
+  /*.fixed_table {
+      table-layout: fixed !important;
+  }*/
+
+  .t10 {
+    width: 10% !important;
+  }
+
+  .t20 {
+    width: 20% !important;
+  }
+
+  .t30 {
+    width: 30% !important;
   }
 
   .mb1 {

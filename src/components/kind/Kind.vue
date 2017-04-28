@@ -1,9 +1,9 @@
 <template>
-  <form :model="department" id="department">
+  <form :model="rank" id="rank">
 
-    <vue-input v-model="department.name" label placeholder="Наименование отдела" icon="tag"/>
+    <vue-input v-model="rank.name" label placeholder="Наименование чина" icon="tag"/>
 
-    <vue-input v-model="department.note" label placeholder="Заметка" icon="comment"/>
+    <vue-input v-model="rank.note" label placeholder="Заметка" icon="comment"/>
 
     <div class="field">
       <div class="columns mt3">
@@ -26,7 +26,7 @@ import input from '@/elements/Input'
 import button from '@/elements/Button'
 
 export default {
-  name: 'department',
+  name: 'rank',
   components: {
     'vue-input': input,
     'vue-button': button
@@ -34,7 +34,7 @@ export default {
   data () {
     return {
       title: '',
-      department: {
+      rank: {
         id: 0,
         name: '',
         note: ''
@@ -46,11 +46,11 @@ export default {
   },
   methods: {
     submit () {
-      let url = 'http://localhost:9090/departments'
+      let url = 'http://localhost:9090/ranks'
       if (this.$route.params.id !== '') {
         url = url + '/' + this.$route.params.id
       }
-      let values = this.department
+      let values = this.rank
       fetch(url, {
         method: 'PUT',
         mode: 'cors',
@@ -59,19 +59,19 @@ export default {
       .then(function (res) {
         console.log(res)
       })
-      this.$router.push('/departments')
+      this.$router.push('/ranks')
     },
     close () {
-      this.$router.push('/departments')
+      this.$router.push('/ranks')
     },
     delete () {
       console.log('delete!')
     },
     fetchData () {
-      fetch('http://localhost:9090/departments/' + this.$route.params.id)
+      fetch('http://localhost:9090/ranks/' + this.$route.params.id)
       .then(r => r.json())
       .then((data) => {
-        this.department = data.department
+        this.rank = data.rank
         this.isLoaded = true
       })
     }

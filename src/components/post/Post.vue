@@ -1,9 +1,11 @@
 <template>
-  <form :model="department" id="department">
+  <form :model="post" id="post">
 
-    <vue-input v-model="department.name" label placeholder="Наименование отдела" icon="tag"/>
+    <vue-input v-model="post.name" label placeholder="Наименование должности" icon="tag"/>
 
-    <vue-input v-model="department.note" label placeholder="Заметка" icon="comment"/>
+    <vue-checkbox v-model="post.go" type="checkbox" label="Должность по гражданской обороне"/>
+
+    <vue-input v-model="post.note" label placeholder="Заметка" icon="comment"/>
 
     <div class="field">
       <div class="columns mt3">
@@ -24,19 +26,22 @@
 <script>
 import input from '@/elements/Input'
 import button from '@/elements/Button'
+import checkbox from '@/elements/Checkbox'
 
 export default {
-  name: 'department',
+  name: 'post',
   components: {
     'vue-input': input,
-    'vue-button': button
+    'vue-button': button,
+    'vue-checkbox': checkbox
   },
   data () {
     return {
       title: '',
-      department: {
+      post: {
         id: 0,
         name: '',
+        go: false,
         note: ''
       }
     }
@@ -46,11 +51,11 @@ export default {
   },
   methods: {
     submit () {
-      let url = 'http://localhost:9090/departments'
+      let url = 'http://localhost:9090/posts'
       if (this.$route.params.id !== '') {
         url = url + '/' + this.$route.params.id
       }
-      let values = this.department
+      let values = this.post
       fetch(url, {
         method: 'PUT',
         mode: 'cors',
@@ -59,19 +64,19 @@ export default {
       .then(function (res) {
         console.log(res)
       })
-      this.$router.push('/departments')
+      this.$router.push('/posts')
     },
     close () {
-      this.$router.push('/departments')
+      this.$router.push('/posts')
     },
     delete () {
       console.log('delete!')
     },
     fetchData () {
-      fetch('http://localhost:9090/departments/' + this.$route.params.id)
+      fetch('http://localhost:9090/posts/' + this.$route.params.id)
       .then(r => r.json())
       .then((data) => {
-        this.department = data.department
+        this.post = data.post
         this.isLoaded = true
       })
     }
