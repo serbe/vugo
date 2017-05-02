@@ -1,8 +1,26 @@
 <template>
   <div>
-    <p>
-      <a class="button mb1" href="/contact/0">Добавить</a>
-    </p>
+    <nav class="nav">
+      <div class="nav-left">
+        <p class="nav-item">
+          <a class="button mb1" href="/contact/0">Добавить</a>
+        </p>
+      </div>
+      <div class="nav-rigth">
+        <p class="nav-item">
+          <span class="select">
+            <select v-model="perPage">
+              <option>10</option>
+              <option>20</option>
+              <option>30</option>
+              <option>40</option>
+              <option>50</option>
+              <option>100</option>
+            </select>
+          </span>
+        </p>
+      </div>
+    </nav>
     <p class="control">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
@@ -30,7 +48,7 @@
         </tr>
       </tbody>
     </table>
-    <vue-pagination :page="page" :allElems="all" :perPage="perPage" />
+    <vue-pagination :page="page" :allElems="all" :perPage="perPage" @pagination="pagination"/>
   </div>
 </template>
 
@@ -80,6 +98,15 @@
       query: function (val, oldVal) {
         this.query = val
         this.filterContacts()
+      },
+      perPage: function (val, oldVal) {
+        if (val !== oldVal) {
+          this.perPage = val
+          console.log(this.page)
+          this.page = (oldVal * this.page / val) | 0
+          console.log(this.page)
+          this.filterContacts()
+        }
       }
     },
     methods: {
@@ -106,9 +133,10 @@
           return []
         }
       },
-      events: {
-        pagination: function (argument) {
-          console.log(argument)
+      pagination: function (num) {
+        if (num !== this.page) {
+          this.page = num
+          this.filterContacts()
         }
       }
     }
