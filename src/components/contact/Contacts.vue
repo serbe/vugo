@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      <a class="button mb1" href="/contact/">Добавить</a>
+      <a class="button mb1" href="/contact/0">Добавить</a>
     </p>
     <p class="control">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
@@ -30,34 +30,45 @@
         </tr>
       </tbody>
     </table>
-    <nav class="pagination is-centered">
-      <a class="pagination-previous">Previous</a>
-      <a class="pagination-next">Next page</a>
-      <ul class="pagination-list">
-        <li><a class="pagination-link">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link">45</a></li>
-        <li><a class="pagination-link is-current">46</a></li>
-        <li><a class="pagination-link">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link">86</a></li>
-      </ul>
-    </nav>
+    <vue-pagination :page="page" :allElems="all" :perPage="perPage" />
   </div>
 </template>
 
 <script>
+  import pagination from '@/elements/Pagination'
+
   export default {
     name: 'contacts',
+    components: {
+      'vue-pagination': pagination
+    },
     data: () => ({
       contacts: null,
       contactsList: null,
+      filter: null,
       isLoaded: false,
       searchText: '',
       column: 'name',
-      paginate: 0,
-      query: ''
+      perPage: 50,
+      query: '',
+      page: 1
     }),
+    computed: {
+      all () {
+        return this.filtered ? this.filtered.length : 0
+      },
+      filtered () {
+        if (this.contactsList) {
+          let queryArr = this.query.toLowerCase().split(' ')
+          let contacts = this.contactsList.filter((c) => {
+            return queryArr.every(e => c.str.includes(e))
+          })
+          return contacts
+        } else {
+          return []
+        }
+      }
+    },
     mounted () {
       fetch('http://localhost:9090/contacts').then(r => r.json()).then((data) => {
         this.contactsList = this.createContactsList(data.contacts)
@@ -87,13 +98,18 @@
         return list
       },
       filterContacts () {
-        let queryArr = this.query.toLowerCase().split(' ')
-        let contacts = this.contactsList.filter((c) => {
-          return queryArr.every(e => c.str.includes(e))
-        })
-        this.contacts = contacts.filter((c, i) => {
-          return i >= this.paginate * 50 && i < (this.paginate + 1) * 50
-        })
+        if (this.filtered) {
+          this.contacts = this.filtered.filter((c, i) => {
+            return i >= (this.page - 1) * this.perPage && i < this.page * this.perPage
+          })
+        } else {
+          return []
+        }
+      },
+      events: {
+        pagination: function (argument) {
+          console.log(argument)
+        }
       }
     }
   }

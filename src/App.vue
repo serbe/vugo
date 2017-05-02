@@ -25,6 +25,8 @@ export default {
     font-size: 0.85rem !important;
   }
 
+  $text: hsl(0, 0%, 14%);
+
   $size-1:	2.85rem;
   $size-2:	2.35rem;
   $size-3:	1.85rem;
