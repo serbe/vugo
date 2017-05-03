@@ -16,8 +16,6 @@
               <option>40</option>
               <option>50</option>
               <option>100</option>
-              <option>500</option>
-              <option>1000</option>
             </select>
           </span>
         </p>
@@ -70,8 +68,6 @@
       companies: null,
       companiesList: null,
       isLoaded: false,
-      searchText: '',
-      column: 'name',
       perPage: 50,
       query: '',
       page: 1
@@ -81,9 +77,9 @@
         return this.filtered ? this.filtered.length : 0
       },
       filtered () {
-        if (this.contactsList) {
+        if (this.companiesList) {
           let queryArr = this.query.toLowerCase().split(' ')
-          let companies = this.companyList.filter((c) => {
+          let companies = this.companiesList.filter((c) => {
             return queryArr.every(e => c.str.includes(e))
           })
           return companies
@@ -96,19 +92,20 @@
       fetch('http://localhost:9090/companies').then(r => r.json()).then((data) => {
         this.companiesList = this.createCompaniesList(data.companies)
         this.isLoaded = true
-        this.filterCompanies()
+        this.filterList()
       })
     },
     watch: {
-      query: function (val, oldVal) {
+      query: function (val) {
         this.query = val
-        this.filterCompanies()
+        this.page = 1
+        this.filterList()
       },
       perPage: function (val, oldVal) {
         if (val !== oldVal) {
           this.perPage = val
           this.page = (oldVal * this.page / val) | 0
-          this.filterCompanies()
+          this.filterList()
         }
       }
     },
@@ -130,7 +127,7 @@
         })
         return list
       },
-      filterCompanies () {
+      filterList () {
         if (this.filtered) {
           this.companies = this.filtered.filter((c, i) => {
             return i >= (this.page - 1) * this.perPage && i < this.page * this.perPage
@@ -142,7 +139,7 @@
       pagination: function (num) {
         if (num !== this.page) {
           this.page = num
-          this.filterCompanies()
+          this.filterList()
         }
       }
     }

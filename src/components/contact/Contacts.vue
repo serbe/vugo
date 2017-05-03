@@ -16,8 +16,6 @@
               <option>40</option>
               <option>50</option>
               <option>100</option>
-              <option>500</option>
-              <option>1000</option>
             </select>
           </span>
         </p>
@@ -66,8 +64,6 @@
       contacts: null,
       contactsList: null,
       isLoaded: false,
-      searchText: '',
-      column: 'name',
       perPage: 50,
       query: '',
       page: 1
@@ -92,19 +88,20 @@
       fetch('http://localhost:9090/contacts').then(r => r.json()).then((data) => {
         this.contactsList = this.createContactsList(data.contacts)
         this.isLoaded = true
-        this.filterContacts()
+        this.filterList()
       })
     },
     watch: {
-      query: function (val, oldVal) {
+      query: function (val) {
         this.query = val
-        this.filterContacts()
+        this.page = 1
+        this.filterList()
       },
       perPage: function (val, oldVal) {
         if (val !== oldVal) {
           this.perPage = val
           this.page = (oldVal * this.page / val) | 0
-          this.filterContacts()
+          this.filterList()
         }
       }
     },
@@ -123,7 +120,7 @@
         })
         return list
       },
-      filterContacts () {
+      filterList () {
         if (this.filtered) {
           this.contacts = this.filtered.filter((c, i) => {
             return i >= (this.page - 1) * this.perPage && i < this.page * this.perPage
@@ -135,7 +132,7 @@
       pagination: function (num) {
         if (num !== this.page) {
           this.page = num
-          this.filterContacts()
+          this.filterList()
         }
       }
     }
@@ -152,10 +149,6 @@
   th {
     vertical-align: middle;
   }
-
-  /*.fixed_table {
-      table-layout: fixed !important;
-  }*/
 
   .t10 {
     width: 10% !important;

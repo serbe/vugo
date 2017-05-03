@@ -190,13 +190,13 @@ export default {
         url = url + '/' + this.$route.params.id
       }
       let values = this.contact
-      values.emails = values.emails.filter((e, i) => {
+      values.emails = values.emails.filter((e) => {
         return e.email && e.email !== ''
       })
-      values.phones = values.phones.filter((p, i) => {
+      values.phones = values.phones.filter((p) => {
         return p.phone && p.phone !== ''
       })
-      values.faxes = values.faxes.filter((f, i) => {
+      values.faxes = values.faxes.filter((f) => {
         return f.phone && f.phone !== ''
       })
       fetch(url, {
@@ -204,9 +204,6 @@ export default {
         mode: 'cors',
         body: JSON.stringify(values)
       })
-        .then(function (res) {
-          console.log(res)
-        })
       this.$router.push('/contacts')
     },
     close () {

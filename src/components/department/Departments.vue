@@ -55,8 +55,9 @@
       })
     },
     watch: {
-      query: function (val, oldVal) {
+      query: function (val) {
         this.query = val
+        this.page = 1
         this.filterDepartments()
       }
     },

@@ -132,17 +132,17 @@ export default {
     this.fetchData()
   },
   methods: {
-    blurEmail: function (val) {
+    blurEmail: function () {
       if (this.checkArray(this.company.emails, 'email')) {
         this.company.emails.push({id: this.company.emails.length + 1, email: ''})
       }
     },
-    blurPhone: function (val) {
+    blurPhone: function () {
       if (this.checkArray(this.company.phones, 'phone')) {
         this.company.phones.push({id: this.company.phones.length + 1, phone: '', fax: false})
       }
     },
-    blurFax: function (val) {
+    blurFax: function () {
       if (this.checkArray(this.company.faxes, 'phone')) {
         this.company.faxes.push({id: this.company.faxes.length + 1, phone: '', fax: true})
       }
@@ -179,22 +179,19 @@ export default {
         url = url + '/' + this.$route.params.id
       }
       let values = this.company
-      values.emails = values.emails.filter((e, i) => {
+      values.emails = values.emails.filter((e) => {
         return e.email && e.email !== ''
       })
-      values.phones = values.phones.filter((p, i) => {
+      values.phones = values.phones.filter((p) => {
         return p.phone && p.phone !== ''
       })
-      values.faxes = values.faxes.filter((f, i) => {
+      values.faxes = values.faxes.filter((f) => {
         return f.phone && f.phone !== ''
       })
       fetch(url, {
         method: 'PUT',
         mode: 'cors',
         body: JSON.stringify(values)
-      })
-      .then(function (res) {
-        // console.log(res)
       })
       this.$router.push('/companies')
     },
