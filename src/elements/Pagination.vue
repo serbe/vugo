@@ -41,6 +41,7 @@ export default {
       required: true
     },
     perPage: {
+      type: Number,
       required: true
     }
   },
