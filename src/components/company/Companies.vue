@@ -1,8 +1,28 @@
 <template>
   <div>
-    <p>
-      <a class="button mb1" href="/company/">Добавить</a>
-    </p>
+    <nav class="nav">
+      <div class="nav-left">
+        <p class="nav-item">
+          <a class="button mb1" href="/company/0">Добавить</a>
+        </p>
+      </div>
+      <div class="nav-rigth">
+        <p class="nav-item">
+          <span class="select">
+            <select v-model="perPage">
+              <option>10</option>
+              <option>20</option>
+              <option>30</option>
+              <option>40</option>
+              <option>50</option>
+              <option>100</option>
+              <option>500</option>
+              <option>1000</option>
+            </select>
+          </span>
+        </p>
+      </div>
+    </nav>
     <p class="control">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
@@ -34,34 +54,44 @@
         </tr>
       </tbody>
     </table>
-    <nav class="pagination is-centered">
-      <a class="pagination-previous">Previous</a>
-      <a class="pagination-next">Next page</a>
-      <ul class="pagination-list">
-        <li><a class="pagination-link">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link">45</a></li>
-        <li><a class="pagination-link is-current">46</a></li>
-        <li><a class="pagination-link">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link">86</a></li>
-      </ul>
-    </nav>
+    <vue-pagination :page="page" :allElems="all" :perPage="perPage" @pagination="pagination"/>
   </div>
 </template>
 
 <script>
+  import pagination from '@/elements/Pagination'
+
   export default {
     name: 'companies',
+    components: {
+      'vue-pagination': pagination
+    },
     data: () => ({
       companies: null,
       companiesList: null,
       isLoaded: false,
       searchText: '',
       column: 'name',
-      paginate: 0,
-      query: ''
+      perPage: 50,
+      query: '',
+      page: 1
     }),
+    computed: {
+      all () {
+        return this.filtered ? this.filtered.length : 0
+      },
+      filtered () {
+        if (this.contactsList) {
+          let queryArr = this.query.toLowerCase().split(' ')
+          let companies = this.companyList.filter((c) => {
+            return queryArr.every(e => c.str.includes(e))
+          })
+          return companies
+        } else {
+          return []
+        }
+      }
+    },
     mounted () {
       fetch('http://localhost:9090/companies').then(r => r.json()).then((data) => {
         this.companiesList = this.createCompaniesList(data.companies)
@@ -73,6 +103,13 @@
       query: function (val, oldVal) {
         this.query = val
         this.filterCompanies()
+      },
+      perPage: function (val, oldVal) {
+        if (val !== oldVal) {
+          this.perPage = val
+          this.page = (oldVal * this.page / val) | 0
+          this.filterCompanies()
+        }
       }
     },
     methods: {
@@ -94,13 +131,19 @@
         return list
       },
       filterCompanies () {
-        let queryArr = this.query.toLowerCase().split(' ')
-        let companies = this.companiesList.filter((c) => {
-          return queryArr.every(e => c.str.includes(e))
-        })
-        this.companies = companies.filter((c, i) => {
-          return i >= this.paginate * 50 && i < (this.paginate + 1) * 50
-        })
+        if (this.filtered) {
+          this.companies = this.filtered.filter((c, i) => {
+            return i >= (this.page - 1) * this.perPage && i < this.page * this.perPage
+          })
+        } else {
+          return []
+        }
+      },
+      pagination: function (num) {
+        if (num !== this.page) {
+          this.page = num
+          this.filterCompanies()
+        }
       }
     }
   }
@@ -117,10 +160,6 @@
     vertical-align: middle;
   }
 
-  /*.fixed_table {
-      table-layout: fixed !important;
-  }*/
-
   .t10 {
     width: 10% !important;
   }
@@ -136,5 +175,4 @@
   .mb1 {
     margin-bottom: 1em;
   }
-
 </style>
