@@ -16,6 +16,8 @@
               <option>40</option>
               <option>50</option>
               <option>100</option>
+              <option>500</option>
+              <option>1000</option>
             </select>
           </span>
         </p>
@@ -63,7 +65,6 @@
     data: () => ({
       contacts: null,
       contactsList: null,
-      filter: null,
       isLoaded: false,
       searchText: '',
       column: 'name',
@@ -102,9 +103,7 @@
       perPage: function (val, oldVal) {
         if (val !== oldVal) {
           this.perPage = val
-          console.log(this.page)
           this.page = (oldVal * this.page / val) | 0
-          console.log(this.page)
           this.filterContacts()
         }
       }
