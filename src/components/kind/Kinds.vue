@@ -55,7 +55,7 @@
       })
     },
     watch: {
-      query: function (val, oldVal) {
+      query: function (val) {
         this.query = val
         this.filterRanks()
       }
