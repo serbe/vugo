@@ -4,7 +4,12 @@
       :names="['Наименование', 'Адрес', 'Сфера деятельности', 'Телефон', 'Факс', 'Тренировки']"
       :columns="['name', 'address', 'scope_name', 'phones', 'faxes', 'practices']"
       :tableData="companiesList"
+      tableClasses="is-narrow is-striped"
+      :headClasses="['', 'is-hidden-touch', 'is-hidden-mobile', '', 'is-hidden-touch', 'is-hidden-touch is-hidden-desktop-only']"
+      :cellClasses="['', 'is-hidden-touch', 'is-hidden-mobile', '', 'is-hidden-touch', 'is-hidden-touch is-hidden-desktop-only']"
       pagination
+      hyper="company"
+      search
     />
   </div>
 </template>
@@ -51,29 +56,5 @@
 </script>
 
 <style scoped>
-  a {
-    color: #1f2d3d;
-    text-decoration: none;
-    /*word-break: break-word !important;*/
-  }
 
-  th {
-    vertical-align: middle;
-  }
-
-  .t10 {
-    width: 10% !important;
-  }
-
-  .t20 {
-    width: 20% !important;
-  }
-
-  .t30 {
-    width: 30% !important;
-  }
-
-  .mb1 {
-    margin-bottom: 1em;
-  }
 </style>

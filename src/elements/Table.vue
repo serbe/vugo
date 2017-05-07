@@ -1,9 +1,9 @@
 <template>
-<div>
+  <div>
     <nav class="nav">
       <div class="nav-left">
         <p class="nav-item">
-          <a class="button mb1" href="/company/0">Добавить</a>
+          <a class="button" href="/company/0">Добавить</a>
         </p>
       </div>
       <div class="nav-rigth">
@@ -21,18 +21,31 @@
         </p>
       </div>
     </nav>
-    <p class="control" v-if="search">
+    <p class="control mb1" v-if="search">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
-    <table class="table">
+    <table class="table" :class="tableClass">
       <thead>
         <tr>
-          <th v-for="name in head">{{ name }}</th>
+          <th v-for="(name, index) in head" :class="headClass(index)">{{ name }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in rows">
-          <td v-for="name in body">{{ item[name] }}</td>
+        <tr v-if="hyper" v-for="item in rows" @click="onClickTr(item)" class="link">
+          <td v-for="(name, index) in body" :class="cellClass(index)">
+            <template v-if="Array.isArray(item[name])">
+              <span v-for="value in item[name]">{{ value }}<br></span>
+            </template>
+            <template v-else>{{ item[name] }}</template>
+          </td>
+        </tr>
+        <tr v-else v-for="item in body">
+          <td v-for="(name, index) in body" :class="cellClass(index)">
+            <template v-if="Array.isArray(item[name])">
+              <span v-for="value in item[name]">{{ value }}<br></span>
+            </template>
+            <template v-else>{{ item[name] }}</template>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -48,7 +61,7 @@
     components: {
       'vue-pagination': pagination
     },
-    data: function () {
+    data () {
       return {
         query: '',
         page: 1,
@@ -73,7 +86,7 @@
         required: false
       },
       tableClasses: {
-        type: Array,
+        type: String,
         required: false
       },
       tableData: {
@@ -94,16 +107,20 @@
         type: Number,
         default: 50,
         required: false
+      },
+      hyper: {
+        type: String,
+        required: false
       }
     },
     computed: {
-      head: function () {
+      head () {
         return this.names ? this.names : Object.keys(this.tableData[0])
       },
-      body: function () {
+      body () {
         return this.columns ? this.columns : Object.keys(this.tableData[0])
       },
-      rows: function () {
+      rows () {
         let result = []
         if (this.tableData.length > 0) {
           result = this.tableData.filter((c, i) => {
@@ -125,19 +142,24 @@
         } else {
           return []
         }
+      },
+      tableClass () {
+        return this.tableClasses ? this.tableClasses : ''
       }
     },
     methods: {
-      click () {
-        this.$emit('click')
+      onClickTr (item) {
+        if ('id' in item) {
+          this.$router.push('/' + this.hyper + '/' + item.id)
+        }
       },
-      headClass: function (index) {
+      headClass (index) {
         return this.headClasses ? this.headClasses[index] : []
       },
-      cellClass: function (index) {
+      cellClass (index) {
         return this.cellClasses ? this.cellClasses[index] : []
       },
-      filter: function (num) {
+      filter (num) {
         if (num !== this.page) {
           this.page = num
         }
@@ -146,3 +168,12 @@
   }
 </script>
 
+<style scoped>
+  .link {
+    cursor: pointer !important;
+  }
+
+  .mb1 {
+    margin-bottom: 1rem;
+  }
+</style>

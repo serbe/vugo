@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <vue-navigation/>
-      <section class="section">
+      <section class="section pt1">
       <div class="container">
         <!--<img src="./assets/logo.png">-->
         <router-view></router-view>
@@ -23,6 +23,10 @@ export default {
 <style lang="scss">
   body {
     font-size: 0.85rem !important;
+  }
+
+  .pt1 {
+    padding-top: 1rem !important;
   }
 
   $primary: #2B2B2B;
