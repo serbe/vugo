@@ -122,8 +122,8 @@
       },
       rows () {
         let result = []
-        if (this.tableData.length > 0) {
-          result = this.tableData.filter((c, i) => {
+        if (this.filtered) {
+          result = this.filtered.filter((c, i) => {
             return i >= (this.page - 1) * this.rowsPerPage && i < this.page * this.rowsPerPage
           })
         }
@@ -163,6 +163,13 @@
         if (num !== this.page) {
           this.page = num
         }
+      }
+    },
+    watch: {
+      query: function (val) {
+        this.query = val
+        this.page = 1
+        this.filterList()
       }
     }
   }
