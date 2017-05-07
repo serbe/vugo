@@ -135,8 +135,16 @@
       filtered () {
         if (this.tableData) {
           let queryArr = this.query.toLowerCase().split(' ')
-          let filteredData = this.tableData.filter((c) => {
-            return queryArr.every(e => c.str.includes(e))
+          let filteredData = this.tableData.filter(c => {
+            let str = ''
+            for (var key in c) {
+              if (Array.isArray(c[key])) {
+                str += c[key].join(' ')
+              } else {
+                str += c[key]
+              }
+            }
+            return queryArr.every(e => str.toLowerCase().includes(e))
           })
           return filteredData
         } else {
@@ -157,7 +165,7 @@
         return this.headClasses ? this.headClasses[index] : []
       },
       cellClass (index) {
-        return this.cellClasses ? this.cellClasses[index] : []
+        return this.cellClasses ? this.cellClasses[index] : this.headClass(index)
       },
       filter (num) {
         if (num !== this.page) {
@@ -169,7 +177,6 @@
       query: function (val) {
         this.query = val
         this.page = 1
-        this.filterList()
       }
     }
   }

@@ -23,7 +23,6 @@
       'vue-table': table
     },
     data: () => ({
-      companies: [],
       companiesList: [],
       isLoaded: false
     }),
