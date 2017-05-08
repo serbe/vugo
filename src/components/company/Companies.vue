@@ -1,14 +1,14 @@
 <template>
   <div>
     <vue-table
+      name="company"
       :names="['Наименование', 'Адрес', 'Сфера деятельности', 'Телефон', 'Факс', 'Тренировки']"
       :columns="['name', 'address', 'scope_name', 'phones', 'faxes', 'practices']"
       :tableData="companiesList"
       tableClasses="is-narrow is-striped"
-      :headClasses="['', 'is-hidden-touch', 'is-hidden-mobile', '', 'is-hidden-touch', 'is-hidden-touch is-hidden-desktop-only']"
-      :cellClasses="['', 'is-hidden-touch', 'is-hidden-mobile', '', 'is-hidden-touch', 'is-hidden-touch is-hidden-desktop-only']"
+      :headClasses="['', 'is-hidden-touch', 'is-hidden-mobile', 'w94', 'is-hidden-touch w94', 'is-hidden-touch is-hidden-desktop-only w94']"
       pagination
-      hyper="company"
+      hyper
       search
     />
   </div>
