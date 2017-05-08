@@ -16,6 +16,7 @@
 
 <script>
   import table from '@/elements/Table'
+  import axios from 'axios'
 
   export default {
     name: 'educations',
@@ -23,11 +24,13 @@
       'vue-table': table
     },
     data: () => ({
+      name: 'educations',
       list: []
     }),
     mounted () {
-      fetch('http://localhost:9090/' + this.name).then(r => r.json()).then((data) => {
-        this.list = this.createList(data[this.name])
+      axios.get('http://localhost:9090/' + this.name)
+      .then(r => {
+        this.list = this.createList(r.data[this.name])
       })
     },
     methods: {
