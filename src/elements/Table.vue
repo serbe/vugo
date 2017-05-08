@@ -139,16 +139,8 @@
       filtered () {
         if (this.tableData) {
           let queryArr = this.query.toLowerCase().split(' ')
-          let filteredData = this.tableData.filter(c => {
-            let str = ''
-            for (var key in c) {
-              if (Array.isArray(c[key])) {
-                str += c[key].join(' ')
-              } else {
-                str += c[key]
-              }
-            }
-            return queryArr.every(e => str.toLowerCase().includes(e))
+          let filteredData = this.tableData.filter(f => {
+            return queryArr.every(q => f.str.includes(q))
           })
           return filteredData
         } else {
