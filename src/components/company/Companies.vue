@@ -36,14 +36,14 @@
       createCompaniesList (companies) {
         let list = companies.map(c => {
           let str = [c.name, c.address, c.scope_name]
-          if (c.phone) {
-            str.push(c.phone.join(' '))
+          if (c.phones.length > 0 && c.phones[0] !== '') {
+            str.push(c.phones.join(' '))
           }
-          if (c.fax) {
-            str.push(c.fax.join(' '))
+          if (c.faxes.length > 0 && c.faxes[0] !== '') {
+            str.push(c.faxes.join(' '))
           }
-          if (c.practice) {
-            str.push(c.practice.join(' '))
+          if (c.practices.length > 0 && c.practices[0] !== '') {
+            str.push(c.practices.join(' '))
           }
           c.str = str.join(' ').toLowerCase()
           return c

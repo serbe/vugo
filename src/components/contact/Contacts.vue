@@ -36,11 +36,11 @@
       createContactsList (contacts) {
         let list = contacts.map(c => {
           let str = [c.name, c.company_name, c.post_name]
-          if (c.phone) {
-            str.push(c.phone.join(' '))
+          if (c.phones.length > 0 && c.phones[0] !== '') {
+            str.push(c.phones.join(' '))
           }
-          if (c.fax) {
-            str.push(c.fax.join(' '))
+          if (c.faxes.length > 0 && c.faxes[0] !== '') {
+            str.push(c.faxes.join(' '))
           }
           c.str = str.join(' ').toLowerCase()
           return c
