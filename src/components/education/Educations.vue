@@ -27,13 +27,19 @@
       name: 'educations',
       list: []
     }),
-    mounted () {
-      axios.get('http://localhost:9090/' + this.name)
-      .then(r => {
-        this.list = this.createList(r.data[this.name])
-      })
+    created () {
+      this.fetchData()
+    },
+    watch: {
+      '$route': 'fetchData'
     },
     methods: {
+      fetchData () {
+        axios.get('http://localhost:9090/' + this.name)
+        .then(r => {
+          this.list = this.createList(r.data[this.name])
+        })
+      },
       createList (educations) {
         let list = educations.map(e => {
           let str = [e.start_str, e.end_str, e.note]
