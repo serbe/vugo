@@ -4,7 +4,7 @@
       name="post"
       :names="['Наименование должности', 'ГО', 'Заметка']"
       :columns="['name', 'go', 'note']"
-      :tableData="postsList"
+      :tableData="list"
       tableClasses="is-narrow is-striped"
       :headClasses="['', '', 'is-hidden-mobile']"
       pagination
@@ -23,17 +23,15 @@
       'vue-table': table
     },
     data: () => ({
-      postsList: null,
-      isLoaded: false
+      list: []
     }),
     mounted () {
-      fetch('http://localhost:9090/posts').then(r => r.json()).then((data) => {
-        this.postsList = this.createPostsList(data.posts)
-        this.isLoaded = true
+      fetch('http://localhost:9090/' + this.name).then(r => r.json()).then((data) => {
+        this.list = this.createList(data[this.name])
       })
     },
     methods: {
-      createPostsList (posts) {
+      createList (posts) {
         let list = posts.map(e => {
           let str = [e.name, e.note]
           e.str = str.join(' ').toLowerCase()

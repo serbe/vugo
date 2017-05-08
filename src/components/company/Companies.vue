@@ -4,9 +4,9 @@
       name="company"
       :names="['Наименование', 'Адрес', 'Сфера деятельности', 'Телефон', 'Факс', 'Тренировки']"
       :columns="['name', 'address', 'scope_name', 'phones', 'faxes', 'practices']"
-      :tableData="companiesList"
+      :tableData="list"
       tableClasses="is-narrow is-striped"
-      :headClasses="['', 'is-hidden-touch', 'is-hidden-mobile', 'w94', 'is-hidden-touch w94', 'is-hidden-touch is-hidden-desktop-only w94']"
+      :headClasses="['', 'is-hidden-touch', 'is-hidden-mobile', 'w9', 'is-hidden-touch w9', 'is-hidden-touch is-hidden-desktop-only w9']"
       pagination
       hyper
       search
@@ -23,17 +23,15 @@
       'vue-table': table
     },
     data: () => ({
-      companiesList: [],
-      isLoaded: false
+      list: []
     }),
     mounted () {
-      fetch('http://localhost:9090/companies').then(r => r.json()).then((data) => {
-        this.companiesList = this.createCompaniesList(data.companies)
-        this.isLoaded = true
+      fetch('http://localhost:9090/' + this.name).then(r => r.json()).then((data) => {
+        this.list = this.createList(data[this.name])
       })
     },
     methods: {
-      createCompaniesList (companies) {
+      createList (companies) {
         let list = companies.map(c => {
           let str = [c.name, c.address, c.scope_name]
           if (c.phones.length > 0 && c.phones[0] !== '') {

@@ -4,9 +4,9 @@
       name="contact"
       :names="['Фамилия Имя Отчество', 'Организация', 'Должность', 'Телефон', 'Факс']"
       :columns="['name', 'company_name', 'post_name', 'phones', 'faxes']"
-      :tableData="contactsList"
+      :tableData="list"
       tableClasses="is-narrow is-striped"
-      :headClasses="['', 'is-hidden-mobile', 'is-hidden-touch', 'w94', 'is-hidden-mobile w94']"
+      :headClasses="['', 'is-hidden-mobile', 'is-hidden-touch', 'w9', 'is-hidden-mobile w9']"
       pagination
       hyper
       search
@@ -23,17 +23,15 @@
       'vue-table': table
     },
     data: () => ({
-      contactsList: [],
-      isLoaded: false
+      list: []
     }),
     mounted () {
-      fetch('http://localhost:9090/contacts').then(r => r.json()).then((data) => {
-        this.contactsList = this.createContactsList(data.contacts)
-        this.isLoaded = true
+      fetch('http://localhost:9090/' + this.name).then(r => r.json()).then((data) => {
+        this.list = this.createList(data[this.name])
       })
     },
     methods: {
-      createContactsList (contacts) {
+      createList (contacts) {
         let list = contacts.map(c => {
           let str = [c.name, c.company_name, c.post_name]
           if (c.phones.length > 0 && c.phones[0] !== '') {

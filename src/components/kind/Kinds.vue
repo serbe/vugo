@@ -4,7 +4,7 @@
       name="kind"
       :names="['Наименование', 'Заметка']"
       :columns="['name', 'note']"
-      :tableData="departmentsList"
+      :tableData="list"
       tableClasses="is-narrow is-striped"
       :headClasses="['', 'is-hidden-mobile']"
       pagination
@@ -23,18 +23,16 @@
       'vue-table': table
     },
     data: () => ({
-      ranksList: [],
-      isLoaded: false
+      list: []
     }),
     mounted () {
-      fetch('http://localhost:9090/ranks').then(r => r.json()).then((data) => {
-        this.ranksList = this.createRanksList(data.ranks)
-        this.isLoaded = true
+      fetch('http://localhost:9090/' + this.name).then(r => r.json()).then((data) => {
+        this.list = this.createList(data[this.name])
       })
     },
     methods: {
-      createRanksList (ranks) {
-        let list = ranks.map(e => {
+      createList (kinds) {
+        let list = kinds.map(e => {
           let str = [e.name, e.note]
           e.str = str.join(' ').toLowerCase()
           return e

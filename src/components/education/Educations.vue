@@ -4,7 +4,7 @@
       name="education"
       :names="['Начало обучения', 'Конец обучения', 'Заметка']"
       :columns="['start_str', 'end_str', 'note']"
-      :tableData="educationsList"
+      :tableData="list"
       tableClasses="is-narrow is-striped"
       :headClasses="['', '', 'is-hidden-mobile']"
       pagination
@@ -23,17 +23,15 @@
       'vue-table': table
     },
     data: () => ({
-      educationsList: [],
-      isLoaded: false
+      list: []
     }),
     mounted () {
-      fetch('http://localhost:9090/educations').then(r => r.json()).then((data) => {
-        this.educationsList = this.createEducationsList(data.educations)
-        this.isLoaded = true
+      fetch('http://localhost:9090/' + this.name).then(r => r.json()).then((data) => {
+        this.list = this.createList(data[this.name])
       })
     },
     methods: {
-      createEducationsList (educations) {
+      createList (educations) {
         let list = educations.map(e => {
           let str = [e.start_str, e.end_str, e.note]
           e.str = str.join(' ').toLowerCase()

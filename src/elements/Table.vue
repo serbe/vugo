@@ -191,7 +191,11 @@
     table-layout: fixed !important;
   }
 
-  .w94 {
-    width: 94px !important;
+  .w9 {
+    width: 90px !important;
+  }
+
+  .w16 {
+    width: 160px !important;
   }
 </style>

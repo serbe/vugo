@@ -4,7 +4,7 @@
       name="department"
       :names="['Наименование', 'Заметка']"
       :columns="['name', 'note']"
-      :tableData="departmentsList"
+      :tableData="list"
       tableClasses="is-narrow is-striped"
       :headClasses="['', 'is-hidden-mobile']"
       pagination
@@ -23,17 +23,15 @@
       'vue-table': table
     },
     data: () => ({
-      departmentsList: [],
-      isLoaded: false
+      list: []
     }),
     mounted () {
-      fetch('http://localhost:9090/departments').then(r => r.json()).then((data) => {
-        this.departmentsList = this.createDepartmentsList(data.departments)
-        this.isLoaded = true
+      fetch('http://localhost:9090/' + this.name).then(r => r.json()).then((data) => {
+        this.list = this.createList(data[this.name])
       })
     },
     methods: {
-      createDepartmentsList (departments) {
+      createList (departments) {
         let list = departments.map(e => {
           let str = [e.name, e.note]
           e.str = str.join(' ').toLowerCase()

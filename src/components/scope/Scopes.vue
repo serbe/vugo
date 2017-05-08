@@ -4,7 +4,7 @@
       name="scope"
       :names="['Наименование', 'Заметка']"
       :columns="['name', 'note']"
-      :tableData="scopesList"
+      :tableData="list"
       tableClasses="is-narrow is-striped"
       :headClasses="['', 'is-hidden-mobile']"
       pagination
@@ -23,17 +23,15 @@
       'vue-table': table
     },
     data: () => ({
-      scopesList: null,
-      isLoaded: false
+      list: []
     }),
     mounted () {
-      fetch('http://localhost:9090/scopes').then(r => r.json()).then((data) => {
-        this.scopesList = this.createScopesList(data.scopes)
-        this.isLoaded = true
+      fetch('http://localhost:9090/' + this.name).then(r => r.json()).then((data) => {
+        this.list = this.createList(data[this.name])
       })
     },
     methods: {
-      createScopesList (scopes) {
+      createList (scopes) {
         let list = scopes.map(e => {
           let str = [e.name, e.note]
           e.str = str.join(' ').toLowerCase()
