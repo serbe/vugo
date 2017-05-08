@@ -3,7 +3,7 @@
     <nav class="nav">
       <div class="nav-left">
         <p class="nav-item">
-          <a class="button" href="/company/0">Добавить</a>
+          <a class="button" :href="'/' + this.name + '/0'">Добавить</a>
         </p>
       </div>
       <div class="nav-rigth">
@@ -24,7 +24,7 @@
     <p class="control mb1" v-if="search">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
-    <table class="table" :class="tableClass">
+    <table class="table fixed_table" :class="tableClass">
       <thead>
         <tr>
           <th v-for="(name, index) in head" :class="headClass(index)">{{ name }}</th>
@@ -69,6 +69,10 @@
       }
     },
     props: {
+      name: {
+        type: String,
+        required: true
+      },
       columns: {
         type: Array,
         required: false
@@ -109,7 +113,7 @@
         required: false
       },
       hyper: {
-        type: String,
+        type: Boolean,
         required: false
       }
     },
@@ -158,7 +162,7 @@
     methods: {
       onClickTr (item) {
         if ('id' in item) {
-          this.$router.push('/' + this.hyper + '/' + item.id)
+          this.$router.push('/' + this.name + '/' + item.id)
         }
       },
       headClass (index) {
@@ -189,5 +193,13 @@
 
   .mb1 {
     margin-bottom: 1rem;
+  }
+
+  .fixed_table {
+    table-layout: fixed !important;
+  }
+
+  .w94 {
+    width: 94px !important;
   }
 </style>
