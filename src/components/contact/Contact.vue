@@ -43,9 +43,9 @@
     <div class="columns">
       <div class="column">
         <div class="field">
-          <label class="label">Почта</label>
+          <label class="label">Электронный адрес</label>
           <template v-for="(email, index) in contact.emails">
-            <vue-input :value="email.email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email" />
+            <vue-input v-model="contact.emails[index].email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email" @blur="onBlur('emails', 'email')"/>
           </template>
         </div>
       </div>
@@ -54,7 +54,7 @@
         <div class="field">
           <label class="label">Телефон</label>
           <template v-for="(phone, index) in contact.phones">
-            <vue-input :value="phone.phone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel" />
+            <vue-input v-model="contact.phones[index].phone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel" @blur="onBlur('phones', 'phone')"/>
           </template>
         </div>
       </div>
@@ -63,7 +63,7 @@
         <div class="field">
           <label class="label">Факс</label>
           <template v-for="(fax, index) in contact.faxes">
-            <vue-input :value="fax.phone" type="tel" placeholder="Факс" icon="fax" autocomplete="tel" />
+            <vue-input v-model="contact.faxes[index].phone" type="tel" placeholder="Факс" icon="fax" autocomplete="tel" @blur="onBlur('faxes', 'phone')"/>
           </template>
         </div>
       </div>
@@ -99,6 +99,7 @@ import input from '@/elements/Input'
 import button from '@/elements/Button'
 import select from '@/elements/Select'
 import datepicker from '@/elements/Datepicker'
+import mixin from '@/mixins/funcs'
 
 export default {
   name: 'contact',
@@ -108,6 +109,7 @@ export default {
     'vue-select': select,
     'vue-datepicker': datepicker
   },
+  mixins: [mixin],
   data () {
     return {
       title: '',
@@ -180,6 +182,14 @@ export default {
     this.fetchData()
   },
   methods: {
+    onBlur: function (arr, key) {
+      if (this.checkArray(this.contact[arr], key)) {
+        let obj = {}
+        obj.id = this.contact[arr].length + 1
+        obj[key] = ''
+        this.contact[arr].push(obj)
+      }
+    },
     onSelect (item, itemName) {
       this.contact[itemName] = item
       this.contact[itemName + '_id'] = item.id
@@ -190,15 +200,9 @@ export default {
         url = url + '/' + this.$route.params.id
       }
       let values = this.contact
-      values.emails = values.emails.filter((e) => {
-        return e.email && e.email !== ''
-      })
-      values.phones = values.phones.filter((p) => {
-        return p.phone && p.phone !== ''
-      })
-      values.faxes = values.faxes.filter((f) => {
-        return f.phone && f.phone !== ''
-      })
+      values.emails = this.filterArray(values.emails, 'email')
+      values.phones = this.filterArray(values.phones, 'phone')
+      values.faxes = this.filterArray(values.faxes, 'phone')
       fetch(url, {
         method: 'PUT',
         mode: 'cors',

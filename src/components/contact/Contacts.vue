@@ -17,12 +17,14 @@
 <script>
   import table from '@/elements/Table'
   import axios from 'axios'
+  import mixin from '@/mixins/funcs'
 
   export default {
     name: 'contacts',
     components: {
       'vue-table': table
     },
+    mixins: [mixin],
     data: () => ({
       name: 'contacts',
       list: []
@@ -31,7 +33,10 @@
       this.fetchData()
     },
     watch: {
-      '$route': 'fetchData'
+      '$route': function (newRoute, oldRoute) {
+        console.log(newRoute, oldRoute)
+        this.fetchData()
+      }
     },
     methods: {
       fetchData () {

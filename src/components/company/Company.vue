@@ -12,7 +12,7 @@
           <div class="field">
             <label class="label">Электронный адрес</label>
             <template v-for="(email, index) in company.emails">
-              <vue-input v-model="company.emails[index].email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email" @blur="blurEmail"/>
+              <vue-input v-model="company.emails[index].email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email" @blur="onBlur('emails', 'email')"/>
             </template>
           </div>
         </div>
@@ -21,7 +21,7 @@
           <div class="field">
             <label class="label">Телефон</label>
             <template v-for="(phone, index) in company.phones">
-              <vue-input v-model="company.phones[index].phone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel" @blur="blurPhone"/>
+              <vue-input v-model="company.phones[index].phone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel" @blur="onBlur('phones', 'phone')"/>
             </template>
           </div>
         </div>
@@ -30,7 +30,7 @@
           <div class="field">
             <label class="label">Факс</label>
             <template v-for="(fax, index) in company.faxes">
-              <vue-input v-model="company.faxes[index].phone" type="tel" placeholder="Факс" icon="phone" autocomplete="tel" @blur="blurFax"/>
+              <vue-input v-model="company.faxes[index].phone" type="tel" placeholder="Факс" icon="phone" autocomplete="tel" @blur="onBlur('faxes', 'phone')"/>
             </template>
           </div>
         </div>
@@ -72,6 +72,7 @@
 import button from '@/elements/Button'
 import select from '@/elements/Select'
 import input from '@/elements/Input'
+import mixin from '@/mixins/funcs'
 
 export default {
   name: 'company',
@@ -80,6 +81,7 @@ export default {
     'vue-select': select,
     'vue-input': input
   },
+  mixins: [mixin],
   data () {
     return {
       title: '',
@@ -132,46 +134,17 @@ export default {
     this.fetchData()
   },
   methods: {
-    blurEmail: function () {
-      if (this.checkArray(this.company.emails, 'email')) {
-        this.company.emails.push({id: this.company.emails.length + 1, email: ''})
-      }
-    },
-    blurPhone: function () {
-      if (this.checkArray(this.company.phones, 'phone')) {
-        this.company.phones.push({id: this.company.phones.length + 1, phone: '', fax: false})
-      }
-    },
-    blurFax: function () {
-      if (this.checkArray(this.company.faxes, 'phone')) {
-        this.company.faxes.push({id: this.company.faxes.length + 1, phone: '', fax: true})
+    onBlur: function (arr, key) {
+      if (this.checkArray(this.company[arr], key)) {
+        let obj = {}
+        obj.id = this.company[arr].length + 1
+        obj[key] = ''
+        this.company[arr].push(obj)
       }
     },
     onSelect (item) {
       this.scope = item
       this.company.scope_id = item.id
-    },
-    checkArray (values, key) {
-      let firstElem = -1
-      let emptyElem = 0
-      let fillElem = 0
-      values.map((e, i) => {
-        if (e[key] === '') {
-          if (firstElem === -1) {
-            firstElem = i
-          }
-          emptyElem++
-        } else {
-          fillElem++
-        }
-      })
-      if (emptyElem > 1) {
-        values.splice(firstElem, 1)
-      }
-      if (fillElem === values.length) {
-        return true
-      }
-      return false
     },
     submit () {
       let url = 'http://localhost:9090/companies'
@@ -179,15 +152,9 @@ export default {
         url = url + '/' + this.$route.params.id
       }
       let values = this.company
-      values.emails = values.emails.filter((e) => {
-        return e.email && e.email !== ''
-      })
-      values.phones = values.phones.filter((p) => {
-        return p.phone && p.phone !== ''
-      })
-      values.faxes = values.faxes.filter((f) => {
-        return f.phone && f.phone !== ''
-      })
+      values.emails = this.filterArray(values.emails, 'email')
+      values.phones = this.filterArray(values.phones, 'phone')
+      values.faxes = this.filterArray(values.faxes, 'phone')
       fetch(url, {
         method: 'PUT',
         mode: 'cors',
@@ -208,8 +175,8 @@ export default {
         this.company = data.company
         this.scopes = data.scopes
         this.company.emails ? this.company.emails.push({id: this.company.emails.length + 1, email: ''}) : this.company.emails = [{id: 1, email: ''}]
-        this.company.phones ? this.company.phones.push({id: this.company.phones.length + 1, phone: '', fax: false}) : this.company.phones = [{id: 1, phone: '', fax: false}]
-        this.company.faxes ? this.company.faxes.push({id: this.company.faxes.length + 1, phone: '', fax: true}) : this.company.faxes = [{id: 1, phone: '', fax: true}]
+        this.company.phones ? this.company.phones.push({id: this.company.phones.length + 1, phone: ''}) : this.company.phones = [{id: 1, phone: ''}]
+        this.company.faxes ? this.company.faxes.push({id: this.company.faxes.length + 1, phone: ''}) : this.company.faxes = [{id: 1, phone: ''}]
         this.selectInit('company', 'scopes', 'scope')
         this.isLoaded = true
       })

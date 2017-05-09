@@ -17,12 +17,14 @@
 <script>
   import table from '@/elements/Table'
   import axios from 'axios'
+  import mixin from '@/mixins/funcs'
 
   export default {
     name: 'companies',
     components: {
       'vue-table': table
     },
+    mixins: [mixin],
     data: () => ({
       name: 'companies',
       list: []
