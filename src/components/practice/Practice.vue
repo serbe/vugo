@@ -53,6 +53,10 @@ export default {
         },
         company_name: '',
         kind_id: 0,
+        kind: {
+          id: 0,
+          name: ''
+        },
         kind_name: '',
         date_of_practice: '',
         topic: '',
@@ -73,8 +77,8 @@ export default {
   },
   methods: {
     onSelect (item, itemName) {
-      this.contact[itemName] = item
-      this.contact[itemName + '_id'] = item.id
+      this.practice[itemName] = item
+      this.practice[itemName + '_id'] = item.id
     },
     submit () {
       let url = 'http://localhost:9090/practices'
