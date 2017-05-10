@@ -1,9 +1,9 @@
 <template>
-  <form :model="rank" id="rank">
+  <form :model="kind" id="kind">
 
-    <vue-input v-model="rank.name" label placeholder="Наименование чина" icon="tag"/>
+    <vue-input v-model="kind.name" label placeholder="Наименование типа тренировки" icon="tag"/>
 
-    <vue-input v-model="rank.note" label placeholder="Заметка" icon="comment"/>
+    <vue-input v-model="kind.note" label placeholder="Заметка" icon="comment"/>
 
     <div class="field">
       <div class="columns mt3">
@@ -26,7 +26,7 @@ import input from '@/elements/Input'
 import button from '@/elements/Button'
 
 export default {
-  name: 'rank',
+  name: 'kind',
   components: {
     'vue-input': input,
     'vue-button': button
@@ -34,7 +34,7 @@ export default {
   data () {
     return {
       title: '',
-      rank: {
+      kind: {
         id: 0,
         name: '',
         note: ''
@@ -46,32 +46,34 @@ export default {
   },
   methods: {
     submit () {
-      let url = 'http://localhost:9090/ranks'
-      if (this.$route.params.id !== '') {
+      let url = 'http://localhost:9090/kinds'
+      let method = 'POST'
+      if (this.$route.params.id !== '0') {
         url = url + '/' + this.$route.params.id
+        method = 'PUT'
       }
-      let values = this.rank
+      let values = this.kind
       fetch(url, {
-        method: 'PUT',
+        method: method,
         mode: 'cors',
         body: JSON.stringify(values)
       })
       .then(function (res) {
         console.log(res)
       })
-      this.$router.push('/ranks')
+      this.$router.push('/kinds')
     },
     close () {
-      this.$router.push('/ranks')
+      this.$router.push('/kinds')
     },
     delete () {
       console.log('delete!')
     },
     fetchData () {
-      fetch('http://localhost:9090/ranks/' + this.$route.params.id)
+      fetch('http://localhost:9090/kinds/' + this.$route.params.id)
       .then(r => r.json())
       .then((data) => {
-        this.rank = data.rank
+        this.kind = data.kind
         this.isLoaded = true
       })
     }

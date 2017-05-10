@@ -1,4 +1,13 @@
 <template>
+  <div>
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <!-- Any other Bulma elements you want -->
+      </div>
+      <button class="modal-close"></button>
+    </div>
+
     <form :model="company" id="company">
 
       <vue-input v-model="company.name" label placeholder="Наименование организации" icon="building"/>
@@ -66,6 +75,7 @@
         </div>
       </div>
     </form>
+  </div>
 </template>
 
 <script>
@@ -148,15 +158,17 @@ export default {
     },
     submit () {
       let url = 'http://localhost:9090/companies'
-      if (this.$route.params.id !== '') {
+      let method = 'POST'
+      if (this.$route.params.id !== '0') {
         url = url + '/' + this.$route.params.id
+        method = 'PUT'
       }
       let values = this.company
       values.emails = this.filterArray(values.emails, 'email')
       values.phones = this.filterArray(values.phones, 'phone')
       values.faxes = this.filterArray(values.faxes, 'phone')
       fetch(url, {
-        method: 'PUT',
+        method: method,
         mode: 'cors',
         body: JSON.stringify(values)
       })
@@ -177,23 +189,11 @@ export default {
         this.company.emails ? this.company.emails.push({id: this.company.emails.length + 1, email: ''}) : this.company.emails = [{id: 1, email: ''}]
         this.company.phones ? this.company.phones.push({id: this.company.phones.length + 1, phone: ''}) : this.company.phones = [{id: 1, phone: ''}]
         this.company.faxes ? this.company.faxes.push({id: this.company.faxes.length + 1, phone: ''}) : this.company.faxes = [{id: 1, phone: ''}]
-        this.selectInit('company', 'scopes', 'scope')
         this.isLoaded = true
       })
     },
     customLabel (val) {
       return val.name
-    },
-    selectInit (parent, list, item) {
-      if (this[parent][item + '_id'] > 0) {
-        let tmpItem = this[list].filter(itemOfList => {
-          return itemOfList.id === this[parent][item + '_id']
-        })
-        if (tmpItem) {
-          this[parent][item + '_id'] = tmpItem[0].id
-          this[parent][item].name = tmpItem[0].name
-        }
-      }
     }
   }
 }

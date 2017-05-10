@@ -1,15 +1,13 @@
 <template>
   <form :model="practice" id="practice">
 
-    <div class="columns">
-      <div class="column">
-        <vue-date v-model="practice.start_date" label="Дата начала обучения"/>
-      </div>
+    <vue-select :list="companies" :selected-item="practice.company" label="Организация" item-name="company" @select="onSelect" icon="building" />
 
-      <div class="column">
-        <vue-date v-model="practice.end_date" label="Дата конца обучения"/>
-      </div>
-    </div>
+    <vue-select :list="kinds" :selected-item="practice.kind" label="Тип тренировки" item-name="kind" @select="onSelect" icon="tag" />
+
+    <vue-input type="text" label placeholder="Тема тренировки" icon="tag" v-model="practice.topic" />
+
+    <vue-date v-model="practice.date_of_practice" label="Дата проведения тренировки"/>
 
     <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="practice.note" />
 
@@ -33,37 +31,61 @@
 import input from '@/elements/Input'
 import button from '@/elements/Button'
 import date from '@/elements/Date'
+import select from '@/elements/Select'
 
 export default {
   name: 'practice',
   components: {
     'vue-input': input,
     'vue-button': button,
-    'vue-date': date
+    'vue-date': date,
+    'vue-select': select
   },
   data () {
     return {
       title: '',
       practice: {
         id: 0,
-        start_date: '',
-        end_date: '',
+        company_id: 0,
+        company: {
+          id: 0,
+          name: ''
+        },
+        company_name: '',
+        kind_id: 0,
+        kind_name: '',
+        date_of_practice: '',
+        topic: '',
         note: ''
-      }
+      },
+      companies: [{
+        id: 0,
+        name: ''
+      }],
+      kinds: [{
+        id: 0,
+        name: ''
+      }]
     }
   },
   mounted: function () {
     this.fetchData()
   },
   methods: {
+    onSelect (item, itemName) {
+      this.contact[itemName] = item
+      this.contact[itemName + '_id'] = item.id
+    },
     submit () {
       let url = 'http://localhost:9090/practices'
-      if (this.$route.params.id !== '') {
+      let method = 'POST'
+      if (this.$route.params.id !== '0') {
         url = url + '/' + this.$route.params.id
+        method = 'PUT'
       }
       let values = this.practice
       fetch(url, {
-        method: 'PUT',
+        method: method,
         mode: 'cors',
         body: JSON.stringify(values)
       })
@@ -83,6 +105,8 @@ export default {
       .then(r => r.json())
       .then((data) => {
         this.practice = data.practice
+        this.companies = data.companies
+        this.kinds = data.kinds
         this.isLoaded = true
       })
     }

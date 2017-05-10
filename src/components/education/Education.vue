@@ -58,12 +58,14 @@ export default {
   methods: {
     submit () {
       let url = 'http://localhost:9090/educations'
-      if (this.$route.params.id !== '') {
+      let method = 'POST'
+      if (this.$route.params.id !== '0') {
         url = url + '/' + this.$route.params.id
+        method = 'PUT'
       }
       let values = this.education
       fetch(url, {
-        method: 'PUT',
+        method: method,
         mode: 'cors',
         body: JSON.stringify(values)
       })

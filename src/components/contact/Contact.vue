@@ -191,15 +191,17 @@ export default {
     },
     submit () {
       let url = 'http://localhost:9090/contacts'
-      if (this.$route.params.id !== '') {
+      let method = 'POST'
+      if (this.$route.params.id !== '0') {
         url = url + '/' + this.$route.params.id
+        method = 'PUT'
       }
       let values = this.contact
       values.emails = this.filterArray(values.emails, 'email')
       values.phones = this.filterArray(values.phones, 'phone')
       values.faxes = this.filterArray(values.faxes, 'phone')
       fetch(url, {
-        method: 'PUT',
+        method: method,
         mode: 'cors',
         body: JSON.stringify(values)
       })
@@ -213,31 +215,19 @@ export default {
     },
     fetchData () {
       fetch('http://localhost:9090/contacts/' + this.$route.params.id)
-        .then(r => r.json())
-        .then((data) => {
-          this.contact = data.contact
-          this.companies = data.companies
-          this.posts = data.posts
-          this.departments = data.departments
-          this.posts_go = data.posts_go
-          this.ranks = data.ranks
-          this.contact.emails ? this.contact.emails.push({ id: this.contact.emails.length + 1, email: '' }) : this.contact.emails = [{ id: 1, email: '' }]
-          this.contact.phones ? this.contact.phones.push({ id: this.contact.phones.length + 1, phone: '' }) : this.contact.phones = [{ id: 1, phone: '' }]
-          this.contact.faxes ? this.contact.faxes.push({ id: this.contact.faxes.length + 1, phone: '' }) : this.contact.faxes = [{ id: 1, phone: '' }]
-          this.selectInit('contact', 'companies', 'company')
-          this.isLoaded = true
-        })
-    },
-    selectInit (parent, list, item) {
-      if (this[parent][item + '_id'] > 0) {
-        let tmpItem = this[list].filter(itemOfList => {
-          return itemOfList.id === this[parent][item + '_id']
-        })
-        if (tmpItem) {
-          this[parent][item + '_id'] = tmpItem[0].id
-          this[parent][item].name = tmpItem[0].name
-        }
-      }
+      .then(r => r.json())
+      .then((data) => {
+        this.contact = data.contact
+        this.companies = data.companies
+        this.posts = data.posts
+        this.departments = data.departments
+        this.posts_go = data.posts_go
+        this.ranks = data.ranks
+        this.contact.emails ? this.contact.emails.push({ id: this.contact.emails.length + 1, email: '' }) : this.contact.emails = [{ id: 1, email: '' }]
+        this.contact.phones ? this.contact.phones.push({ id: this.contact.phones.length + 1, phone: '' }) : this.contact.phones = [{ id: 1, phone: '' }]
+        this.contact.faxes ? this.contact.faxes.push({ id: this.contact.faxes.length + 1, phone: '' }) : this.contact.faxes = [{ id: 1, phone: '' }]
+        this.isLoaded = true
+      })
     }
   }
 }

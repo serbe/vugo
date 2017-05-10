@@ -2,7 +2,7 @@
   <div>
     <vue-table
       name="kind"
-      :names="['Наименование', 'Заметка']"
+      :names="['Тип тренировки', 'Заметка']"
       :columns="['name', 'note']"
       :tableData="list"
       tableClasses="is-narrow is-striped"
@@ -19,12 +19,12 @@
   import axios from 'axios'
 
   export default {
-    name: 'ranks',
+    name: 'kinds',
     components: {
       'vue-table': table
     },
     data: () => ({
-      name: 'ranks',
+      name: 'kinds',
       list: []
     }),
     created () {

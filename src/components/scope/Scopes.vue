@@ -2,7 +2,7 @@
   <div>
     <vue-table
       name="scope"
-      :names="['Наименование', 'Заметка']"
+      :names="['Сфера деятельности', 'Заметка']"
       :columns="['name', 'note']"
       :tableData="list"
       tableClasses="is-narrow is-striped"

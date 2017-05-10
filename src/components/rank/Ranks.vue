@@ -2,7 +2,7 @@
   <div>
     <vue-table
       name="rank"
-      :names="['Наименование', 'Заметка']"
+      :names="['Наименование чина', 'Заметка']"
       :columns="['name', 'note']"
       :tableData="list"
       tableClasses="is-narrow is-striped"
