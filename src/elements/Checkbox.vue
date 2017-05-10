@@ -8,11 +8,11 @@
             type="checkbox"
             ref="checkbox"
             :name="name"
-            v-model="value"
-            v-bind:true-value="true"
-            v-bind:false-value="false"
+            :value="value"
+            v-model=inputValue
             :disabled="getDisabled"
             @blur="onBlur"
+            @click="onClick"
           >{{ getLabel }}
         </label v-if="getLabel">
       </a>
@@ -23,11 +23,11 @@
             type="checkbox"
             ref="checkbox"
             :name="name"
-            v-model="value"
-            v-bind:true-value="true"
-            v-bind:false-value="false"
+            :value="value"
+            v-model=inputValue
             :disabled="getDisabled"
             @blur="onBlur"
+            @click="onClick"
           >{{ getLabel }}
         </label v-if="getLabel">
       </template>
@@ -40,7 +40,7 @@
     name: 'vue-checkbox',
     data () {
       return {
-        inputValue: this.value
+        inputValue: false
       }
     },
     computed: {
@@ -73,10 +73,13 @@
       }
     },
     methods: {
-      // onClick (event) {
-      //   const val = event.target.value
-      //   this.$emit('input', val)
-      // },
+      onClick () {
+        let val = true
+        if (this.value) {
+          val = false
+        }
+        this.$emit('input', val)
+      },
       onBlur (event) {
         let ret = {id: this.id, event: event}
         this.$emit('blur', ret)
