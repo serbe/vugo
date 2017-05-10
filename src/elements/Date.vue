@@ -92,7 +92,6 @@
     methods: {
       changeDate () {
         let date = this.year + '-' + this.month + '-' + this.day
-        console.log(date)
         if (date.length === 10) {
           this.$emit('input', date)
         }
