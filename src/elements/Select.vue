@@ -7,7 +7,7 @@
         type="text"
         ref="vueSelect"
         autocomplete="off"
-        :placeholder="placeholder"
+        :placeholder="getPlaceholder"
         tabindex="0"
         :value="isLoaded ? searchText : this.item.name"
         @input="onInput"
@@ -111,6 +111,9 @@ export default {
       } else {
         return this.label
       }
+    },
+    getPlaceholder () {
+      return this.placeholder === '' && this.label && this.label !== '' ? this.label : this.placeholder
     },
     listWithFilter () {
       if (this.searchText !== '') {
