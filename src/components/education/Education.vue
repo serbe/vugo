@@ -3,21 +3,11 @@
 
     <div class="columns">
       <div class="column">
-        <div class="field">
-          <label class="label">Дата начала обучения</label>
-          <p class="control">
-            <vue-datepicker inputClass="input w300" v-model="education.start_date" language="ru" format="yyyy-MM-dd" />
-          </p>
-        </div>
+        <vue-date v-model="education.start_date" label="Дата начала обучения"/>
       </div>
 
       <div class="column">
-        <div class="field">
-          <label class="label">Дата конца обучения</label>
-          <p class="control">
-            <vue-datepicker inputClass="input w300" v-model="education.start_date" language="ru" format="yyyy-MM-dd" />
-          </p>
-        </div>
+        <vue-date v-model="education.end_date" label="Дата конца обучения"/>
       </div>
     </div>
 
@@ -42,14 +32,14 @@
 <script>
 import input from '@/elements/Input'
 import button from '@/elements/Button'
-import datepicker from '@/elements/Datepicker'
+import date from '@/elements/Date'
 
 export default {
   name: 'education',
   components: {
     'vue-input': input,
     'vue-button': button,
-    'vue-datepicker': datepicker
+    'vue-date': date
   },
   data () {
     return {

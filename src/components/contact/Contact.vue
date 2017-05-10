@@ -27,12 +27,7 @@
 
     <div class="columns">
       <div class="column">
-        <div class="field">
-          <label class="label">Дата рождения</label>
-          <div class="control">
-            <vue-datepicker inputClass="input w300" v-model="contact.birthday" language="ru" format="yyyy-MM-dd" />
-          </div>
-        </div>
+        <vue-date v-model="contact.birthday" label="Дата рождения"/>
       </div>
 
       <div class="column is-three-quarters">
@@ -98,7 +93,7 @@
 import input from '@/elements/Input'
 import button from '@/elements/Button'
 import select from '@/elements/Select'
-import datepicker from '@/elements/Datepicker'
+import date from '@/elements/Date'
 import mixin from '@/mixins/funcs'
 
 export default {
@@ -107,7 +102,7 @@ export default {
     'vue-input': input,
     'vue-button': button,
     'vue-select': select,
-    'vue-datepicker': datepicker
+    'vue-date': date
   },
   mixins: [mixin],
   data () {

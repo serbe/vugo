@@ -1,27 +1,17 @@
 <template>
-  <form :model="education" id="education">
+  <form :model="practice" id="practice">
 
     <div class="columns">
       <div class="column">
-        <div class="field">
-          <label class="label">Дата начала обучения</label>
-          <p class="control">
-            <vue-datepicker inputClass="input w300" v-model="education.start_date" language="ru" format="yyyy-MM-dd" />
-          </p>
-        </div>
+        <vue-date v-model="practice.start_date" label="Дата начала обучения"/>
       </div>
 
       <div class="column">
-        <div class="field">
-          <label class="label">Дата конца обучения</label>
-          <p class="control">
-            <vue-datepicker inputClass="input w300" v-model="education.start_date" language="ru" format="yyyy-MM-dd" />
-          </p>
-        </div>
+        <vue-date v-model="practice.end_date" label="Дата конца обучения"/>
       </div>
     </div>
 
-    <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="education.note" />
+    <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="practice.note" />
 
     <div class="field">
       <div class="columns mt3">
@@ -42,19 +32,19 @@
 <script>
 import input from '@/elements/Input'
 import button from '@/elements/Button'
-import datepicker from '@/elements/Datepicker'
+import date from '@/elements/Date'
 
 export default {
-  name: 'education',
+  name: 'practice',
   components: {
     'vue-input': input,
     'vue-button': button,
-    'vue-datepicker': datepicker
+    'vue-date': date
   },
   data () {
     return {
       title: '',
-      education: {
+      practice: {
         id: 0,
         start_date: '',
         end_date: '',
@@ -67,11 +57,11 @@ export default {
   },
   methods: {
     submit () {
-      let url = 'http://localhost:9090/educations'
+      let url = 'http://localhost:9090/practices'
       if (this.$route.params.id !== '') {
         url = url + '/' + this.$route.params.id
       }
-      let values = this.education
+      let values = this.practice
       fetch(url, {
         method: 'PUT',
         mode: 'cors',
@@ -80,19 +70,19 @@ export default {
       .then(function (res) {
         console.log(res)
       })
-      this.$router.push('/educations')
+      this.$router.push('/practices')
     },
     close () {
-      this.$router.push('/educations')
+      this.$router.push('/practices')
     },
     delete () {
       console.log('delete!')
     },
     fetchData () {
-      fetch('http://localhost:9090/educations/' + this.$route.params.id)
+      fetch('http://localhost:9090/practices/' + this.$route.params.id)
       .then(r => r.json())
       .then((data) => {
-        this.education = data.education
+        this.practice = data.practice
         this.isLoaded = true
       })
     }

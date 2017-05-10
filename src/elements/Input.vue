@@ -12,7 +12,7 @@
           :value="value"
           @input="onInput"
           @blur="onBlur"
-          v-bind:disabled="getDisabled"
+          :disabled="getDisabled"
           :autocomplete="autocomplete">
         <span v-if="icon" class="icon">
           <i :class="'fa fa-' + icon"></i>
@@ -28,7 +28,7 @@
           :value="value"
           @input="onInput"
           @blur="onBlur"
-          v-bind:disabled="getDisabled"
+          :disabled="getDisabled"
           :autocomplete="autocomplete">
         <span v-if="icon" class="icon">
           <i :class="'fa fa-' + icon"></i>
