@@ -3,7 +3,7 @@
 
     <vue-input v-model="post.name" label placeholder="Наименование должности" icon="tag"/>
 
-    <vue-checkbox v-model="post.go" type="checkbox" label="Должность по гражданской обороне"/>
+    <vue-switch :checked="post.go" v-model="post.go" label="Должность по гражданской обороне"/>
 
     <vue-input v-model="post.note" label placeholder="Заметка" icon="comment"/>
 
@@ -26,14 +26,14 @@
 <script>
 import input from '@/elements/Input'
 import button from '@/elements/Button'
-import checkbox from '@/elements/Checkbox'
+import switcher from '@/elements/Switch'
 
 export default {
   name: 'post',
   components: {
     'vue-input': input,
     'vue-button': button,
-    'vue-checkbox': checkbox
+    'vue-switch': switcher
   },
   data () {
     return {
