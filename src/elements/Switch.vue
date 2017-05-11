@@ -1,7 +1,12 @@
 <template>
-  <label class="switch" :class="classObject">
-    <input type="checkbox" :name="name" :disabled="disabled" v-model="value">
-  </label>
+  <div class="field">
+    <label v-if="getLabel" class="label">{{ label }}</label>
+    <p class="control">
+      <label class="switch" :class="classObject">
+        <input type="checkbox" :name="name" :disabled="disabled" v-model="value">
+      </label>
+    </p>
+  </div>
 </template>
 
 <script>
@@ -12,7 +17,8 @@ export default {
     type: String,
     size: String,
     checked: Boolean,
-    name: String
+    name: String,
+    label: String
   },
   data () {
     return {
@@ -26,6 +32,13 @@ export default {
     this.$emit('input', this.value = !!this.checked)
   },
   computed: {
+    getLabel () {
+      if (this.label !== false && this.label !== '') {
+        return this.label
+      } else {
+        return false
+      }
+    },
     classObject () {
       const { type, size, value } = this
       return {
