@@ -6,7 +6,8 @@
       :columns="['name', 'go', 'note']"
       :tableData="list"
       tableClasses="is-narrow is-striped"
-      :headClasses="['', '', 'is-hidden-mobile']"
+      :headClasses="['', 'w9', 'is-hidden-mobile']"
+      :cellTypes="['text', 'checkbox', 'text']"
       pagination
       hyper
       search
