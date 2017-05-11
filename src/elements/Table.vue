@@ -33,18 +33,12 @@
       <tbody>
         <tr v-if="hyper" v-for="item in rows" @click="onClickTr(item)" class="link">
           <td v-for="(name, index) in body" :class="cellClass(index)">
-            <template v-if="Array.isArray(item[name])">
-              <span v-for="value in item[name]">{{ value }}<br></span>
-            </template>
-            <template v-else>{{ item[name] }}</template>
+            <vue-cell :type="cellType(index)" :value="item[name]"/>
           </td>
         </tr>
         <tr v-else v-for="item in body">
           <td v-for="(name, index) in body" :class="cellClass(index)">
-            <template v-if="Array.isArray(item[name])">
-              <span v-for="value in item[name]">{{ value }}<br></span>
-            </template>
-            <template v-else>{{ item[name] }}</template>
+            <vue-cell :type="cellType(index)" :value="item[name]"/>
           </td>
         </tr>
       </tbody>
@@ -55,11 +49,13 @@
 
 <script>
   import pagination from '@/elements/Pagination'
+  import cell from '@/elements/Cell'
 
   export default {
     name: 'vue-table',
     components: {
-      'vue-pagination': pagination
+      'vue-pagination': pagination,
+      'vue-cell': cell
     },
     data () {
       return {
@@ -81,6 +77,10 @@
         type: Array,
         required: false
       },
+      tableClasses: {
+        type: String,
+        required: false
+      },
       headClasses: {
         type: Array,
         required: false
@@ -89,8 +89,8 @@
         type: Array,
         required: false
       },
-      tableClasses: {
-        type: String,
+      cellTypes: {
+        type: Array,
         required: false
       },
       tableData: {
@@ -158,10 +158,13 @@
         }
       },
       headClass (index) {
-        return this.headClasses ? this.headClasses[index] : []
+        return this.headClasses ? this.headClasses[index] : ''
       },
       cellClass (index) {
         return this.cellClasses ? this.cellClasses[index] : this.headClass(index)
+      },
+      cellType (index) {
+        return this.cellTypes ? this.cellTypes[index] : ''
       },
       filter (num) {
         if (num !== this.page) {
