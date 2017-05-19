@@ -11,11 +11,10 @@
 </template>
 
 <script>
-import navigation from '@/components/Navigation'
 export default {
   name: 'app',
   components: {
-    'vue-navigation': navigation
+    'vue-navigation': require('@/components/Navigation')
   }
 }
 </script>

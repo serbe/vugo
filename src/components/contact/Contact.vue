@@ -90,19 +90,15 @@
 </template>
 
 <script>
-import input from '@/elements/Input'
-import button from '@/elements/Button'
-import select from '@/elements/Select'
-import date from '@/elements/Date'
 import mixin from '@/mixins/funcs'
 
 export default {
   name: 'contact',
   components: {
-    'vue-input': input,
-    'vue-button': button,
-    'vue-select': select,
-    'vue-date': date
+    'vue-input': require('@/elements/Input'),
+    'vue-button': require('@/elements/Button'),
+    'vue-select': require('@/elements/Select'),
+    'vue-data': require('@/elements/Date')
   },
   mixins: [mixin],
   data () {

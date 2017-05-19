@@ -22,14 +22,11 @@
 </template>
 
 <script>
-import input from '@/elements/Input'
-import button from '@/elements/Button'
-
 export default {
   name: 'department',
   components: {
-    'vue-input': input,
-    'vue-button': button
+    'vue-input': require('@/elements/Input'),
+    'vue-button': require('@/elements/Button')
   },
   data () {
     return {

@@ -28,18 +28,13 @@
 </template>
 
 <script>
-import input from '@/elements/Input'
-import button from '@/elements/Button'
-import date from '@/elements/Date'
-import select from '@/elements/Select'
-
 export default {
   name: 'practice',
   components: {
-    'vue-input': input,
-    'vue-button': button,
-    'vue-date': date,
-    'vue-select': select
+    'vue-input': require('@/elements/Input'),
+    'vue-button': require('@/elements/Button'),
+    'vue-date': require('@/elements/Date'),
+    'vue-select': require('@/elements/Select')
   },
   data () {
     return {

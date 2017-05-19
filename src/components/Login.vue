@@ -1,39 +1,55 @@
 <template>
-  <div>
-    <h2>Login</h2>
+  <div class="container w300">
+    <h3 class="title is-3">Авторизация</h3>
     <p v-if="$route.query.redirect">
       You need to login first.
     </p>
-    <form @submit.prevent="login">
-      <label class="label">email</label>
-      <p class="control">
-        <input class="input" type="text" v-model="email" placeholder="email">
-      </p>
-      <label class="label">email</label>
-      <p class="control">
-        <input class="input" type="password" v-model="pass" placeholder="password">
-      </p>
-      <p class="control">
-        <button class="button is-primary" type="submit">login</button>
-      </p>
-      <p v-if="error" class="error">Bad login information</p>
-    </form>
+    <vue-input v-model="name" label placeholder="Имя пользователя" icon="user"/></p>
+    <vue-input v-model="pass" type="password" label placeholder="Пароль" icon="lock"/>
+    <div class="field is-grouped pt10">
+      <vue-button text="Вход" color="primary" @click="login" class="pl20"/>
+      <vue-button text="Закрыть" @click="close" class="pl20" color="light"/>
+    </div>
+    <p v-if="error" class="error">Bad login information</p>
   </div>
 </template>
 
 <script>
 // import auth from '../auth'
 export default {
+  name: 'login',
+  components: {
+    'vue-input': require('@/elements/Input'),
+    'vue-button': require('@/elements/Button')
+  },
   data () {
     return {
-      email: 'joe@example.com',
+      name: '',
       pass: '',
       error: false
     }
-  }
+  },
+  // mounted () {
+  //   console.log(this.$auth)
   // },
-  // methods: {
-  //   login () {
+  methods: {
+    login () {
+      this.$auth.login({
+        params: {
+          username: this.name,
+          password: this.pass
+        },
+        success: function (response) {
+          console.log(response)
+        },
+        error: function (err) {
+          console.log(err)
+        },
+        rememberMe: true,
+        // redirect: '/account'
+        fetchUser: false
+        // etc...
+      })
   //     auth.login(this.email, this.pass, loggedIn => {
   //       if (!loggedIn) {
   //         this.error = true
@@ -41,13 +57,32 @@ export default {
   //         this.$router.replace(this.$route.query.redirect || '/')
   //       }
   //     })
-  //   }
-  // }
+    },
+    close () {
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 
 <style>
   .error {
     color: red;
+  }
+
+  .w300 {
+    width: 300px;
+  }
+
+  .pt10 {
+    padding-top: 10px;
+  }
+
+  .pl20 {
+    padding-left: 20px;
+  }
+
+  .w56 {
+    min-width: 56px !important;
   }
 </style>

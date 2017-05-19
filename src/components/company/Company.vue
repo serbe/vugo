@@ -71,17 +71,14 @@
 </template>
 
 <script>
-import button from '@/elements/Button'
-import select from '@/elements/Select'
-import input from '@/elements/Input'
 import mixin from '@/mixins/funcs'
 
 export default {
   name: 'company',
   components: {
-    'vue-button': button,
-    'vue-select': select,
-    'vue-input': input
+    'vue-input': require('@/elements/Input'),
+    'vue-button': require('@/elements/Button'),
+    'vue-select': require('@/elements/Select')
   },
   mixins: [mixin],
   data () {

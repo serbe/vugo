@@ -1,136 +1,122 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import Login from '@/components/Login'
-import Companies from '@/components/company/Companies'
-import Company from '@/components/company/Company'
-import Contacts from '@/components/contact/Contacts'
-import Contact from '@/components/contact/Contact'
-import Departments from '@/components/department/Departments'
-import Department from '@/components/department/Department'
-import Educations from '@/components/education/Educations'
-import Education from '@/components/education/Education'
-import Kinds from '@/components/kind/Kinds'
-import Kind from '@/components/kind/Kind'
-import Posts from '@/components/post/Posts'
-import Post from '@/components/post/Post'
-import Practices from '@/components/practice/Practices'
-import Practice from '@/components/practice/Practice'
-import Ranks from '@/components/rank/Ranks'
-import Rank from '@/components/rank/Rank'
-import Scopes from '@/components/scope/Scopes'
-import Scope from '@/components/scope/Scope'
-
-import NotFoundComponent from '@/components/NotFoundComponent'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
+  hashbang: false,
+  linkActiveClass: 'is-active',
   mode: 'history',
   routes: [
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: require('@/components/Home')
     },
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: require('@/components/Login'),
+      meta: {auth: false}
     },
     {
       path: '/companies',
       name: 'companies',
-      component: Companies
+      component: require('@/components/company/Companies')
     },
     {
       path: '/company/:id',
       name: 'company',
-      component: Company
+      component: require('@/components/company/Company')
     },
     {
       path: '/contacts',
       name: 'contacts',
-      component: Contacts
+      component: require('@/components/contact/Contacts')
     },
     {
       path: '/contact/:id',
       name: 'contact',
-      component: Contact
+      component: require('@/components/contact/Contact')
     },
     {
       path: '/departments',
       name: 'departments',
-      component: Departments
+      component: require('@/components/department/Departments')
     },
     {
       path: '/department/:id',
       name: 'department',
-      component: Department
+      component: require('@/components/department/Department')
     },
     {
       path: '/educations',
       name: 'educations',
-      component: Educations
+      component: require('@/components/education/Educations')
     },
     {
       path: '/education/:id',
       name: 'education',
-      component: Education
+      component: require('@/components/education/Education')
     },
     {
       path: '/kinds',
       name: 'kinds',
-      component: Kinds
+      component: require('@/components/kind/Kinds')
     },
     {
       path: '/kind/:id',
       name: 'kind',
-      component: Kind
+      component: require('@/components/kind/Kind')
     },
     {
       path: '/posts',
       name: 'posts',
-      component: Posts
+      component: require('@/components/post/Posts')
     },
     {
       path: '/post/:id',
       name: 'post',
-      component: Post
+      component: require('@/components/post/Post')
     },
     {
       path: '/practices',
       name: 'practices',
-      component: Practices
+      component: require('@/components/practice/Practices')
     },
     {
       path: '/practice/:id',
       name: 'practice',
-      component: Practice
+      component: require('@/components/practice/Practice')
     },
     {
       path: '/ranks',
       name: 'ranks',
-      component: Ranks
+      component: require('@/components/rank/Ranks')
     },
     {
       path: '/rank/:id',
       name: 'rank',
-      component: Rank
+      component: require('@/components/rank/Rank')
     },
     {
       path: '/scopes',
       name: 'scopes',
-      component: Scopes
+      component: require('@/components/scope/Scopes')
     },
     {
       path: '/scope/:id',
       name: 'scope',
-      component: Scope
+      component: require('@/components/scope/Scope')
     },
     {
       path: '*',
-      component: NotFoundComponent
+      name: 'error',
+      component: require('@/components/NotFoundComponent')
     }
   ]
 })
+
+Vue.router = router
+
+export default router

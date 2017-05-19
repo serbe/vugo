@@ -24,16 +24,12 @@
 </template>
 
 <script>
-import input from '@/elements/Input'
-import button from '@/elements/Button'
-import switcher from '@/elements/Switch'
-
 export default {
   name: 'post',
   components: {
-    'vue-input': input,
-    'vue-button': button,
-    'vue-switch': switcher
+    'vue-input': require('@/elements/Input'),
+    'vue-button': require('@/elements/Button'),
+    'vue-switch': require('@/elements/Switch')
   },
   data () {
     return {
