@@ -39,14 +39,14 @@ export default {
           username: this.name,
           password: this.pass
         },
-        success: function (response) {
-          console.log(response)
-        },
-        error: function (err) {
-          console.log(err)
+        success: function (r) {
+          if (r.data.token && r.data.token !== '') {
+            localStorage.setItem['token'] = r.data.token
+            console.log(r.data.token)
+          }
+          this.$auth.token()
         },
         rememberMe: true,
-        // redirect: '/account'
         fetchUser: false
         // etc...
       })

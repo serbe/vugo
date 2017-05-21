@@ -21,3 +21,4 @@ Vue.use(VueAuth, {
 })
 
 Vue.axios.defaults.baseURL = 'http://localhost:9090/'
+Vue.axios.defaults.headers.common['Authorization'] = 'Bearer ' + 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidVNlUiIsImFkbWluIjp0cnVlLCJleHAiOjE0OTU2MTQ3NTd9.3N_a1dY_Tt5PONx5XjPOHyeJM6X3L_iZTcyiehFv6wYk854F1nqSqQhmm0gTgB8FVkKbHvXcT6mY9OgMs_hcLQ'
