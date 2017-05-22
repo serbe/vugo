@@ -3,7 +3,7 @@
     <nav class="nav is-dark">
       <div class="nav-left">
         <router-link to="/" class="nav-item" exact>ЕДДС</router-link>
-        <router-link v-if="!$auth.check()" to="/login" class="nav-item">Авторизация</router-link>
+        <router-link to="/login" class="nav-item">Авторизация</router-link>
         <router-link to="/contacts" class="nav-item">Контакты</router-link>
         <router-link to="/companies" class="nav-item">Организации</router-link>
       </div>
