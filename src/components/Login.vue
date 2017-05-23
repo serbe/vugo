@@ -34,22 +34,22 @@ export default {
   // },
   methods: {
     login () {
-      this.$auth.login({
-        params: {
-          username: this.name,
-          password: this.pass
-        },
-        success: function (r) {
-          if (r.data.token && r.data.token !== '') {
-            localStorage.setItem['token'] = r.data.token
-            console.log(r.data.token)
-          }
-          this.$auth.token()
-        },
-        rememberMe: true,
-        fetchUser: false
-        // etc...
-      })
+      // this.$auth.login({
+      //   params: {
+      //     username: this.name,
+      //     password: this.pass
+      //   },
+      //   success: function (r) {
+      //     if (r.data.token && r.data.token !== '') {
+      //       localStorage.setItem['token'] = r.data.token
+      //       console.log(r.data.token)
+      //     }
+      //     this.$auth.token()
+      //   },
+      //   rememberMe: true,
+      //   fetchUser: false
+      //   // etc...
+      // })
   //     auth.login(this.email, this.pass, loggedIn => {
   //       if (!loggedIn) {
   //         this.error = true
