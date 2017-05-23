@@ -3,5 +3,6 @@ export default {
     authenticated: false,
     user: '',
     admin: false
-  }
+  },
+  token: ''
 }

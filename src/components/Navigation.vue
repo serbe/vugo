@@ -3,16 +3,18 @@
     <nav class="nav is-dark">
       <div class="nav-left">
         <router-link to="/" class="nav-item" exact>ЕДДС</router-link>
-        <router-link to="/login" class="nav-item">Авторизация</router-link>
-        <router-link to="/contacts" class="nav-item">Контакты</router-link>
-        <router-link to="/companies" class="nav-item">Организации</router-link>
+        <router-link v-if="!auth" to="/login" class="nav-item">Авторизация</router-link>
+        <template v-else>
+          <router-link to="/contacts" class="nav-item">Контакты</router-link>
+          <router-link to="/companies" class="nav-item">Организации</router-link>
+        </template>
       </div>
-      <span class="nav-toggle">
+      <span v-if="auth" class="nav-toggle">
         <span></span>
         <span></span>
         <span></span>
       </span>
-      <div class="nav-right nav-menu">
+      <div v-if="auth" class="nav-right nav-menu">
         <router-link to="/departments" class="nav-item">Отделы</router-link>
         <router-link to="/educations" class="nav-item">Обучение</router-link>
         <router-link to="/kinds" class="nav-item">Типы</router-link>
@@ -27,7 +29,12 @@
 
 <script>
 export default {
-  name: 'vue-navigation'
+  name: 'vue-navigation',
+  computed: {
+    auth () {
+      return this.$store.getters.isAuth
+    }
+  }
 }
 </script>
 

@@ -4,5 +4,8 @@ export default {
   },
   logout ({ commit }) {
     commit('LOGOUT')
+  },
+  setToken ({ commit }, token) {
+    commit('SET_TOKEN', token)
   }
 }

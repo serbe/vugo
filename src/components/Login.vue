@@ -15,7 +15,6 @@
 </template>
 
 <script>
-// import auth from '../auth'
 export default {
   name: 'login',
   components: {
@@ -29,34 +28,27 @@ export default {
       error: false
     }
   },
-  // mounted () {
-  //   console.log(this.$auth)
-  // },
   methods: {
     login () {
-      // this.$auth.login({
-      //   params: {
-      //     username: this.name,
-      //     password: this.pass
-      //   },
-      //   success: function (r) {
-      //     if (r.data.token && r.data.token !== '') {
-      //       localStorage.setItem['token'] = r.data.token
-      //       console.log(r.data.token)
-      //     }
-      //     this.$auth.token()
-      //   },
-      //   rememberMe: true,
-      //   fetchUser: false
-      //   // etc...
-      // })
-  //     auth.login(this.email, this.pass, loggedIn => {
-  //       if (!loggedIn) {
-  //         this.error = true
-  //       } else {
-  //         this.$router.replace(this.$route.query.redirect || '/')
-  //       }
-  //     })
+      let store = this.$store
+      let data = {
+        username: this.name,
+        password: this.pass
+      }
+      this.axios({
+        url: 'http://localhost:9090/auth/login',
+        method: 'POST',
+        data: data
+      })
+      .then(function (r) {
+        if (r.data.token && r.data.token !== '') {
+          store.dispatch('login', { 'name': data.username, 'admin': false })
+          store.dispatch('setToken', r.data.token)
+        }
+      })
+      .catch(function (e) {
+        console.log(e)
+      })
     },
     close () {
       this.$router.push('/')

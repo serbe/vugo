@@ -1,3 +1,14 @@
+// import axios from 'axios'
+
+// const auth = axios.post({
+//   baseURL: `http://localhost:9090/api/v1/`,
+//   headers: {
+//     Authorization: 'Bearer {token}'
+//   }
+// })
+
+// export default HTTP
+
 // import {router} from '../index'
 
 // // URL and endpoint constants

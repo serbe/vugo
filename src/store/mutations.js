@@ -9,5 +9,8 @@ export default {
   },
   LOGOUT (state) {
     state.auth.authenticated = false
+  },
+  SET_TOKEN (state, token) {
+    state.token = token
   }
 }
