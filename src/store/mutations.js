@@ -8,7 +8,12 @@ export default {
     state.auth = newAuth
   },
   LOGOUT (state) {
-    state.auth.authenticated = false
+    const newAuth = {
+      authenticated: false,
+      user: '',
+      admin: false
+    }
+    state.auth = newAuth
   },
   SET_TOKEN (state, token) {
     state.token = token

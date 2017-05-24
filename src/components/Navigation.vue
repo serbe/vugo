@@ -22,6 +22,9 @@
         <router-link to="/practices" class="nav-item">Учения</router-link>
         <router-link to="/ranks" class="nav-item">Чины</router-link>
         <router-link to="/scopes" class="nav-item">Сферы</router-link>
+        <div class="nav-item">
+          <vue-button text="Выход" color="primary" @click="logout"/>
+        </div>
       </div>
     </nav>
   </div>
@@ -30,9 +33,18 @@
 <script>
 export default {
   name: 'vue-navigation',
+  components: {
+    'vue-button': require('@/elements/Button')
+  },
   computed: {
     auth () {
       return this.$store.getters.isAuth
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('logout')
+      this.$router.push('/')
     }
   }
 }
