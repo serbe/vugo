@@ -99,7 +99,7 @@ export default {
     'vue-input': require('@/elements/Input'),
     'vue-button': require('@/elements/Button'),
     'vue-select': require('@/elements/Select'),
-    'vue-data': require('@/elements/Date')
+    'vue-date': require('@/elements/Date')
   },
   mixins: [mixin],
   data () {
