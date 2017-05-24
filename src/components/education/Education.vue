@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import http from '@/http'
+import request from '@/request'
 
 export default {
   name: 'education',
@@ -62,7 +62,7 @@ export default {
         method = 'PUT'
       }
       let values = this.education
-      http({
+      request({
         url: url,
         method: method,
         mode: 'cors',
@@ -80,12 +80,12 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      http({
+      request({
         url: 'educations/' + this.$route.params.id,
         method: 'GET'
       })
-      .then(r => r.json())
-      .then((data) => {
+      .then((r) => {
+        let data = r.data
         this.education = data.education
         this.isLoaded = true
       })

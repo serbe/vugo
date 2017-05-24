@@ -17,7 +17,7 @@
 
 <script>
   import table from '@/elements/Table'
-  import http from '@/http'
+  import request from '@/request'
 
   export default {
     name: 'posts',
@@ -36,7 +36,7 @@
     },
     methods: {
       fetchData () {
-        http({
+        request({
           url: this.name,
           method: 'GET'
         })

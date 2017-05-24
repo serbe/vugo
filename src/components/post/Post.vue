@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import http from '@/http'
+import request from '@/request'
 
 export default {
   name: 'post',
@@ -56,7 +56,7 @@ export default {
         method = 'PUT'
       }
       let values = this.post
-      http({
+      request({
         url: url,
         method: method,
         mode: 'cors',
@@ -74,12 +74,12 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      http({
+      request({
         url: 'posts/' + this.$route.params.id,
         method: 'GET'
       })
-      .then(r => r.json())
-      .then((data) => {
+      .then((r) => {
+        let data = r.data
         this.post = data.post
         this.isLoaded = true
       })

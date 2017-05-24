@@ -18,7 +18,7 @@
 <script>
   import table from '@/elements/Table'
   import mixin from '@/mixins/funcs'
-  import http from '@/http'
+  import request from '@/request'
 
   export default {
     name: 'companies',
@@ -38,7 +38,7 @@
     },
     methods: {
       fetchData () {
-        http({
+        request({
           url: this.name,
           method: 'GET'
         })

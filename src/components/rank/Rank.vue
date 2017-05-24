@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import http from '@/http'
+import request from '@/request'
 
 export default {
   name: 'rank',
@@ -52,7 +52,7 @@ export default {
         method = 'PUT'
       }
       let values = this.rank
-      http({
+      request({
         url: url,
         method: method,
         mode: 'cors',
@@ -70,12 +70,12 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      http({
+      request({
         url: 'ranks/' + this.$route.params.id,
         method: 'GET'
       })
-      .then(r => r.json())
-      .then((data) => {
+      .then((r) => {
+        let data = r.data
         this.rank = data.rank
         this.isLoaded = true
       })

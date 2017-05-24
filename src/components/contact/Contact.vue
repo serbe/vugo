@@ -91,7 +91,7 @@
 
 <script>
 import mixin from '@/mixins/funcs'
-import http from '@/http'
+import request from '@/request'
 
 export default {
   name: 'contact',
@@ -197,7 +197,7 @@ export default {
       values.emails = this.filterArray(values.emails, 'email')
       values.phones = this.filterArray(values.phones, 'phone')
       values.faxes = this.filterArray(values.faxes, 'phone')
-      http({
+      request({
         url: url,
         method: method,
         mode: 'cors',
@@ -212,12 +212,12 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      http({
+      request({
         url: 'contacts/' + this.$route.params.id,
         method: 'GET'
       })
-      .then(r => r.json())
-      .then((data) => {
+      .then((r) => {
+        let data = r.data
         this.contact = data.contact
         this.companies = data.companies
         this.posts = data.posts

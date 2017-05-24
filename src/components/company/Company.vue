@@ -72,7 +72,7 @@
 
 <script>
 import mixin from '@/mixins/funcs'
-import http from '@/http'
+import request from '@/request'
 
 export default {
   name: 'company',
@@ -157,7 +157,7 @@ export default {
       values.emails = this.filterArray(values.emails, 'email')
       values.phones = this.filterArray(values.phones, 'phone')
       values.faxes = this.filterArray(values.faxes, 'phone')
-      http({
+      request({
         url: url,
         method: method,
         mode: 'cors',
@@ -172,12 +172,12 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      http({
+      request({
         url: 'companies/' + this.$route.params.id,
         method: 'GET'
       })
-      .then(r => r.json())
       .then((data) => {
+        data = data.json()
         this.company = data.company
         this.scopes = data.scopes
         this.company.emails ? this.company.emails.push({id: this.company.emails.length + 1, email: ''}) : this.company.emails = [{id: 1, email: ''}]

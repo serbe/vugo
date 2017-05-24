@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import http from '@/http'
+import request from '@/request'
 
 export default {
   name: 'department',
@@ -52,7 +52,7 @@ export default {
         method = 'PUT'
       }
       let values = this.department
-      http({
+      request({
         url: url,
         method: method,
         mode: 'cors',
@@ -70,12 +70,12 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      http({
+      request({
         url: 'departments/' + this.$route.params.id,
         method: 'GET'
       })
-      .then(r => r.json())
-      .then((data) => {
+      .then((r) => {
+        let data = r.data
         this.department = data.department
         this.isLoaded = true
       })
