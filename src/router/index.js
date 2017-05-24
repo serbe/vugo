@@ -117,6 +117,4 @@ const router = new Router({
   ]
 })
 
-Vue.router = router
-
 export default router

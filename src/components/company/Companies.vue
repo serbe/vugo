@@ -18,6 +18,7 @@
 <script>
   import table from '@/elements/Table'
   import mixin from '@/mixins/funcs'
+  import http from '@/http'
 
   export default {
     name: 'companies',
@@ -37,7 +38,7 @@
     },
     methods: {
       fetchData () {
-        this.axios.get('http://localhost:9090/' + this.name)
+        http.get(this.name)
         .then(r => {
           this.list = this.createList(r.data[this.name])
         })

@@ -1,10 +1,13 @@
 import axios from 'axios'
+import store from '@/store'
 
-const HTTP = axios.create({
-  baseURL: `http://localhost:9090/api/v1/`,
+let token = store.getters.getAuth
+
+const http = axios.create({
+  baseURL: `http://localhost:9090/`,
   headers: {
-    Authorization: 'Bearer {token}'
+    Authorization: token
   }
 })
 
-export default HTTP
+export default http

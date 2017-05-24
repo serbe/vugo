@@ -35,8 +35,8 @@ export default {
         username: this.name,
         password: this.pass
       }
-      this.axios({
-        url: 'http://localhost:9090/auth/login',
+      this.http({
+        url: 'http://localhost:9090/login',
         method: 'POST',
         data: data
       })

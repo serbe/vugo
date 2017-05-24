@@ -42,7 +42,7 @@
     methods: {
       fetchData () {
         this.$http({
-          url: 'http://localhost:9090/api/v1/' + this.name,
+          url: 'http://localhost:9090/' + this.name,
           method: 'GET'
         })
         .then((r) => {
