@@ -176,8 +176,8 @@ export default {
         url: 'companies/' + this.$route.params.id,
         method: 'GET'
       })
-      .then((data) => {
-        data = data.json()
+      .then((r) => {
+        let data = r.data
         this.company = data.company
         this.scopes = data.scopes
         this.company.emails ? this.company.emails.push({id: this.company.emails.length + 1, email: ''}) : this.company.emails = [{id: 1, email: ''}]
