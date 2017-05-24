@@ -38,26 +38,32 @@
     },
     methods: {
       fetchData () {
-        http.get(this.name)
+        http({
+          url: this.name,
+          method: 'GET'
+        })
         .then(r => {
           this.list = this.createList(r.data[this.name])
         })
       },
       createList (companies) {
-        let list = companies.map(c => {
-          let str = [c.name, c.address, c.scope_name]
-          if (c.phones.length > 0 && c.phones[0] !== '') {
-            str.push(c.phones.join(' '))
-          }
-          if (c.faxes.length > 0 && c.faxes[0] !== '') {
-            str.push(c.faxes.join(' '))
-          }
-          if (c.practices.length > 0 && c.practices[0] !== '') {
-            str.push(c.practices.join(' '))
-          }
-          c.str = str.join(' ').toLowerCase()
-          return c
-        })
+        let list = []
+        if (companies) {
+          list = companies.map(c => {
+            let str = [c.name, c.address, c.scope_name]
+            if (c.phones.length > 0 && c.phones[0] !== '') {
+              str.push(c.phones.join(' '))
+            }
+            if (c.faxes.length > 0 && c.faxes[0] !== '') {
+              str.push(c.faxes.join(' '))
+            }
+            if (c.practices.length > 0 && c.practices[0] !== '') {
+              str.push(c.practices.join(' '))
+            }
+            c.str = str.join(' ').toLowerCase()
+            return c
+          })
+        }
         return list
       }
     }

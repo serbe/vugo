@@ -17,8 +17,8 @@
 
 <script>
   import table from '@/elements/Table'
-  // import axios from 'axios'
   import mixin from '@/mixins/funcs'
+  import http from '@/http'
 
   export default {
     name: 'contacts',
@@ -41,8 +41,8 @@
     },
     methods: {
       fetchData () {
-        this.$http({
-          url: 'http://localhost:9090/' + this.name,
+        http({
+          url: this.name,
           method: 'GET'
         })
         .then((r) => {
@@ -50,17 +50,20 @@
         })
       },
       createList (contacts) {
-        let list = contacts.map(c => {
-          let str = [c.name, c.company_name, c.post_name]
-          if (c.phones.length > 0 && c.phones[0] !== '') {
-            str.push(c.phones.join(' '))
-          }
-          if (c.faxes.length > 0 && c.faxes[0] !== '') {
-            str.push(c.faxes.join(' '))
-          }
-          c.str = str.join(' ').toLowerCase()
-          return c
-        })
+        let list = []
+        if (contacts) {
+          list = contacts.map(c => {
+            let str = [c.name, c.company_name, c.post_name]
+            if (c.phones.length > 0 && c.phones[0] !== '') {
+              str.push(c.phones.join(' '))
+            }
+            if (c.faxes.length > 0 && c.faxes[0] !== '') {
+              str.push(c.faxes.join(' '))
+            }
+            c.str = str.join(' ').toLowerCase()
+            return c
+          })
+        }
         return list
       }
     }

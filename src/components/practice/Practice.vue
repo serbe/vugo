@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import http from '@/http'
+
 export default {
   name: 'practice',
   components: {
@@ -83,7 +85,8 @@ export default {
         method = 'PUT'
       }
       let values = this.practice
-      fetch(url, {
+      http({
+        url: url,
         method: method,
         mode: 'cors',
         body: JSON.stringify(values)
@@ -100,7 +103,10 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      fetch('http://localhost:9090/practices/' + this.$route.params.id)
+      http({
+        url: 'practices/' + this.$route.params.id,
+        method: 'GET'
+      })
       .then(r => r.json())
       .then((data) => {
         this.practice = data.practice

@@ -91,6 +91,7 @@
 
 <script>
 import mixin from '@/mixins/funcs'
+import http from '@/http'
 
 export default {
   name: 'contact',
@@ -186,7 +187,7 @@ export default {
       this.contact[itemName + '_id'] = item.id
     },
     submit () {
-      let url = 'http://localhost:9090/contacts'
+      let url = '/contacts'
       let method = 'POST'
       if (this.$route.params.id !== '0') {
         url = url + '/' + this.$route.params.id
@@ -196,7 +197,8 @@ export default {
       values.emails = this.filterArray(values.emails, 'email')
       values.phones = this.filterArray(values.phones, 'phone')
       values.faxes = this.filterArray(values.faxes, 'phone')
-      fetch(url, {
+      http({
+        url: url,
         method: method,
         mode: 'cors',
         body: JSON.stringify(values)
@@ -210,7 +212,10 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      fetch('http://localhost:9090/contacts/' + this.$route.params.id)
+      http({
+        url: 'contacts/' + this.$route.params.id,
+        method: 'GET'
+      })
       .then(r => r.json())
       .then((data) => {
         this.contact = data.contact

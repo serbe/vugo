@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import http from '@/http'
+
 export default {
   name: 'login',
   components: {
@@ -31,11 +33,12 @@ export default {
   methods: {
     login () {
       let store = this.$store
+      let router = this.$router
       let data = {
         username: this.name,
         password: this.pass
       }
-      this.http({
+      http({
         url: 'http://localhost:9090/login',
         method: 'POST',
         data: data
@@ -44,6 +47,7 @@ export default {
         if (r.data.token && r.data.token !== '') {
           store.dispatch('login', { 'name': data.username, 'admin': false })
           store.dispatch('setToken', r.data.token)
+          router.push('/')
         }
       })
       .catch(function (e) {

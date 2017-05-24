@@ -2,24 +2,22 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-// import axios from 'axios'
-// import VueAxios from 'vue-axios'
-
-// Vue.use(VueAxios, axios)
 
 // Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
-  let isAuth = store.getters.isAuth
-  if (to.matched.some(record => record.meta.requiresAuth) && !isAuth) {
-    next({
-      path: '/login',
-      query: {
-        redirect: to.fullPath
-      }
-    })
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!store.getters.isAuth) {
+      next({
+        path: '/login'
+      })
+    } else {
+      next()
+    }
   } else {
-    next()
+    next() // make sure to always call next()!
   }
 })
 

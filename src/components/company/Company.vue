@@ -72,6 +72,7 @@
 
 <script>
 import mixin from '@/mixins/funcs'
+import http from '@/http'
 
 export default {
   name: 'company',
@@ -146,7 +147,7 @@ export default {
       this.company.scope_id = item.id
     },
     submit () {
-      let url = 'http://localhost:9090/companies'
+      let url = 'companies'
       let method = 'POST'
       if (this.$route.params.id !== '0') {
         url = url + '/' + this.$route.params.id
@@ -156,7 +157,8 @@ export default {
       values.emails = this.filterArray(values.emails, 'email')
       values.phones = this.filterArray(values.phones, 'phone')
       values.faxes = this.filterArray(values.faxes, 'phone')
-      fetch(url, {
+      http({
+        url: url,
         method: method,
         mode: 'cors',
         body: JSON.stringify(values)
@@ -170,7 +172,10 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      fetch('http://localhost:9090/companies/' + this.$route.params.id)
+      http({
+        url: 'companies/' + this.$route.params.id,
+        method: 'GET'
+      })
       .then(r => r.json())
       .then((data) => {
         this.company = data.company

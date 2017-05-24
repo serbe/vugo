@@ -17,7 +17,7 @@
 
 <script>
   import table from '@/elements/Table'
-  import axios from 'axios'
+  import http from '@/http'
 
   export default {
     name: 'posts',
@@ -36,17 +36,23 @@
     },
     methods: {
       fetchData () {
-        axios.get('http://localhost:9090/' + this.name)
+        http({
+          url: this.name,
+          method: 'GET'
+        })
         .then(r => {
           this.list = this.createList(r.data[this.name])
         })
       },
       createList (posts) {
-        let list = posts.map(e => {
-          let str = [e.name, e.note]
-          e.str = str.join(' ').toLowerCase()
-          return e
-        })
+        let list = []
+        if (posts) {
+          list = posts.map(e => {
+            let str = [e.name, e.note]
+            e.str = str.join(' ').toLowerCase()
+            return e
+          })
+        }
         return list
       }
     }

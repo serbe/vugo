@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import http from '@/http'
+
 export default {
   name: 'post',
   components: {
@@ -54,7 +56,8 @@ export default {
         method = 'PUT'
       }
       let values = this.post
-      fetch(url, {
+      http({
+        url: url,
         method: method,
         mode: 'cors',
         body: JSON.stringify(values)
@@ -71,7 +74,10 @@ export default {
       console.log('delete!')
     },
     fetchData () {
-      fetch('http://localhost:9090/posts/' + this.$route.params.id)
+      http({
+        url: 'posts/' + this.$route.params.id,
+        method: 'GET'
+      })
       .then(r => r.json())
       .then((data) => {
         this.post = data.post

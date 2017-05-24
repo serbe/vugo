@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export default {
   methods: {
     checkArray (values, key) {
@@ -29,13 +27,6 @@ export default {
         return e[key] && e[key] !== ''
       })
       return values
-    },
-    axiosGetList (key) {
-      axios.get('http://localhost:9090/' + key)
-      .then(r => {
-        let result = r.data[this.name]
-        return result === null ? [] : result
-      })
     }
   }
 }
