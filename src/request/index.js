@@ -2,15 +2,22 @@ import axios from 'axios'
 import store from '@/store'
 
 let token = store.getters.getToken
+let isAuth = store.getters.isAuth
+let baseURL = 'http://localhost/api/v1/'
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:9090/api/v1/'
+}
 
 const client = axios.create({
-  baseURL: `http://localhost:9090/api/v1/`,
-  headers: {
-    'Authorization': token
-  }
+  baseURL: baseURL
 })
 
 const request = function (options) {
+  if (isAuth) {
+    client.defaults.headers.common['Authorization'] = token
+  }
+
   const onSuccess = function (response) {
     // console.debug('Request Successful!', response)
     // return response.data
@@ -30,8 +37,8 @@ const request = function (options) {
   }
 
   return client(options)
-            .then(onSuccess)
-            .catch(onError)
+          .then(onSuccess)
+          .catch(onError)
 }
 
 export default request
