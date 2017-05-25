@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import request from '@/request'
+import axios from 'axios'
 
 export default {
   name: 'login',
@@ -34,12 +34,16 @@ export default {
     login () {
       let store = this.$store
       let router = this.$router
+      let url = '/login'
       let data = {
         username: this.name,
         password: this.pass
       }
-      request({
-        url: 'http://localhost:9090/login',
+      if (process.env.NODE_ENV === 'development') {
+        url = 'http://localhost:9090/login'
+      }
+      axios({
+        url: url,
         method: 'POST',
         data: data
       })

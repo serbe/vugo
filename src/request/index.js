@@ -3,7 +3,7 @@ import store from '@/store'
 
 let token = store.getters.getToken
 let isAuth = store.getters.isAuth
-let baseURL = 'http://localhost/api/v1/'
+let baseURL = '/api/v1/'
 
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:9090/api/v1/'
