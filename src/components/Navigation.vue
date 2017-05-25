@@ -38,7 +38,8 @@ export default {
   },
   computed: {
     auth () {
-      return this.$store.getters.isAuth
+      // return this.$store.getters.isAuth
+      return true
     }
   },
   methods: {
