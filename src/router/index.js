@@ -10,12 +10,12 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       component: require('@/components/Home')
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: require('@/components/Login')
     },
     {
