@@ -51,7 +51,7 @@ export default {
         if (r.data.token && r.data.token !== '') {
           store.dispatch('login', { 'name': data.username, 'admin': false })
           store.dispatch('setToken', r.data.token)
-          router.push('/')
+          router.push({name: 'home'})
         }
       })
       .catch((e) => {
