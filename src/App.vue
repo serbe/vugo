@@ -24,6 +24,10 @@ export default {
     font-size: 0.85rem !important;
   }
 
+  .select select {
+    padding-right: 2.5em !important;
+  }
+
   .pt1 {
     padding-top: 1rem !important;
   }
