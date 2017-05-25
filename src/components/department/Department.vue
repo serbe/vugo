@@ -56,7 +56,7 @@ export default {
         url: url,
         method: method,
         mode: 'cors',
-        body: JSON.stringify(values)
+        data: JSON.stringify(values)
       })
       .then(function (res) {
         console.log(res)
