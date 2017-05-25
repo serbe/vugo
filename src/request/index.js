@@ -1,8 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
 
-let token = store.getters.getToken
-let isAuth = store.getters.isAuth
 let baseURL = '/api/v1/'
 
 if (process.env.NODE_ENV === 'development') {
@@ -14,8 +12,8 @@ const client = axios.create({
 })
 
 const request = function (options) {
-  if (isAuth) {
-    client.defaults.headers.common['Authorization'] = token
+  if (store.getters.isAuth) {
+    client.defaults.headers.common['Authorization'] = store.getters.getToken
   }
 
   const onSuccess = function (response) {
