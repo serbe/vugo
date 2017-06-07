@@ -35,8 +35,8 @@ const request = function (options) {
   }
 
   return client(options)
-          .then(onSuccess)
-          .catch(onError)
+    .then(onSuccess)
+    .catch(onError)
 }
 
 export default request
