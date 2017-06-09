@@ -10,9 +10,13 @@
         </template>
       </div>
       <span v-if="auth" class="nav-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
+        <router-link to="/departments" class="nav-item">Отделы</router-link>
+        <router-link to="/educations" class="nav-item">Обучение</router-link>
+        <router-link to="/kinds" class="nav-item">Типы</router-link>
+        <router-link to="/posts" class="nav-item">Должности</router-link>
+        <router-link to="/practices" class="nav-item">Учения</router-link>
+        <router-link to="/ranks" class="nav-item">Чины</router-link>
+        <router-link to="/scopes" class="nav-item">Сферы</router-link>
       </span>
       <div v-if="auth" class="nav-right nav-menu">
         <router-link to="/departments" class="nav-item">Отделы</router-link>
@@ -38,8 +42,8 @@ export default {
   },
   computed: {
     auth () {
-      // return this.$store.getters.isAuth
-      return true
+      return this.$store.getters.isAuth
+      // return true
     }
   },
   methods: {
