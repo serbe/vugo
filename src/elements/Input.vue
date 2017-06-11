@@ -12,6 +12,7 @@
           :value="value"
           @input="onInput"
           @blur="onBlur"
+          @keyup="onKeyup"
           :disabled="getDisabled"
           :autocomplete="autocomplete">
         <span v-if="icon" class="icon">
@@ -28,6 +29,7 @@
           :value="value"
           @input="onInput"
           @blur="onBlur"
+          @keyup="onKeyup"
           :disabled="getDisabled"
           :autocomplete="autocomplete">
         <span v-if="icon" class="icon">
@@ -90,6 +92,10 @@
       onBlur (event) {
         let ret = {id: this.id, event: event}
         this.$emit('blur', ret)
+      },
+      onKeyup (event) {
+        let ret = {id: this.id, event: event}
+        this.$emit('keyup', ret)
       }
     },
     props: {
