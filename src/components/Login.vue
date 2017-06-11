@@ -5,7 +5,7 @@
       You need to login first.
     </p>
     <vue-input v-model="name" label placeholder="Имя пользователя" icon="user"/></p>
-    <vue-input v-model="pass" type="password" label placeholder="Пароль" icon="lock"/>
+    <vue-input v-model="pass" type="password" label placeholder="Пароль" icon="lock" @keyup="onKeyup"/>
     <div class="field is-grouped pt10">
       <vue-button text="Вход" color="primary" @click="login" class="pl20"/>
       <vue-button text="Закрыть" @click="close" class="pl20" color="light"/>
@@ -49,7 +49,7 @@ export default {
       })
       .then((r) => {
         if (r.data.token && r.data.token !== '') {
-          store.dispatch('login', { 'name': data.username, 'admin': false })
+          store.dispatch('login', { 'name': data.name, 'admin': data.admin })
           store.dispatch('setToken', r.data.token)
           router.push({name: 'home'})
         }
@@ -60,6 +60,11 @@ export default {
     },
     close () {
       this.$router.push('/')
+    },
+    onKeyup (event) {
+      if (event.event.key === 'Enter') {
+        this.login()
+      }
     }
   }
 }
