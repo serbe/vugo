@@ -1,6 +1,8 @@
 <template>
   <div class="container w300">
-    <h3 class="title is-3">Авторизация</h3>
+    <div class="content has-text-centered">
+      <h2>Авторизация</h2>
+    </div>
     <p v-if="$route.query.redirect">
       You need to login first.
     </p>

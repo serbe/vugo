@@ -1,15 +1,15 @@
 <template>
   <div>
-    <nav class="nav">
-      <div class="nav-left">
-        <p class="nav-item">
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <p class="level-item">
           <a class="button" :href="'/' + this.name + '/0'">Добавить</a>
         </p>
       </div>
-      <div class="nav-rigth">
-        <p class="nav-item">
+      <div class="level-rigth">
+        <p class="level-item">
           <span class="select">
-            <select v-model="rowsPerPage">
+            <select v-model="rowsSelect">
               <option>10</option>
               <option>20</option>
               <option>30</option>
@@ -43,7 +43,7 @@
         </tr>
       </tbody>
     </table>
-    <vue-pagination v-if="pagination" :page="page" :allElems="all" :perPage="rowsPerPage" @pagination="filter"/>
+    <vue-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"/>
   </div>
 </template>
 
@@ -61,7 +61,8 @@
       return {
         query: '',
         page: 1,
-        list: []
+        list: [],
+        rowsSelect: 50
       }
     },
     props: {
@@ -128,7 +129,7 @@
         let result = []
         if (this.filtered) {
           result = this.filtered.filter((c, i) => {
-            return i >= (this.page - 1) * this.rowsPerPage && i < this.page * this.rowsPerPage
+            return i >= (this.page - 1) * this.perPage && i < this.page * this.perPage
           })
         }
         return result
@@ -149,6 +150,14 @@
       },
       tableClass () {
         return this.tableClasses ? this.tableClasses : ''
+      },
+      perPage () {
+        return Number(this.rowsSelect)
+      }
+    },
+    mounted: function () {
+      if (this.pagination && this.rowsPerPage > 0 && this.rowsPerPage !== this.rowsSelect) {
+        this.rowsSelect = this.rowsPerPage
       }
     },
     methods: {

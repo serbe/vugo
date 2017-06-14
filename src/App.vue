@@ -11,10 +11,12 @@
 </template>
 
 <script>
+import vnavigation from '@/components/Navigation'
+
 export default {
   name: 'app',
   components: {
-    'vue-navigation': require('@/components/Navigation')
+    'vue-navigation': vnavigation
   }
 }
 </script>
@@ -30,6 +32,10 @@ body {
 
 .pt1 {
   padding-top: 1rem !important;
+}
+
+.mw768 {
+  max-width: 768px !important;
 }
 
 $primary: #2B2B2B;

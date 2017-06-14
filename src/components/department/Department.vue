@@ -1,24 +1,26 @@
 <template>
-  <form :model="department" id="department">
+  <div class="container mw768">
+    <form :model="department" id="department">
 
-    <vue-input v-model="department.name" label placeholder="Наименование отдела" icon="tag"/>
+      <vue-input v-model="department.name" label placeholder="Наименование отдела" icon="tag"/>
 
-    <vue-input v-model="department.note" label placeholder="Заметка" icon="comment"/>
+      <vue-input v-model="department.note" label placeholder="Заметка" icon="comment"/>
 
-    <div class="field">
-      <div class="columns mt3">
-        <div class="column is-2 is-offset-2">
-          <vue-button text="Сохранить" color="primary" @click="submit" />
-        </div>
-        <div class="column is-2">
-          <vue-button text="Закрыть" @click="close" />
-        </div>
-        <div class="column is-2 is-offset-2">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+      <div class="field">
+        <div class="columns mt3">
+          <div class="column is-2 is-offset-2">
+            <vue-button text="Сохранить" color="primary" @click="submit" />
+          </div>
+          <div class="column is-2">
+            <vue-button text="Закрыть" @click="close" />
+          </div>
+          <div class="column is-2 is-offset-2">
+            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+          </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -91,9 +93,5 @@ export default {
 
 .field .is-grouped {
   margin-bottom: 0 !important;
-}
-
-.w300 {
-  width: 300px !important;
 }
 </style>

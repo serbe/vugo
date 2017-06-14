@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container mw768">
     <form :model="company" id="company">
 
       <vue-input v-model="company.name" label placeholder="Наименование организации" icon="building"/>
@@ -193,6 +193,6 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style scoped>
 
 </style>

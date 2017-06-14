@@ -25,6 +25,9 @@ const request = function (options) {
   const onError = function (error) {
     console.error('Request Failed:', error.config)
     if (error.response) {
+      if (error.response.status === 401 && store.getters.isAuth) {
+        store.dispatch('logout')
+      }
       console.error('Status:', error.response.status)
       console.error('Data:', error.response.data)
       console.error('Headers:', error.response.headers)
