@@ -1,5 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from '@/components/Home'
+import Login from '@/components/Login'
+import Companies from '@/components/company/Companies'
+import Company from '@/components/company/Company'
+import Contacts from '@/components/contact/Contacts'
+import Contact from '@/components/contact/Contact'
+import Departments from '@/components/department/Departments'
+import Department from '@/components/department/Department'
+import Educations from '@/components/education/Educations'
+import Education from '@/components/education/Education'
+import Kinds from '@/components/kind/Kinds'
+import Kind from '@/components/kind/Kind'
+import Posts from '@/components/post/Posts'
+import Post from '@/components/post/Post'
+import Practices from '@/components/practice/Practices'
+import Practice from '@/components/practice/Practice'
+import Ranks from '@/components/rank/Ranks'
+import Rank from '@/components/rank/Rank'
+import Scopes from '@/components/scope/Scopes'
+import Scope from '@/components/scope/Scope'
+import NotFoundComponent from '@/components/NotFoundComponent'
 
 Vue.use(Router)
 
@@ -11,127 +32,127 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: require('@/components/Home'),
+      component: Home,
       meta: {title: 'ЕДДС'}
     },
     {
       path: '/login',
       name: 'login',
-      component: require('@/components/Login'),
+      component: Login,
       meta: {title: 'Авторизация'}
     },
     {
       path: '/companies',
       name: 'companies',
-      component: require('@/components/company/Companies'),
+      component: Companies,
       meta: {requiresAuth: true, title: 'Список организаций'}
     },
     {
       path: '/company/:id',
       name: 'company',
-      component: require('@/components/company/Company'),
+      component: Company,
       meta: {requiresAuth: true, title: 'Просмотр организации'}
     },
     {
       path: '/contacts',
       name: 'contacts',
-      component: require('@/components/contact/Contacts'),
+      component: Contacts,
       meta: {requiresAuth: true, title: 'Список контактов'}
     },
     {
       path: '/contact/:id',
       name: 'contact',
-      component: require('@/components/contact/Contact'),
+      component: Contact,
       meta: {requiresAuth: true, title: 'Просмотр контакта'}
     },
     {
       path: '/departments',
       name: 'departments',
-      component: require('@/components/department/Departments'),
+      component: Departments,
       meta: {requiresAuth: true, title: 'Список отделов'}
     },
     {
       path: '/department/:id',
       name: 'department',
-      component: require('@/components/department/Department'),
+      component: Department,
       meta: {requiresAuth: true, title: 'Просмотр отдела'}
     },
     {
       path: '/educations',
       name: 'educations',
-      component: require('@/components/education/Educations'),
+      component: Educations,
       meta: {requiresAuth: true, title: 'Список обучений в УМЦ'}
     },
     {
       path: '/education/:id',
       name: 'education',
-      component: require('@/components/education/Education'),
+      component: Education,
       meta: {requiresAuth: true, title: 'Просмотр обучения в УМЦ'}
     },
     {
       path: '/kinds',
       name: 'kinds',
-      component: require('@/components/kind/Kinds'),
+      component: Kinds,
       meta: {requiresAuth: true, title: 'Список типов тренировок'}
     },
     {
       path: '/kind/:id',
       name: 'kind',
-      component: require('@/components/kind/Kind'),
+      component: Kind,
       meta: {requiresAuth: true, title: 'Просмотр типа тренировки'}
     },
     {
       path: '/posts',
       name: 'posts',
-      component: require('@/components/post/Posts'),
+      component: Posts,
       meta: {requiresAuth: true, title: 'Список должностей'}
     },
     {
       path: '/post/:id',
       name: 'post',
-      component: require('@/components/post/Post'),
+      component: Post,
       meta: {requiresAuth: true, title: 'Просмотр должности'}
     },
     {
       path: '/practices',
       name: 'practices',
-      component: require('@/components/practice/Practices'),
+      component: Practices,
       meta: {requiresAuth: true, title: 'Список тренировок в организациях'}
     },
     {
       path: '/practice/:id',
       name: 'practice',
-      component: require('@/components/practice/Practice'),
+      component: Practice,
       meta: {requiresAuth: true, title: 'Просмотр тренировки'}
     },
     {
       path: '/ranks',
       name: 'ranks',
-      component: require('@/components/rank/Ranks'),
+      component: Ranks,
       meta: {requiresAuth: true, title: 'Список чинов'}
     },
     {
       path: '/rank/:id',
       name: 'rank',
-      component: require('@/components/rank/Rank'),
+      component: Rank,
       meta: {requiresAuth: true, title: 'Просмотр чина'}
     },
     {
       path: '/scopes',
       name: 'scopes',
-      component: require('@/components/scope/Scopes'),
+      component: Scopes,
       meta: {requiresAuth: true, title: 'Список сфер деятельности'}
     },
     {
       path: '/scope/:id',
       name: 'scope',
-      component: require('@/components/scope/Scope'),
+      component: Scope,
       meta: {requiresAuth: true, title: 'Просмотр сферы деятельности'}
     },
     {
       path: '*',
       name: 'error',
-      component: require('@/components/NotFoundComponent')
+      component: NotFoundComponent
     }
   ]
 })

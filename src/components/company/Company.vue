@@ -71,15 +71,18 @@
 </template>
 
 <script>
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import vselect from '@/elements/Select'
 import mixin from '@/mixins/funcs'
 import request from '@/request'
 
 export default {
   name: 'company',
   components: {
-    'vue-input': require('@/elements/Input'),
-    'vue-button': require('@/elements/Button'),
-    'vue-select': require('@/elements/Select')
+    'vue-input': vinput,
+    'vue-button': vbutton,
+    'vue-select': vselect
   },
   mixins: [mixin],
   data () {

@@ -30,14 +30,17 @@
 </template>
 
 <script>
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import vdate from '@/elements/Date'
 import request from '@/request'
 
 export default {
   name: 'education',
   components: {
-    'vue-input': require('@/elements/Input'),
-    'vue-button': require('@/elements/Button'),
-    'vue-date': require('@/elements/Date')
+    'vue-input': vinput,
+    'vue-button': vbutton,
+    'vue-date': vdate
   },
   data () {
     return {

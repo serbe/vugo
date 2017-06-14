@@ -24,14 +24,17 @@
 </template>
 
 <script>
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import vswitch from '@/elements/Switch'
 import request from '@/request'
 
 export default {
   name: 'post',
   components: {
-    'vue-input': require('@/elements/Input'),
-    'vue-button': require('@/elements/Button'),
-    'vue-switch': require('@/elements/Switch')
+    'vue-input': vinput,
+    'vue-button': vbutton,
+    'vue-switch': vswitch
   },
   data () {
     return {

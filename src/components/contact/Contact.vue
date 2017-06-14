@@ -92,16 +92,20 @@
 </template>
 
 <script>
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import vselect from '@/elements/Select'
+import vdate from '@/elements/Date'
 import mixin from '@/mixins/funcs'
 import request from '@/request'
 
 export default {
   name: 'contact',
   components: {
-    'vue-input': require('@/elements/Input'),
-    'vue-button': require('@/elements/Button'),
-    'vue-select': require('@/elements/Select'),
-    'vue-date': require('@/elements/Date')
+    'vue-input': vinput,
+    'vue-button': vbutton,
+    'vue-select': vselect,
+    'vue-date': vdate
   },
   mixins: [mixin],
   data () {

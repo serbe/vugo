@@ -24,13 +24,15 @@
 </template>
 
 <script>
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
 import request from '@/request'
 
 export default {
   name: 'department',
   components: {
-    'vue-input': require('@/elements/Input'),
-    'vue-button': require('@/elements/Button')
+    'vue-input': vinput,
+    'vue-button': vbutton
   },
   data () {
     return {

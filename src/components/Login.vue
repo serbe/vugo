@@ -17,13 +17,15 @@
 </template>
 
 <script>
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
 import axios from 'axios'
 
 export default {
   name: 'login',
   components: {
-    'vue-input': require('@/elements/Input'),
-    'vue-button': require('@/elements/Button')
+    'vue-input': vinput,
+    'vue-button': vbutton
   },
   data () {
     return {
