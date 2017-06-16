@@ -1,26 +1,28 @@
 <template>
-  <form :model="post" id="post">
+  <div class="container mw768">
+    <form :model="post" id="post">
 
-    <vue-input v-model="post.name" label placeholder="Наименование должности" icon="tag"/>
+      <vue-input v-model="post.name" label placeholder="Наименование должности" iconLeft="tag"/>
 
-    <vue-switch :checked="post.go" v-model="post.go" label="Должность по гражданской обороне"/>
+      <vue-switch :checked="post.go" v-model="post.go" label="Должность по гражданской обороне"/>
 
-    <vue-input v-model="post.note" label placeholder="Заметка" icon="comment"/>
+      <vue-input v-model="post.note" label placeholder="Заметка" iconLeft="comment"/>
 
-    <div class="field">
-      <div class="columns mt3">
-        <div class="column is-2 is-offset-2">
-          <vue-button text="Сохранить" color="primary" @click="submit" />
-        </div>
-        <div class="column is-2">
-          <vue-button text="Закрыть" @click="close" />
-        </div>
-        <div class="column is-2 is-offset-2">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+      <div class="field">
+        <div class="columns mt3">
+          <div class="column is-2 is-offset-2">
+            <vue-button text="Сохранить" color="primary" @click="submit" />
+          </div>
+          <div class="column is-2">
+            <vue-button text="Закрыть" @click="close" />
+          </div>
+          <div class="column is-2 is-offset-2">
+            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+          </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 
 <script>

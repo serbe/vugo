@@ -2,7 +2,7 @@
   <div class="container mw768">
     <form :model="contact" id="contact">
 
-      <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" icon="user" />
+      <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" iconLeft="user" />
 
       <vue-select :list="companies" :selected-item="contact.company" label="Организация" item-name="company" @select="onSelect" icon="building" />
 
@@ -32,7 +32,7 @@
         </div>
 
         <div class="column is-two-thirds">
-          <vue-input v-model="contact.address" type="text" label placeholder="Адрес" icon="address-card" />
+          <vue-input v-model="contact.address" type="text" label placeholder="Адрес" iconLeft="address-card" />
         </div>
       </div>
 
@@ -41,7 +41,7 @@
           <div class="field">
             <label class="label">Электронный адрес</label>
             <template v-for="(email, index) in contact.emails">
-              <vue-input v-model="contact.emails[index].email" type="email" placeholder="Электронный адрес" icon="envelope" autocomplete="email" @blur="onBlur('emails', 'email')" pattern='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$' error="Неправильный email"/>
+              <vue-input v-model="contact.emails[index].email" type="email" placeholder="Электронный адрес" iconLeft="envelope" autocomplete="email" @blur="onBlur('emails', 'email')" pattern='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$' error="Неправильный email"/>
             </template>
           </div>
         </div>
@@ -50,7 +50,7 @@
           <div class="field">
             <label class="label">Телефон</label>
             <template v-for="(phone, index) in contact.phones">
-              <vue-input v-model="contact.phones[index].phone" type="tel" placeholder="Телефон" icon="phone" autocomplete="tel" @blur="onBlur('phones', 'phone')"/>
+              <vue-input v-model="contact.phones[index].phone" type="tel" placeholder="Телефон" iconLeft="phone" autocomplete="tel" @blur="onBlur('phones', 'phone')"/>
             </template>
           </div>
         </div>
@@ -59,7 +59,7 @@
           <div class="field">
             <label class="label">Факс</label>
             <template v-for="(fax, index) in contact.faxes">
-              <vue-input v-model="contact.faxes[index].phone" type="tel" placeholder="Факс" icon="fax" autocomplete="tel" @blur="onBlur('faxes', 'phone')"/>
+              <vue-input v-model="contact.faxes[index].phone" type="tel" placeholder="Факс" iconLeft="fax" autocomplete="tel" @blur="onBlur('faxes', 'phone')"/>
             </template>
           </div>
         </div>
@@ -68,11 +68,11 @@
       <div class="field" v-if="contact.practices">
         <label class="label">Тренировки</label>
         <template v-for="practice in contact.practices">
-          <vue-input type="text" :hyper="'/practice/' + practice.id" disabled :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic" icon="graduation-cap" />
+          <vue-input type="text" :hyper="'/practice/' + practice.id" disabled :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic" iconLeft="graduation-cap" />
         </template>
       </div>
 
-      <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="contact.note" />
+      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="contact.note" />
 
       <div class="field">
         <div class="columns mt3">

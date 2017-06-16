@@ -1,24 +1,26 @@
 <template>
-  <form :model="kind" id="kind">
+  <div class="container mw768">
+    <form :model="kind" id="kind">
 
-    <vue-input v-model="kind.name" label placeholder="Наименование типа тренировки" icon="tag"/>
+      <vue-input v-model="kind.name" label placeholder="Наименование типа тренировки" iconLeft="tag"/>
 
-    <vue-input v-model="kind.note" label placeholder="Заметка" icon="comment"/>
+      <vue-input v-model="kind.note" label placeholder="Заметка" iconLeft="comment"/>
 
-    <div class="field">
-      <div class="columns mt3">
-        <div class="column is-2 is-offset-2">
-          <vue-button text="Сохранить" color="primary" @click="submit" />
-        </div>
-        <div class="column is-2">
-          <vue-button text="Закрыть" @click="close" />
-        </div>
-        <div class="column is-2 is-offset-2">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+      <div class="field">
+        <div class="columns mt3">
+          <div class="column is-2 is-offset-2">
+            <vue-button text="Сохранить" color="primary" @click="submit" />
+          </div>
+          <div class="column is-2">
+            <vue-button text="Закрыть" @click="close" />
+          </div>
+          <div class="column is-2 is-offset-2">
+            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+          </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 
 <script>

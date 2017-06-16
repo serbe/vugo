@@ -16,8 +16,11 @@
           :disabled="getDisabled"
           :autocomplete="autocomplete"
         >
-        <span v-if="icon" class="icon">
-          <i :class="'fa fa-' + icon"></i>
+        <span v-if="iconLeft" class="icon is-left">
+          <i :class="'fa fa-' + iconLeft"></i>
+        </span>
+        <span v-if="iconRight" class="icon is-right">
+          <i :class="'fa fa-' + iconRight"></i>
         </span>
         <p v-if="isError" class="help is-danger">{{ error }}</p>
       </a>
@@ -35,8 +38,11 @@
           :disabled="getDisabled"
           :autocomplete="autocomplete"
         >
-        <span v-if="icon" class="icon">
-          <i :class="'fa fa-' + icon"></i>
+        <span v-if="iconLeft" class="icon is-left">
+          <i :class="'fa fa-' + iconLeft"></i>
+        </span>
+        <span v-if="iconRight" class="icon is-right">
+          <i :class="'fa fa-' + iconRight"></i>
         </span>
         <p v-if="isError" class="help is-danger">{{ error }}</p>
       </template>
@@ -55,8 +61,11 @@
     computed: {
       classList () {
         var res = ['control is-expanded']
-        if (this.icon) {
-          res.push('has-icon')
+        if (this.iconLeft) {
+          res.push('has-icons-left')
+        }
+        if (this.iconRight) {
+          res.push('has-icons-right')
         }
         return res
       },
@@ -121,7 +130,12 @@
         default: false,
         required: false
       },
-      icon: {
+      iconLeft: {
+        type: [String, Boolean],
+        required: false,
+        default: false
+      },
+      iconRight: {
         type: [String, Boolean],
         required: false,
         default: false

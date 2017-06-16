@@ -2,9 +2,9 @@
   <div class="container mw768">
     <form :model="department" id="department">
 
-      <vue-input v-model="department.name" label placeholder="Наименование отдела" icon="tag"/>
+      <vue-input v-model="department.name" label placeholder="Наименование отдела" iconLeft="tag"/>
 
-      <vue-input v-model="department.note" label placeholder="Заметка" icon="comment"/>
+      <vue-input v-model="department.note" label placeholder="Заметка" iconLeft="comment"/>
 
       <div class="field">
         <div class="columns mt3">

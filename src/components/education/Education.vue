@@ -1,32 +1,34 @@
 <template>
-  <form :model="education" id="education">
+  <div class="container mw768">
+    <form :model="education" id="education">
 
-    <div class="columns">
-      <div class="column">
-        <vue-date v-model="education.start_date" label="Дата начала обучения"/>
-      </div>
-
-      <div class="column">
-        <vue-date v-model="education.end_date" label="Дата конца обучения"/>
-      </div>
-    </div>
-
-    <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="education.note" />
-
-    <div class="field">
-      <div class="columns mt3">
-        <div class="column is-2 is-offset-2">
-          <vue-button text="Сохранить" color="primary" @click="submit" />
+      <div class="columns">
+        <div class="column">
+          <vue-date v-model="education.start_date" label="Дата начала обучения"/>
         </div>
-        <div class="column is-2">
-          <vue-button text="Закрыть" @click="close" />
-        </div>
-        <div class="column is-2 is-offset-2">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+
+        <div class="column">
+          <vue-date v-model="education.end_date" label="Дата конца обучения"/>
         </div>
       </div>
-    </div>
-  </form>
+
+      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="education.note" />
+
+      <div class="field">
+        <div class="columns mt3">
+          <div class="column is-2 is-offset-2">
+            <vue-button text="Сохранить" color="primary" @click="submit" />
+          </div>
+          <div class="column is-2">
+            <vue-button text="Закрыть" @click="close" />
+          </div>
+          <div class="column is-2 is-offset-2">
+            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>

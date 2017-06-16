@@ -17,7 +17,7 @@
         @keyup.enter="onKeyEnter"
         @keydown.delete="onKeyDelete"
       >
-      <span v-if="icon" class="icon">
+      <span v-if="icon" class="icon is-left">
         <i :class="'fa fa-' + icon"></i>
       </span>
       <div class="select-box" v-if="opened==true">
@@ -88,7 +88,7 @@ export default {
     classList () {
       var res = ['control is-expanded select is-fullwidth']
       if (this.icon) {
-        res.push('has-icon')
+        res.push('has-icons-left')
       }
       return res
     },

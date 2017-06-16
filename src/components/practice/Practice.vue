@@ -1,30 +1,32 @@
 <template>
-  <form :model="practice" id="practice">
+  <div class="container mw768">
+    <form :model="practice" id="practice">
 
-    <vue-select :list="companies" :selected-item="practice.company" label="Организация" item-name="company" @select="onSelect" icon="building" />
+      <vue-select :list="companies" :selected-item="practice.company" label="Организация" item-name="company" @select="onSelect" icon="building" />
 
-    <vue-select :list="kinds" :selected-item="practice.kind" label="Тип тренировки" item-name="kind" @select="onSelect" icon="tag" />
+      <vue-select :list="kinds" :selected-item="practice.kind" label="Тип тренировки" item-name="kind" @select="onSelect" icon="tag" />
 
-    <vue-input type="text" label placeholder="Тема тренировки" icon="tag" v-model="practice.topic" />
+      <vue-input type="text" label placeholder="Тема тренировки" iconLeft="tag" v-model="practice.topic" />
 
-    <vue-date v-model="practice.date_of_practice" label="Дата проведения тренировки"/>
+      <vue-date v-model="practice.date_of_practice" label="Дата проведения тренировки"/>
 
-    <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="practice.note" />
+      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="practice.note" />
 
-    <div class="field">
-      <div class="columns mt3">
-        <div class="column is-2 is-offset-2">
-          <vue-button text="Сохранить" color="primary" @click="submit" />
-        </div>
-        <div class="column is-2">
-          <vue-button text="Закрыть" @click="close" />
-        </div>
-        <div class="column is-2 is-offset-2">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+      <div class="field">
+        <div class="columns mt3">
+          <div class="column is-2 is-offset-2">
+            <vue-button text="Сохранить" color="primary" @click="submit" />
+          </div>
+          <div class="column is-2">
+            <vue-button text="Закрыть" @click="close" />
+          </div>
+          <div class="column is-2 is-offset-2">
+            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+          </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 
 <script>

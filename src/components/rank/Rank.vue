@@ -1,24 +1,26 @@
 <template>
-  <form :model="rank" id="rank">
+  <div class="container mw768">
+    <form :model="rank" id="rank">
 
-    <vue-input v-model="rank.name" label placeholder="Наименование чина" icon="tag"/>
+      <vue-input v-model="rank.name" label placeholder="Наименование чина" iconLeft="tag"/>
 
-    <vue-input v-model="rank.note" label placeholder="Заметка" icon="comment"/>
+      <vue-input v-model="rank.note" label placeholder="Заметка" iconLeft="comment"/>
 
-    <div class="field">
-      <div class="columns mt3">
-        <div class="column is-2 is-offset-2">
-          <vue-button text="Сохранить" color="primary" @click="submit" />
-        </div>
-        <div class="column is-2">
-          <vue-button text="Закрыть" @click="close" />
-        </div>
-        <div class="column is-2 is-offset-2">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+      <div class="field">
+        <div class="columns mt3">
+          <div class="column is-2 is-offset-2">
+            <vue-button text="Сохранить" color="primary" @click="submit" />
+          </div>
+          <div class="column is-2">
+            <vue-button text="Закрыть" @click="close" />
+          </div>
+          <div class="column is-2 is-offset-2">
+            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+          </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 
 <script>
