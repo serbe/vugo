@@ -2,10 +2,8 @@
   <div id="app">
     <vue-navigation/>
     <section class="section pt1">
-      <div class="container">
-        <!--<img src="./assets/logo.png">-->
-        <router-view></router-view>
-      </div>
+      <!--<img src="./assets/logo.png">-->
+      <router-view></router-view>
     </section>
   </div>
 </template>
