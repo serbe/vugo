@@ -14,11 +14,12 @@
           @blur="onBlur"
           @keyup="onKeyup"
           :disabled="getDisabled"
-          :autocomplete="autocomplete">
+          :autocomplete="autocomplete"
+        >
         <span v-if="icon" class="icon">
           <i :class="'fa fa-' + icon"></i>
         </span>
-        <p if="isError" class="help is-danger">{{ error }}</p>
+        <p v-if="isError" class="help is-danger">{{ error }}</p>
       </a>
       <template v-else>
         <input
@@ -32,11 +33,12 @@
           @blur="onBlur"
           @keyup="onKeyup"
           :disabled="getDisabled"
-          :autocomplete="autocomplete">
+          :autocomplete="autocomplete"
+        >
         <span v-if="icon" class="icon">
           <i :class="'fa fa-' + icon"></i>
         </span>
-        <p if="isError" class="help is-danger">{{ error }}</p>
+        <p v-if="isError" class="help is-danger">{{ error }}</p>
       </template>
     </p>
   </div>
@@ -86,7 +88,7 @@
         }
       },
       isError () {
-        if (this.pattern) {
+        if (this.value !== '' && this.pattern) {
           let patt = new RegExp(this.pattern)
           return !patt.test(this.value)
         }
