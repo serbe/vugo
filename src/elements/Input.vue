@@ -18,6 +18,7 @@
         <span v-if="icon" class="icon">
           <i :class="'fa fa-' + icon"></i>
         </span>
+        <p if="isError" class="help is-danger">{{ error }}</p>
       </a>
       <template v-else>
         <input
@@ -35,6 +36,7 @@
         <span v-if="icon" class="icon">
           <i :class="'fa fa-' + icon"></i>
         </span>
+        <p if="isError" class="help is-danger">{{ error }}</p>
       </template>
     </p>
   </div>
@@ -82,6 +84,13 @@
         } else {
           return false
         }
+      },
+      isError () {
+        if (this.pattern) {
+          let patt = new RegExp(this.pattern)
+          return !patt.test(this.value)
+        }
+        return false
       }
     },
     methods: {
@@ -157,6 +166,16 @@
       },
       disabled: {
         type: Boolean,
+        required: false,
+        default: false
+      },
+      error: {
+        type: [String, Boolean],
+        required: false,
+        default: false
+      },
+      pattern: {
+        type: [String, Boolean],
         required: false,
         default: false
       }
