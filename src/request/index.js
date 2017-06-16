@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
+import router from '@/router'
 
 let baseURL = '/api/v1/'
 
@@ -27,6 +28,7 @@ const request = function (options) {
     if (error.response) {
       if (error.response.status === 401 && store.getters.isAuth) {
         store.dispatch('logout')
+        router.push({name: 'login'})
       }
       console.error('Status:', error.response.status)
       console.error('Data:', error.response.data)
