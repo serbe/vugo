@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <vue-table
       name="company"
       :names="['Наименование', 'Адрес', 'Сфера деятельности', 'Телефон', 'Факс', 'Тренировки']"

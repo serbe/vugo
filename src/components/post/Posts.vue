@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <vue-table
       name="post"
       :names="['Наименование должности', 'ГО', 'Заметка']"

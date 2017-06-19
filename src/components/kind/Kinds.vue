@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <vue-table
       name="kind"
       :names="['Тип тренировки', 'Заметка']"

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <vue-table
       name="scope"
       :names="['Сфера деятельности', 'Заметка']"
