@@ -33,6 +33,7 @@
         <li><router-link to="/practices">Учения</router-link></li>
         <li><router-link to="/ranks">Чины</router-link></li>
         <li><router-link to="/scopes">Сферы</router-link></li>
+        <li><router-link to="/sirenTypes">Типы сирен</router-link></li>
       </ul>
     </div>
     </div>
@@ -73,12 +74,7 @@ export default {
 </script>
 
 <style scoped>
-/*nav {
-  border: 1px solid #363636;
-}*/
-
 .is-active {
   border-bottom: 3px solid #363636;
 }
-
 </style>

@@ -20,6 +20,8 @@ import Ranks from '@/components/rank/Ranks'
 import Rank from '@/components/rank/Rank'
 import Scopes from '@/components/scope/Scopes'
 import Scope from '@/components/scope/Scope'
+import SirenTypes from '@/components/sirentype/SirenTypes'
+import SirenType from '@/components/sirentype/SirenType'
 import NotFoundComponent from '@/components/NotFoundComponent'
 
 Vue.use(Router)
@@ -148,6 +150,18 @@ const router = new Router({
       name: 'scope',
       component: Scope,
       meta: {requiresAuth: true, title: 'Просмотр сферы деятельности'}
+    },
+    {
+      path: '/sirentypes',
+      name: 'sirentypes',
+      component: SirenTypes,
+      meta: {requiresAuth: true, title: 'Список типов сирен'}
+    },
+    {
+      path: '/sirentype/:id',
+      name: 'sirentype',
+      component: SirenType,
+      meta: {requiresAuth: true, title: 'Просмотр типа сирены'}
     },
     {
       path: '*',
