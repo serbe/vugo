@@ -84,7 +84,7 @@ export default {
       this.practice[itemName + '_id'] = item.id
     },
     submit () {
-      let url = 'http://localhost:9090/practices'
+      let url = 'practices'
       let method = 'POST'
       if (this.$route.params.id !== '0') {
         url = url + '/' + this.$route.params.id

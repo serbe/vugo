@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     submit () {
-      let url = 'http://localhost:9090/posts'
+      let url = 'posts'
       let method = 'POST'
       if (this.$route.params.id !== '0') {
         url = url + '/' + this.$route.params.id

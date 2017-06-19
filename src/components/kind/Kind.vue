@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     submit () {
-      let url = 'http://localhost:9090/kinds'
+      let url = 'kinds'
       let method = 'POST'
       if (this.$route.params.id !== '0') {
         url = url + '/' + this.$route.params.id
