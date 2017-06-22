@@ -3,7 +3,7 @@
     <form :model="sirenType" id="sirenType">
 
       <vue-input v-model="sirenType.name" label placeholder="Тип сирены" iconLeft="tag"/>
-      <vue-input v-model="sirenType.radius" label placeholder="Радиус действия сирены" iconLeft="circle-o"/>
+      <vue-input v-model="sirenType.radius" label placeholder="Радиус действия сирены (метры)" iconLeft="circle-o"/>
       <vue-input v-model="sirenType.note" label placeholder="Заметка" iconLeft="comment"/>
 
       <div class="field">
@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     submit () {
-      let url = 'sirenTypes'
+      let url = 'sirentypes'
       let method = 'POST'
       if (this.$route.params.id !== '0') {
         url = url + '/' + this.$route.params.id
@@ -66,22 +66,22 @@ export default {
       .then(function (res) {
         console.log(res)
       })
-      this.$router.push('/sirenTypes')
+      this.$router.push('/sirentypes')
     },
     close () {
-      this.$router.push('/sirenTypes')
+      this.$router.push('/sirentypes')
     },
     delete () {
       console.log('delete!')
     },
     fetchData () {
       request({
-        url: 'sirenTypes/' + this.$route.params.id,
+        url: 'sirentypes/' + this.$route.params.id,
         method: 'GET'
       })
       .then((r) => {
         let data = r.data
-        this.sirenType = data.sirenType
+        this.sirenType = data.siren_type
         this.isLoaded = true
       })
     }

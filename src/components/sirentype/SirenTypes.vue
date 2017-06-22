@@ -24,7 +24,6 @@
       'vue-table': table
     },
     data: () => ({
-      name: 'sirenTypes',
       list: []
     }),
     created () {
@@ -36,18 +35,18 @@
     methods: {
       fetchData () {
         request({
-          url: this.name,
+          url: 'sirentypes',
           method: 'GET'
         })
         .then(r => {
-          this.list = this.createList(r.data[this.name])
+          this.list = this.createList(r.data.siren_types)
         })
       },
       createList (sirenTypes) {
         let list = []
         if (sirenTypes) {
           list = sirenTypes.map(e => {
-            let str = [e.name, e.note]
+            let str = [e.name, e.radius, e.note]
             e.str = str.join(' ').toLowerCase()
             return e
           })
