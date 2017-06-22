@@ -4,17 +4,17 @@
     <p :class="classList">
       <a v-if="hyper" :href="hyper">
         <input
+          ref="input"
           :class="inputClassList"
           :type="type"
-          ref="input"
           :name="name"
           :placeholder="placeholder"
           :value="value"
+          :disabled="getDisabled"
+          :autocomplete="autocomplete"
           @input="onInput"
           @blur="onBlur"
           @keyup="onKeyup"
-          :disabled="getDisabled"
-          :autocomplete="autocomplete"
         >
         <span v-if="iconLeft" class="icon is-left">
           <i :class="'fa fa-' + iconLeft"></i>
@@ -26,17 +26,17 @@
       </a>
       <template v-else>
         <input
+          ref="input"
           :class="inputClassList"
           :type="type"
-          ref="input"
           :name="name"
           :placeholder="placeholder"
           :value="value"
+          :disabled="getDisabled"
+          :autocomplete="autocomplete"
           @input="onInput"
           @blur="onBlur"
           @keyup="onKeyup"
-          :disabled="getDisabled"
-          :autocomplete="autocomplete"
         >
         <span v-if="iconLeft" class="icon is-left">
           <i :class="'fa fa-' + iconLeft"></i>

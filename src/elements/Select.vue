@@ -3,12 +3,12 @@
     <label v-if="getLabel" class="label">{{ getLabel }}</label>
     <div :class="classList" @click="openOptions">
       <input
-        :class="inputClassList"
         type="text"
         ref="vueSelect"
         autocomplete="off"
-        :placeholder="getPlaceholder"
         tabindex="0"
+        :class="inputClassList"
+        :placeholder="getPlaceholder"
         :value="isLoaded ? searchText : this.item.name"
         @input="onInput"
         @blur="onBlur"
