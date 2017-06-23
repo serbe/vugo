@@ -22,9 +22,7 @@
       </span>
       <div class="select-box" v-if="opened==true">
         <div class="select-item" @click.stop="selectItem({id:0,name:''})" @mousedown="mousedownItem"></div>
-        <template  v-for="item in listWithFilter">
-          <div class="select-item" @click.stop="selectItem(item)" @mousedown="mousedownItem">{{ item.name }}</div>
-        </template>
+        <div class="select-item" v-for="item in listWithFilter" v-bind:key="item.id" @click.stop="selectItem(item)" @mousedown="mousedownItem">{{ item.name }}</div>
       </div>
     </div>
   </div>

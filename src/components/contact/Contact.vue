@@ -2,37 +2,37 @@
   <div class="container mw768">
     <form :model="contact" id="contact">
 
-      <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" iconLeft="user" />
+      <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" iconLeft="user" ></vue-input>
 
-      <vue-select :list="companies" :selected-item="contact.company" label="Организация" item-name="company" @select="onSelect" icon="building" />
+      <vue-select :list="companies" :selected-item="contact.company" label="Организация" item-name="company" @select="onSelect" icon="building" ></vue-select>
 
       <div class="columns">
         <div class="column is-half">
-          <vue-select :list="posts" :selected-item="contact.post" label="Должность" item-name="post" @select="onSelect" icon="tag" />
+          <vue-select :list="posts" :selected-item="contact.post" label="Должность" item-name="post" @select="onSelect" icon="tag" ></vue-select>
         </div>
 
         <div class="column is-half">
-          <vue-select :list="departments" :selected-item="contact.department" label="Отдел" item-name="department" @select="onSelect" icon="tag" />
+          <vue-select :list="departments" :selected-item="contact.department" label="Отдел" item-name="department" @select="onSelect" icon="tag" ></vue-select>
         </div>
       </div>
 
       <div class="columns">
         <div class="column is-half">
-          <vue-select :list="posts_go" :selected-item="contact.post_go" label="Должность ГО" item-name="post_go" @select="onSelect" icon="tag" />
+          <vue-select :list="posts_go" :selected-item="contact.post_go" label="Должность ГО" item-name="post_go" @select="onSelect" icon="tag" ></vue-select>
         </div>
 
         <div class="column is-half">
-          <vue-select :list="ranks" :selected-item="contact.rank" label="Звание" item-name="rank" @select="onSelect" icon="tag" />
+          <vue-select :list="ranks" :selected-item="contact.rank" label="Звание" item-name="rank" @select="onSelect" icon="tag" ></vue-select>
         </div>
       </div>
 
       <div class="columns">
         <div class="column">
-          <vue-date v-model="contact.birthday" label="Дата рождения"/>
+          <vue-date v-model="contact.birthday" label="Дата рождения"></vue-date>
         </div>
 
         <div class="column is-two-thirds">
-          <vue-input v-model="contact.address" type="text" label placeholder="Адрес" iconLeft="address-card" />
+          <vue-input v-model="contact.address" type="text" label placeholder="Адрес" iconLeft="address-card" ></vue-input>
         </div>
       </div>
 
@@ -40,50 +40,79 @@
         <div class="column">
           <div class="field">
             <label class="label">Электронный адрес</label>
-            <template v-for="(email, index) in contact.emails">
-              <vue-input v-model="contact.emails[index].email" type="email" placeholder="Электронный адрес" iconLeft="envelope" autocomplete="email" @blur="onBlur('emails', 'email')" pattern='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$' error="Неправильный email"/>
-            </template>
+            <vue-input
+              v-for="(email, index) in contact.emails"
+              v-bind:key="index"
+              v-model="contact.emails[index].email"
+              type="email"
+              placeholder="Электронный адрес"
+              iconLeft="envelope"
+              autocomplete="email"
+              @blur="onBlur('emails', 'email')"
+              pattern='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+              error="Неправильный email"
+            ></vue-input>
           </div>
         </div>
 
         <div class="column">
           <div class="field">
             <label class="label">Телефон</label>
-            <template v-for="(phone, index) in contact.phones">
-              <vue-input v-model="contact.phones[index].phone" type="tel" placeholder="Телефон" iconLeft="phone" autocomplete="tel" @blur="onBlur('phones', 'phone')"/>
-            </template>
+            <vue-input
+              v-for="(phone, index) in contact.phones"
+              v-bind:key="index"
+              v-model="contact.phones[index].phone"
+              type="tel"
+              placeholder="Телефон"
+              iconLeft="phone"
+              autocomplete="tel"
+              @blur="onBlur('phones', 'phone')"
+            ></vue-input>
           </div>
         </div>
 
         <div class="column">
           <div class="field">
             <label class="label">Факс</label>
-            <template v-for="(fax, index) in contact.faxes">
-              <vue-input v-model="contact.faxes[index].phone" type="tel" placeholder="Факс" iconLeft="fax" autocomplete="tel" @blur="onBlur('faxes', 'phone')"/>
-            </template>
+            <vue-input
+              v-for="(fax, index) in contact.faxes"
+              v-bind:key="index"
+              v-model="contact.faxes[index].phone"
+              type="tel"
+              placeholder="Факс"
+              iconLeft="fax"
+              autocomplete="tel"
+              @blur="onBlur('faxes', 'phone')"
+            ></vue-input>
           </div>
         </div>
       </div>
 
       <div class="field" v-if="contact.practices">
         <label class="label">Тренировки</label>
-        <template v-for="practice in contact.practices">
-          <vue-input type="text" :hyper="'/practice/' + practice.id" disabled :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic" iconLeft="graduation-cap" />
-        </template>
+        <vue-input
+          v-for="(practice, index) in contact.practices"
+          v-bind:key="index"
+          type="text"
+          :hyper="'/practice/' + practice.id"
+          disabled
+          :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic"
+          iconLeft="graduation-cap"
+        ></vue-input>
       </div>
 
-      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="contact.note" />
+      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="contact.note" ></vue-input>
 
       <div class="field">
         <div class="columns mt3">
           <div class="column is-2 is-offset-2">
-            <vue-button text="Сохранить" color="primary" @click="submit" />
+            <vue-button text="Сохранить" color="primary" @click="submit" ></vue-button>
           </div>
           <div class="column is-2">
-            <vue-button text="Закрыть" @click="close" />
+            <vue-button text="Закрыть" @click="close" ></vue-button>
           </div>
           <div class="column is-2 is-offset-2">
-            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" ></vue-button>
           </div>
         </div>
       </div>

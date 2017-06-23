@@ -6,11 +6,11 @@
     <p v-if="$route.query.redirect">
       You need to login first.
     </p>
-    <vue-input v-model="name" label placeholder="Имя пользователя" iconLeft="user"/></p>
-    <vue-input v-model="pass" type="password" label placeholder="Пароль" iconLeft="lock" @keyup="onKeyup"/>
+    <vue-input v-model="name" label placeholder="Имя пользователя" iconLeft="user"></vue-input>
+    <vue-input v-model="pass" type="password" label placeholder="Пароль" iconLeft="lock" @keyup="onKeyup"></vue-input>
     <div class="field is-grouped pt10">
-      <vue-button text="Вход" color="primary" @click="login" class="pl20"/>
-      <vue-button text="Закрыть" @click="close" class="pl20" color="light"/>
+      <vue-button text="Вход" color="primary" @click="login" class="pl20"></vue-button>
+      <vue-button text="Закрыть" @click="close" class="pl20" color="light"></vue-button>
     </div>
     <p v-if="error" class="error">Bad login information</p>
   </div>
@@ -75,23 +75,23 @@ export default {
 </script>
 
 <style>
-  .error {
-    color: red;
-  }
+.error {
+  color: red;
+}
 
-  .w300 {
-    width: 300px;
-  }
+.w300 {
+  width: 300px;
+}
 
-  .pt10 {
-    padding-top: 10px;
-  }
+.pt10 {
+  padding-top: 10px;
+}
 
-  .pl20 {
-    padding-left: 20px;
-  }
+.pl20 {
+  padding-left: 20px;
+}
 
-  .w56 {
-    min-width: 56px !important;
-  }
+.w56 {
+  min-width: 56px !important;
+}
 </style>

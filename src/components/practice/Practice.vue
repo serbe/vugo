@@ -2,26 +2,26 @@
   <div class="container mw768">
     <form :model="practice" id="practice">
 
-      <vue-select :list="companies" :selected-item="practice.company" label="Организация" item-name="company" @select="onSelect" icon="building" />
+      <vue-select :list="companies" :selected-item="practice.company" label="Организация" item-name="company" @select="onSelect" icon="building" ></vue-select>
 
-      <vue-select :list="kinds" :selected-item="practice.kind" label="Тип тренировки" item-name="kind" @select="onSelect" icon="tag" />
+      <vue-select :list="kinds" :selected-item="practice.kind" label="Тип тренировки" item-name="kind" @select="onSelect" icon="tag" ></vue-select>
 
-      <vue-input type="text" label placeholder="Тема тренировки" iconLeft="tag" v-model="practice.topic" />
+      <vue-input type="text" label placeholder="Тема тренировки" iconLeft="tag" v-model="practice.topic" ></vue-input>
 
-      <vue-date v-model="practice.date_of_practice" label="Дата проведения тренировки"/>
+      <vue-date v-model="practice.date_of_practice" label="Дата проведения тренировки"></vue-date>
 
-      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="practice.note" />
+      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="practice.note" ></vue-input>
 
       <div class="field">
         <div class="columns mt3">
           <div class="column is-2 is-offset-2">
-            <vue-button text="Сохранить" color="primary" @click="submit" />
+            <vue-button text="Сохранить" color="primary" @click="submit" ></vue-button>
           </div>
           <div class="column is-2">
-            <vue-button text="Закрыть" @click="close" />
+            <vue-button text="Закрыть" @click="close" ></vue-button>
           </div>
           <div class="column is-2 is-offset-2">
-            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" ></vue-button>
           </div>
         </div>
       </div>

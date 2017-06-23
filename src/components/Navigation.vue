@@ -19,7 +19,7 @@
           <a class="nav-item is-tab" @click="toggleSirenTab">Сирены</a>
           <a class="nav-item is-tab" @click="toggleTab">Справочники</a>
           <div class="nav-item">
-            <vue-button text="Выход" color="info" @click="logout"/>
+            <vue-button text="Выход" color="info" @click="logout"></vue-button>
           </div>
         </div>
       </div>

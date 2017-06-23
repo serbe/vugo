@@ -2,67 +2,100 @@
   <div class="container mw768">
     <form :model="company" id="company">
 
-      <vue-input v-model="company.name" label placeholder="Наименование организации" iconLeft="building"/>
+      <vue-input v-model="company.name" label placeholder="Наименование организации" iconLeft="building"></vue-input>
 
-      <vue-select :list="scopes" :selected-item="company.scope" label="Сфера деятельности" @select="onSelect" icon="tag"/>
+      <vue-select :list="scopes" :selected-item="company.scope" label="Сфера деятельности" @select="onSelect" icon="tag"></vue-select>
 
-      <vue-input v-model="company.address" label placeholder="Адрес" iconLeft="address-card"/>
+      <vue-input v-model="company.address" label placeholder="Адрес" iconLeft="address-card"></vue-input>
 
       <div class="columns">
         <div class="column">
           <div class="field">
             <label class="label">Электронный адрес</label>
-            <template v-for="(email, index) in company.emails">
-              <vue-input v-model="company.emails[index].email" type="email" placeholder="Электронный адрес" iconLeft="envelope" autocomplete="email" @blur="onBlur('emails', 'email')" pattern='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$' error="Неправильный email"/>
-            </template>
+            <vue-input
+              v-for="(email, index) in company.emails"
+              v-bind:key="index"
+              v-model="company.emails[index].email"
+              type="email"
+              placeholder="Электронный адрес"
+              iconLeft="envelope"
+              autocomplete="email"
+              @blur="onBlur('emails', 'email')"
+              pattern='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+              error="Неправильный email"
+            ></vue-input>
           </div>
         </div>
 
         <div class="column">
           <div class="field">
             <label class="label">Телефон</label>
-            <template v-for="(phone, index) in company.phones">
-              <vue-input v-model="company.phones[index].phone" type="tel" placeholder="Телефон" iconLeft="phone" autocomplete="tel" @blur="onBlur('phones', 'phone')"/>
-            </template>
+            <vue-input
+              v-for="(phone, index) in company.phones"
+              v-bind:key="index"
+              v-model="company.phones[index].phone"
+              type="tel"
+              placeholder="Телефон"
+              iconLeft="phone"
+              autocomplete="tel"
+              @blur="onBlur('phones', 'phone')"
+            ></vue-input>
           </div>
         </div>
 
         <div class="column">
           <div class="field">
             <label class="label">Факс</label>
-            <template v-for="(fax, index) in company.faxes">
-              <vue-input v-model="company.faxes[index].phone" type="tel" placeholder="Факс" iconLeft="phone" autocomplete="tel" @blur="onBlur('faxes', 'phone')"/>
-            </template>
+            <vue-input
+              v-for="(fax, index) in company.faxes"
+              v-bind:key="index"
+              v-model="company.faxes[index].phone"
+              type="tel"
+              placeholder="Факс"
+              iconLeft="phone"
+              autocomplete="tel"
+              @blur="onBlur('faxes', 'phone')"
+            ></vue-input>
           </div>
         </div>
       </div>
 
       <div class="field" v-if="company.practices">
         <label class="label">Тренировки</label>
-        <template v-for="practice in company.practices">
-          <vue-input :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic" :hyper="'/practice/' + practice.id" iconLeft="history" disabled/>
-        </template>
+        <vue-input
+          v-for="(practice, index) in company.practices"
+          v-bind:key="index"
+          :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic"
+          :hyper="'/practice/' + practice.id"
+          iconLeft="history"
+          disabled
+        ></vue-input>
       </div>
 
       <div class="field" v-if="company.contacts">
         <label class="label">Сотрудники</label>
-        <template v-for="contact in company.contacts">
-          <vue-input :value="contact.name + ' - ' + contact.post_name" :hyper="'/contact/' + contact.id" iconLeft="user" disabled/>
-        </template>
+        <vue-input
+          v-for="(contact, index) in company.contacts"
+          v-bind:key="index"
+          :value="contact.name + ' - ' + contact.post_name"
+          :hyper="'/contact/' + contact.id"
+          iconLeft="user"
+          disabled
+        ></vue-input>
       </div>
 
-      <vue-input v-model="company.note" label placeholder="Заметка" iconLeft="sticky-note"/>
+      <vue-input v-model="company.note" label placeholder="Заметка" iconLeft="sticky-note"></vue-input>
 
       <div class="field">
         <div class="columns mt3">
           <div class="column is-2 is-offset-2">
-            <vue-button text="Сохранить" color="primary" @click="submit"/>
+            <vue-button text="Сохранить" color="primary" @click="submit"></vue-button>
           </div>
           <div class="column is-2">
-            <vue-button text="Закрыть" @click="close"/>
+            <vue-button text="Закрыть" @click="close"></vue-button>
           </div>
           <div class="column is-2 is-offset-2">
-            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"/>
+            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></vue-button>
           </div>
         </div>
       </div>

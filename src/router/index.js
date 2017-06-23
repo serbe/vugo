@@ -22,6 +22,8 @@ import Scopes from '@/components/scope/Scopes'
 import Scope from '@/components/scope/Scope'
 import SirenTypes from '@/components/sirentype/SirenTypes'
 import SirenType from '@/components/sirentype/SirenType'
+import Sirens from '@/components/siren/Sirens'
+import Siren from '@/components/siren/Siren'
 import NotFoundComponent from '@/components/NotFoundComponent'
 
 Vue.use(Router)
@@ -162,6 +164,18 @@ const router = new Router({
       name: 'sirentype',
       component: SirenType,
       meta: {requiresAuth: true, title: 'Просмотр типа сирены'}
+    },
+    {
+      path: '/sirens',
+      name: 'sirens',
+      component: Sirens,
+      meta: {requiresAuth: true, title: 'Список сирен'}
+    },
+    {
+      path: '/siren/:id',
+      name: 'siren',
+      component: Siren,
+      meta: {requiresAuth: true, title: 'Просмотр сирены'}
     },
     {
       path: '*',

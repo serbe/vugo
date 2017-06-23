@@ -4,26 +4,26 @@
 
       <div class="columns">
         <div class="column">
-          <vue-date v-model="education.start_date" label="Дата начала обучения"/>
+          <vue-date v-model="education.start_date" label="Дата начала обучения"></vue-date>
         </div>
 
         <div class="column">
-          <vue-date v-model="education.end_date" label="Дата конца обучения"/>
+          <vue-date v-model="education.end_date" label="Дата конца обучения"></vue-date>
         </div>
       </div>
 
-      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="education.note" />
+      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="education.note" ></vue-input>
 
       <div class="field">
         <div class="columns mt3">
           <div class="column is-2 is-offset-2">
-            <vue-button text="Сохранить" color="primary" @click="submit" />
+            <vue-button text="Сохранить" color="primary" @click="submit" ></vue-button>
           </div>
           <div class="column is-2">
-            <vue-button text="Закрыть" @click="close" />
+            <vue-button text="Закрыть" @click="close" ></vue-button>
           </div>
           <div class="column is-2 is-offset-2">
-            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" />
+            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" ></vue-button>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@
       pagination
       hyper
       search
-    />
+    ></vue-table>
   </div>
 </template>
 
