@@ -91,8 +91,8 @@
       <div class="field" v-if="contact.practices">
         <label class="label">Тренировки</label>
         <vue-input
-          v-for="(practice, index) in contact.practices"
-          v-bind:key="index"
+          v-for="practice in contact.practices"
+          v-bind:key="practice.id"
           type="text"
           :hyper="'/practice/' + practice.id"
           disabled

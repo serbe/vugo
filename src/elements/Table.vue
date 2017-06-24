@@ -27,23 +27,27 @@
     <table class="table fixed_table" :class="tableClass">
       <thead>
         <tr>
-          <th v-for="(name, index) in head" :class="headClass(index)">{{ name }}</th>
+          <th v-for="(name, index) in head" v-bind:key="index" :class="headClass(index)">{{ name }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-if="hyper" v-for="item in rows" @click="onClickTr(item)" class="link">
-          <td v-for="(name, index) in body" :class="cellClass(index)">
-            <vue-cell :type="cellType(index)" :value="item[name]"/>
-          </td>
-        </tr>
-        <tr v-else v-for="item in body">
-          <td v-for="(name, index) in body" :class="cellClass(index)">
-            <vue-cell :type="cellType(index)" :value="item[name]"/>
-          </td>
-        </tr>
+        <template v-if="hyper">
+          <tr v-for="(item, key) in rows" v-bind:key="key" @click="onClickTr(item)" class="link">
+            <td v-for="(name, index) in body" v-bind:key="index" :class="cellClass(index)">
+              <vue-cell :type="cellType(index)" :value="item[name]"></vue-cell>
+            </td>
+          </tr>
+        </template>
+        <template v-else>
+          <tr v-for="(item, key) in body" v-bind:key="key">
+            <td v-for="(name, index) in body" v-bind:key="index" :class="cellClass(index)">
+              <vue-cell :type="cellType(index)" :value="item[name]"></vue-cell>
+            </td>
+          </tr>
+        </template>
       </tbody>
     </table>
-    <vue-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"/>
+    <vue-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"></vue-pagination>
   </div>
 </template>
 

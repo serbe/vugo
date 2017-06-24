@@ -63,8 +63,8 @@
       <div class="field" v-if="company.practices">
         <label class="label">Тренировки</label>
         <vue-input
-          v-for="(practice, index) in company.practices"
-          v-bind:key="index"
+          v-for="practice in company.practices"
+          v-bind:key="practice.id"
           :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic"
           :hyper="'/practice/' + practice.id"
           iconLeft="history"
@@ -75,8 +75,8 @@
       <div class="field" v-if="company.contacts">
         <label class="label">Сотрудники</label>
         <vue-input
-          v-for="(contact, index) in company.contacts"
-          v-bind:key="index"
+          v-for="contact in company.contacts"
+          v-bind:key="contact.id"
           :value="contact.name + ' - ' + contact.post_name"
           :hyper="'/contact/' + contact.id"
           iconLeft="user"
