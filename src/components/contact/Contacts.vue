@@ -28,26 +28,34 @@
     mixins: [mixin],
     data: () => ({
       name: 'contacts',
+      fetched: false,
       list: []
     }),
     created () {
       this.fetchData()
     },
     watch: {
-      '$route': function (newRoute, oldRoute) {
-        console.log(newRoute, oldRoute)
+      '$route' (to, from) {
+        // console.log(to, from)
         this.fetchData()
       }
+      // $router () {
+      //   console.log(this.$route.params)
+      // }
     },
     methods: {
       fetchData () {
-        request({
-          url: this.name,
-          method: 'GET'
-        })
-        .then((r) => {
-          this.list = this.createList(r.data[this.name])
-        })
+        console.log(this.fetched)
+        if (!this.fetched) {
+          request({
+            url: this.name,
+            method: 'GET'
+          })
+          .then(r => {
+            this.list = this.createList(r.data[this.name])
+            this.fetched = true
+          })
+        }
       },
       createList (contacts) {
         let list = []

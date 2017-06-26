@@ -25,24 +25,29 @@
     },
     data: () => ({
       name: 'sirens',
+      fetched: false,
       list: []
     }),
     created () {
       this.fetchData()
     },
-    watch: {
-      '$route': 'fetchData'
-    },
+    // watch: {
+    //   '$route' (to, from) {
+    //     this.fetchData()
+    //   }
+    // },
     methods: {
       fetchData () {
-        request({
-          url: this.name,
-          method: 'GET'
-        })
-        .then(r => {
-          console.log(r)
-          this.list = this.createList(r.data[this.name])
-        })
+        if (!this.fetched) {
+          request({
+            url: this.name,
+            method: 'GET'
+          })
+          .then(r => {
+            this.list = this.createList(r.data[this.name])
+            this.fetched = true
+          })
+        }
       },
       createList (sirens) {
         let list = []

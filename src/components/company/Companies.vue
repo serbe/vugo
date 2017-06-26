@@ -28,23 +28,29 @@
     mixins: [mixin],
     data: () => ({
       name: 'companies',
+      fetched: false,
       list: []
     }),
     created () {
       this.fetchData()
     },
-    watch: {
-      '$route': 'fetchData'
-    },
+    // watch: {
+    //   '$route' (to, from) {
+    //     this.fetchData()
+    //   }
+    // },
     methods: {
       fetchData () {
-        request({
-          url: this.name,
-          method: 'GET'
-        })
-        .then(r => {
-          this.list = this.createList(r.data[this.name])
-        })
+        if (!this.fetched) {
+          request({
+            url: this.name,
+            method: 'GET'
+          })
+          .then(r => {
+            this.list = this.createList(r.data[this.name])
+            this.fetched = true
+          })
+        }
       },
       createList (companies) {
         let list = []
