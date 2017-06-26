@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-navigation/>
+    <vue-navigation></vue-navigation>
     <section class="section pt1">
       <!--<img src="./assets/logo.png">-->
       <router-view></router-view>
