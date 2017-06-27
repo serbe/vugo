@@ -16,14 +16,14 @@
 </template>
 
 <script>
-  import table from '@/elements/Table'
+  import vtable from '@/elements/Table'
   import mixin from '@/mixins/funcs'
   import request from '@/request'
 
   export default {
     name: 'companies',
     components: {
-      'vue-table': table
+      'vue-table': vtable
     },
     mixins: [mixin],
     data: () => ({

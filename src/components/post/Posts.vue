@@ -16,13 +16,13 @@
 </template>
 
 <script>
-  import table from '@/elements/Table'
+  import vtable from '@/elements/Table'
   import request from '@/request'
 
   export default {
     name: 'posts',
     components: {
-      'vue-table': table
+      'vue-table': vtable
     },
     data: () => ({
       name: 'posts',
