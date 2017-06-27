@@ -72,10 +72,6 @@ export default {
     },
     toggle () {
       this.active = this.active === '' ? 'is-active' : ''
-      if (!this.active) {
-        this.tabSirenShow = false
-        this.tabShow = false
-      }
     },
     toggleTab () {
       this.tabShow = !this.tabShow
