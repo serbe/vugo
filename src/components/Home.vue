@@ -26,14 +26,10 @@
 </template>
 
 <script>
-import vtable from '@/elements/Table'
 import request from '@/request'
 
 export default {
   name: 'home',
-  components: {
-    'vue-table': vtable
-  },
   data () {
     return {
       fetched: false,
