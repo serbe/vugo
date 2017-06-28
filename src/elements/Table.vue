@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="level is-mobile">
+    <nav v-if="adding" class="level is-mobile">
       <div class="level-left">
         <p class="level-item">
           <a class="button" :href="'/' + this.name + '/0'">Добавить</a>
@@ -119,6 +119,12 @@
       },
       hyper: {
         type: Boolean,
+        default: false,
+        required: false
+      },
+      adding: {
+        type: Boolean,
+        default: false,
         required: false
       }
     },
