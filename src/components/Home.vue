@@ -1,25 +1,27 @@
 <template>
-  <div class="content has-text-centered">
-    <div class="columns">
-      <div class="column is-one-third">
-      </div>
-      <div class="column">
-        <table class="table is-striped">
-          <thead>
-            <tr>
-              <th><a>Дата тренировки</a></th>
-              <th><a>Тип тренировки</a></th>
-              <th><a>Организация</a></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item, index) in practicesList" v-bind:key="index">
-              <td><a :href="'/practice/' + item.id">{{ item.date_str }}</a></td>
-              <td><a :href="'/practice/' + item.id">{{ item.kind_name }}</a></td>
-              <td><a :href="'/company/' + item.company_id">{{ item.company_name }}</a></td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="container">
+    <div class="content has-text-centered">
+      <div class="columns">
+        <div class="column is-one-third">
+        </div>
+        <div class="column">
+          <table class="table is-striped">
+            <thead>
+              <tr>
+                <th><a>Дата тренировки</a></th>
+                <th><a>Тип тренировки</a></th>
+                <th><a>Организация</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item, index) in practicesList" v-bind:key="index">
+                <td><a :href="'/practice/' + item.id">{{ item.date_str }}</a></td>
+                <td><a :href="'/practice/' + item.id">{{ item.kind_name }}</a></td>
+                <td><a :href="'/company/' + item.company_id">{{ item.company_name }}</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
