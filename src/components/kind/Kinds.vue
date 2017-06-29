@@ -2,11 +2,11 @@
   <div class="container">
     <vue-table
       name="kind"
-      :names="['Тип тренировки', 'Заметка']"
-      :columns="['name', 'note']"
+      :names="['Тип тренировки', 'Сокращенное наименование', 'Заметка']"
+      :columns="['name', 'short_name', 'note']"
       :tableData="list"
       tableClasses="is-narrow is-striped"
-      :headClasses="['', 'is-hidden-mobile']"
+      :headClasses="['', '', 'is-hidden-mobile']"
       pagination
       hyper
       search
@@ -54,7 +54,7 @@
         let list = []
         if (kinds) {
           list = kinds.map(e => {
-            const str = [e.name, e.note]
+            const str = [e.name, e.short_name, e.note]
             e.str = str.join(' ').toLowerCase()
             return e
           })

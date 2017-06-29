@@ -4,6 +4,8 @@
 
       <vue-input v-model="kind.name" label placeholder="Наименование типа тренировки" iconLeft="tag"></vue-input>
 
+      <vue-input v-model="kind.short_name" label placeholder="Сокращенное наименование" iconLeft="tag"></vue-input>
+
       <vue-input v-model="kind.note" label placeholder="Заметка" iconLeft="comment"></vue-input>
 
       <div class="field">
@@ -40,6 +42,7 @@ export default {
       kind: {
         id: 0,
         name: '',
+        short_name: '',
         note: ''
       }
     }

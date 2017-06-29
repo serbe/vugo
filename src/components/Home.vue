@@ -2,21 +2,14 @@
   <div class="container">
     <div class="content has-text-centered">
       <div class="columns">
-        <div class="column is-one-third">
+        <div class="column is-half">
         </div>
         <div class="column">
           <table class="table">
-            <thead>
-              <tr>
-                <th><a>Дата тренировки</a></th>
-                <th><a>Тип тренировки</a></th>
-                <th><a>Организация</a></th>
-              </tr>
-            </thead>
             <tbody>
               <tr v-for="(item, index) in practicesList" v-bind:key="index" :class="trClass(item.date_of_practice)">
-                <td><a :href="'/practice/' + item.id">{{ item.date_str }}</a></td>
-                <td><a :href="'/practice/' + item.id">{{ item.kind_name }}</a></td>
+                <td><a :href="'/practice/' + item.id">{{ tinyDate(item.date_of_practice) }}</a></td>
+                <td><a :href="'/practice/' + item.id">{{ item.kind_short_name }}</a></td>
                 <td><a :href="'/company/' + item.company_id">{{ item.company_name }}</a></td>
               </tr>
             </tbody>
@@ -81,6 +74,12 @@ export default {
         return 'is-danger'
       }
       return 'is-warning'
+    },
+    tinyDate (date) {
+      // 2017-10-16
+      if (date.length === 10) {
+        return date.substring(8, 10) + '.' + date.substring(5, 7) + '.' + date.substring(2, 4)
+      }
     }
   }
 }
