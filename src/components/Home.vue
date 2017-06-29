@@ -5,7 +5,7 @@
         <div class="column is-one-third">
         </div>
         <div class="column">
-          <table class="table is-striped">
+          <table class="table">
             <thead>
               <tr>
                 <th><a>Дата тренировки</a></th>
@@ -14,7 +14,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in practicesList" v-bind:key="index">
+              <tr v-for="(item, index) in practicesList" v-bind:key="index" :class="trClass(item.date_of_practice)">
                 <td><a :href="'/practice/' + item.id">{{ item.date_str }}</a></td>
                 <td><a :href="'/practice/' + item.id">{{ item.kind_name }}</a></td>
                 <td><a :href="'/company/' + item.company_id">{{ item.company_name }}</a></td>
@@ -69,11 +69,36 @@ export default {
         })
       }
       return practicesList
+    },
+    trClass (date) {
+      var m = new Date()
+      var d = new Date(date)
+      if (d < m) {
+        return 'is-success'
+      }
+      d.setMonth(d.getMonth() + 1)
+      if (d < m) {
+        return 'is-danger'
+      }
+      return 'is-warning'
     }
   }
 }
 </script>
 
 <style scoped>
+tr.is-success {
+  background-color: #23d160;
+  color: #fff;
+}
 
+tr.is-warning {
+  background-color: #ffdd57;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+tr.is-danger {
+  background-color: #ff3860;
+  color: #fff;
+}
 </style>
