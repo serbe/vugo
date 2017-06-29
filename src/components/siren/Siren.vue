@@ -116,7 +116,7 @@ export default {
         url = url + '/' + this.$route.params.id
         method = 'PUT'
       }
-      let values = this.sirenType
+      const values = this.sirenType
       request({
         url: url,
         method: method,
@@ -144,7 +144,7 @@ export default {
         method: 'GET'
       })
       .then((r) => {
-        let data = r.data
+        const data = r.data
         this.sirenType = data.sirenType
         this.isLoaded = true
       })

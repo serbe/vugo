@@ -54,7 +54,7 @@
         let list = []
         if (practices) {
           list = practices.map(e => {
-            let str = [e.date_str, e.kind_name, e.note]
+            const str = [e.date_str, e.kind_name, e.note]
             e.str = str.join(' ').toLowerCase()
             return e
           })

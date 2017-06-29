@@ -55,7 +55,7 @@
         let list = []
         if (sirenTypes) {
           list = sirenTypes.map(e => {
-            let str = [e.name, e.radius, e.note]
+            const str = [e.name, e.radius, e.note]
             e.str = str.join(' ').toLowerCase()
             return e
           })

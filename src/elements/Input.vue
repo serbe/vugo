@@ -98,7 +98,7 @@
       },
       isError () {
         if (this.value !== '' && this.pattern) {
-          let patt = new RegExp(this.pattern)
+          const patt = new RegExp(this.pattern)
           return !patt.test(this.value)
         }
         return false
@@ -110,11 +110,11 @@
         this.$emit('input', val)
       },
       onBlur (event) {
-        let ret = {id: this.id, event: event}
+        const ret = { id: this.id, event: event }
         this.$emit('blur', ret)
       },
       onKeyup (event) {
-        let ret = {id: this.id, event: event}
+        const ret = { id: this.id, event: event }
         this.$emit('keyup', ret)
       }
     },

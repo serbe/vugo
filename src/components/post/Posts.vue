@@ -55,7 +55,7 @@
         let list = []
         if (posts) {
           list = posts.map(e => {
-            let str = [e.name, e.note]
+            const str = [e.name, e.note]
             e.str = str.join(' ').toLowerCase()
             return e
           })

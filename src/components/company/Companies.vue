@@ -57,7 +57,7 @@
         let list = []
         if (companies) {
           list = companies.map(c => {
-            let str = [c.name, c.address, c.scope_name]
+            const str = [c.name, c.address, c.scope_name]
             if (c.phones.length > 0 && c.phones[0] !== '') {
               str.push(c.phones.join(' '))
             }

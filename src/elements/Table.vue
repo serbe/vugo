@@ -149,8 +149,8 @@
       },
       filtered () {
         if (this.tableData) {
-          let queryArr = this.query.toLowerCase().split(' ')
-          let filteredData = this.tableData.filter(f => {
+          const queryArr = this.query.toLowerCase().split(' ')
+          const filteredData = this.tableData.filter(f => {
             return queryArr.every(q => f.str.includes(q))
           })
           return filteredData

@@ -54,7 +54,7 @@
         let list = []
         if (educations) {
           list = educations.map(e => {
-            let str = [e.start_str, e.end_str, e.note]
+            const str = [e.start_str, e.end_str, e.note]
             e.str = str.join(' ').toLowerCase()
             return e
           })

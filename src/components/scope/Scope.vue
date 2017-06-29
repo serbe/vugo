@@ -55,7 +55,7 @@ export default {
         url = url + '/' + this.$route.params.id
         method = 'PUT'
       }
-      let values = this.scope
+      const values = this.scope
       request({
         url: url,
         method: method,
@@ -79,7 +79,7 @@ export default {
         method: 'GET'
       })
       .then((r) => {
-        let data = r.data
+        const data = r.data
         this.scope = data.scope
         this.isLoaded = true
       })

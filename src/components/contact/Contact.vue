@@ -211,7 +211,7 @@ export default {
   methods: {
     onBlur: function (arr, key) {
       if (this.checkArray(this.contact[arr], key)) {
-        let obj = {}
+        const obj = {}
         obj.id = this.contact[arr].length + 1
         obj[key] = ''
         this.contact[arr].push(obj)
@@ -228,7 +228,7 @@ export default {
         url = url + '/' + this.$route.params.id
         method = 'PUT'
       }
-      let values = this.contact
+      const values = this.contact
       values.emails = this.filterArray(values.emails, 'email')
       values.phones = this.filterArray(values.phones, 'phone')
       values.faxes = this.filterArray(values.faxes, 'phone')
@@ -252,7 +252,7 @@ export default {
         method: 'GET'
       })
       .then((r) => {
-        let data = r.data
+        const data = r.data
         this.contact = data.contact
         this.companies = data.companies
         this.posts = data.posts

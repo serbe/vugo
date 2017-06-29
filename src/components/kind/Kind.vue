@@ -55,7 +55,7 @@ export default {
         url = url + '/' + this.$route.params.id
         method = 'PUT'
       }
-      let values = this.kind
+      const values = this.kind
       request({
         url: url,
         method: method,
@@ -79,7 +79,7 @@ export default {
         method: 'GET'
       })
       .then((r) => {
-        let data = r.data
+        const data = r.data
         this.kind = data.kind
         this.isLoaded = true
       })

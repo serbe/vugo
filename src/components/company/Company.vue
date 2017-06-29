@@ -172,7 +172,7 @@ export default {
   methods: {
     onBlur: function (arr, key) {
       if (this.checkArray(this.company[arr], key)) {
-        let obj = {}
+        const obj = {}
         obj.id = this.company[arr].length + 1
         obj[key] = ''
         this.company[arr].push(obj)
@@ -189,7 +189,7 @@ export default {
         url = url + '/' + this.$route.params.id
         method = 'PUT'
       }
-      let values = this.company
+      const values = this.company
       values.emails = this.filterArray(values.emails, 'email')
       values.phones = this.filterArray(values.phones, 'phone')
       values.faxes = this.filterArray(values.faxes, 'phone')
@@ -213,12 +213,12 @@ export default {
         method: 'GET'
       })
       .then((r) => {
-        let data = r.data
+        const data = r.data
         this.company = data.company
         this.scopes = data.scopes
-        this.company.emails ? this.company.emails.push({id: this.company.emails.length + 1, email: ''}) : this.company.emails = [{id: 1, email: ''}]
-        this.company.phones ? this.company.phones.push({id: this.company.phones.length + 1, phone: ''}) : this.company.phones = [{id: 1, phone: ''}]
-        this.company.faxes ? this.company.faxes.push({id: this.company.faxes.length + 1, phone: ''}) : this.company.faxes = [{id: 1, phone: ''}]
+        this.company.emails ? this.company.emails.push({ id: this.company.emails.length + 1, email: '' }) : this.company.emails = [{ id: 1, email: '' }]
+        this.company.phones ? this.company.phones.push({ id: this.company.phones.length + 1, phone: '' }) : this.company.phones = [{ id: 1, phone: '' }]
+        this.company.faxes ? this.company.faxes.push({ id: this.company.faxes.length + 1, phone: '' }) : this.company.faxes = [{ id: 1, phone: '' }]
         this.isLoaded = true
       })
     },

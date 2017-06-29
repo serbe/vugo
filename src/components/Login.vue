@@ -36,10 +36,10 @@ export default {
   },
   methods: {
     login () {
-      let store = this.$store
-      let router = this.$router
+      const store = this.$store
+      const router = this.$router
       let url = '/login'
-      let data = {
+      const data = {
         username: this.name,
         password: this.pass
       }
@@ -55,7 +55,7 @@ export default {
         if (r.data.token && r.data.token !== '') {
           store.dispatch('login', { 'name': data.name, 'admin': data.admin })
           store.dispatch('setToken', r.data.token)
-          router.push({name: 'home'})
+          router.push({ name: 'home' })
         }
       })
       .catch((e) => {
