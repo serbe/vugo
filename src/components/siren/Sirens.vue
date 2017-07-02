@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <vue-table
-      name="sirens"
-      :names="['Тип сирены', 'Радиус', 'Заметка']"
-      :columns="['name', 'radius', 'note']"
+      name="siren"
+      :names="['Тип сирены', 'Адрес', 'Заметка']"
+      :columns="['name', 'Address', 'note']"
       :tableData="list"
       tableClasses="is-narrow is-striped"
       :headClasses="['', '', 'is-hidden-mobile']"

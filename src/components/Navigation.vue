@@ -9,6 +9,7 @@
             <template v-else>
               <router-link to="/contacts" class="nav-item is-tab">Контакты</router-link>
               <router-link to="/companies" class="nav-item is-tab">Организации</router-link>
+              <router-link to="/sirens" class="nav-item is-tab">Сирены</router-link>
             </template>
           </div>
           <span v-if="auth" class="nav-toggle" :class="active" @click="toggle">
@@ -17,7 +18,6 @@
             <span></span>
           </span>
           <div v-if="auth" class="nav-right nav-menu" :class="active">
-            <a class="nav-item is-tab" @click="toggleSirenTab">Сирены</a>
             <a class="nav-item is-tab" @click="toggleTab">Справочники</a>
             <div class="nav-item">
               <vue-button text="Выход" color="info" @click="logout"></vue-button>
@@ -27,10 +27,6 @@
       </div>
       <div class="container">
         <div v-if="auth" class="tabs is-right">
-          <ul v-if="tabSirenShow">
-            <li><router-link to="/sirens">Сирены</router-link></li>
-            <li><router-link to="/sirentypes">Типы сирен</router-link></li>
-          </ul>
           <ul v-if="tabShow">
             <li><router-link to="/departments">Отделы</router-link></li>
             <li><router-link to="/educations">Обучение</router-link></li>
@@ -39,6 +35,7 @@
             <li><router-link to="/practices">Учения</router-link></li>
             <li><router-link to="/ranks">Чины</router-link></li>
             <li><router-link to="/scopes">Сферы</router-link></li>
+            <li><router-link to="/sirentypes">Типы сирен</router-link></li>
           </ul>
         </div>
       </div>
