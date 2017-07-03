@@ -25,8 +25,6 @@
       'vue-table': vtable
     },
     data: () => ({
-      name: 'sirentypes',
-      json_name: 'siren_types',
       fetched: false,
       list: []
     }),
@@ -42,11 +40,11 @@
       fetchData () {
         if (!this.fetched) {
           request({
-            url: this.name,
+            url: 'sirentypes',
             method: 'GET'
           })
           .then(r => {
-            this.list = this.createList(r.data[this.json_name])
+            this.list = this.createList(r.data['siren_types'])
             this.fetched = true
           })
         }

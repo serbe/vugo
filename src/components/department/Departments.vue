@@ -14,29 +14,23 @@ export default {
     'vue-table': vtable
   },
   data: () => ({
-    name: 'departments',
     fetched: false,
     list: []
   }),
   created () {
     this.fetchData()
   },
-  // watch: {
-  //   '$route' (to, from) {
-  //     this.fetchData()
-  //   }
-  // },
   methods: {
     fetchData () {
       if (!this.fetched) {
         request({
-          url: this.name,
+          url: 'departments',
           method: 'GET'
         })
-          .then(r => {
-            this.list = this.createList(r.data[this.name])
-            this.fetched = true
-          })
+        .then(r => {
+          this.list = this.createList(r.data['departments'])
+          this.fetched = true
+        })
       }
     },
     createList (departments) {

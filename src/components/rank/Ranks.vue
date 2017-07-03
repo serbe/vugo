@@ -25,7 +25,6 @@
       'vue-table': vtable
     },
     data: () => ({
-      name: 'ranks',
       fetched: false,
       list: []
     }),
@@ -41,11 +40,11 @@
       fetchData () {
         if (!this.fetched) {
           request({
-            url: this.name,
+            url: 'ranks',
             method: 'GET'
           })
           .then(r => {
-            this.list = this.createList(r.data[this.name])
+            this.list = this.createList(r.data['ranks'])
             this.fetched = true
           })
         }

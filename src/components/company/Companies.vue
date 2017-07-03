@@ -28,7 +28,6 @@
     },
     mixins: [mixin],
     data: () => ({
-      name: 'companies',
       fetched: false,
       list: []
     }),
@@ -44,11 +43,11 @@
       fetchData () {
         if (!this.fetched) {
           request({
-            url: this.name,
+            url: 'companies',
             method: 'GET'
           })
           .then(r => {
-            this.list = this.createList(r.data[this.name])
+            this.list = this.createList(r.data['companies'])
             this.fetched = true
           })
         }
