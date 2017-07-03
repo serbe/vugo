@@ -2,8 +2,8 @@
   <div class="container">
     <vue-table
       name="education"
-      :names="['Начало обучения', 'Конец обучения', 'Заметка']"
-      :columns="['start_str', 'end_str', 'note']"
+      :names="['Обучаемый', 'Начало обучения', 'Конец обучения']"
+      :columns="['contact_name', 'start_str', 'end_str']"
       :tableData="list"
       tableClasses="is-narrow is-striped"
       :headClasses="['', '', 'is-hidden-mobile']"
@@ -54,7 +54,7 @@
         let list = []
         if (educations) {
           list = educations.map(e => {
-            const str = [e.start_str, e.end_str, e.note]
+            const str = [e.contact_name, e.start_str, e.end_str]
             e.str = str.join(' ').toLowerCase()
             return e
           })

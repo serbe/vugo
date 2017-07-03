@@ -2,6 +2,8 @@
   <div class="container mw768">
     <form :model="education" id="education">
 
+      <vue-select :list="contacts" :selected-item="education.contact" label="Полное имя обучаемого" item-name="contact" @select="onSelect" iconLeft="user"></vue-select>
+
       <div class="columns">
         <div class="column">
           <vue-date v-model="education.start_date" label="Дата начала обучения"></vue-date>
@@ -34,6 +36,7 @@
 <script>
 import vinput from '@/elements/Input'
 import vbutton from '@/elements/Button'
+import vselect from '@/elements/Select'
 import vdate from '@/elements/Date'
 import request from '@/request'
 
@@ -42,6 +45,7 @@ export default {
   components: {
     'vue-input': vinput,
     'vue-button': vbutton,
+    'vue-select': vselect,
     'vue-date': vdate
   },
   data () {
@@ -49,10 +53,19 @@ export default {
       title: '',
       education: {
         id: 0,
+        contact_id: 0,
+        contact: {
+          id: 0,
+          name: ''
+        },
         start_date: '',
         end_date: '',
         note: ''
-      }
+      },
+      contacts: [{
+        id: 0,
+        name: ''
+      }]
     }
   },
   mounted: function () {
@@ -74,12 +87,12 @@ export default {
         data: JSON.stringify(values)
       })
       .then(function (res) {
-        console.log(res)
+        // console.log(res)
       })
-      this.$router.push('/educations')
+      this.close()
     },
     close () {
-      this.$router.push('/educations')
+      this.$router.push('/' + this.url)
     },
     delete () {
       console.log('delete!')
@@ -92,8 +105,17 @@ export default {
       .then((r) => {
         const data = r.data
         this.education = data.education
+        this.contacts = data.contacts
+        this.setSelect('education', 'contacts', 'contact', 'contact_id')
         this.isLoaded = true
       })
+    },
+    onSelect (item, itemName) {
+      this.siren[itemName] = item
+      this.siren[itemName + '_id'] = item.id
+    },
+    setSelect (root, list, item, value) {
+      this[root][item] = this[list].find(v => v.id === this[root][value])
     }
   }
 }

@@ -25,8 +25,8 @@
       'vue-table': vtable
     },
     data: () => ({
-      name: 'sirenstypes',
-      json_name: 'sirens_types',
+      name: 'sirentypes',
+      json_name: 'siren_types',
       fetched: false,
       list: []
     }),

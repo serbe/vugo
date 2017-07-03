@@ -162,8 +162,7 @@ export default {
       scopes: [{
         id: 0,
         name: ''
-      }],
-      options: []
+      }]
     }
   },
   mounted: function () {

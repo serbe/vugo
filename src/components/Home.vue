@@ -3,9 +3,17 @@
     <div class="content has-text-centered">
       <div class="columns">
         <div class="column is-half">
+          <table v-if="educationsFetched" class="table">
+            <tbody>
+              <tr v-for="(item, index) in educationsList" v-bind:key="index" :class="trClass(item.start_date)">
+                <td><a :href="'/education/' + item.id">{{ tinyDate(item.start_date) }}</a></td>
+                <td><a :href="'/contact/' + item.contact_id">{{ item.contact_name }}</a></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div class="column">
-          <table class="table">
+          <table v-if="practicesFetched" class="table">
             <tbody>
               <tr v-for="(item, index) in practicesList" v-bind:key="index" :class="trClass(item.date_of_practice)">
                 <td><a :href="'/practice/' + item.id">{{ tinyDate(item.date_of_practice) }}</a></td>
@@ -27,8 +35,10 @@ export default {
   name: 'home',
   data () {
     return {
-      fetched: false,
-      practicesList: []
+      practicesFetched: false,
+      educationsFetched: false,
+      practicesList: [],
+      educationsList: []
     }
   },
   computed: {
@@ -38,6 +48,7 @@ export default {
   },
   created () {
     this.fetchPractices()
+    this.fetchEducations()
   },
   methods: {
     fetchPractices () {
@@ -47,21 +58,22 @@ export default {
           method: 'GET'
         })
         .then(r => {
-          this.practicesList = this.createList(r.data['practices'])
-          this.fetched = true
+          this.practicesList = r.data['practices']
+          this.practicesFetched = true
         })
       }
     },
-    createList (practices) {
-      let practicesList = []
-      if (practices) {
-        practicesList = practices.map(e => {
-          const str = [e.date_str, e.kind_name, e.note]
-          e.str = str.join(' ').toLowerCase()
-          return e
+    fetchEducations () {
+      if (this.auth && !this.fetched) {
+        request({
+          url: 'educations/near',
+          method: 'GET'
+        })
+        .then(r => {
+          this.educationsList = r.data['educations']
+          this.educationsFetched = true
         })
       }
-      return practicesList
     },
     trClass (date) {
       var m = new Date()
@@ -69,14 +81,13 @@ export default {
       if (d < m) {
         return 'is-success'
       }
-      d.setMonth(d.getMonth() + 1)
+      m.setMonth(m.getMonth() + 1)
       if (d < m) {
         return 'is-danger'
       }
       return 'is-warning'
     },
     tinyDate (date) {
-      // 2017-10-16
       if (date.length === 10) {
         return date.substring(8, 10) + '.' + date.substring(5, 7) + '.' + date.substring(2, 4)
       }

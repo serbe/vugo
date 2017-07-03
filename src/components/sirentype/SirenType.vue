@@ -64,7 +64,7 @@ export default {
         data: JSON.stringify(values)
       })
       .then(function (res) {
-        console.log(res)
+        // console.log(res)
       })
       this.$router.push('/sirentypes')
     },

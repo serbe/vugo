@@ -37,7 +37,6 @@
     },
     watch: {
       '$route' (to, from) {
-        // console.log(to, from)
         this.fetchData()
       }
       // $router () {
@@ -46,7 +45,6 @@
     },
     methods: {
       fetchData () {
-        console.log(this.fetched)
         if (!this.fetched) {
           request({
             url: this.name,

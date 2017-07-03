@@ -3,7 +3,7 @@
     <vue-table
       name="siren"
       :names="['Тип сирены', 'Адрес', 'Заметка']"
-      :columns="['name', 'Address', 'note']"
+      :columns="['siren_type_name', 'address', 'note']"
       :tableData="list"
       tableClasses="is-narrow is-striped"
       :headClasses="['', '', 'is-hidden-mobile']"

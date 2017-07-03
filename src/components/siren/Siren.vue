@@ -7,12 +7,14 @@
           <vue-input v-model="siren.numpass" label placeholder="Серийный номер" iconLeft="tag"></vue-input>
         </div>
         <div class="column is-half">
-          <vue-select :list="siren_types" :selected-item="siren.siren_type" label="Тип сирены" item-name="type" @select="onSelect" icon="tag" ></vue-select>
+          <vue-select :list="siren_types" :selected-item="siren.siren_type" label="Тип сирены" item-name="siren_type" @select="onSelect" icon="tag" ></vue-select>
         </div>
       </div>
+
       <vue-input v-model="siren.address" type="text" label placeholder="Адрес" iconLeft="address-card" ></vue-input>
       <vue-select :list="contacts" :selected-item="siren.contact" label="Контактное лицо" item-name="contact" @select="onSelect" icon="user" ></vue-select>
       <vue-select :list="companies" :selected-item="siren.company" label="Организация" item-name="company" @select="onSelect" icon="building" ></vue-select>
+
       <div class="columns">
         <div class="column is-half">
           <vue-input v-model="siren.latitude" label placeholder="Широта" iconLeft="tag"></vue-input>
@@ -123,7 +125,7 @@ export default {
         data: JSON.stringify(values)
       })
       .then(function (res) {
-        console.log(res)
+        // console.log(res)
       })
       this.$router.push('/sirens')
     },
@@ -148,8 +150,14 @@ export default {
         this.siren_types = data.siren_types
         this.contacts = data.contacts
         this.companies = data.companies
+        this.setSelect('siren', 'siren_types', 'siren_type', 'siren_type_id')
+        this.setSelect('siren', 'contacts', 'contact', 'contact_id')
+        this.setSelect('siren', 'companies', 'company', 'company_id')
         this.isLoaded = true
       })
+    },
+    setSelect (root, list, item, value) {
+      this[root][item] = this[list].find(v => v.id === this[root][value])
     }
   }
 }
