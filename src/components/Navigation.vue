@@ -5,19 +5,19 @@
         <nav class="nav has-shadow">
           <div class="nav-left">
             <router-link to="/" class="nav-item is-tab" exact>ЕДДС</router-link>
-            <router-link v-if="!auth" to="/login" class="nav-item is-tab">Авторизация</router-link>
+            <router-link v-if="!isAuth" to="/login" class="nav-item is-tab">Авторизация</router-link>
             <template v-else>
               <router-link to="/contacts" class="nav-item is-tab">Контакты</router-link>
               <router-link to="/companies" class="nav-item is-tab">Организации</router-link>
               <router-link to="/sirens" class="nav-item is-tab">Сирены</router-link>
             </template>
           </div>
-          <span v-if="auth" class="nav-toggle" :class="active" @click="toggle">
+          <span v-if="isAuth" class="nav-toggle" :class="active" @click="toggle">
             <span></span>
             <span></span>
             <span></span>
           </span>
-          <div v-if="auth" class="nav-right nav-menu" :class="active">
+          <div v-if="isAuth" class="nav-right nav-menu" :class="active">
             <a class="nav-item is-tab" @click="toggleTab">Справочники</a>
             <div class="nav-item">
               <vue-button text="Выход" color="info" @click="logout"></vue-button>
@@ -26,7 +26,7 @@
         </nav>
       </div>
       <div class="container">
-        <div v-if="auth" class="tabs is-right">
+        <div v-if="isAuth" class="tabs is-right">
           <ul v-if="tabShow">
             <li><router-link to="/departments">Отделы</router-link></li>
             <li><router-link to="/educations">Обучение</router-link></li>
@@ -44,42 +44,44 @@
 </template>
 
 <script>
-import vbutton from '@/elements/Button'
+import auth from '@/auth';
+import vbutton from '@/elements/Button';
+
 export default {
   name: 'vue-navigation',
   components: {
-    'vue-button': vbutton
+    'vue-button': vbutton,
   },
-  data () {
+  data() {
     return {
       active: '',
       tabShow: false,
-      tabSirenShow: false
-    }
+      tabSirenShow: false,
+    };
   },
   computed: {
-    auth () {
-      return this.$store.getters.isAuth
-    }
+    isAuth() {
+      return auth.isAuth();
+    },
   },
   methods: {
-    logout () {
-      this.$store.dispatch('logout')
-      this.$router.push('/')
+    logout() {
+      auth.logout();
+      this.$router.push('/');
     },
-    toggle () {
-      this.active = this.active === '' ? 'is-active' : ''
+    toggle() {
+      this.active = this.active === '' ? 'is-active' : '';
     },
-    toggleTab () {
-      this.tabShow = !this.tabShow
-      this.tabSirenShow = false
+    toggleTab() {
+      this.tabShow = !this.tabShow;
+      this.tabSirenShow = false;
     },
-    toggleSirenTab () {
-      this.tabSirenShow = !this.tabSirenShow
-      this.tabShow = false
-    }
-  }
-}
+    toggleSirenTab() {
+      this.tabSirenShow = !this.tabSirenShow;
+      this.tabShow = false;
+    },
+  },
+};
 </script>
 
 <style scoped>

@@ -9,14 +9,14 @@
 </template>
 
 <script>
-import vnavigation from '@/components/Navigation'
+import vnavigation from '@/components/Navigation';
 
 export default {
   name: 'app',
   components: {
-    'vue-navigation': vnavigation
-  }
-}
+    'vue-navigation': vnavigation,
+  },
+};
 </script>
 
 <style lang="scss">

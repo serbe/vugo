@@ -16,20 +16,22 @@
 </template>
 
 <script>
-  import vtable from '@/elements/Table'
-  import request from '@/request'
+  import vtable from '@/elements/Table';
+  import request from '@/request';
 
   export default {
     name: 'sirenTypes',
     components: {
-      'vue-table': vtable
+      'vue-table': vtable,
     },
-    data: () => ({
-      fetched: false,
-      list: []
-    }),
-    created () {
-      this.fetchData()
+    data() {
+      return {
+        fetched: false,
+        list: [],
+      };
+    },
+    created() {
+      this.fetchData();
     },
     // watch: {
     //   '$route' (to, from) {
@@ -37,31 +39,31 @@
     //   }
     // },
     methods: {
-      fetchData () {
+      fetchData() {
         if (!this.fetched) {
           request({
             url: 'sirentypes',
-            method: 'GET'
+            method: 'GET',
           })
-          .then(r => {
-            this.list = this.createList(r.data['siren_types'])
-            this.fetched = true
-          })
+          .then((r) => {
+            this.list = this.createList(r.data.siren_types);
+            this.fetched = true;
+          });
         }
       },
-      createList (sirenTypes) {
-        let list = []
+      createList(sirenTypes) {
+        let list = [];
         if (sirenTypes) {
-          list = sirenTypes.map(e => {
-            const str = [e.name, e.radius, e.note]
-            e.str = str.join(' ').toLowerCase()
-            return e
-          })
+          list = sirenTypes.map((e) => {
+            const str = [e.name, e.radius, e.note];
+            e.str = str.join(' ').toLowerCase();
+            return e;
+          });
         }
-        return list
-      }
-    }
-  }
+        return list;
+      },
+    },
+  };
 </script>
 
 <style scoped>

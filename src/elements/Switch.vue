@@ -18,42 +18,41 @@ export default {
     size: String,
     checked: Boolean,
     name: String,
-    label: String
+    label: String,
   },
-  data () {
+  data() {
     return {
-      value: null
-    }
+      value: null,
+    };
   },
-  beforeMount () {
-    this.value = this.checked
+  beforeMount() {
+    this.value = this.checked;
   },
-  mounted () {
-    this.$emit('input', this.value = !!this.checked)
+  mounted() {
+    this.$emit('input', this.value = !!this.checked);
   },
   computed: {
-    getLabel () {
+    getLabel() {
       if (this.label !== false && this.label !== '') {
-        return this.label
-      } else {
-        return false
+        return this.label;
       }
+      return false;
     },
-    classObject () {
-      const { type, size, value } = this
+    classObject() {
+      const { type, size, value } = this;
       return {
         [`is-${type}`]: type,
         [`is-${size}`]: size,
-        checked: value
-      }
-    }
+        checked: value,
+      };
+    },
   },
   watch: {
-    value (val) {
-      this.$emit('input', val)
-    }
-  }
-}
+    value(val) {
+      this.$emit('input', val);
+    },
+  },
+};
 </script>
 
 <style lang="scss">

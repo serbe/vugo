@@ -35,67 +35,68 @@
     props: {
       value: {
         type: String,
-        required: true
+        required: true,
       },
       label: {
         type: String,
-        required: false
-      }
+        required: false,
+      },
     },
-    data: () => ({
-      year: 0,
-      month: 0,
-      day: 0
-    }),
+    data() {
+      return {
+        year: 0,
+        month: 0,
+        day: 0,
+      };
+    },
     watch: {
-      value: function (val) {
-        const arr = val.split('-')
+      value(val) {
+        const arr = val.split('-');
         if (arr.length === 3) {
-          this.year = arr[0]
-          this.month = arr[1]
-          this.day = arr[2]
+          this.year = arr[0];
+          this.month = arr[1];
+          this.day = arr[2];
         }
-      }
+      },
     },
     computed: {
-      getLabel () {
+      getLabel() {
         if (this.label && this.label !== '') {
-          return this.label
-        } else {
-          return false
+          return this.label;
         }
+        return false;
       },
-      yearList () {
-        const currentYear = new Date().getFullYear()
-        const list = []
-        for (let i = currentYear; i > currentYear - 100; i--) {
-          list.push(i.toString())
+      yearList() {
+        const currentYear = new Date().getFullYear();
+        const list = [];
+        for (let i = currentYear; i > currentYear - 100; i -= 1) {
+          list.push(i.toString());
         }
-        return list
+        return list;
       },
-      monthList () {
-        const list = []
-        for (let i = 1; i < 13; i++) {
-          list.push(i.toString().length === 1 ? '0' + i : i.toString())
+      monthList() {
+        const list = [];
+        for (let i = 1; i < 13; i += 1) {
+          list.push(i.toString().length === 1 ? `0${i}` : i.toString());
         }
-        return list
+        return list;
       },
-      dayList () {
-        const days = new Date(this.year, this.month, 0).getDate()
-        const list = []
-        for (let i = 1; i <= days; i++) {
-          list.push(i.toString().length === 1 ? '0' + i : i.toString())
+      dayList() {
+        const days = new Date(this.year, this.month, 0).getDate();
+        const list = [];
+        for (let i = 1; i <= days; i += 1) {
+          list.push(i.toString().length === 1 ? `0${i}` : i.toString());
         }
-        return list
-      }
+        return list;
+      },
     },
     methods: {
-      changeDate () {
-        const date = this.year + '-' + this.month + '-' + this.day
+      changeDate() {
+        const date = `${this.year}-${this.month}-${this.day}`;
         if (date.length === 10) {
-          this.$emit('input', date)
+          this.$emit('input', date);
         }
-      }
-    }
-  }
+      },
+    },
+  };
 </script>

@@ -10,22 +10,22 @@
 <script>
   export default {
     name: 'vue-cell',
-    data () {
+    data() {
       return {
         // query: '',
         // page: 1,
         // list: []
-      }
+      };
     },
     props: {
       type: {
         type: String,
         required: false,
-        default: 'text'
+        default: 'text',
       },
       value: {
-        required: false
-      }
-    }
-  }
+        required: false,
+      },
+    },
+  };
 </script>

@@ -26,69 +26,66 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input'
-import vbutton from '@/elements/Button'
-import request from '@/request'
+import vinput from '@/elements/Input';
+import vbutton from '@/elements/Button';
+import request from '@/request';
 
 export default {
   name: 'kind',
   components: {
     'vue-input': vinput,
-    'vue-button': vbutton
+    'vue-button': vbutton,
   },
-  data () {
+  data() {
     return {
       title: '',
       kind: {
         id: 0,
         name: '',
         short_name: '',
-        note: ''
-      }
-    }
+        note: '',
+      },
+    };
   },
-  mounted: function () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    submit () {
-      let url = 'kinds'
-      let method = 'POST'
+    submit() {
+      let url = 'kinds';
+      let method = 'POST';
       if (this.$route.params.id !== '0') {
-        url = url + '/' + this.$route.params.id
-        method = 'PUT'
+        url = `${url}/${this.$route.params.id}`;
+        method = 'PUT';
       }
-      const values = this.kind
+      const values = this.kind;
       request({
-        url: url,
-        method: method,
+        url,
+        method,
         mode: 'cors',
-        data: JSON.stringify(values)
-      })
-      .then(function (res) {
-        console.log(res)
-      })
-      this.$router.push('/kinds')
+        data: JSON.stringify(values),
+      });
+      this.close();
     },
-    close () {
-      this.$router.push('/kinds')
+    close() {
+      this.$router.push('/kinds');
     },
-    delete () {
-      console.log('delete!')
+    delete() {
+      // console.log('delete!');
     },
-    fetchData () {
+    fetchData() {
       request({
-        url: 'kinds/' + this.$route.params.id,
-        method: 'GET'
+        url: `kinds/${this.$route.params.id}`,
+        method: 'GET',
       })
       .then((r) => {
-        const data = r.data
-        this.kind = data.kind
-        this.isLoaded = true
-      })
-    }
-  }
-}
+        const data = r.data;
+        this.kind = data.kind;
+        this.isLoaded = true;
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>

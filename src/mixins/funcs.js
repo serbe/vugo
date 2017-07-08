@@ -1,50 +1,46 @@
 export default {
   methods: {
-    checkArray (values, key) {
-      let firstElem = -1
-      let emptyElem = 0
-      let fillElem = 0
-      values.map((e, i) => {
+    checkArray(values, key) {
+      let firstElem = -1;
+      let emptyElem = 0;
+      let fillElem = 0;
+      values.all((e, i) => {
         if (e[key] === '') {
           if (firstElem === -1) {
-            firstElem = i
+            firstElem = i;
           }
-          emptyElem++
+          emptyElem += 1;
         } else {
-          fillElem++
+          fillElem += 1;
         }
-      })
+      });
       if (emptyElem > 1) {
-        values.splice(firstElem, 1)
+        values.splice(firstElem, 1);
       }
-      if (fillElem === values.length) {
-        return true
-      }
-      return false
+      return fillElem === values.length;
     },
-    filterArray (values, key) {
-      values.filter((e) => {
-        return e[key] && e[key] !== ''
-      })
-      return values
+    filterArray(values, key) {
+      values.filter(e => e[key] && e[key] !== '');
+      return values;
     },
-    telephone (value) {
-      if (value !== undefined && value.length > 0) {
-        value = value.replace(/[^0-9]/g, '')
-        if (value.length === 10) {
-          value = value.replace(/(\d{3})(\d{3})(\d{2})(\d{2})/, '+7 ($1) $2-$3-$4')
+    telephone(value) {
+      let v = value;
+      if (v !== undefined && v.length > 0) {
+        v = v.replace(/[^0-9]/g, '');
+        if (v.length === 10) {
+          v = v.replace(/(\d{3})(\d{3})(\d{2})(\d{2})/, '+7 ($1) $2-$3-$4');
         }
-        if (value.length === 11) {
-          if (value[0] === '8') {
-            value = '7' + value.slice(1)
+        if (v.length === 11) {
+          if (v[0] === '8') {
+            v = `7${v.slice(1)}`;
           }
-          value = value.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1 ($2) $3-$4-$5')
+          v = v.replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1 ($2) $3-$4-$5');
         }
-        if (value.length === 7) {
-          value = value.replace(/(\d{3})(\d{2})(\d{2})/, '$1-$2-$3')
+        if (v.length === 7) {
+          v = v.replace(/(\d{3})(\d{2})(\d{2})/, '$1-$2-$3');
         }
       }
-      return value
-    }
-  }
-}
+      return v;
+    },
+  },
+};

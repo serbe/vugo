@@ -5,47 +5,49 @@
 </template>
 
 <script>
-import vtable from '@/elements/Table'
-import request from '@/request'
+import vtable from '@/elements/Table';
+import request from '@/request';
 
 export default {
   name: 'departments',
   components: {
-    'vue-table': vtable
+    'vue-table': vtable,
   },
-  data: () => ({
-    fetched: false,
-    list: []
-  }),
-  created () {
-    this.fetchData()
+  data() {
+    return {
+      fetched: false,
+      list: [],
+    };
+  },
+  created() {
+    this.fetchData();
   },
   methods: {
-    fetchData () {
+    fetchData() {
       if (!this.fetched) {
         request({
           url: 'departments',
-          method: 'GET'
+          method: 'GET',
         })
-        .then(r => {
-          this.list = this.createList(r.data['departments'])
-          this.fetched = true
-        })
+        .then((r) => {
+          this.list = this.createList(r.data.departments);
+          this.fetched = true;
+        });
       }
     },
-    createList (departments) {
-      let list = []
+    createList(departments) {
+      let list = [];
       if (departments) {
-        list = departments.map(e => {
-          const str = [e.name, e.note]
-          e.str = str.join(' ').toLowerCase()
-          return e
-        })
+        list = departments.map((e) => {
+          const str = [e.name, e.note];
+          e.str = str.join(' ').toLowerCase();
+          return e;
+        });
       }
-      return list
-    }
-  }
-}
+      return list;
+    },
+  },
+};
 </script>
 
 <style scoped>

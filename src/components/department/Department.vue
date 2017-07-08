@@ -24,68 +24,65 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input'
-import vbutton from '@/elements/Button'
-import request from '@/request'
+import vinput from '@/elements/Input';
+import vbutton from '@/elements/Button';
+import request from '@/request';
 
 export default {
   name: 'department',
   components: {
     'vue-input': vinput,
-    'vue-button': vbutton
+    'vue-button': vbutton,
   },
-  data () {
+  data() {
     return {
       title: '',
       department: {
         id: 0,
         name: '',
-        note: ''
-      }
-    }
+        note: '',
+      },
+    };
   },
-  mounted: function () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    submit () {
-      let url = 'departments'
-      let method = 'POST'
+    submit() {
+      let url = 'departments';
+      let method = 'POST';
       if (this.$route.params.id !== '0') {
-        url = url + '/' + this.$route.params.id
-        method = 'PUT'
+        url = `${url}/${this.$route.params.id}`;
+        method = 'PUT';
       }
-      const values = this.department
+      const values = this.department;
       request({
-        url: url,
-        method: method,
+        url,
+        method,
         mode: 'cors',
-        data: JSON.stringify(values)
-      })
-      .then(function (res) {
-        console.log(res)
-      })
-      this.$router.push('/departments')
+        data: JSON.stringify(values),
+      });
+      this.$router.push('/departments');
     },
-    close () {
-      this.$router.push('/departments')
+    close() {
+      this.$router.push('/departments');
     },
-    delete () {
-      console.log('delete!')
+    delete() {
+      // console.log('delete!')
     },
-    fetchData () {
+    fetchData() {
       request({
-        url: 'departments/' + this.$route.params.id,
-        method: 'GET'
+        url: `departments/${this.$route.params.id}`,
+        method: 'GET',
       })
       .then((r) => {
-        const data = r.data
-        this.department = data.department
-        this.isLoaded = true
-      })
-    }
-  }
-}
+        const data = r.data;
+        this.department = data.department;
+        this.isLoaded = true;
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>

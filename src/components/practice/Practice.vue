@@ -30,11 +30,11 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input'
-import vbutton from '@/elements/Button'
-import vdate from '@/elements/Date'
-import vselect from '@/elements/Select'
-import request from '@/request'
+import vinput from '@/elements/Input';
+import vbutton from '@/elements/Button';
+import vdate from '@/elements/Date';
+import vselect from '@/elements/Select';
+import request from '@/request';
 
 export default {
   name: 'practice',
@@ -42,9 +42,9 @@ export default {
     'vue-input': vinput,
     'vue-button': vbutton,
     'vue-date': vdate,
-    'vue-select': vselect
+    'vue-select': vselect,
   },
-  data () {
+  data() {
     return {
       title: '',
       practice: {
@@ -52,77 +52,74 @@ export default {
         company_id: 0,
         company: {
           id: 0,
-          name: ''
+          name: '',
         },
         company_name: '',
         kind_id: 0,
         kind: {
           id: 0,
-          name: ''
+          name: '',
         },
         kind_name: '',
         date_of_practice: '',
         topic: '',
-        note: ''
+        note: '',
       },
       companies: [{
         id: 0,
-        name: ''
+        name: '',
       }],
       kinds: [{
         id: 0,
-        name: ''
-      }]
-    }
+        name: '',
+      }],
+    };
   },
-  mounted: function () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    onSelect (item, itemName) {
-      this.practice[itemName] = item
-      this.practice[itemName + '_id'] = item.id
+    onSelect(item, itemName) {
+      this.practice[itemName] = item;
+      this.practice[`${itemName}_id`] = item.id;
     },
-    submit () {
-      let url = 'practices'
-      let method = 'POST'
+    submit() {
+      let url = 'practices';
+      let method = 'POST';
       if (this.$route.params.id !== '0') {
-        url = url + '/' + this.$route.params.id
-        method = 'PUT'
+        url = `${url}/${this.$route.params.id}`;
+        method = 'PUT';
       }
-      const values = this.practice
+      const values = this.practice;
       request({
-        url: url,
-        method: method,
+        url,
+        method,
         mode: 'cors',
-        data: JSON.stringify(values)
-      })
-      .then(function (res) {
-        // console.log(res)
-      })
-      this.$router.push('/practices')
+        data: JSON.stringify(values),
+      });
+      this.close();
     },
-    close () {
-      this.$router.push('/practices')
+    close() {
+      this.$router.push('/practices');
     },
-    delete () {
-      console.log('delete!')
+    delete() {
+      // console.log('delete!');
     },
-    fetchData () {
+    fetchData() {
       request({
-        url: 'practices/' + this.$route.params.id,
-        method: 'GET'
+        url: `practices/${this.$route.params.id}`,
+        method: 'GET',
       })
       .then((r) => {
-        const data = r.data
-        this.practice = data.practice
-        this.companies = data.companies
-        this.kinds = data.kinds
-        this.isLoaded = true
-      })
-    }
-  }
-}
+        const data = r.data;
+        this.practice = data.practice;
+        this.companies = data.companies;
+        this.kinds = data.kinds;
+        this.isLoaded = true;
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>

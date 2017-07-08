@@ -16,20 +16,22 @@
 </template>
 
 <script>
-  import vtable from '@/elements/Table'
-  import request from '@/request'
+  import vtable from '@/elements/Table';
+  import request from '@/request';
 
   export default {
     name: 'sirens',
     components: {
-      'vue-table': vtable
+      'vue-table': vtable,
     },
-    data: () => ({
-      fetched: false,
-      list: []
-    }),
-    created () {
-      this.fetchData()
+    data() {
+      return {
+        fetched: false,
+        list: [],
+      };
+    },
+    created() {
+      this.fetchData();
     },
     // watch: {
     //   '$route' (to, from) {
@@ -37,31 +39,31 @@
     //   }
     // },
     methods: {
-      fetchData () {
+      fetchData() {
         if (!this.fetched) {
           request({
             url: 'sirens',
-            method: 'GET'
+            method: 'GET',
           })
-          .then(r => {
-            this.list = this.createList(r.data['sirens'])
-            this.fetched = true
-          })
+          .then((r) => {
+            this.list = this.createList(r.data.sirens);
+            this.fetched = true;
+          });
         }
       },
-      createList (sirens) {
-        let list = []
+      createList(sirens) {
+        let list = [];
         if (sirens) {
-          list = sirens.map(e => {
-            const str = [e.name, e.note]
-            e.str = str.join(' ').toLowerCase()
-            return e
-          })
+          list = sirens.map((e) => {
+            const str = [e.name, e.note];
+            e.str = str.join(' ').toLowerCase();
+            return e;
+          });
         }
-        return list
-      }
-    }
-  }
+        return list;
+      },
+    },
+  };
 </script>
 
 <style scoped>

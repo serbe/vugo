@@ -53,148 +53,146 @@
 <script>
   export default {
     name: 'vue-input',
-    data () {
+    data() {
       return {
-        inputValue: this.value
-      }
+        inputValue: this.value,
+      };
     },
     computed: {
-      classList () {
-        var res = ['control is-expanded']
+      classList() {
+        const res = ['control is-expanded'];
         if (this.iconLeft) {
-          res.push('has-icons-left')
+          res.push('has-icons-left');
         }
         if (this.iconRight) {
-          res.push('has-icons-right')
+          res.push('has-icons-right');
         }
-        return res
+        return res;
       },
-      inputClassList () {
-        var res = ['input']
+      inputClassList() {
+        const res = ['input'];
         if (this.color) {
-          res.push(this.color.split(' ').map(e => { return 'is-' + e }))
+          res.push(this.color.split(' ').map(e => `is-${e}`));
         }
         if (this.size) {
-          res.push(this.size.split(' ').map(e => { return 'is-' + e }))
+          res.push(this.size.split(' ').map(e => `is-${e}`));
         }
         if (this.state) {
-          res.push(this.state.split(' ').map(e => { return 'is-' + e }))
+          res.push(this.state.split(' ').map(e => `is-${e}`));
         }
-        return res
+        return res;
       },
-      getLabel () {
+      getLabel() {
         if (this.label !== false && this.placeholder !== false && this.label === '') {
-          return this.placeholder
-        } else {
-          return this.label
+          return this.placeholder;
         }
+        return this.label;
       },
-      getDisabled () {
+      getDisabled() {
         if (this.disabled) {
-          return 'disabled'
-        } else {
-          return false
+          return 'disabled';
         }
+        return false;
       },
-      isError () {
+      isError() {
         if (this.value !== '' && this.pattern) {
-          const patt = new RegExp(this.pattern)
-          return !patt.test(this.value)
+          const patt = new RegExp(this.pattern);
+          return !patt.test(this.value);
         }
-        return false
-      }
+        return false;
+      },
     },
     methods: {
-      onInput (event) {
-        const val = event.target.value
-        this.$emit('input', val)
+      onInput(event) {
+        const val = event.target.value;
+        this.$emit('input', val);
       },
-      onBlur (event) {
-        const ret = { id: this.id, event: event }
-        this.$emit('blur', ret)
+      onBlur(event) {
+        const ret = { id: this.id, event };
+        this.$emit('blur', ret);
       },
-      onKeyup (event) {
-        const ret = { id: this.id, event: event }
-        this.$emit('keyup', ret)
-      }
+      onKeyup(event) {
+        const ret = { id: this.id, event };
+        this.$emit('keyup', ret);
+      },
     },
     props: {
       value: '',
       type: {
         type: String,
         required: false,
-        default: 'text'
+        default: 'text',
       },
       name: {
         type: [String, Boolean],
         default: false,
-        required: false
+        required: false,
       },
       iconLeft: {
         type: [String, Boolean],
         required: false,
-        default: false
+        default: false,
       },
       iconRight: {
         type: [String, Boolean],
         required: false,
-        default: false
+        default: false,
       },
       color: {
         type: [String, Boolean],
         default: false,
-        required: false
+        required: false,
       },
       size: {
         type: [String, Boolean],
         default: false,
-        required: false
+        required: false,
       },
       state: {
         type: [String, Boolean],
         default: false,
-        required: false
+        required: false,
       },
       label: {
         type: [String, Boolean],
         default: false,
-        required: false
+        required: false,
       },
       placeholder: {
         type: [String, Boolean],
         required: false,
-        default: false
+        default: false,
       },
       autocomplete: {
         type: [String, Boolean],
         required: false,
-        default: false
+        default: false,
       },
       hyper: {
         type: [String, Boolean],
         required: false,
-        default: false
+        default: false,
       },
       id: {
         type: [String, Boolean],
         required: false,
-        default: false
+        default: false,
       },
       disabled: {
         type: Boolean,
         required: false,
-        default: false
+        default: false,
       },
       error: {
         type: [String, Boolean],
         required: false,
-        default: false
+        default: false,
       },
       pattern: {
         type: [String, Boolean],
         required: false,
-        default: false
-      }
-    }
-  }
+        default: false,
+      },
+    },
+  };
 </script>

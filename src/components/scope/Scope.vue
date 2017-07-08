@@ -24,68 +24,65 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input'
-import vbutton from '@/elements/Button'
-import request from '@/request'
+import vinput from '@/elements/Input';
+import vbutton from '@/elements/Button';
+import request from '@/request';
 
 export default {
   name: 'scope',
   components: {
     'vue-input': vinput,
-    'vue-button': vbutton
+    'vue-button': vbutton,
   },
-  data () {
+  data() {
     return {
       title: '',
       scope: {
         id: 0,
         name: '',
-        note: ''
-      }
-    }
+        note: '',
+      },
+    };
   },
-  mounted: function () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    submit () {
-      let url = 'scopes'
-      let method = 'POST'
+    submit() {
+      let url = 'scopes';
+      let method = 'POST';
       if (this.$route.params.id !== '0') {
-        url = url + '/' + this.$route.params.id
-        method = 'PUT'
+        url = `${url}/${this.$route.params.id}`;
+        method = 'PUT';
       }
-      const values = this.scope
+      const values = this.scope;
       request({
-        url: url,
-        method: method,
+        url,
+        method,
         mode: 'cors',
-        data: JSON.stringify(values)
-      })
-      .then(function (res) {
-        // console.log(res)
-      })
-      this.$router.push('/scopes')
+        data: JSON.stringify(values),
+      });
+      this.close();
     },
-    close () {
-      this.$router.push('/scopes')
+    close() {
+      this.$router.push('/scopes');
     },
-    delete () {
-      console.log('delete!')
+    delete() {
+      // console.log('delete!');
     },
-    fetchData () {
+    fetchData() {
       request({
-        url: 'scopes/' + this.$route.params.id,
-        method: 'GET'
+        url: `scopes/${this.$route.params.id}`,
+        method: 'GET',
       })
       .then((r) => {
-        const data = r.data
-        this.scope = data.scope
-        this.isLoaded = true
-      })
-    }
-  }
-}
+        const data = r.data;
+        this.scope = data.scope;
+        this.isLoaded = true;
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>

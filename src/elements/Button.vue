@@ -18,48 +18,48 @@
       text: {
         type: [String, Boolean],
         default: false,
-        required: false
+        required: false,
       },
       icon: {
         type: [String, Boolean],
         required: false,
-        default: false
+        default: false,
       },
       color: {
         type: [String, Boolean],
         default: false,
-        required: false
+        required: false,
       },
       size: {
         type: [String, Boolean],
         default: false,
-        required: false
+        required: false,
       },
       state: {
         type: [String, Boolean],
         default: false,
-        required: false
-      }
+        required: false,
+      },
     },
     computed: {
-      aClassList () {
-        var res = ['button']
+      aClassList() {
+        const res = ['button'];
         if (this.color) {
-          res.push(this.color.split(' ').map(e => { return 'is-' + e }))
+          res.push(this.color.split(' ').map(e => `is-${e}`));
         }
         if (this.size) {
-          res.push(this.size.split(' ').map(e => { return 'is-' + e }))
+          res.push(this.size.split(' ').map(e => `is-${e}`));
         }
         if (this.state) {
-          res.push(this.state.split(' ').map(e => { return 'is-' + e }))
+          res.push(this.state.split(' ').map(e => `is-${e}`));
         }
-        return res
-      }
+        return res;
+      },
     },
     methods: {
-      click () {
-        this.$emit('click')
-      }
-    }
-  }
+      click() {
+        this.$emit('click');
+      },
+    },
+  };
 </script>

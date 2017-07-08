@@ -16,20 +16,22 @@
 </template>
 
 <script>
-  import vtable from '@/elements/Table'
-  import request from '@/request'
+  import vtable from '@/elements/Table';
+  import request from '@/request';
 
   export default {
     name: 'practices',
     components: {
-      'vue-table': vtable
+      'vue-table': vtable,
     },
-    data: () => ({
-      fetched: false,
-      list: []
-    }),
-    created () {
-      this.fetchData()
+    data() {
+      return {
+        fetched: false,
+        list: [],
+      };
+    },
+    created() {
+      this.fetchData();
     },
     // watch: {
     //   '$route' (to, from) {
@@ -37,31 +39,31 @@
     //   }
     // },
     methods: {
-      fetchData () {
+      fetchData() {
         if (!this.fetched) {
           request({
             url: 'practices',
-            method: 'GET'
+            method: 'GET',
           })
-          .then(r => {
-            this.list = this.createList(r.data['practices'])
-            this.fetched = true
-          })
+          .then((r) => {
+            this.list = this.createList(r.data.practices);
+            this.fetched = true;
+          });
         }
       },
-      createList (practices) {
-        let list = []
+      createList(practices) {
+        let list = [];
         if (practices) {
-          list = practices.map(e => {
-            const str = [e.date_str, e.kind_name, e.note]
-            e.str = str.join(' ').toLowerCase()
-            return e
-          })
+          list = practices.map((e) => {
+            const str = [e.date_str, e.kind_name, e.note];
+            e.str = str.join(' ').toLowerCase();
+            return e;
+          });
         }
-        return list
-      }
-    }
-  }
+        return list;
+      },
+    },
+  };
 </script>
 
 <style scoped>

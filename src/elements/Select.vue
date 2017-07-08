@@ -33,134 +33,134 @@ export default {
   name: 'vue-select',
   props: {
     selectedItem: {
-      default: () => { return { id: 0, name: '' } }
+      default() {
+        return {
+          id: 0,
+          name: '',
+        };
+      },
     },
     icon: {
       type: [String, Boolean],
       required: false,
-      default: false
+      default: false,
     },
     color: {
       type: [String, Boolean],
       default: false,
-      required: false
+      required: false,
     },
     size: {
       type: [String, Boolean],
       default: false,
-      required: false
+      required: false,
     },
     state: {
       type: [String, Boolean],
       default: false,
-      required: false
+      required: false,
     },
     label: {
       type: [String, Boolean],
       default: false,
-      required: false
+      required: false,
     },
     list: {
       required: true,
       default: [{
         id: 0,
-        name: ''
-      }]
+        name: '',
+      }],
     },
     itemName: {
       type: [String, Boolean],
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
-  data () {
+  data() {
     return {
       opened: false,
       searchText: this.selectedItem.name,
       mousedownState: false,
       placeholder: '',
-      isLoaded: false
-    }
+      isLoaded: false,
+    };
   },
   computed: {
-    classList () {
-      var res = ['control is-expanded select is-fullwidth']
+    classList() {
+      const res = ['control is-expanded select is-fullwidth'];
       if (this.icon) {
-        res.push('has-icons-left')
+        res.push('has-icons-left');
       }
-      return res
+      return res;
     },
-    inputClassList () {
-      var res = ['input']
+    inputClassList() {
+      const res = ['input'];
       if (this.color) {
-        res.push(this.color.split(' ').map(e => { return 'is-' + e }))
+        res.push(this.color.split(' ').map(e => `is${e}`));
       }
       if (this.size) {
-        res.push(this.size.split(' ').map(e => { return 'is-' + e }))
+        res.push(this.size.split(' ').map(e => `is${e}`));
       }
       if (this.state) {
-        res.push(this.state.split(' ').map(e => { return 'is-' + e }))
+        res.push(this.state.split(' ').map(e => `is${e}`));
       }
-      return res
+      return res;
     },
-    getLabel () {
+    getLabel() {
       if (this.label !== false && this.placeholder !== false && this.label === '') {
-        return this.placeholder
-      } else {
-        return this.label
+        return this.placeholder;
       }
+      return this.label;
     },
-    getPlaceholder () {
-      return this.placeholder === '' && this.label && this.label !== '' ? this.label : this.placeholder
+    getPlaceholder() {
+      return this.placeholder === '' && this.label && this.label !== '' ? this.label : this.placeholder;
     },
-    listWithFilter () {
+    listWithFilter() {
       if (this.searchText !== '') {
-        return this.list.filter(item => {
-          return item.name.match(new RegExp(this.searchText, 'i'))
-        })
-      } else {
-        return this.list
+        return this.list.filter(item => item.name.match(new RegExp(this.searchText, 'i')));
       }
+      return this.list;
     },
-    item () {
+    item() {
       if (this.selectedItem) {
-        return { id: this.selectedItem.id, name: this.selectedItem.name }
-      } else {
-        return { id: 0, name: '' }
+        return { id: this.selectedItem.id, name: this.selectedItem.name };
       }
-    }
+      return { id: 0, name: '' };
+    },
   },
   methods: {
-    openOptions () {
-      this.isLoaded = true
-      this.$refs.vueSelect.focus()
-      this.searchText = ''
-      this.placeholder = this.selectedItem.name
-      this.opened = true
-      this.mousedownState = false
+    openOptions() {
+      this.isLoaded = true;
+      this.$refs.vueSelect.focus();
+      this.searchText = '';
+      this.placeholder = this.selectedItem.name;
+      this.opened = true;
+      this.mousedownState = false;
     },
-    closeOptions () {
-      this.opened = false
+    closeOptions() {
+      this.opened = false;
     },
-    mousedownItem () {
-      this.mousedownState = true
+    mousedownItem() {
+      this.mousedownState = true;
     },
-    selectItem (item) {
-      this.searchText = item.name
-      this.closeOptions()
+    selectItem(item) {
+      this.searchText = item.name;
+      this.closeOptions();
       if (this.itemName) {
-        this.$emit('select', item, this.itemName)
+        this.$emit('select', item, this.itemName);
       } else {
-        this.$emit('select', item)
+        this.$emit('select', item);
       }
     },
-    onBlur () {
+    onBlur() {
       if (!this.mousedownState) {
-        this.searchText = this.selectedItem.name
-        this.closeOptions()
+        this.searchText = this.selectedItem.name;
+        this.closeOptions();
       }
     },
-    onKeyUp () {
+    onKeyUp() {
       // const selectedItemIndex = this.filteredOptions.findIndex(item => {
       //   return item.selected === true
       // })
@@ -171,7 +171,7 @@ export default {
       //   this.filteredOptions[selectedItemIndex - 1].selected = true
       // }
     },
-    onKeyDown () {
+    onKeyDown() {
       // const selectedItemIndex = this.filteredOptions.findIndex(item => {
       //   return item.selected === true
       // })
@@ -182,7 +182,7 @@ export default {
       //   this.filteredOptions[selectedItemIndex + 1].selected = true
       // }
     },
-    onKeyEnter () {
+    onKeyEnter() {
       // const selectedItem = this.filteredOptions.find(item => {
       //   return item.selected === true
       // })
@@ -190,17 +190,17 @@ export default {
       //   this.selectItem(selectedItem)
       // }
     },
-    onKeyDelete () {
+    onKeyDelete() {
       // if (!this.searchText && this.selectedOption) {
       //   this.selectItem({})
       //   this.openOptions()
       // }
     },
-    onInput (event) {
-      this.searchText = event.target.value
-    }
-  }
-}
+    onInput(event) {
+      this.searchText = event.target.value;
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -230,10 +230,7 @@ export default {
     /*border-radius: 3px;*/
     color: #222324;
     height: 22px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    padding: 3px 8px;
     font-size: 12px;
     white-space: nowrap;
     /*box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);*/

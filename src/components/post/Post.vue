@@ -26,71 +26,68 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input'
-import vbutton from '@/elements/Button'
-import vswitch from '@/elements/Switch'
-import request from '@/request'
+import vinput from '@/elements/Input';
+import vbutton from '@/elements/Button';
+import vswitch from '@/elements/Switch';
+import request from '@/request';
 
 export default {
   name: 'post',
   components: {
     'vue-input': vinput,
     'vue-button': vbutton,
-    'vue-switch': vswitch
+    'vue-switch': vswitch,
   },
-  data () {
+  data() {
     return {
       title: '',
       post: {
         id: 0,
         name: '',
         go: false,
-        note: ''
-      }
-    }
+        note: '',
+      },
+    };
   },
-  mounted: function () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    submit () {
-      let url = 'posts'
-      let method = 'POST'
+    submit() {
+      let url = 'posts';
+      let method = 'POST';
       if (this.$route.params.id !== '0') {
-        url = url + '/' + this.$route.params.id
-        method = 'PUT'
+        url = `${url}/${this.$route.params.id}`;
+        method = 'PUT';
       }
-      const values = this.post
+      const values = this.post;
       request({
-        url: url,
-        method: method,
+        url,
+        method,
         mode: 'cors',
-        data: JSON.stringify(values)
-      })
-      .then(function (res) {
-        // console.log(res)
-      })
-      this.$router.push('/posts')
+        data: JSON.stringify(values),
+      });
+      this.close();
     },
-    close () {
-      this.$router.push('/posts')
+    close() {
+      this.$router.push('/posts');
     },
-    delete () {
-      console.log('delete!')
+    delete() {
+      // console.log('delete!');
     },
-    fetchData () {
+    fetchData() {
       request({
-        url: 'posts/' + this.$route.params.id,
-        method: 'GET'
+        url: `posts${this.$route.params.id}`,
+        method: 'GET',
       })
       .then((r) => {
-        const data = r.data
-        this.post = data.post
-        this.isLoaded = true
-      })
-    }
-  }
-}
+        const data = r.data;
+        this.post = data.post;
+        this.isLoaded = true;
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>

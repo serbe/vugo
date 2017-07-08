@@ -24,69 +24,66 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input'
-import vbutton from '@/elements/Button'
-import request from '@/request'
+import vinput from '@/elements/Input';
+import vbutton from '@/elements/Button';
+import request from '@/request';
 
 export default {
   name: 'sirenType',
   components: {
     'vue-input': vinput,
-    'vue-button': vbutton
+    'vue-button': vbutton,
   },
-  data () {
+  data() {
     return {
       title: '',
       sirenType: {
         id: 0,
         name: '',
         radius: '',
-        note: ''
-      }
-    }
+        note: '',
+      },
+    };
   },
-  mounted: function () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    submit () {
-      let url = 'sirentypes'
-      let method = 'POST'
+    submit() {
+      let url = 'sirentypes';
+      let method = 'POST';
       if (this.$route.params.id !== '0') {
-        url = url + '/' + this.$route.params.id
-        method = 'PUT'
+        url = `${url}/${this.$route.params.id}`;
+        method = 'PUT';
       }
-      const values = this.sirenType
+      const values = this.sirenType;
       request({
-        url: url,
-        method: method,
+        url,
+        method,
         mode: 'cors',
-        data: JSON.stringify(values)
-      })
-      .then(function (res) {
-        // console.log(res)
-      })
-      this.$router.push('/sirentypes')
+        data: JSON.stringify(values),
+      });
+      this.close();
     },
-    close () {
-      this.$router.push('/sirentypes')
+    close() {
+      this.$router.push('/sirentypes');
     },
-    delete () {
-      console.log('delete!')
+    delete() {
+      // console.log('delete!');
     },
-    fetchData () {
+    fetchData() {
       request({
-        url: 'sirentypes/' + this.$route.params.id,
-        method: 'GET'
+        url: `sirentypes/${this.$route.params.id}`,
+        method: 'GET',
       })
       .then((r) => {
-        const data = r.data
-        this.sirenType = data.siren_type
-        this.isLoaded = true
-      })
-    }
-  }
-}
+        const data = r.data;
+        this.sirenType = data.siren_type;
+        this.isLoaded = true;
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>

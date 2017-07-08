@@ -17,61 +17,57 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input'
-import vbutton from '@/elements/Button'
-import axios from 'axios'
+import vinput from '@/elements/Input';
+import vbutton from '@/elements/Button';
+import auth from '@/auth';
+import axios from 'axios';
 
 export default {
   name: 'login',
   components: {
     'vue-input': vinput,
-    'vue-button': vbutton
+    'vue-button': vbutton,
   },
-  data () {
+  data() {
     return {
       name: '',
       pass: '',
-      error: false
-    }
+      error: false,
+    };
   },
   methods: {
-    login () {
-      const store = this.$store
-      const router = this.$router
-      let url = '/login'
+    login() {
+      const router = this.$router;
+      let url = '/login';
       const data = {
         username: this.name,
-        password: this.pass
-      }
+        password: this.pass,
+      };
       if (process.env.NODE_ENV === 'development') {
-        url = 'http://localhost:9090/login'
+        url = 'http://localhost:9090/login';
       }
       axios({
-        url: url,
+        url,
         method: 'POST',
-        data: data
+        data,
       })
       .then((r) => {
         if (r.data.token && r.data.token !== '') {
-          store.dispatch('login', { 'name': data.name, 'admin': data.admin })
-          store.dispatch('setToken', r.data.token)
-          router.push({ name: 'home' })
+          auth.login(r.data.token);
+          router.push({ name: 'home' });
         }
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+      });
     },
-    close () {
-      this.$router.push('/')
+    close() {
+      this.$router.push('/');
     },
-    onKeyup (event) {
+    onKeyup(event) {
       if (event.event.key === 'Enter') {
-        this.login()
+        this.login();
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
