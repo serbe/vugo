@@ -41,38 +41,40 @@
     //     this.fetchData()
     //   }
     // },
-    fetchData() {
-      if (!this.fetched) {
-        request({
-          url: 'companies',
-          method: 'GET',
-        })
-        .then((r) => {
-          this.list = this.createList(r.data.companies);
-          this.fetched = true;
-        });
-      }
-    },
-    createList(companies) {
-      let list = [];
-      if (companies) {
-        list = companies.map((c) => {
-          const str = [c.name, c.address, c.scope_name];
-          if (c.phones.length > 0 && c.phones[0] !== '') {
-            str.push(c.phones.join(' '));
-          }
-          if (c.faxes.length > 0 && c.faxes[0] !== '') {
-            str.push(c.faxes.join(' '));
-          }
-          if (c.practices.length > 0 && c.practices[0] !== '') {
-            str.push(c.practices.join(' '));
-          }
-          const nc = c;
-          nc.str = str.join(' ').toLowerCase();
-          return nc;
-        });
-      }
-      return list;
+    methods: {
+      fetchData() {
+        if (!this.fetched) {
+          request({
+            url: 'companies',
+            method: 'GET',
+          })
+            .then((r) => {
+              this.list = this.createList(r.data.companies);
+              this.fetched = true;
+            });
+        }
+      },
+      createList(companies) {
+        let list = [];
+        if (companies) {
+          list = companies.map((c) => {
+            const str = [c.name, c.address, c.scope_name];
+            if (c.phones.length > 0 && c.phones[0] !== '') {
+              str.push(c.phones.join(' '));
+            }
+            if (c.faxes.length > 0 && c.faxes[0] !== '') {
+              str.push(c.faxes.join(' '));
+            }
+            if (c.practices.length > 0 && c.practices[0] !== '') {
+              str.push(c.practices.join(' '));
+            }
+            const nc = c;
+            nc.str = str.join(' ').toLowerCase();
+            return nc;
+          });
+        }
+        return list;
+      },
     },
   };
 </script>

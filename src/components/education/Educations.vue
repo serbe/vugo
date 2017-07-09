@@ -38,28 +38,30 @@
     //     this.fetchData()
     //   }
     // },
-    fetchData() {
-      if (!this.fetched) {
-        request({
-          url: 'educations',
-          method: 'GET',
-        })
-        .then((r) => {
-          this.list = this.createList(r.data.educations);
-          this.fetched = true;
-        });
-      }
-    },
-    createList(educations) {
-      let list = [];
-      if (educations) {
-        list = educations.map((e) => {
-          const str = [e.contact_name, e.start_str, e.end_str];
-          e.str = str.join(' ').toLowerCase();
-          return e;
-        });
-      }
-      return list;
+    methods: {
+      fetchData() {
+        if (!this.fetched) {
+          request({
+            url: 'educations',
+            method: 'GET',
+          })
+            .then((r) => {
+              this.list = this.createList(r.data.educations);
+              this.fetched = true;
+            });
+        }
+      },
+      createList(educations) {
+        let list = [];
+        if (educations) {
+          list = educations.map((e) => {
+            const str = [e.contact_name, e.start_str, e.end_str];
+            e.str = str.join(' ').toLowerCase();
+            return e;
+          });
+        }
+        return list;
+      },
     },
   };
 </script>
