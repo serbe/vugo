@@ -141,17 +141,17 @@ export default {
         url: `sirens/'${this.$route.params.id}`,
         method: 'GET',
       })
-      .then((r) => {
-        const data = r.data;
-        this.siren = data.siren;
-        this.siren_types = data.siren_types;
-        this.contacts = data.contacts;
-        this.companies = data.companies;
-        this.setSelect('siren', 'siren_types', 'siren_type', 'siren_type_id');
-        this.setSelect('siren', 'contacts', 'contact', 'contact_id');
-        this.setSelect('siren', 'companies', 'company', 'company_id');
-        this.isLoaded = true;
-      });
+        .then((r) => {
+          const data = r.data;
+          this.siren = data.siren;
+          this.siren_types = data.siren_types;
+          this.contacts = data.contacts;
+          this.companies = data.companies;
+          this.setSelect('siren', 'siren_types', 'siren_type', 'siren_type_id');
+          this.setSelect('siren', 'contacts', 'contact', 'contact_id');
+          this.setSelect('siren', 'companies', 'company', 'company_id');
+          this.isLoaded = true;
+        });
     },
     setSelect(root, list, item, value) {
       this[root][item] = this[list].find(v => v.id === this[root][value]);

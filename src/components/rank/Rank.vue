@@ -75,11 +75,11 @@ export default {
         url: `ranks/${this.$route.params.id}`,
         method: 'GET',
       })
-      .then((r) => {
-        const data = r.data;
-        this.rank = data.rank;
-        this.isLoaded = true;
-      });
+        .then((r) => {
+          const data = r.data;
+          this.rank = data.rank;
+          this.isLoaded = true;
+        });
     },
   },
 };

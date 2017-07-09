@@ -75,11 +75,11 @@ export default {
         url: `scopes/${this.$route.params.id}`,
         method: 'GET',
       })
-      .then((r) => {
-        const data = r.data;
-        this.scope = data.scope;
-        this.isLoaded = true;
-      });
+        .then((r) => {
+          const data = r.data;
+          this.scope = data.scope;
+          this.isLoaded = true;
+        });
     },
   },
 };

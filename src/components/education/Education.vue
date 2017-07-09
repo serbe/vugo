@@ -99,13 +99,13 @@ export default {
         url: `educations/${this.$route.params.id}`,
         method: 'GET',
       })
-      .then((r) => {
-        const data = r.data;
-        this.education = data.education;
-        this.contacts = data.contacts;
-        this.setSelect('education', 'contacts', 'contact', 'contact_id');
-        this.isLoaded = true;
-      });
+        .then((r) => {
+          const data = r.data;
+          this.education = data.education;
+          this.contacts = data.contacts;
+          this.setSelect('education', 'contacts', 'contact', 'contact_id');
+          this.isLoaded = true;
+        });
     },
     onSelect(item, itemName) {
       this.siren[itemName] = item;

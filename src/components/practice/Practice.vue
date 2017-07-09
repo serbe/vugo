@@ -110,13 +110,13 @@ export default {
         url: `practices/${this.$route.params.id}`,
         method: 'GET',
       })
-      .then((r) => {
-        const data = r.data;
-        this.practice = data.practice;
-        this.companies = data.companies;
-        this.kinds = data.kinds;
-        this.isLoaded = true;
-      });
+        .then((r) => {
+          const data = r.data;
+          this.practice = data.practice;
+          this.companies = data.companies;
+          this.kinds = data.kinds;
+          this.isLoaded = true;
+        });
     },
   },
 };

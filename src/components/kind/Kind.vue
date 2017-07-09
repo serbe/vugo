@@ -78,11 +78,11 @@ export default {
         url: `kinds/${this.$route.params.id}`,
         method: 'GET',
       })
-      .then((r) => {
-        const data = r.data;
-        this.kind = data.kind;
-        this.isLoaded = true;
-      });
+        .then((r) => {
+          const data = r.data;
+          this.kind = data.kind;
+          this.isLoaded = true;
+        });
     },
   },
 };

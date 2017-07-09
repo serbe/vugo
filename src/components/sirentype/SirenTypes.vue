@@ -45,10 +45,10 @@
             url: 'sirentypes',
             method: 'GET',
           })
-          .then((r) => {
-            this.list = this.createList(r.data.siren_types);
-            this.fetched = true;
-          });
+            .then((r) => {
+              this.list = this.createList(r.data.siren_types);
+              this.fetched = true;
+            });
         }
       },
       createList(sirenTypes) {

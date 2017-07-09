@@ -75,11 +75,11 @@ export default {
         url: `departments/${this.$route.params.id}`,
         method: 'GET',
       })
-      .then((r) => {
-        const data = r.data;
-        this.department = data.department;
-        this.isLoaded = true;
-      });
+        .then((r) => {
+          const data = r.data;
+          this.department = data.department;
+          this.isLoaded = true;
+        });
     },
   },
 };

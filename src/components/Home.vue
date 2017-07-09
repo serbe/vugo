@@ -53,10 +53,10 @@ export default {
           url: 'practices/near',
           method: 'GET',
         })
-        .then((r) => {
-          this.practicesList = r.data.practices;
-          this.practicesFetched = true;
-        });
+          .then((r) => {
+            this.practicesList = r.data.practices;
+            this.practicesFetched = true;
+          });
       }
     },
     fetchEducations() {
@@ -65,10 +65,10 @@ export default {
           url: 'educations/near',
           method: 'GET',
         })
-        .then((r) => {
-          this.educationsList = r.data.educations;
-          this.educationsFetched = true;
-        });
+          .then((r) => {
+            this.educationsList = r.data.educations;
+            this.educationsFetched = true;
+          });
       }
     },
     trClass(date) {

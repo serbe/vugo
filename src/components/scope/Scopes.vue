@@ -45,10 +45,10 @@
             url: 'scopes',
             method: 'GET',
           })
-          .then((r) => {
-            this.list = this.createList(r.data.scopes);
-            this.fetched = true;
-          });
+            .then((r) => {
+              this.list = this.createList(r.data.scopes);
+              this.fetched = true;
+            });
         }
       },
       createList(scopes) {

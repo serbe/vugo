@@ -51,10 +51,10 @@
             url: 'contacts',
             method: 'GET',
           })
-          .then((r) => {
-            this.list = this.createList(r.data.contacts);
-            this.fetched = true;
-          });
+            .then((r) => {
+              this.list = this.createList(r.data.contacts);
+              this.fetched = true;
+            });
         }
       },
       createList(contacts) {

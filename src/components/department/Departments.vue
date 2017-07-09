@@ -29,10 +29,10 @@ export default {
           url: 'departments',
           method: 'GET',
         })
-        .then((r) => {
-          this.list = this.createList(r.data.departments);
-          this.fetched = true;
-        });
+          .then((r) => {
+            this.list = this.createList(r.data.departments);
+            this.fetched = true;
+          });
       }
     },
     createList(departments) {

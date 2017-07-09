@@ -46,10 +46,10 @@
             url: 'posts',
             method: 'GET',
           })
-          .then((r) => {
-            this.list = this.createList(r.data.posts);
-            this.fetched = true;
-          });
+            .then((r) => {
+              this.list = this.createList(r.data.posts);
+              this.fetched = true;
+            });
         }
       },
       createList(posts) {

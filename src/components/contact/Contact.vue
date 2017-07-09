@@ -251,31 +251,31 @@ export default {
         url: `contacts/${this.$route.params.id}`,
         method: 'GET',
       })
-      .then((r) => {
-        const data = r.data;
-        this.contact = data.contact;
-        this.companies = data.companies;
-        this.posts = data.posts;
-        this.departments = data.departments;
-        this.posts_go = data.posts_go;
-        this.ranks = data.ranks;
-        if (this.contact.emails) {
-          this.contact.emails.push({ id: this.contact.emails.length + 1, email: '' });
-        } else {
-          this.contact.emails = [{ id: 1, email: '' }];
-        }
-        if (this.contact.phones) {
-          this.contact.phones.push({ id: this.contact.phones.length + 1, phone: '' });
-        } else {
-          this.contact.phones = [{ id: 1, phone: '' }];
-        }
-        if (this.contact.faxes) {
-          this.contact.faxes.push({ id: this.contact.faxes.length + 1, phone: '' });
-        } else {
-          this.contact.faxes = [{ id: 1, phone: '' }];
-        }
-        this.isLoaded = true;
-      });
+        .then((r) => {
+          const data = r.data;
+          this.contact = data.contact;
+          this.companies = data.companies;
+          this.posts = data.posts;
+          this.departments = data.departments;
+          this.posts_go = data.posts_go;
+          this.ranks = data.ranks;
+          if (this.contact.emails) {
+            this.contact.emails.push({ id: this.contact.emails.length + 1, email: '' });
+          } else {
+            this.contact.emails = [{ id: 1, email: '' }];
+          }
+          if (this.contact.phones) {
+            this.contact.phones.push({ id: this.contact.phones.length + 1, phone: '' });
+          } else {
+            this.contact.phones = [{ id: 1, phone: '' }];
+          }
+          if (this.contact.faxes) {
+            this.contact.faxes.push({ id: this.contact.faxes.length + 1, phone: '' });
+          } else {
+            this.contact.faxes = [{ id: 1, phone: '' }];
+          }
+          this.isLoaded = true;
+        });
     },
   },
 };

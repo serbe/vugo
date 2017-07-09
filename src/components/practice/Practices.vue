@@ -45,10 +45,10 @@
             url: 'practices',
             method: 'GET',
           })
-          .then((r) => {
-            this.list = this.createList(r.data.practices);
-            this.fetched = true;
-          });
+            .then((r) => {
+              this.list = this.createList(r.data.practices);
+              this.fetched = true;
+            });
         }
       },
       createList(practices) {

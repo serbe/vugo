@@ -76,11 +76,11 @@ export default {
         url: `sirentypes/${this.$route.params.id}`,
         method: 'GET',
       })
-      .then((r) => {
-        const data = r.data;
-        this.sirenType = data.siren_type;
-        this.isLoaded = true;
-      });
+        .then((r) => {
+          const data = r.data;
+          this.sirenType = data.siren_type;
+          this.isLoaded = true;
+        });
     },
   },
 };

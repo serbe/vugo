@@ -204,34 +204,34 @@ export default {
       this.$router.push('/companies');
     },
     delete() {
-//      console.log('delete!');
+    //  console.log('delete!');
     },
     fetchData() {
       request({
         url: `companies/${this.$route.params.id}`,
         method: 'GET',
       })
-      .then((r) => {
-        const data = r.data;
-        this.company = data.company;
-        this.scopes = data.scopes;
-        if (this.company.emails) {
-          this.company.emails.push({ id: this.company.emails.length + 1, email: '' });
-        } else {
-          this.company.emails = [{ id: 1, email: '' }];
-        }
-        if (this.company.phones) {
-          this.company.phones.push({ id: this.company.phones.length + 1, phone: '' });
-        } else {
-          this.company.phones = [{ id: 1, phone: '' }];
-        }
-        if (this.company.faxes) {
-          this.company.faxes.push({ id: this.company.faxes.length + 1, phone: '' });
-        } else {
-          this.company.faxes = [{ id: 1, phone: '' }];
-        }
-        this.isLoaded = true;
-      });
+        .then((r) => {
+          const data = r.data;
+          this.company = data.company;
+          this.scopes = data.scopes;
+          if (this.company.emails) {
+            this.company.emails.push({ id: this.company.emails.length + 1, email: '' });
+          } else {
+            this.company.emails = [{ id: 1, email: '' }];
+          }
+          if (this.company.phones) {
+            this.company.phones.push({ id: this.company.phones.length + 1, phone: '' });
+          } else {
+            this.company.phones = [{ id: 1, phone: '' }];
+          }
+          if (this.company.faxes) {
+            this.company.faxes.push({ id: this.company.faxes.length + 1, phone: '' });
+          } else {
+            this.company.faxes = [{ id: 1, phone: '' }];
+          }
+          this.isLoaded = true;
+        });
     },
     customLabel(val) {
       return val.name;

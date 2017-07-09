@@ -51,12 +51,12 @@ export default {
         method: 'POST',
         data,
       })
-      .then((r) => {
-        if (r.data.token && r.data.token !== '') {
-          auth.login(r.data.token);
-          router.push({ name: 'home' });
-        }
-      });
+        .then((r) => {
+          if (r.data.token && r.data.token !== '') {
+            auth.login(r.data.token);
+            router.push({ name: 'home' });
+          }
+        });
     },
     close() {
       this.$router.push('/');

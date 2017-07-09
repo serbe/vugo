@@ -80,11 +80,11 @@ export default {
         url: `posts${this.$route.params.id}`,
         method: 'GET',
       })
-      .then((r) => {
-        const data = r.data;
-        this.post = data.post;
-        this.isLoaded = true;
-      });
+        .then((r) => {
+          const data = r.data;
+          this.post = data.post;
+          this.isLoaded = true;
+        });
     },
   },
 };

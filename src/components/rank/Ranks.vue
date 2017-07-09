@@ -45,10 +45,10 @@
             url: 'ranks',
             method: 'GET',
           })
-          .then((r) => {
-            this.list = this.createList(r.data.ranks);
-            this.fetched = true;
-          });
+            .then((r) => {
+              this.list = this.createList(r.data.ranks);
+              this.fetched = true;
+            });
         }
       },
       createList(ranks) {

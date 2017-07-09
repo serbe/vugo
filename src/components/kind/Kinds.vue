@@ -45,10 +45,10 @@
             url: 'kinds',
             method: 'GET',
           })
-          .then((r) => {
-            this.list = this.createList(r.data.kinds);
-            this.fetched = true;
-          });
+            .then((r) => {
+              this.list = this.createList(r.data.kinds);
+              this.fetched = true;
+            });
         }
       },
       createList(kinds) {

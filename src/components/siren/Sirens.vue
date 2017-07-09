@@ -45,10 +45,10 @@
             url: 'sirens',
             method: 'GET',
           })
-          .then((r) => {
-            this.list = this.createList(r.data.sirens);
-            this.fetched = true;
-          });
+            .then((r) => {
+              this.list = this.createList(r.data.sirens);
+              this.fetched = true;
+            });
         }
       },
       createList(sirens) {
