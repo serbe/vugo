@@ -5,11 +5,16 @@
       <!--<img src="./assets/logo.png">-->
       <router-view></router-view>
     </section>
+    <footer class="footer bot">
+      <div class="container">
+        <div class="content has-text-centered">© 2017 Сочи</div>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script>
-import vnavigation from '@/components/Navigation';
+import vnavigation from '@/components/Navbar';
 
 export default {
   name: 'app',
@@ -36,6 +41,10 @@ body {
   max-width: 768px !important;
 }
 
+.bot {
+    background-color: white !important;
+    padding: 6rem 1.5rem 3rem !important;
+}
 $primary: #2B2B2B;
 
 $text: hsl(0, 0%, 14%);

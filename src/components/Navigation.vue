@@ -44,44 +44,44 @@
 </template>
 
 <script>
-import auth from '@/auth';
-import vbutton from '@/elements/Button';
+  import auth from '@/auth';
+  import vbutton from '@/elements/Button';
 
-export default {
-  name: 'vue-navigation',
-  components: {
-    'vue-button': vbutton,
-  },
-  data() {
-    return {
-      active: '',
-      tabShow: false,
-      tabSirenShow: false,
-    };
-  },
-  computed: {
-    isAuth() {
-      return auth.isAuth();
+  export default {
+    name: 'vue-navigation',
+    components: {
+      'vue-button': vbutton,
     },
-  },
-  methods: {
-    logout() {
-      auth.logout();
-      this.$router.push('/');
+    data() {
+      return {
+        active: '',
+        tabShow: false,
+        tabSirenShow: false,
+      };
     },
-    toggle() {
-      this.active = this.active === '' ? 'is-active' : '';
+    computed: {
+      isAuth() {
+        return auth.isAuth();
+      },
     },
-    toggleTab() {
-      this.tabShow = !this.tabShow;
-      this.tabSirenShow = false;
+    methods: {
+      logout() {
+        auth.logout();
+        this.$router.push('/');
+      },
+      toggle() {
+        this.active = this.active === '' ? 'is-active' : '';
+      },
+      toggleTab() {
+        this.tabShow = !this.tabShow;
+        this.tabSirenShow = false;
+      },
+      toggleSirenTab() {
+        this.tabSirenShow = !this.tabSirenShow;
+        this.tabShow = false;
+      },
     },
-    toggleSirenTab() {
-      this.tabSirenShow = !this.tabSirenShow;
-      this.tabShow = false;
-    },
-  },
-};
+  };
 </script>
 
 <style scoped>
