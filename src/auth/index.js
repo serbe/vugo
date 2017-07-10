@@ -1,25 +1,30 @@
 export default {
-  setToken(token) {
-    localStorage.setItem('token', token);
+  user: {
+    authenticated: false,
   },
   getToken() {
-    return `Bearer ${localStorage.getItem('token')}`;
-  },
-  setLogged(val) {
-    localStorage.setItem('logged', val);
-  },
-  getLogged() {
-    return localStorage.getItem('logged');
+    return localStorage.getItem('token');
   },
   login(token) {
-    this.setToken(token);
-    this.setLogged('true');
+    localStorage.setItem('token', token);
+    this.user.authenticated = true;
   },
   logout() {
-    this.setToken('');
-    this.setLogged('false');
+    localStorage.removeItem('token');
+    this.user.authenticated = false;
+  },
+  checkAuth() {
+    const token = this.getToken();
+    if (token) {
+      this.user.authenticated = true;
+    } else {
+      this.user.authenticated = true;
+    }
   },
   isAuth() {
-    return this.getLogged() === 'true';
+    return !!this.getToken();
+  },
+  getAuthHeader() {
+    return `Bearer ${this.getToken()}`;
   },
 };

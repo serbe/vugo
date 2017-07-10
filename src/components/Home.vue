@@ -40,6 +40,7 @@ export default {
       educationsFetched: false,
       practicesList: [],
       educationsList: [],
+      user: auth.user,
     };
   },
   created() {
@@ -48,7 +49,7 @@ export default {
   },
   methods: {
     fetchPractices() {
-      if (auth.isAuth() && !this.fetched) {
+      if (this.user.authenticated && !this.fetched) {
         request({
           url: 'practices/near',
           method: 'GET',
@@ -60,7 +61,7 @@ export default {
       }
     },
     fetchEducations() {
-      if (auth.isAuth() && !this.fetched) {
+      if (this.user.authenticated && !this.fetched) {
         request({
           url: 'educations/near',
           method: 'GET',
