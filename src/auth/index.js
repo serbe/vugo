@@ -18,7 +18,7 @@ export default {
     if (token) {
       this.user.authenticated = true;
     } else {
-      this.user.authenticated = true;
+      this.user.authenticated = false;
     }
   },
   isAuth() {
