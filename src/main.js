@@ -5,6 +5,8 @@ import auth from './auth';
 
 // Vue.config.productionTip = false
 
+auth.checkAuth();
+
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.title)) {
     document.title = to.meta.title;
