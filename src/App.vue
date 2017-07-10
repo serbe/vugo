@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-navigation></vue-navigation>
+    <vue-navbar></vue-navbar>
     <section class="section pt1">
       <!--<img src="./assets/logo.png">-->
       <router-view></router-view>
@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import vnavigation from '@/components/Navbar';
+import vnavbar from '@/components/Navbar';
 
 export default {
   name: 'app',
   components: {
-    'vue-navigation': vnavigation,
+    'vue-navbar': vnavbar,
   },
 };
 </script>

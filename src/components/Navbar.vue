@@ -3,7 +3,7 @@
     <nav class="navbar ">
       <div class="navbar-brand">
         <router-link to="/" class="navbar-item" exact>ЕДДС</router-link>
-        <div v-if="isAuth" class="navbar-burger burger" data-target="navMenu" @click="toggle" :class="active">
+        <div v-if="user.authenticated" class="navbar-burger burger" data-target="navMenu" @click="toggle" :class="active">
           <span></span>
           <span></span>
           <span></span>
@@ -12,7 +12,7 @@
 
       <div id="navMenu" class="navbar-menu" :class="active">
         <div class="navbar-start">
-          <router-link v-if="!isAuth" to="/login" class="navbar-item">Авторизация</router-link>
+          <router-link v-if="!user.authenticated" to="/login" class="navbar-item">Авторизация</router-link>
           <template v-else>
             <router-link to="/contacts" class="navbar-item">Контакты</router-link>
             <router-link to="/companies" class="navbar-item">Организации</router-link>
@@ -34,7 +34,7 @@
           </template>
         </div>
         <div class="navbar-end">
-          <vue-button v-if="isAuth" class="navbar-item" text="Выход" color="info" @click="logout"></vue-button>
+          <vue-button v-if="user.authenticated" class="navbar-item" text="Выход" color="info" @click="logout"></vue-button>
         </div>
       </div>
     </nav>
@@ -55,17 +55,13 @@
         active: '',
         tabShow: false,
         tabSirenShow: false,
+        user: auth.user,
       };
-    },
-    computed: {
-      isAuth() {
-        return auth.isAuth();
-      },
     },
     methods: {
       logout() {
         auth.logout();
-        this.$router.push('/');
+        this.$router.push('/login');
       },
       toggle() {
         this.active = this.active === '' ? 'is-active' : '';
