@@ -24,6 +24,7 @@
     <p class="control mb1" v-if="search">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
+    <vue-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"></vue-pagination>
     <table class="table fixed_table" :class="tableClass">
       <thead>
         <tr>
