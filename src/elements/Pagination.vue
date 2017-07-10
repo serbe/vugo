@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="pagination is-centered" v-if="max > 1" ref="pagination">
+    <nav class="pagination is-centered" v-if="max > 1" ref="pagination" :class="sizeClass">
       <a class="pagination-previous" v-if="value > 1" @click="onClick(value - 1)">Назад</a>
       <a class="pagination-next" v-if="value < max" @click="onClick(value + 1)">Далее</a>
       <ul class="pagination-list">
@@ -47,6 +47,10 @@ export default {
       type: Number,
       required: true,
     },
+    size: {
+      type: String,
+      required: false,
+    },
   },
   computed: {
     value() {
@@ -60,6 +64,12 @@ export default {
         return this.allElems / this.perPage | 0;
       }
       return (this.allElems / this.perPage | 0) + 1;
+    },
+    sizeClass() {
+      if (this.size) {
+        return `is-${this.size}`;
+      }
+      return '';
     },
   },
   methods: {
