@@ -2,7 +2,6 @@
   <div id="app">
     <vue-navbar></vue-navbar>
     <section class="section pt1">
-      <!--<img src="./assets/logo.png">-->
       <router-view></router-view>
     </section>
     <footer class="footer bot">
