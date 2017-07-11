@@ -4,7 +4,7 @@
 
       <div class="columns">
         <div class="column is-half">
-          <vue-input v-model="siren.numpass" label placeholder="Серийный номер" iconLeft="tag"></vue-input>
+          <vue-input v-model="siren.num_pass" type="text" label placeholder="Серийный номер" iconLeft="tag" ></vue-input>
         </div>
         <div class="column is-half">
           <vue-select :list="siren_types" :selected-item="siren.siren_type" label="Тип сирены" item-name="siren_type" @select="onSelect" icon="tag" ></vue-select>
@@ -67,7 +67,7 @@ export default {
       siren: {
         id: 0,
         num_id: 0,
-        numpass: '',
+        num_pass: '',
         siren_type_id: '',
         siren_type: {
           id: 0,
@@ -138,7 +138,7 @@ export default {
     },
     fetchData() {
       request({
-        url: `sirens/'${this.$route.params.id}`,
+        url: `sirens/${this.$route.params.id}`,
         method: 'GET',
       })
         .then((r) => {

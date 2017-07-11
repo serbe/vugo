@@ -3,7 +3,7 @@
     <form :model="sirenType" id="sirenType">
 
       <vue-input v-model="sirenType.name" label placeholder="Тип сирены" iconLeft="tag"></vue-input>
-      <vue-input v-model="sirenType.radius" label placeholder="Радиус действия сирены (метры)" iconLeft="circle-o"></vue-input>
+      <vue-input v-model="sirenType.radius" label placeholder="Радиус действия сирены (метры)" iconLeft="circle-o" type="number"></vue-input>
       <vue-input v-model="sirenType.note" label placeholder="Заметка" iconLeft="comment"></vue-input>
 
       <div class="field">
@@ -40,7 +40,7 @@ export default {
       sirenType: {
         id: 0,
         name: '',
-        radius: '',
+        radius: 0,
         note: '',
       },
     };
