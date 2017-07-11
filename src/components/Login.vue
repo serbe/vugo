@@ -76,7 +76,7 @@ export default {
 }
 
 .w300 {
-  width: 300px;
+  width: 300px !important;
 }
 
 .pt10 {
@@ -85,9 +85,5 @@ export default {
 
 .pl20 {
   padding-left: 20px;
-}
-
-.w56 {
-  min-width: 56px !important;
 }
 </style>
