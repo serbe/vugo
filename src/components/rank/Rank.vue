@@ -6,17 +6,15 @@
 
       <vue-input v-model="rank.note" label placeholder="Заметка" iconLeft="comment"></vue-input>
 
-      <div class="field">
-        <div class="columns mt3">
-          <div class="column is-2 is-offset-2">
-            <vue-button text="Сохранить" color="primary" @click="submit" ></vue-button>
-          </div>
-          <div class="column is-2">
-            <vue-button text="Закрыть" @click="close" ></vue-button>
-          </div>
-          <div class="column is-2 is-offset-2">
-            <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" ></vue-button>
-          </div>
+      <div class="field is-grouped is-grouped-centered">
+        <div class="control">
+          <vue-button text="Сохранить" color="primary" @click="submit" ></vue-button>
+        </div>
+        <div class="control">
+          <vue-button text="Закрыть" @click="close" ></vue-button>
+        </div>
+        <div class="control">
+          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" ></vue-button>
         </div>
       </div>
     </form>
