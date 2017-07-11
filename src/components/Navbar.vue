@@ -3,7 +3,7 @@
     <nav class="navbar ">
       <div class="navbar-brand">
         <router-link to="/" class="navbar-item" exact>ЕДДС</router-link>
-        <div v-if="user.authenticated" class="navbar-burger burger" data-target="navMenu" @click="toggle" :class="active">
+        <div class="navbar-burger burger" data-target="navMenu" @click="toggle" :class="active">
           <span></span>
           <span></span>
           <span></span>
@@ -79,7 +79,7 @@
 </script>
 
 <style scoped>
-.is-active {
+a.is-active {
   border-bottom: 3px solid #363636;
 }
 </style>
