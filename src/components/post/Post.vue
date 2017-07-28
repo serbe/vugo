@@ -75,7 +75,7 @@ export default {
     },
     fetchData() {
       request({
-        url: `posts${this.$route.params.id}`,
+        url: `posts/${this.$route.params.id}`,
         method: 'GET',
       })
         .then((r) => {
