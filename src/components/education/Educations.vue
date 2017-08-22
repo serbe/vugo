@@ -2,11 +2,12 @@
   <div class="container">
     <vue-table
       name="education"
-      :names="['Обучаемый', 'Начало обучения', 'Конец обучения']"
-      :columns="['contact_name', 'start_str', 'end_str']"
+      :names="['Обучаемый', 'Должность ГО ЧС', 'Начало обучения', 'Конец обучения']"
+      :columns="['contact_name', 'post_name', 'start_str', 'end_str']"
       :tableData="list"
       tableClasses="is-narrow is-striped"
-      :headClasses="['', '', 'is-hidden-mobile']"
+      :headClasses="['', 'is-hidden-mobile', '', 'is-hidden-mobile']"
+      :cellTypes="['text', 'text', 'text', 'text']"
       pagination
       hyper
       search

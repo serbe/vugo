@@ -2,7 +2,9 @@
   <div class="container mw768">
     <form :model="education" id="education">
 
-      <vue-select :list="contacts" :selected-item="education.contact" label="Полное имя обучаемого" item-name="contact" @select="onSelect" iconLeft="user"></vue-select>
+      <vue-select :list="contacts" :selected-item="education.contact" label="Полное имя обучаемого" item-name="contact" @select="onSelect" icon="user"></vue-select>
+
+      <vue-select :list="posts" :selected-item="education.post" label="Должность ГО ЧС" item-name="post" @select="onSelect" icon="tag"></vue-select>
 
       <div class="columns">
         <div class="column">
@@ -56,11 +58,20 @@ export default {
           id: 0,
           name: '',
         },
+        post_id: 0,
+        post: {
+          id: 0,
+          name: '',
+        },
         start_date: '',
         end_date: '',
         note: '',
       },
       contacts: [{
+        id: 0,
+        name: '',
+      }],
+      posts: [{
         id: 0,
         name: '',
       }],
@@ -101,13 +112,15 @@ export default {
           const data = r.data;
           this.education = data.education;
           this.contacts = data.contacts;
+          this.posts = data.posts;
           this.setSelect('education', 'contacts', 'contact', 'contact_id');
+          this.setSelect('education', 'posts', 'post', 'post_id');
           this.isLoaded = true;
         });
     },
     onSelect(item, itemName) {
-      this.siren[itemName] = item;
-      this.siren[`${itemName}_id`] = item.id;
+      this.education[itemName] = item;
+      this.education[`${itemName}_id`] = item.id;
     },
     setSelect(root, list, item, value) {
       this[root][item] = this[list].find(v => v.id === this[root][value]);
