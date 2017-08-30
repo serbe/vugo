@@ -25,7 +25,7 @@
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
     <vue-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"></vue-pagination>
-    <table class="table center-table" :class="tableClass">
+    <table class="table center-table" :class="tableClass" width="100%">
       <thead>
         <tr>
           <th v-for="(name, index) in head" v-bind:key="index" :class="headClass(index)">{{ name }}</th>
@@ -206,19 +206,19 @@
     margin-bottom: 1rem;
   }
 
-  .fixed_table {
-    table-layout: fixed !important;
-  }
+  /*.fixed_table {*/
+    /*table-layout: fixed !important;*/
+  /*}*/
 
   .center-table {
     margin: auto;
   }
 
-  .w9 {
-    width: 90px !important;
-  }
+  /*.w9 {*/
+    /*width: 90px !important;*/
+  /*}*/
 
-  .w16 {
-    width: 160px !important;
-  }
+  /*.w16 {*/
+    /*width: 160px !important;*/
+  /*}*/
 </style>
