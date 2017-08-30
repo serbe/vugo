@@ -15,11 +15,7 @@ export default {
   },
   checkAuth() {
     const token = this.getToken();
-    if (token) {
-      this.user.authenticated = true;
-    } else {
-      this.user.authenticated = false;
-    }
+    this.user.authenticated = !!token;
   },
   isAuth() {
     return !!this.getToken();
