@@ -1,6 +1,17 @@
 <template>
   <div class="container">
-    <vue-table name="department" :names="['Наименование отдела', 'Заметка']" :columns="['name', 'note']" :tableData="list" tableClasses="is-narrow is-striped" :headClasses="['', 'is-hidden-mobile']" pagination hyper search adding></vue-table>
+    <vue-table
+      name="department"
+      :names="['Наименование отдела', 'Заметка']"
+      :columns="['name', 'note']"
+      :tableData="list"
+      tableClasses="is-narrow is-striped fullwidth"
+      :headClasses="['', 'is-hidden-mobile']"
+      pagination
+      hyper
+      search
+      adding
+    ></vue-table>
   </div>
 </template>
 

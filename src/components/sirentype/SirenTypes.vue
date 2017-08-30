@@ -5,7 +5,7 @@
       :names="['Тип сирены', 'Радиус', 'Заметка']"
       :columns="['name', 'radius', 'note']"
       :tableData="list"
-      tableClasses="is-narrow is-striped"
+      tableClasses="is-narrow is-striped fullwidth"
       :headClasses="['', '', 'is-hidden-mobile']"
       pagination
       hyper

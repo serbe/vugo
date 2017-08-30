@@ -5,13 +5,14 @@
       :names="['Тип сирены', 'Адрес', 'Ответственный', 'Телефоны']"
       :columns="['siren_type_name', 'address', 'contact_name', 'phones']"
       :tableData="list"
-      tableClasses="is-narrow is-striped"
+      tableClasses="is-narrow is-striped fullwidth"
       :headClasses="['', 'is-hidden-mobile', '', '']"
       :cellTypes="['text', 'text', 'text', 'array']"
       pagination
       hyper
       search
       adding
+      fullwidth
     ></vue-table>
   </div>
 </template>

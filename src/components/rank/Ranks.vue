@@ -5,7 +5,7 @@
       :names="['Наименование чина', 'Заметка']"
       :columns="['name', 'note']"
       :tableData="list"
-      tableClasses="is-narrow is-striped"
+      tableClasses="is-narrow is-striped fullwidth"
       :headClasses="['', 'is-hidden-mobile']"
       pagination
       hyper

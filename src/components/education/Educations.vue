@@ -5,7 +5,7 @@
       :names="['Обучаемый', 'Должность ГО ЧС', 'Начало обучения', 'Конец обучения']"
       :columns="['contact_name', 'post_name', 'start_str', 'end_str']"
       :tableData="list"
-      tableClasses="is-narrow is-striped"
+      tableClasses="is-narrow is-striped fullwidth"
       :headClasses="['', 'is-hidden-mobile', '', 'is-hidden-mobile']"
       :cellTypes="['text', 'text', 'text', 'text']"
       pagination

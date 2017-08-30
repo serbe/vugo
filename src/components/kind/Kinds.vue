@@ -5,7 +5,7 @@
       :names="['Тип тренировки', 'Сокращенное наименование', 'Заметка']"
       :columns="['name', 'short_name', 'note']"
       :tableData="list"
-      tableClasses="is-narrow is-striped"
+      tableClasses="is-narrow is-striped fullwidth"
       :headClasses="['', '', 'is-hidden-mobile']"
       pagination
       hyper

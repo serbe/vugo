@@ -5,7 +5,7 @@
       :names="['Наименование должности', 'ГО', 'Заметка']"
       :columns="['name', 'go', 'note']"
       :tableData="list"
-      tableClasses="is-narrow is-striped"
+      tableClasses="is-narrow is-striped fullwidth"
       :headClasses="['', 'w9', 'is-hidden-mobile']"
       :cellTypes="['text', 'checkbox', 'text']"
       pagination

@@ -5,7 +5,7 @@
       :names="['Фамилия Имя Отчество', 'Организация', 'Должность', 'Телефон', 'Факс']"
       :columns="['name', 'company_name', 'post_name', 'phones', 'faxes']"
       :tableData="list"
-      tableClasses="is-narrow is-striped"
+      tableClasses="is-narrow is-striped fullwidth"
       :headClasses="['', 'is-hidden-mobile', 'is-hidden-touch', 'w9', 'is-hidden-mobile w9']"
       :cellTypes="['text', 'text', 'text', 'array', 'array']"
       pagination

@@ -5,7 +5,7 @@
       :names="['Дата тренировки', 'Тип тренировки', 'Организация']"
       :columns="['date_str', 'kind_name', 'company_name']"
       :tableData="list"
-      tableClasses="is-narrow is-striped"
+      tableClasses="is-narrow is-striped fullwidth"
       :headClasses="['w16', '', 'is-hidden-mobile']"
       pagination
       hyper
