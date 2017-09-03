@@ -74,8 +74,7 @@ export default {
         method: 'GET',
       })
         .then((r) => {
-          const data = r.data;
-          this.department = data.department;
+          this.department = r.data.department;
           this.isLoaded = true;
         });
     },

@@ -74,8 +74,7 @@ export default {
         method: 'GET',
       })
         .then((r) => {
-          const data = r.data;
-          this.rank = data.rank;
+          this.rank = r.data.rank;
           this.isLoaded = true;
         });
     },

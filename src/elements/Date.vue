@@ -53,9 +53,7 @@
       value(val) {
         const arr = val.split('-');
         if (arr.length === 3) {
-          this.year = arr[0];
-          this.month = arr[1];
-          this.day = arr[2];
+          [this.year, this.month, this.day] = arr;
         }
       },
     },

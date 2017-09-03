@@ -109,10 +109,9 @@ export default {
         method: 'GET',
       })
         .then((r) => {
-          const data = r.data;
-          this.practice = data.practice;
-          this.companies = data.companies;
-          this.kinds = data.kinds;
+          this.practice = r.data.practice;
+          this.companies = r.data.companies;
+          this.kinds = r.data.kinds;
           this.isLoaded = true;
         });
     },

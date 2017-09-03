@@ -75,8 +75,7 @@ export default {
         method: 'GET',
       })
         .then((r) => {
-          const data = r.data;
-          this.sirenType = data.siren_type;
+          this.sirenType = r.data.siren_type;
           this.isLoaded = true;
         });
     },

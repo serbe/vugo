@@ -109,10 +109,9 @@ export default {
         method: 'GET',
       })
         .then((r) => {
-          const data = r.data;
-          this.education = data.education;
-          this.contacts = data.contacts;
-          this.posts = data.posts;
+          this.education = r.data.education;
+          this.contacts = r.data.contacts;
+          this.posts = r.data.posts;
           this.setSelect('education', 'contacts', 'contact', 'contact_id');
           this.setSelect('education', 'posts', 'post', 'post_id');
           this.isLoaded = true;

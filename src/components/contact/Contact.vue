@@ -250,13 +250,12 @@ export default {
         method: 'GET',
       })
         .then((r) => {
-          const data = r.data;
-          this.contact = data.contact;
-          this.companies = data.companies;
-          this.posts = data.posts;
-          this.departments = data.departments;
-          this.posts_go = data.posts_go;
-          this.ranks = data.ranks;
+          this.contact = r.data.contact;
+          this.companies = r.data.companies;
+          this.posts = r.data.posts;
+          this.departments = r.data.departments;
+          this.posts_go = r.data.posts_go;
+          this.ranks = r.data.ranks;
           if (this.contact.emails) {
             this.contact.emails.push({ id: this.contact.emails.length + 1, email: '' });
           } else {

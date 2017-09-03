@@ -77,8 +77,7 @@ export default {
         method: 'GET',
       })
         .then((r) => {
-          const data = r.data;
-          this.kind = data.kind;
+          this.kind = r.data.kind;
           this.isLoaded = true;
         });
     },

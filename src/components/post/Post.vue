@@ -79,8 +79,7 @@ export default {
         method: 'GET',
       })
         .then((r) => {
-          const data = r.data;
-          this.post = data.post;
+          this.post = r.data.post;
           this.isLoaded = true;
         });
     },

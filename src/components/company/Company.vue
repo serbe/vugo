@@ -210,9 +210,8 @@ export default {
         method: 'GET',
       })
         .then((r) => {
-          const data = r.data;
-          this.company = data.company;
-          this.scopes = data.scopes;
+          this.company = r.data.company;
+          this.scopes = r.data.scopes;
           if (this.company.emails) {
             this.company.emails.push({ id: this.company.emails.length + 1, email: '' });
           } else {
