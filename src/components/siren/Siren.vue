@@ -121,15 +121,17 @@ export default {
         method,
         mode: 'cors',
         data: JSON.stringify(values),
-      });
-      this.close();
+      })
+        .then(() => {
+          this.close();
+        });
+    },
+    close() {
+      this.$router.push('/sirens');
     },
     onSelect(item, itemName) {
       this.siren[itemName] = item;
       this.siren[`${itemName}_id`] = item.id;
-    },
-    close() {
-      this.$router.push('/sirens');
     },
     delete() {
       // console.log('delete!');

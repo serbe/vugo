@@ -60,8 +60,10 @@ export default {
         method,
         mode: 'cors',
         data: JSON.stringify(values),
-      });
-      this.close();
+      })
+        .then(() => {
+          this.close();
+        });
     },
     close() {
       this.$router.push('/sirentypes');

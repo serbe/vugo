@@ -235,8 +235,10 @@ export default {
         method,
         mode: 'cors',
         data: JSON.stringify(values),
-      });
-      this.$router.push('/contacts');
+      })
+        .then(() => {
+          this.close();
+        });
     },
     close() {
       this.$router.push('/contacts');
