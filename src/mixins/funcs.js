@@ -4,7 +4,7 @@ export default {
       let firstElem = -1;
       let emptyElem = 0;
       let fillElem = 0;
-      values.all((e, i) => {
+      values.forEach((e, i) => {
         if (e[key] === '') {
           if (firstElem === -1) {
             firstElem = i;
