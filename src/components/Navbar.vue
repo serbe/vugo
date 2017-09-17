@@ -29,6 +29,7 @@
                 <router-link to="/practices" class="navbar-item ">Учения</router-link>
                 <router-link to="/ranks" class="navbar-item ">Чины</router-link>
                 <router-link to="/scopes" class="navbar-item ">Сферы</router-link>
+                <router-link to="/certificates" class="navbar-item ">Удостоверения</router-link>
                 <hr class="navbar-divider">
                 <router-link to="/sirentypes" class="navbar-item ">Типы сирен</router-link>
               </div>

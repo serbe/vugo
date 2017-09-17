@@ -24,6 +24,8 @@ import SirenTypes from '@/components/sirentype/SirenTypes';
 import SirenType from '@/components/sirentype/SirenType';
 import Sirens from '@/components/siren/Sirens';
 import Siren from '@/components/siren/Siren';
+import Certificates from '@/components/certificate/Certificates';
+import Certificate from '@/components/certificate/Certificate';
 import NotFoundComponent from '@/components/NotFoundComponent';
 
 Vue.use(Router);
@@ -176,6 +178,18 @@ const router = new Router({
       name: 'siren',
       component: Siren,
       meta: { requiresAuth: true, title: 'Просмотр сирены' },
+    },
+    {
+      path: '/certificates',
+      name: 'certificates',
+      component: Certificates,
+      meta: { requiresAuth: true, title: 'Список удостоверений' },
+    },
+    {
+      path: '/certificate/:id',
+      name: 'certificate',
+      component: Certificate,
+      meta: { requiresAuth: true, title: 'Просмотр удостоверения' },
     },
     {
       path: '*',
