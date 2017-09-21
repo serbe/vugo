@@ -2,11 +2,11 @@
   <div class="container">
     <vue-table
       name="certificate"
-      :names="['Тип тренировки', 'Сокращенное наименование', 'Заметка']"
-      :columns="['name', 'short_name', 'note']"
+      :names="['Номер', 'ФИО', 'УМЦ', 'Дата', 'Заметка']"
+      :columns="['num', 'contact_name', 'company_name', 'cert_date', 'note']"
       :tableData="list"
       tableClasses="is-narrow is-striped fullwidth"
-      :headClasses="['', '', 'is-hidden-mobile']"
+      :headClasses="['', '', 'is-hidden-mobile', '', 'is-hidden-mobile']"
       pagination
       hyper
       search
@@ -50,11 +50,11 @@
             });
         }
       },
-      createList(kinds) {
+      createList(certificates) {
         let list = [];
-        if (kinds) {
-          list = kinds.map((e) => {
-            const str = [e.name, e.short_name, e.note];
+        if (certificates) {
+          list = certificates.map((e) => {
+            const str = [e.num, e.contact_name, e.company_name, e.cert_date, e.note];
             const ne = e;
             ne.str = str.join(' ').toLowerCase();
             return ne;
