@@ -4,7 +4,7 @@
 
       <vue-input v-model="company.name" label placeholder="Наименование организации" iconLeft="building"></vue-input>
 
-      <vue-select :list="scopes" :selected-item="company.scope" label="Сфера деятельности" @select="onSelect" icon="tag"></vue-select>
+      <vue-select :list="scopes" :selected-item="company.scope" item-name="scope" label="Сфера деятельности" @select="onSelect" icon="tag"></vue-select>
 
       <vue-input v-model="company.address" label placeholder="Адрес" iconLeft="address-card"></vue-input>
 
