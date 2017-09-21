@@ -4,7 +4,9 @@
 
       <vue-input v-model="certificate.num" label placeholder="Серийный номер удостоверения" iconLeft="tag"></vue-input>
 
-      <vue-select :list="contacts" :selected-item="certificate.contact" label="Полное имя" @select="onSelect" icon="user"></vue-select>
+      <vue-select :list="contacts" :selected-item="certificate.contact" item-name="contact" label="Полное имя" @select="onSelect" icon="user"></vue-select>
+
+      <vue-select :list="companies" :selected-item="certificate.company" item-name="company" label="Учебно методический центр" @select="onSelect" icon="building"></vue-select>
 
       <vue-date v-model="certificate.cert_date" label="Дата выдачи"></vue-date>
 
@@ -51,10 +53,19 @@ export default {
           id: 0,
           name: '',
         },
+        company_id: 0,
+        company: {
+          id: 0,
+          name: '',
+        },
         cert_date: '',
         note: '',
       },
       contacts: [{
+        id: 0,
+        name: '',
+      }],
+      companies: [{
         id: 0,
         name: '',
       }],
@@ -100,6 +111,7 @@ export default {
         .then((r) => {
           this.certificate = r.data.certificate;
           this.contacts = r.data.contacts;
+          this.companies = r.data.companies;
           this.isLoaded = true;
         });
     },
