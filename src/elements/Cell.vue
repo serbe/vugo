@@ -8,24 +8,24 @@
 </template>
 
 <script>
-  export default {
-    name: 'vue-cell',
-    data() {
-      return {
-        // query: '',
-        // page: 1,
-        // list: []
-      };
+export default {
+  name: 'vue-cell',
+  data() {
+    return {
+      // query: '',
+      // page: 1,
+      // list: []
+    };
+  },
+  props: {
+    type: {
+      type: String,
+      required: false,
+      default: 'text',
     },
-    props: {
-      type: {
-        type: String,
-        required: false,
-        default: 'text',
-      },
-      value: {
-        required: false,
-      },
+    value: {
+      required: false,
     },
-  };
+  },
+};
 </script>

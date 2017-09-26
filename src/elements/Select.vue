@@ -204,40 +204,40 @@ export default {
 </script>
 
 <style scoped>
-  .field {
-    margin-bottom: 0.75rem;
-  }
+.field {
+  margin-bottom: 0.75rem;
+}
 
-  .select-box {
-    box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);
-    /*display: inline-block;*/
-    position: absolute;
-    border: 1px solid #1fc8db;
-    /*visibility: hidden;*/
-    background-color: #FFF;
-    left: 0;
-    /*top: 20%;*/
-    width: 100%;
-    overflow: auto;
-    z-index: 5;
-    /*margin-top: -10px;*/
-    max-height: 300px;
-  }
+.select-box {
+  box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);
+  /*display: inline-block;*/
+  position: absolute;
+  border: 1px solid #1fc8db;
+  /*visibility: hidden;*/
+  background-color: #FFF;
+  left: 0;
+  /*top: 20%;*/
+  width: 100%;
+  overflow: auto;
+  z-index: 5;
+  /*margin-top: -10px;*/
+  max-height: 300px;
+}
 
-  .select-item {
-    background-color: white;
-    /*border: 1px solid #d3d6db;*/
-    /*border-radius: 3px;*/
-    color: #222324;
-    height: 22px;
-    padding: 3px 8px;
-    font-size: 12px;
-    white-space: nowrap;
-    /*box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);*/
-  }
+.select-item {
+  background-color: white;
+  /*border: 1px solid #d3d6db;*/
+  /*border-radius: 3px;*/
+  color: #222324;
+  height: 22px;
+  padding: 3px 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  /*box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);*/
+}
 
-  .select-item:hover {
-    background-color: #3273dc;
-    color: #fff;
-  }
+.select-item:hover {
+  background-color: #3273dc;
+  color: #fff;
+}
 </style>

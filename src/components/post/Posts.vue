@@ -17,56 +17,52 @@
 </template>
 
 <script>
-  import vtable from '@/elements/Table';
-  import request from '@/request';
+import vtable from '@/elements/Table';
+import request from '@/request';
 
-  export default {
-    name: 'posts',
-    components: {
-      'vue-table': vtable,
-    },
-    data() {
-      return {
-        fetched: false,
-        list: [],
-      };
-    },
-    created() {
-      this.fetchData();
-    },
-    // watch: {
-    //   '$route' (to, from) {
-    //     this.fetchData()
-    //   }
-    // },
-    methods: {
-      fetchData() {
-        if (!this.fetched) {
-          request({
-            url: 'posts',
-            method: 'GET',
-          })
-            .then((r) => {
-              this.list = this.createList(r.data.posts);
-              this.fetched = true;
-            });
-        }
-      },
-      createList(posts) {
-        let list = [];
-        if (posts) {
-          list = posts.map((e) => {
-            const str = [e.name, e.note];
-            e.str = str.join(' ').toLowerCase();
-            return e;
+export default {
+  name: 'posts',
+  components: {
+    'vue-table': vtable,
+  },
+  data() {
+    return {
+      fetched: false,
+      list: [],
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  // watch: {
+  //   '$route' (to, from) {
+  //     this.fetchData()
+  //   }
+  // },
+  methods: {
+    fetchData() {
+      if (!this.fetched) {
+        request({
+          url: 'posts',
+          method: 'GET',
+        })
+          .then((r) => {
+            this.list = this.createList(r.data.posts);
+            this.fetched = true;
           });
-        }
-        return list;
-      },
+      }
     },
-  };
+    createList(posts) {
+      let list = [];
+      if (posts) {
+        list = posts.map((e) => {
+          const str = [e.name, e.note];
+          e.str = str.join(' ').toLowerCase();
+          return e;
+        });
+      }
+      return list;
+    },
+  },
+};
 </script>
-
-<style scoped>
-
-</style>
