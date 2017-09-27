@@ -56,6 +56,9 @@ export default {
             auth.login(r.data.token);
             router.push({ name: 'home' });
           }
+        })
+        .catch(() => {
+          // console.log(error);
         });
     },
     close() {

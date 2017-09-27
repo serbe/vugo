@@ -33,8 +33,9 @@ function request(options) {
       // console.error('Status:', error.response.status);
       // console.error('Data:', error.response.data);
       // console.error('Headers:', error.response.headers);
-    } else {
-      // console.error('Error Message:', error.message);
+    } else if (!error.response) {
+      // auth.logout();
+      router.push({ name: 'login' });
     }
     return Promise.reject(error.response || error.message);
   }
