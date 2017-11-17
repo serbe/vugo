@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input';
-import vbutton from '@/elements/Button';
-import vselect from '@/elements/Select';
-import vdate from '@/elements/Date';
-import request from '@/request';
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import vselect from '@/elements/Select'
+import vdate from '@/elements/Date'
+import request from '@/request'
 
 export default {
   name: 'education',
@@ -46,9 +46,9 @@ export default {
     'vue-input': vinput,
     'vue-button': vbutton,
     'vue-select': vselect,
-    'vue-date': vdate,
+    'vue-date': vdate
   },
-  data() {
+  data () {
     return {
       title: '',
       education: {
@@ -56,78 +56,78 @@ export default {
         contact_id: 0,
         contact: {
           id: 0,
-          name: '',
+          name: ''
         },
         post_id: 0,
         post: {
           id: 0,
-          name: '',
+          name: ''
         },
         start_date: '',
         end_date: '',
-        note: '',
+        note: ''
       },
       contacts: [{
         id: 0,
-        name: '',
+        name: ''
       }],
       posts: [{
         id: 0,
-        name: '',
-      }],
-    };
+        name: ''
+      }]
+    }
   },
-  mounted() {
-    this.fetchData();
+  mounted () {
+    this.fetchData()
   },
   methods: {
-    submit() {
-      let url = 'educations';
-      let method = 'POST';
+    submit () {
+      let url = 'educations'
+      let method = 'POST'
       if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`;
-        method = 'PUT';
+        url = `${url}/${this.$route.params.id}`
+        method = 'PUT'
       }
-      const values = this.education;
+      const values = this.education
       request({
         url,
         method,
         mode: 'cors',
-        data: JSON.stringify(values),
+        data: JSON.stringify(values)
       })
         .then(() => {
-          this.close();
-        });
+          this.close()
+        })
     },
-    close() {
-      this.$router.push('/educations');
+    close () {
+      this.$router.push('/educations')
     },
-    delete() {
+    delete () {
       // console.log('delete!')
     },
-    fetchData() {
+    fetchData () {
       request({
         url: `educations/${this.$route.params.id}`,
-        method: 'GET',
+        method: 'GET'
       })
         .then((r) => {
-          this.education = r.data.education;
-          this.contacts = r.data.contacts;
-          this.posts = r.data.posts;
-          this.setSelect('education', 'contacts', 'contact', 'contact_id');
-          this.setSelect('education', 'posts', 'post', 'post_id');
-          this.isLoaded = true;
-        });
+          this.education = r.data.education
+          this.contacts = r.data.contacts
+          this.posts = r.data.posts
+          this.setSelect('education', 'contacts', 'contact', 'contact_id')
+          this.setSelect('education', 'posts', 'post', 'post_id')
+          this.isLoaded = true
+        })
     },
-    onSelect(item, itemName) {
-      this.education[itemName] = item;
-      this.education[`${itemName}_id`] = item.id;
+    onSelect (item, itemName) {
+      this.education[itemName] = item
+      this.education[`${itemName}_id`] = item.id
     },
-    setSelect(root, list, item, value) {
-      this[root][item] = this[list].find(v => v.id === this[root][value]);
-    },
-  },
-};
+    setSelect (root, list, item, value) {
+      this[root][item] = this[list].find(v => v.id === this[root][value])
+    }
+  }
+}
 </script>
 
 <style scoped>

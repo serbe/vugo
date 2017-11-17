@@ -22,66 +22,66 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input';
-import vbutton from '@/elements/Button';
-import request from '@/request';
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import request from '@/request'
 
 export default {
   name: 'rank',
   components: {
     'vue-input': vinput,
-    'vue-button': vbutton,
+    'vue-button': vbutton
   },
-  data() {
+  data () {
     return {
       title: '',
       rank: {
         id: 0,
         name: '',
-        note: '',
-      },
-    };
+        note: ''
+      }
+    }
   },
-  mounted() {
-    this.fetchData();
+  mounted () {
+    this.fetchData()
   },
   methods: {
-    submit() {
-      let url = 'ranks';
-      let method = 'POST';
+    submit () {
+      let url = 'ranks'
+      let method = 'POST'
       if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`;
-        method = 'PUT';
+        url = `${url}/${this.$route.params.id}`
+        method = 'PUT'
       }
-      const values = this.rank;
+      const values = this.rank
       request({
         url,
         method,
         mode: 'cors',
-        data: JSON.stringify(values),
+        data: JSON.stringify(values)
       })
         .then(() => {
-          this.close();
-        });
+          this.close()
+        })
     },
-    close() {
-      this.$router.push('/ranks');
+    close () {
+      this.$router.push('/ranks')
     },
-    delete() {
+    delete () {
       // console.log('delete!');
     },
-    fetchData() {
+    fetchData () {
       request({
         url: `ranks/${this.$route.params.id}`,
-        method: 'GET',
+        method: 'GET'
       })
         .then((r) => {
-          this.rank = r.data.rank;
-          this.isLoaded = true;
-        });
-    },
-  },
-};
+          this.rank = r.data.rank
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
 <style scoped>

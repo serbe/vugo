@@ -28,11 +28,11 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input';
-import vbutton from '@/elements/Button';
-import vselect from '@/elements/Select';
-import vdate from '@/elements/Date';
-import request from '@/request';
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import vselect from '@/elements/Select'
+import vdate from '@/elements/Date'
+import request from '@/request'
 
 export default {
   name: 'certificate',
@@ -40,9 +40,9 @@ export default {
     'vue-input': vinput,
     'vue-button': vbutton,
     'vue-select': vselect,
-    'vue-date': vdate,
+    'vue-date': vdate
   },
-  data() {
+  data () {
     return {
       title: '',
       certificate: {
@@ -51,72 +51,72 @@ export default {
         contact_id: 0,
         contact: {
           id: 0,
-          name: '',
+          name: ''
         },
         company_id: 0,
         company: {
           id: 0,
-          name: '',
+          name: ''
         },
         cert_date: '',
-        note: '',
+        note: ''
       },
       contacts: [{
         id: 0,
-        name: '',
+        name: ''
       }],
       companies: [{
         id: 0,
-        name: '',
-      }],
-    };
+        name: ''
+      }]
+    }
   },
-  mounted() {
-    this.fetchData();
+  mounted () {
+    this.fetchData()
   },
   methods: {
-    onSelect(item, itemName) {
-      this.certificate[itemName] = item;
-      this.certificate[`${itemName}_id`] = item.id;
+    onSelect (item, itemName) {
+      this.certificate[itemName] = item
+      this.certificate[`${itemName}_id`] = item.id
     },
-    submit() {
-      let url = 'certificates';
-      let method = 'POST';
+    submit () {
+      let url = 'certificates'
+      let method = 'POST'
       if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`;
-        method = 'PUT';
+        url = `${url}/${this.$route.params.id}`
+        method = 'PUT'
       }
-      const values = this.certificate;
+      const values = this.certificate
       request({
         url,
         method,
         mode: 'cors',
-        data: JSON.stringify(values),
+        data: JSON.stringify(values)
       })
         .then(() => {
-          this.close();
-        });
+          this.close()
+        })
     },
-    close() {
-      this.$router.push('/certificates');
+    close () {
+      this.$router.push('/certificates')
     },
-    delete() {
+    delete () {
       // console.log('delete!');
     },
-    fetchData() {
+    fetchData () {
       request({
         url: `certificates/${this.$route.params.id}`,
-        method: 'GET',
+        method: 'GET'
       })
         .then((r) => {
-          this.certificate = r.data.certificate;
-          this.contacts = r.data.contacts;
-          this.companies = r.data.companies;
-          this.isLoaded = true;
-        });
-    },
-  },
-};
+          this.certificate = r.data.certificate
+          this.contacts = r.data.contacts
+          this.companies = r.data.companies
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
 <style scoped>

@@ -22,67 +22,67 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input';
-import vbutton from '@/elements/Button';
-import request from '@/request';
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import request from '@/request'
 
 export default {
   name: 'sirenType',
   components: {
     'vue-input': vinput,
-    'vue-button': vbutton,
+    'vue-button': vbutton
   },
-  data() {
+  data () {
     return {
       title: '',
       sirenType: {
         id: 0,
         name: '',
         radius: 0,
-        note: '',
-      },
-    };
+        note: ''
+      }
+    }
   },
-  mounted() {
-    this.fetchData();
+  mounted () {
+    this.fetchData()
   },
   methods: {
-    submit() {
-      let url = 'sirentypes';
-      let method = 'POST';
+    submit () {
+      let url = 'sirentypes'
+      let method = 'POST'
       if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`;
-        method = 'PUT';
+        url = `${url}/${this.$route.params.id}`
+        method = 'PUT'
       }
-      const values = this.sirenType;
+      const values = this.sirenType
       request({
         url,
         method,
         mode: 'cors',
-        data: JSON.stringify(values),
+        data: JSON.stringify(values)
       })
         .then(() => {
-          this.close();
-        });
+          this.close()
+        })
     },
-    close() {
-      this.$router.push('/sirentypes');
+    close () {
+      this.$router.push('/sirentypes')
     },
-    delete() {
+    delete () {
       // console.log('delete!');
     },
-    fetchData() {
+    fetchData () {
       request({
         url: `sirentypes/${this.$route.params.id}`,
-        method: 'GET',
+        method: 'GET'
       })
         .then((r) => {
-          this.sirenType = r.data.siren_type;
-          this.isLoaded = true;
-        });
-    },
-  },
-};
+          this.sirenType = r.data.siren_type
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
 <style scoped>

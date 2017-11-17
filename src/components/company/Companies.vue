@@ -17,24 +17,24 @@
 </template>
 
 <script>
-import vtable from '@/elements/Table';
-import mixin from '@/mixins/funcs';
-import request from '@/request';
+import vtable from '@/elements/Table'
+import mixin from '@/mixins/funcs'
+import request from '@/request'
 
 export default {
   name: 'companies',
   components: {
-    'vue-table': vtable,
+    'vue-table': vtable
   },
   mixins: [mixin],
-  data() {
+  data () {
     return {
       fetched: false,
-      list: [],
-    };
+      list: []
+    }
   },
-  created() {
-    this.fetchData();
+  created () {
+    this.fetchData()
   },
   // watch: {
   //   '$route' (to, from) {
@@ -42,39 +42,39 @@ export default {
   //   }
   // },
   methods: {
-    fetchData() {
+    fetchData () {
       if (!this.fetched) {
         request({
           url: 'companies',
-          method: 'GET',
+          method: 'GET'
         })
           .then((r) => {
-            this.list = this.createList(r.data.companies);
-            this.fetched = true;
-          });
+            this.list = this.createList(r.data.companies)
+            this.fetched = true
+          })
       }
     },
-    createList(companies) {
-      let list = [];
+    createList (companies) {
+      let list = []
       if (companies) {
         list = companies.map((c) => {
-          const str = [c.name, c.address, c.scope_name];
+          const str = [c.name, c.address, c.scope_name]
           if (c.phones.length > 0 && c.phones[0] !== '') {
-            str.push(c.phones.join(' '));
+            str.push(c.phones.join(' '))
           }
           if (c.faxes.length > 0 && c.faxes[0] !== '') {
-            str.push(c.faxes.join(' '));
+            str.push(c.faxes.join(' '))
           }
           if (c.practices.length > 0 && c.practices[0] !== '') {
-            str.push(c.practices.join(' '));
+            str.push(c.practices.join(' '))
           }
-          const nc = c;
-          nc.str = str.join(' ').toLowerCase();
-          return nc;
-        });
+          const nc = c
+          nc.str = str.join(' ').toLowerCase()
+          return nc
+        })
       }
-      return list;
-    },
-  },
-};
+      return list
+    }
+  }
+}
 </script>

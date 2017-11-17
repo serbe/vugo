@@ -22,66 +22,66 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input';
-import vbutton from '@/elements/Button';
-import request from '@/request';
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import request from '@/request'
 
 export default {
   name: 'scope',
   components: {
     'vue-input': vinput,
-    'vue-button': vbutton,
+    'vue-button': vbutton
   },
-  data() {
+  data () {
     return {
       title: '',
       scope: {
         id: 0,
         name: '',
-        note: '',
-      },
-    };
+        note: ''
+      }
+    }
   },
-  mounted() {
-    this.fetchData();
+  mounted () {
+    this.fetchData()
   },
   methods: {
-    submit() {
-      let url = 'scopes';
-      let method = 'POST';
+    submit () {
+      let url = 'scopes'
+      let method = 'POST'
       if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`;
-        method = 'PUT';
+        url = `${url}/${this.$route.params.id}`
+        method = 'PUT'
       }
-      const values = this.scope;
+      const values = this.scope
       request({
         url,
         method,
         mode: 'cors',
-        data: JSON.stringify(values),
+        data: JSON.stringify(values)
       })
         .then(() => {
-          this.close();
-        });
+          this.close()
+        })
     },
-    close() {
-      this.$router.push('/scopes');
+    close () {
+      this.$router.push('/scopes')
     },
-    delete() {
+    delete () {
       // console.log('delete!');
     },
-    fetchData() {
+    fetchData () {
       request({
         url: `scopes/${this.$route.params.id}`,
-        method: 'GET',
+        method: 'GET'
       })
         .then((r) => {
-          this.scope = r.data.scope;
-          this.isLoaded = true;
-        });
-    },
-  },
-};
+          this.scope = r.data.scope
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
 <style scoped>

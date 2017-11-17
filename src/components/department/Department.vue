@@ -22,66 +22,66 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input';
-import vbutton from '@/elements/Button';
-import request from '@/request';
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import request from '@/request'
 
 export default {
   name: 'department',
   components: {
     'vue-input': vinput,
-    'vue-button': vbutton,
+    'vue-button': vbutton
   },
-  data() {
+  data () {
     return {
       title: '',
       department: {
         id: 0,
         name: '',
-        note: '',
-      },
-    };
+        note: ''
+      }
+    }
   },
-  mounted() {
-    this.fetchData();
+  mounted () {
+    this.fetchData()
   },
   methods: {
-    submit() {
-      let url = 'departments';
-      let method = 'POST';
+    submit () {
+      let url = 'departments'
+      let method = 'POST'
       if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`;
-        method = 'PUT';
+        url = `${url}/${this.$route.params.id}`
+        method = 'PUT'
       }
-      const values = this.department;
+      const values = this.department
       request({
         url,
         method,
         mode: 'cors',
-        data: JSON.stringify(values),
+        data: JSON.stringify(values)
       })
         .then(() => {
-          this.close();
-        });
+          this.close()
+        })
     },
-    close() {
-      this.$router.push('/departments');
+    close () {
+      this.$router.push('/departments')
     },
-    delete() {
+    delete () {
       // console.log('delete!')
     },
-    fetchData() {
+    fetchData () {
       request({
         url: `departments/${this.$route.params.id}`,
-        method: 'GET',
+        method: 'GET'
       })
         .then((r) => {
-          this.department = r.data.department;
-          this.isLoaded = true;
-        });
-    },
-  },
-};
+          this.department = r.data.department
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
 <style scoped>

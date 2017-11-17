@@ -16,22 +16,22 @@
 </template>
 
 <script>
-import vtable from '@/elements/Table';
-import request from '@/request';
+import vtable from '@/elements/Table'
+import request from '@/request'
 
 export default {
   name: 'sirenTypes',
   components: {
-    'vue-table': vtable,
+    'vue-table': vtable
   },
-  data() {
+  data () {
     return {
       fetched: false,
-      list: [],
-    };
+      list: []
+    }
   },
-  created() {
-    this.fetchData();
+  created () {
+    this.fetchData()
   },
   // watch: {
   //   '$route' (to, from) {
@@ -39,29 +39,29 @@ export default {
   //   }
   // },
   methods: {
-    fetchData() {
+    fetchData () {
       if (!this.fetched) {
         request({
           url: 'sirentypes',
-          method: 'GET',
+          method: 'GET'
         })
           .then((r) => {
-            this.list = this.createList(r.data.siren_types);
-            this.fetched = true;
-          });
+            this.list = this.createList(r.data.siren_types)
+            this.fetched = true
+          })
       }
     },
-    createList(sirenTypes) {
-      let list = [];
+    createList (sirenTypes) {
+      let list = []
       if (sirenTypes) {
         list = sirenTypes.map((e) => {
-          const str = [e.name, e.radius, e.note];
-          e.str = str.join(' ').toLowerCase();
-          return e;
-        });
+          const str = [e.name, e.radius, e.note]
+          e.str = str.join(' ').toLowerCase()
+          return e
+        })
       }
-      return list;
-    },
-  },
-};
+      return list
+    }
+  }
+}
 </script>

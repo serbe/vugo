@@ -37,46 +37,46 @@ export default {
   props: {
     allElems: {
       type: Number,
-      required: true,
+      required: true
     },
     page: {
       type: Number,
-      required: true,
+      required: true
     },
     perPage: {
       type: Number,
-      required: true,
+      required: true
     },
     size: {
       type: String,
-      required: false,
-    },
+      required: false
+    }
   },
   computed: {
-    value() {
+    value () {
       if (this.page > this.max) {
-        this.onClick(this.max);
+        this.onClick(this.max)
       }
-      return this.page;
+      return this.page
     },
-    max() {
+    max () {
       if (this.allElems % this.perPage === 0) {
-        return this.allElems / this.perPage | 0;
+        return this.allElems / this.perPage | 0
       }
-      return (this.allElems / this.perPage | 0) + 1;
+      return (this.allElems / this.perPage | 0) + 1
     },
-    sizeClass() {
+    sizeClass () {
       if (this.size) {
-        return `is-${this.size}`;
+        return `is-${this.size}`
       }
-      return '';
-    },
+      return ''
+    }
   },
   methods: {
-    onClick(num) {
-      this.$emit('pagination', num);
-      window.scrollTo(0, 0);
-    },
-  },
-};
+    onClick (num) {
+      this.$emit('pagination', num)
+      window.scrollTo(0, 0)
+    }
+  }
+}
 </script>

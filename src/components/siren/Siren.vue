@@ -47,19 +47,19 @@
 // Stage     int64     `sql:"stage,null"      json:"stage"      form:"stage"      query:"stage"`
 // Own       string    `sql:"own,null"        json:"own"        form:"own"        query:"own"`
 
-import vinput from '@/elements/Input';
-import vbutton from '@/elements/Button';
-import vselect from '@/elements/Select';
-import request from '@/request';
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import vselect from '@/elements/Select'
+import request from '@/request'
 
 export default {
   name: 'siren',
   components: {
     'vue-input': vinput,
     'vue-button': vbutton,
-    'vue-select': vselect,
+    'vue-select': vselect
   },
-  data() {
+  data () {
     return {
       title: '',
       siren: {
@@ -69,7 +69,7 @@ export default {
         siren_type_id: '',
         siren_type: {
           id: 0,
-          name: '',
+          name: ''
         },
         address: '',
         radio: '',
@@ -77,86 +77,86 @@ export default {
         contact_id: 0,
         contact: {
           id: 0,
-          name: '',
+          name: ''
         },
         company_id: 0,
         company: {
           id: 0,
-          name: '',
+          name: ''
         },
         latitude: '',
         longtitude: '',
         stage: '',
         own: '',
-        note: '',
+        note: ''
       },
       siren_types: [{
         id: 0,
-        name: '',
+        name: ''
       }],
       contacts: [{
         id: 0,
-        name: '',
+        name: ''
       }],
       companies: [{
         id: 0,
-        name: '',
-      }],
-    };
+        name: ''
+      }]
+    }
   },
-  mounted() {
-    this.fetchData();
+  mounted () {
+    this.fetchData()
   },
   methods: {
-    submit() {
-      let url = 'sirens';
-      let method = 'POST';
+    submit () {
+      let url = 'sirens'
+      let method = 'POST'
       if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`;
-        method = 'PUT';
+        url = `${url}/${this.$route.params.id}`
+        method = 'PUT'
       }
-      const values = this.siren;
+      const values = this.siren
       request({
         url,
         method,
         mode: 'cors',
-        data: JSON.stringify(values),
+        data: JSON.stringify(values)
       })
         .then(() => {
-          this.close();
-        });
+          this.close()
+        })
     },
-    close() {
-      this.$router.push('/sirens');
+    close () {
+      this.$router.push('/sirens')
     },
-    onSelect(item, itemName) {
-      this.siren[itemName] = item;
-      this.siren[`${itemName}_id`] = item.id;
+    onSelect (item, itemName) {
+      this.siren[itemName] = item
+      this.siren[`${itemName}_id`] = item.id
     },
-    delete() {
+    delete () {
       // console.log('delete!');
     },
-    fetchData() {
+    fetchData () {
       request({
         url: `sirens/${this.$route.params.id}`,
-        method: 'GET',
+        method: 'GET'
       })
         .then((r) => {
-          this.siren = r.data.siren;
-          this.siren_types = r.data.siren_types;
-          this.contacts = r.data.contacts;
-          this.companies = r.data.companies;
-          this.setSelect('siren', 'siren_types', 'siren_type', 'siren_type_id');
-          this.setSelect('siren', 'contacts', 'contact', 'contact_id');
-          this.setSelect('siren', 'companies', 'company', 'company_id');
-          this.isLoaded = true;
-        });
+          this.siren = r.data.siren
+          this.siren_types = r.data.siren_types
+          this.contacts = r.data.contacts
+          this.companies = r.data.companies
+          this.setSelect('siren', 'siren_types', 'siren_type', 'siren_type_id')
+          this.setSelect('siren', 'contacts', 'contact', 'contact_id')
+          this.setSelect('siren', 'companies', 'company', 'company_id')
+          this.isLoaded = true
+        })
     },
-    setSelect(root, list, item, value) {
-      this[root][item] = this[list].find(v => v.id === this[root][value]);
-    },
-  },
-};
+    setSelect (root, list, item, value) {
+      this[root][item] = this[list].find(v => v.id === this[root][value])
+    }
+  }
+}
 </script>
 
 <style scoped>

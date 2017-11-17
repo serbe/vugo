@@ -16,21 +16,21 @@
 </template>
 
 <script>
-import vtable from '@/elements/Table';
-import request from '@/request';
+import vtable from '@/elements/Table'
+import request from '@/request'
 
 export default {
   components: {
-    'vue-table': vtable,
+    'vue-table': vtable
   },
-  data() {
+  data () {
     return {
       fetched: false,
-      list: [],
-    };
+      list: []
+    }
   },
-  created() {
-    this.fetchData();
+  created () {
+    this.fetchData()
   },
   // watch: {
   //   '$route' (to, from) {
@@ -38,30 +38,30 @@ export default {
   //   }
   // },
   methods: {
-    fetchData() {
+    fetchData () {
       if (!this.fetched) {
         request({
           url: 'certificates',
-          method: 'GET',
+          method: 'GET'
         })
           .then((r) => {
-            this.list = this.createList(r.data.certificates);
-            this.fetched = true;
-          });
+            this.list = this.createList(r.data.certificates)
+            this.fetched = true
+          })
       }
     },
-    createList(certificates) {
-      let list = [];
+    createList (certificates) {
+      let list = []
       if (certificates) {
         list = certificates.map((e) => {
-          const str = [e.num, e.contact_name, e.company_name, e.cert_date, e.note];
-          const ne = e;
-          ne.str = str.join(' ').toLowerCase();
-          return ne;
-        });
+          const str = [e.num, e.contact_name, e.company_name, e.cert_date, e.note]
+          const ne = e
+          ne.str = str.join(' ').toLowerCase()
+          return ne
+        })
       }
-      return list;
-    },
-  },
-};
+      return list
+    }
+  }
+}
 </script>

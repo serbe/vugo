@@ -24,69 +24,69 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input';
-import vbutton from '@/elements/Button';
-import vswitch from '@/elements/Switch';
-import request from '@/request';
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import vswitch from '@/elements/Switch'
+import request from '@/request'
 
 export default {
   name: 'post',
   components: {
     'vue-input': vinput,
     'vue-button': vbutton,
-    'vue-switch': vswitch,
+    'vue-switch': vswitch
   },
-  data() {
+  data () {
     return {
       title: '',
       post: {
         id: 0,
         name: '',
         go: false,
-        note: '',
-      },
-    };
+        note: ''
+      }
+    }
   },
-  mounted() {
-    this.fetchData();
+  mounted () {
+    this.fetchData()
   },
   methods: {
-    submit() {
-      let url = 'posts';
-      let method = 'POST';
+    submit () {
+      let url = 'posts'
+      let method = 'POST'
       if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`;
-        method = 'PUT';
+        url = `${url}/${this.$route.params.id}`
+        method = 'PUT'
       }
-      const values = this.post;
+      const values = this.post
       request({
         url,
         method,
         mode: 'cors',
-        data: JSON.stringify(values),
+        data: JSON.stringify(values)
       })
         .then(() => {
-          this.close();
-        });
+          this.close()
+        })
     },
-    close() {
-      this.$router.push('/posts');
+    close () {
+      this.$router.push('/posts')
     },
-    delete() {
+    delete () {
       // console.log('delete!');
     },
-    fetchData() {
+    fetchData () {
       request({
         url: `posts/${this.$route.params.id}`,
-        method: 'GET',
+        method: 'GET'
       })
         .then((r) => {
-          this.post = r.data.post;
-          this.isLoaded = true;
-        });
-    },
-  },
-};
+          this.post = r.data.post
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
 <style scoped>

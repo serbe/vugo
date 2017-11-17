@@ -119,12 +119,12 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input';
-import vbutton from '@/elements/Button';
-import vselect from '@/elements/Select';
-import vdate from '@/elements/Date';
-import mixin from '@/mixins/funcs';
-import request from '@/request';
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import vselect from '@/elements/Select'
+import vdate from '@/elements/Date'
+import mixin from '@/mixins/funcs'
+import request from '@/request'
 
 export default {
   name: 'contact',
@@ -132,10 +132,10 @@ export default {
     'vue-input': vinput,
     'vue-button': vbutton,
     'vue-select': vselect,
-    'vue-date': vdate,
+    'vue-date': vdate
   },
   mixins: [mixin],
-  data() {
+  data () {
     return {
       title: '',
       contact: {
@@ -144,140 +144,140 @@ export default {
         birthday: '',
         company: {
           id: 0,
-          name: '',
+          name: ''
         },
         company_id: 0,
         post: {
           id: 0,
-          name: '',
+          name: ''
         },
         post_id: 0,
         department: [{
           id: 0,
-          email: '',
+          email: ''
         }],
         department_id: 0,
         post_go: {
           id: 0,
-          name: '',
+          name: ''
         },
         post_go_id: 0,
         rank: {
           id: 0,
-          name: '',
+          name: ''
         },
         rank_id: 0,
         emails: [{
           id: 0,
-          email: '',
+          email: ''
         }],
         phones: [{
           id: 0,
-          phone: '',
+          phone: ''
         }],
         faxes: [{
           id: 0,
-          phone: '',
+          phone: ''
         }],
-        note: '',
+        note: ''
       },
       companies: [{
         id: 0,
-        name: '',
+        name: ''
       }],
       posts: [{
         id: 0,
-        name: '',
+        name: ''
       }],
       posts_go: [{
         id: 0,
-        name: '',
+        name: ''
       }],
       departments: [{
         id: 0,
-        name: '',
+        name: ''
       }],
       ranks: [{
         id: 0,
-        name: '',
-      }],
-    };
+        name: ''
+      }]
+    }
   },
-  mounted() {
-    this.fetchData();
+  mounted () {
+    this.fetchData()
   },
   methods: {
-    onBlur(arr, key) {
+    onBlur (arr, key) {
       if (this.checkArray(this.contact[arr], key)) {
-        const obj = {};
-        obj.id = this.contact[arr].length + 1;
-        obj[key] = '';
-        this.contact[arr].push(obj);
+        const obj = {}
+        obj.id = this.contact[arr].length + 1
+        obj[key] = ''
+        this.contact[arr].push(obj)
       }
     },
-    onSelect(item, itemName) {
-      this.contact[itemName] = item;
-      this.contact[`${itemName}_id`] = item.id;
+    onSelect (item, itemName) {
+      this.contact[itemName] = item
+      this.contact[`${itemName}_id`] = item.id
     },
-    submit() {
-      let url = '/contacts';
-      let method = 'POST';
+    submit () {
+      let url = '/contacts'
+      let method = 'POST'
       if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`;
-        method = 'PUT';
+        url = `${url}/${this.$route.params.id}`
+        method = 'PUT'
       }
-      const values = this.contact;
-      values.emails = this.filterArray(values.emails, 'email');
-      values.phones = this.filterArray(values.phones, 'phone');
-      values.faxes = this.filterArray(values.faxes, 'phone');
+      const values = this.contact
+      values.emails = this.filterArray(values.emails, 'email')
+      values.phones = this.filterArray(values.phones, 'phone')
+      values.faxes = this.filterArray(values.faxes, 'phone')
       request({
         url,
         method,
         mode: 'cors',
-        data: JSON.stringify(values),
+        data: JSON.stringify(values)
       })
         .then(() => {
-          this.close();
-        });
+          this.close()
+        })
     },
-    close() {
-      this.$router.push('/contacts');
+    close () {
+      this.$router.push('/contacts')
     },
-    delete() {
+    delete () {
       // console.log('delete!');
     },
-    fetchData() {
+    fetchData () {
       request({
         url: `contacts/${this.$route.params.id}`,
-        method: 'GET',
+        method: 'GET'
       })
         .then((r) => {
-          this.contact = r.data.contact;
-          this.companies = r.data.companies;
-          this.posts = r.data.posts;
-          this.departments = r.data.departments;
-          this.posts_go = r.data.posts_go;
-          this.ranks = r.data.ranks;
+          this.contact = r.data.contact
+          this.companies = r.data.companies
+          this.posts = r.data.posts
+          this.departments = r.data.departments
+          this.posts_go = r.data.posts_go
+          this.ranks = r.data.ranks
           if (this.contact.emails) {
-            this.contact.emails.push({ id: this.contact.emails.length + 1, email: '' });
+            this.contact.emails.push({ id: this.contact.emails.length + 1, email: '' })
           } else {
-            this.contact.emails = [{ id: 1, email: '' }];
+            this.contact.emails = [{ id: 1, email: '' }]
           }
           if (this.contact.phones) {
-            this.contact.phones.push({ id: this.contact.phones.length + 1, phone: '' });
+            this.contact.phones.push({ id: this.contact.phones.length + 1, phone: '' })
           } else {
-            this.contact.phones = [{ id: 1, phone: '' }];
+            this.contact.phones = [{ id: 1, phone: '' }]
           }
           if (this.contact.faxes) {
-            this.contact.faxes.push({ id: this.contact.faxes.length + 1, phone: '' });
+            this.contact.faxes.push({ id: this.contact.faxes.length + 1, phone: '' })
           } else {
-            this.contact.faxes = [{ id: 1, phone: '' }];
+            this.contact.faxes = [{ id: 1, phone: '' }]
           }
-          this.isLoaded = true;
-        });
-    },
-  },
-};
+          this.isLoaded = true
+        })
+    }
+  }
+}
 </script>
 
 <style scoped>

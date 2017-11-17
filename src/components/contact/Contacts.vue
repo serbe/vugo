@@ -17,64 +17,64 @@
 </template>
 
 <script>
-import vtable from '@/elements/Table';
-import mixin from '@/mixins/funcs';
-import request from '@/request';
+import vtable from '@/elements/Table'
+import mixin from '@/mixins/funcs'
+import request from '@/request'
 
 export default {
   name: 'contacts',
   components: {
-    'vue-table': vtable,
+    'vue-table': vtable
   },
   mixins: [mixin],
-  data() {
+  data () {
     return {
       fetched: false,
-      list: [],
-    };
+      list: []
+    }
   },
-  created() {
-    this.fetchData();
+  created () {
+    this.fetchData()
   },
   watch: {
-    $route() {
-      this.fetchData();
-    },
+    $route () {
+      this.fetchData()
+    }
     // $router() {
     //   console.log(this.$route.params)
     // }
   },
   methods: {
-    fetchData() {
+    fetchData () {
       if (!this.fetched) {
         request({
           url: 'contacts',
-          method: 'GET',
+          method: 'GET'
         })
           .then((r) => {
-            this.list = this.createList(r.data.contacts);
-            this.fetched = true;
-          });
+            this.list = this.createList(r.data.contacts)
+            this.fetched = true
+          })
       }
     },
-    createList(contacts) {
-      let list = [];
+    createList (contacts) {
+      let list = []
       if (contacts) {
         list = contacts.map((c) => {
-          const str = [c.name, c.company_name, c.post_name];
+          const str = [c.name, c.company_name, c.post_name]
           if (c.phones.length > 0 && c.phones[0] !== '') {
-            str.push(c.phones.join(' '));
+            str.push(c.phones.join(' '))
           }
           if (c.faxes.length > 0 && c.faxes[0] !== '') {
-            str.push(c.faxes.join(' '));
+            str.push(c.faxes.join(' '))
           }
-          const nc = c;
-          nc.str = str.join(' ').toLowerCase();
-          return nc;
-        });
+          const nc = c
+          nc.str = str.join(' ').toLowerCase()
+          return nc
+        })
       }
-      return list;
-    },
-  },
-};
+      return list
+    }
+  }
+}
 </script>

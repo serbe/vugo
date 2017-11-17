@@ -53,148 +53,148 @@
 </template>
 
 <script>
-import pagination from '@/elements/Pagination';
-import cell from '@/elements/Cell';
+import pagination from '@/elements/Pagination'
+import cell from '@/elements/Cell'
 
 export default {
   name: 'vue-table',
   components: {
     'vue-pagination': pagination,
-    'vue-cell': cell,
+    'vue-cell': cell
   },
-  data() {
+  data () {
     return {
       query: '',
       page: 1,
       list: [],
-      rowsSelect: 50,
-    };
+      rowsSelect: 50
+    }
   },
   props: {
     name: {
       type: String,
-      required: true,
+      required: true
     },
     columns: {
       type: Array,
-      required: false,
+      required: false
     },
     names: {
       type: Array,
-      required: false,
+      required: false
     },
     tableClasses: {
       type: String,
-      required: false,
+      required: false
     },
     headClasses: {
       type: Array,
-      required: false,
+      required: false
     },
     cellClasses: {
       type: Array,
-      required: false,
+      required: false
     },
     cellTypes: {
       type: Array,
-      required: false,
+      required: false
     },
     tableData: {
       type: Array,
-      required: true,
+      required: true
     },
     search: {
       type: Boolean,
       default: false,
-      required: false,
+      required: false
     },
     pagination: {
       type: Boolean,
       default: false,
-      required: false,
+      required: false
     },
     rowsPerPage: {
       type: Number,
       default: 50,
-      required: false,
+      required: false
     },
     hyper: {
       type: Boolean,
       default: false,
-      required: false,
+      required: false
     },
     adding: {
       type: Boolean,
       default: false,
-      required: false,
-    },
+      required: false
+    }
   },
   computed: {
-    head() {
-      return this.names ? this.names : Object.keys(this.tableData[0]);
+    head () {
+      return this.names ? this.names : Object.keys(this.tableData[0])
     },
-    body() {
-      return this.columns ? this.columns : Object.keys(this.tableData[0]);
+    body () {
+      return this.columns ? this.columns : Object.keys(this.tableData[0])
     },
-    rows() {
-      let result = [];
+    rows () {
+      let result = []
       if (this.filtered) {
-        const tp = this.page;
-        const pp = this.perPage;
-        result = this.filtered.filter((c, i) => i >= (tp - 1) * pp && i < tp * pp);
+        const tp = this.page
+        const pp = this.perPage
+        result = this.filtered.filter((c, i) => i >= (tp - 1) * pp && i < tp * pp)
       }
-      return result;
+      return result
     },
-    all() {
-      return this.filtered ? this.filtered.length : 0;
+    all () {
+      return this.filtered ? this.filtered.length : 0
     },
-    filtered() {
+    filtered () {
       if (this.tableData) {
-        const queryArr = this.query.toLowerCase().split(' ');
-        return this.tableData.filter(f => queryArr.every(q => f.str.includes(q)));
+        const queryArr = this.query.toLowerCase().split(' ')
+        return this.tableData.filter(f => queryArr.every(q => f.str.includes(q)))
       }
-      return [];
+      return []
     },
-    tableClass() {
-      return this.tableClasses ? this.tableClasses : '';
+    tableClass () {
+      return this.tableClasses ? this.tableClasses : ''
     },
-    perPage() {
-      return Number(this.rowsSelect);
-    },
+    perPage () {
+      return Number(this.rowsSelect)
+    }
   },
-  mounted() {
+  mounted () {
     if (this.pagination && this.rowsPerPage > 0 && this.rowsPerPage !== this.rowsSelect) {
-      this.rowsSelect = this.rowsPerPage;
+      this.rowsSelect = this.rowsPerPage
     }
   },
   methods: {
-    onClickTr(item) {
+    onClickTr (item) {
       if ('id' in item) {
-        this.$router.push(`/${this.name}/${item.id}`);
+        this.$router.push(`/${this.name}/${item.id}`)
       }
     },
-    headClass(index) {
-      return this.headClasses ? this.headClasses[index] : '';
+    headClass (index) {
+      return this.headClasses ? this.headClasses[index] : ''
     },
-    cellClass(index) {
-      return this.cellClasses ? this.cellClasses[index] : this.headClass(index);
+    cellClass (index) {
+      return this.cellClasses ? this.cellClasses[index] : this.headClass(index)
     },
-    cellType(index) {
-      return this.cellTypes ? this.cellTypes[index] : '';
+    cellType (index) {
+      return this.cellTypes ? this.cellTypes[index] : ''
     },
-    filter(num) {
+    filter (num) {
       if (num !== this.page) {
-        this.page = num;
+        this.page = num
       }
-    },
+    }
   },
   watch: {
-    query(val) {
-      this.query = val;
-      this.page = 1;
-    },
-  },
-};
+    query (val) {
+      this.query = val
+      this.page = 1
+    }
+  }
+}
 </script>
 
 <style scoped>

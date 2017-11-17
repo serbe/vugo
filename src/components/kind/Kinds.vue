@@ -16,22 +16,22 @@
 </template>
 
 <script>
-import vtable from '@/elements/Table';
-import request from '@/request';
+import vtable from '@/elements/Table'
+import request from '@/request'
 
 export default {
   name: 'kinds',
   components: {
-    'vue-table': vtable,
+    'vue-table': vtable
   },
-  data() {
+  data () {
     return {
       fetched: false,
-      list: [],
-    };
+      list: []
+    }
   },
-  created() {
-    this.fetchData();
+  created () {
+    this.fetchData()
   },
   // watch: {
   //   '$route' (to, from) {
@@ -39,30 +39,30 @@ export default {
   //   }
   // },
   methods: {
-    fetchData() {
+    fetchData () {
       if (!this.fetched) {
         request({
           url: 'kinds',
-          method: 'GET',
+          method: 'GET'
         })
           .then((r) => {
-            this.list = this.createList(r.data.kinds);
-            this.fetched = true;
-          });
+            this.list = this.createList(r.data.kinds)
+            this.fetched = true
+          })
       }
     },
-    createList(kinds) {
-      let list = [];
+    createList (kinds) {
+      let list = []
       if (kinds) {
         list = kinds.map((e) => {
-          const str = [e.name, e.short_name, e.note];
-          const ne = e;
-          ne.str = str.join(' ').toLowerCase();
-          return ne;
-        });
+          const str = [e.name, e.short_name, e.note]
+          const ne = e
+          ne.str = str.join(' ').toLowerCase()
+          return ne
+        })
       }
-      return list;
-    },
-  },
-};
+      return list
+    }
+  }
+}
 </script>
