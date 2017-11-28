@@ -29,7 +29,7 @@ export default {
   },
   isAuth () {
     // return !!this.getToken()
-    return this.checkAuth()
+    return this.user.authenticated
   },
   getAuthHeader () {
     return `Bearer ${this.getToken()}`
