@@ -29,5 +29,13 @@ router.beforeEach((to, from, next) => {
 new Vue({
   el: '#app',
   router,
+  methods: {
+    checkAuth () {
+      // some code
+    }
+  },
+  mounted: function () {
+    this.checkAuth()
+  },
   render: h => h(App)
 })

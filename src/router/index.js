@@ -1,36 +1,39 @@
+// import Home from '@/components/Home'
+// import Login from '@/components/Login'
+// import Companies from '@/components/company/Companies'
+// import Company from '@/components/company/Company'
+// import Contacts from '@/components/contact/Contacts'
+// import Contact from '@/components/contact/Contact'
+// import Departments from '@/components/department/Departments'
+// import Department from '@/components/department/Department'
+// import Educations from '@/components/education/Educations'
+// import Education from '@/components/education/Education'
+// import Kinds from '@/components/kind/Kinds'
+// import Kind from '@/components/kind/Kind'
+// import Posts from '@/components/post/Posts'
+// import Post from '@/components/post/Post'
+// import Practices from '@/components/practice/Practices'
+// import Practice from '@/components/practice/Practice'
+// import Ranks from '@/components/rank/Ranks'
+// import Rank from '@/components/rank/Rank'
+// import Scopes from '@/components/scope/Scopes'
+// import Scope from '@/components/scope/Scope'
+// import SirenTypes from '@/components/sirentype/SirenTypes'
+// import SirenType from '@/components/sirentype/SirenType'
+// import Sirens from '@/components/siren/Sirens'
+// import Siren from '@/components/siren/Siren'
+// import Certificates from '@/components/certificate/Certificates'
+// import Certificate from '@/components/certificate/Certificate'
+// import NotFoundComponent from '@/components/NotFoundComponent'
+
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import Login from '@/components/Login'
-import Companies from '@/components/company/Companies'
-import Company from '@/components/company/Company'
-import Contacts from '@/components/contact/Contacts'
-import Contact from '@/components/contact/Contact'
-import Departments from '@/components/department/Departments'
-import Department from '@/components/department/Department'
-import Educations from '@/components/education/Educations'
-import Education from '@/components/education/Education'
-import Kinds from '@/components/kind/Kinds'
-import Kind from '@/components/kind/Kind'
-import Posts from '@/components/post/Posts'
-import Post from '@/components/post/Post'
-import Practices from '@/components/practice/Practices'
-import Practice from '@/components/practice/Practice'
-import Ranks from '@/components/rank/Ranks'
-import Rank from '@/components/rank/Rank'
-import Scopes from '@/components/scope/Scopes'
-import Scope from '@/components/scope/Scope'
-import SirenTypes from '@/components/sirentype/SirenTypes'
-import SirenType from '@/components/sirentype/SirenType'
-import Sirens from '@/components/siren/Sirens'
-import Siren from '@/components/siren/Siren'
-import Certificates from '@/components/certificate/Certificates'
-import Certificate from '@/components/certificate/Certificate'
-import NotFoundComponent from '@/components/NotFoundComponent'
+
+const lazyLoad = (path) => () => import(`@/components/${path}`)
 
 Vue.use(Router)
 
-const router = new Router({
+export default new Router({
   hashbang: false,
   linkActiveClass: 'is-active',
   mode: 'history',
@@ -38,7 +41,7 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
+      component: lazyLoad('Home'),
       meta: {
         requiresAuth: true,
         title: 'ЕДДС'
@@ -47,7 +50,7 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login,
+      component: lazyLoad('Login'),
       meta: {
         title: 'Авторизация'
       }
@@ -55,7 +58,7 @@ const router = new Router({
     {
       path: '/companies',
       name: 'companies',
-      component: Companies,
+      component: lazyLoad('company/Companies'),
       meta: {
         requiresAuth: true,
         title: 'Список организаций'
@@ -64,7 +67,7 @@ const router = new Router({
     {
       path: '/company/:id',
       name: 'company',
-      component: Company,
+      component: lazyLoad('company/Company'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр организации'
@@ -73,7 +76,7 @@ const router = new Router({
     {
       path: '/contacts',
       name: 'contacts',
-      component: Contacts,
+      component: lazyLoad('contact/Contacts'),
       meta: {
         requiresAuth: true,
         title: 'Список контактов'
@@ -82,7 +85,7 @@ const router = new Router({
     {
       path: '/contact/:id',
       name: 'contact',
-      component: Contact,
+      component: lazyLoad('contact/Contact'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр контакта'
@@ -91,7 +94,7 @@ const router = new Router({
     {
       path: '/departments',
       name: 'departments',
-      component: Departments,
+      component: lazyLoad('department/Departments'),
       meta: {
         requiresAuth: true,
         title: 'Список отделов'
@@ -100,7 +103,7 @@ const router = new Router({
     {
       path: '/department/:id',
       name: 'department',
-      component: Department,
+      component: lazyLoad('department/Department'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр отдела'
@@ -109,7 +112,7 @@ const router = new Router({
     {
       path: '/educations',
       name: 'educations',
-      component: Educations,
+      component: lazyLoad('education/Educations'),
       meta: {
         requiresAuth: true,
         title: 'Список обучений в УМЦ'
@@ -118,7 +121,7 @@ const router = new Router({
     {
       path: '/education/:id',
       name: 'education',
-      component: Education,
+      component: lazyLoad('education/Education'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр обучения в УМЦ'
@@ -127,7 +130,7 @@ const router = new Router({
     {
       path: '/kinds',
       name: 'kinds',
-      component: Kinds,
+      component: lazyLoad('kind/Kinds'),
       meta: {
         requiresAuth: true,
         title: 'Список типов тренировок'
@@ -136,7 +139,7 @@ const router = new Router({
     {
       path: '/kind/:id',
       name: 'kind',
-      component: Kind,
+      component: lazyLoad('kind/Kind'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр типа тренировки'
@@ -145,7 +148,7 @@ const router = new Router({
     {
       path: '/posts',
       name: 'posts',
-      component: Posts,
+      component: lazyLoad('post/Posts'),
       meta: {
         requiresAuth: true,
         title: 'Список должностей'
@@ -154,7 +157,7 @@ const router = new Router({
     {
       path: '/post/:id',
       name: 'post',
-      component: Post,
+      component: lazyLoad('post/Post'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр должности'
@@ -163,7 +166,7 @@ const router = new Router({
     {
       path: '/practices',
       name: 'practices',
-      component: Practices,
+      component: lazyLoad('practice/Practices'),
       meta: {
         requiresAuth: true,
         title: 'Список тренировок в организациях'
@@ -172,7 +175,7 @@ const router = new Router({
     {
       path: '/practice/:id',
       name: 'practice',
-      component: Practice,
+      component: lazyLoad('practice/Practice'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр тренировки'
@@ -181,7 +184,7 @@ const router = new Router({
     {
       path: '/ranks',
       name: 'ranks',
-      component: Ranks,
+      component: lazyLoad('rank/Ranks'),
       meta: {
         requiresAuth: true,
         title: 'Список чинов'
@@ -190,7 +193,7 @@ const router = new Router({
     {
       path: '/rank/:id',
       name: 'rank',
-      component: Rank,
+      component: lazyLoad('rank/Rank'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр чина'
@@ -199,7 +202,7 @@ const router = new Router({
     {
       path: '/scopes',
       name: 'scopes',
-      component: Scopes,
+      component: lazyLoad('scope/Scopes'),
       meta: {
         requiresAuth: true,
         title: 'Список сфер деятельности'
@@ -208,7 +211,7 @@ const router = new Router({
     {
       path: '/scope/:id',
       name: 'scope',
-      component: Scope,
+      component: lazyLoad('scope/Scope'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр сферы деятельности'
@@ -217,7 +220,7 @@ const router = new Router({
     {
       path: '/sirentypes',
       name: 'sirentypes',
-      component: SirenTypes,
+      component: lazyLoad('sirentype/SirenTypes'),
       meta: {
         requiresAuth: true,
         title: 'Список типов сирен'
@@ -226,7 +229,7 @@ const router = new Router({
     {
       path: '/sirentype/:id',
       name: 'sirentype',
-      component: SirenType,
+      component: lazyLoad('sirentype/SirenType'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр типа сирены'
@@ -235,7 +238,7 @@ const router = new Router({
     {
       path: '/sirens',
       name: 'sirens',
-      component: Sirens,
+      component: lazyLoad('siren/Sirens'),
       meta: {
         requiresAuth: true,
         title: 'Список сирен'
@@ -244,7 +247,7 @@ const router = new Router({
     {
       path: '/siren/:id',
       name: 'siren',
-      component: Siren,
+      component: lazyLoad('siren/Siren'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр сирены'
@@ -253,7 +256,7 @@ const router = new Router({
     {
       path: '/certificates',
       name: 'certificates',
-      component: Certificates,
+      component: lazyLoad('certificate/Certificates'),
       meta: {
         requiresAuth: true,
         title: 'Список удостоверений'
@@ -262,7 +265,7 @@ const router = new Router({
     {
       path: '/certificate/:id',
       name: 'certificate',
-      component: Certificate,
+      component: lazyLoad('certificate/Certificate'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр удостоверения'
@@ -271,9 +274,7 @@ const router = new Router({
     {
       path: '*',
       name: 'error',
-      component: NotFoundComponent
+      component: lazyLoad('NotFoundComponent')
     }
   ]
 })
-
-export default router

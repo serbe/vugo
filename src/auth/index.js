@@ -7,18 +7,29 @@ export default {
   },
   login (token) {
     localStorage.setItem('token', token)
+    const currentDate = new Date()
+    localStorage.setItem('expire', currentDate.valueOf() + 86400000)
     this.user.authenticated = true
   },
   logout () {
     localStorage.removeItem('token')
+    localStorage.removeItem('expire')
     this.user.authenticated = false
   },
   checkAuth () {
     const token = this.getToken()
-    this.user.authenticated = !!token
+    let expireDate = localStorage.getItem('expire')
+    const currentDate = new Date()
+    // this.user.authenticated = !!token
+    if (!!token && expireDate < currentDate) {
+      this.user.authenticated = true
+    } else {
+      this.user.authenticated = false
+    }
   },
   isAuth () {
-    return !!this.getToken()
+    // return !!this.getToken()
+    return this.checkAuth()
   },
   getAuthHeader () {
     return `Bearer ${this.getToken()}`
