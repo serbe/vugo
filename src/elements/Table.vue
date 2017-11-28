@@ -40,7 +40,7 @@
           </tr>
         </template>
         <template v-else>
-          <tr v-for="(item, key) in body" v-bind:key="key">
+          <tr v-for="(item, key) in rows" v-bind:key="key">
             <td v-for="(name, index) in body" v-bind:key="index" :class="cellClass(index)">
               <vue-cell :type="cellType(index)" :value="item[name]"></vue-cell>
             </td>
