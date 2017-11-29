@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <nav class="navbar ">
+    <nav class="navbar">
       <div class="navbar-brand">
         <template v-if="user.authenticated">
           <router-link to="/" class="navbar-item" exact>ЕДДС</router-link>
@@ -21,23 +21,28 @@
             <router-link to="/sirens" class="navbar-item">Сирены</router-link>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Справочники</a>
-              <div class="navbar-dropdown ">
-                <router-link to="/departments" class="navbar-item ">Отделы</router-link>
-                <router-link to="/educations" class="navbar-item ">Обучение</router-link>
-                <router-link to="/kinds" class="navbar-item ">Типы</router-link>
-                <router-link to="/posts" class="navbar-item ">Должности</router-link>
-                <router-link to="/practices" class="navbar-item ">Учения</router-link>
-                <router-link to="/ranks" class="navbar-item ">Чины</router-link>
-                <router-link to="/scopes" class="navbar-item ">Сферы</router-link>
-                <router-link to="/certificates" class="navbar-item ">Удостоверения</router-link>
+              <div class="navbar-dropdown">
+                <router-link to="/departments" class="navbar-item">Отделы</router-link>
+                <router-link to="/educations" class="navbar-item">Обучение</router-link>
+                <router-link to="/kinds" class="navbar-item">Типы</router-link>
+                <router-link to="/posts" class="navbar-item">Должности</router-link>
+                <router-link to="/practices" class="navbar-item">Учения</router-link>
+                <router-link to="/ranks" class="navbar-item">Чины</router-link>
+                <router-link to="/scopes" class="navbar-item">Сферы</router-link>
+                <router-link to="/certificates" class="navbar-item">Удостоверения</router-link>
                 <hr class="navbar-divider">
-                <router-link to="/sirentypes" class="navbar-item ">Типы сирен</router-link>
+                <router-link to="/sirentypes" class="navbar-item">Типы сирен</router-link>
               </div>
             </div>
           </template>
         </div>
         <div class="navbar-end">
-          <vue-button v-if="user.authenticated" class="navbar-item" text="Выход" color="info" @click="logout"></vue-button>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">{{ user.name }}</a>
+            <div class="navbar-dropdown is-right">
+              <vue-button v-if="user.authenticated" class="navbar-item" text="Выход" color="info" @click="logout"></vue-button>
+          </div>
+          </div>
         </div>
       </div>
     </nav>
