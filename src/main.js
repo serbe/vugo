@@ -6,6 +6,8 @@ import auth from './auth'
 require('./assets/sass/main.scss')
 require('./assets/css/main.css')
 
+auth.checkAuth()
+
 Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
@@ -14,6 +16,9 @@ router.beforeEach((to, from, next) => {
   }
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!auth.isAuth()) {
+      if (to.name !== 'login') {
+        auth.right_page = to.name
+      }
       next({
         path: '/login'
       })
@@ -29,13 +34,5 @@ router.beforeEach((to, from, next) => {
 new Vue({
   el: '#app',
   router,
-  methods: {
-    checkAuth () {
-      // some code
-    }
-  },
-  mounted: function () {
-    this.checkAuth()
-  },
   render: h => h(App)
 })

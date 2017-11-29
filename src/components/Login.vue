@@ -46,6 +46,7 @@ export default {
       if (process.env.NODE_ENV === 'development') {
         url = 'http://localhost:9090/login'
       }
+      let rightPage = auth.right_page
       axios({
         url,
         method: 'POST',
@@ -53,8 +54,8 @@ export default {
       })
         .then((r) => {
           if (r.data.token && r.data.token !== '') {
-            auth.login(r.data.token)
-            router.push({ name: 'home' })
+            auth.login(r.data)
+            router.push({ name: rightPage })
           }
         })
         .catch(() => {
