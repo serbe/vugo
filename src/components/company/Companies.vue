@@ -19,36 +19,18 @@
 <script>
 import vtable from '@/elements/Table'
 import mixin from '@/mixins/funcs'
-import request from '@/request'
+import mix from '@/mixins/mix'
 
 export default {
   name: 'companies',
   components: {
     'vue-table': vtable
   },
-  mixins: [mixin],
-  data () {
-    return {
-      fetched: false,
-      list: []
-    }
-  },
+  mixins: [mixin, mix],
   mounted () {
-    this.fetchData()
+    this.fetchData('companies')
   },
   methods: {
-    fetchData () {
-      if (!this.fetched) {
-        request({
-          url: 'companies',
-          method: 'GET'
-        })
-          .then((r) => {
-            this.list = this.createList(r.data.companies)
-            this.fetched = true
-          })
-      }
-    },
     createList (companies) {
       let list = []
       if (companies) {

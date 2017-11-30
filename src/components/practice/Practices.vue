@@ -17,35 +17,18 @@
 
 <script>
 import vtable from '@/elements/Table'
-import request from '@/request'
+import mix from '@/mixins/mix'
 
 export default {
   name: 'practices',
   components: {
     'vue-table': vtable
   },
-  data () {
-    return {
-      fetched: false,
-      list: []
-    }
-  },
+  mixin: [mix],
   mounted () {
-    this.fetchData()
+    this.fetchData('practices')
   },
   methods: {
-    fetchData () {
-      if (!this.fetched) {
-        request({
-          url: 'practices',
-          method: 'GET'
-        })
-          .then((r) => {
-            this.list = this.createList(r.data.practices)
-            this.fetched = true
-          })
-      }
-    },
     createList (practices) {
       let list = []
       if (practices) {
