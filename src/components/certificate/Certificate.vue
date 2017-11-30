@@ -14,13 +14,13 @@
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <vue-button text="Сохранить" color="primary" @click="submit" ></vue-button>
+          <vue-button text="Сохранить" color="primary" @click="submit"></vue-button>
         </div>
         <div class="control">
-          <vue-button text="Закрыть" @click="close" ></vue-button>
+          <vue-button text="Закрыть" @click="close"></vue-button>
         </div>
         <div class="control">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" ></vue-button>
+          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></vue-button>
         </div>
       </div>
     </form>

@@ -4,16 +4,16 @@
 
       <div class="columns">
         <div class="column is-half">
-          <vue-input v-model="siren.num_pass" type="text" label placeholder="Серийный номер" iconLeft="tag" ></vue-input>
+          <vue-input v-model="siren.num_pass" type="text" label placeholder="Серийный номер" iconLeft="tag"></vue-input>
         </div>
         <div class="column is-half">
-          <vue-select :list="siren_types" :selected-item="siren.siren_type" label="Тип сирены" item-name="siren_type" @select="onSelect" icon="tag" ></vue-select>
+          <vue-select :list="siren_types" :selected-item="siren.siren_type" label="Тип сирены" item-name="siren_type" @select="onSelect" icon="tag"></vue-select>
         </div>
       </div>
 
-      <vue-input v-model="siren.address" type="text" label placeholder="Адрес" iconLeft="address-card" ></vue-input>
-      <vue-select :list="contacts" :selected-item="siren.contact" label="Контактное лицо" item-name="contact" @select="onSelect" icon="user" ></vue-select>
-      <vue-select :list="companies" :selected-item="siren.company" label="Организация" item-name="company" @select="onSelect" icon="building" ></vue-select>
+      <vue-input v-model="siren.address" type="text" label placeholder="Адрес" iconLeft="address-card"></vue-input>
+      <vue-select :list="contacts" :selected-item="siren.contact" label="Контактное лицо" item-name="contact" @select="onSelect" icon="user"></vue-select>
+      <vue-select :list="companies" :selected-item="siren.company" label="Организация" item-name="company" @select="onSelect" icon="building"></vue-select>
 
       <div class="columns">
         <div class="column is-half">
@@ -27,13 +27,13 @@
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <vue-button text="Сохранить" color="primary" @click="submit" ></vue-button>
+          <vue-button text="Сохранить" color="primary" @click="submit"></vue-button>
         </div>
         <div class="control">
-          <vue-button text="Закрыть" @click="close" ></vue-button>
+          <vue-button text="Закрыть" @click="close"></vue-button>
         </div>
         <div class="control">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" ></vue-button>
+          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></vue-button>
         </div>
       </div>
     </form>

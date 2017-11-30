@@ -5,7 +5,7 @@
         <span v-if="icon" class="icon is-small">
           <i :class="'fa fa-' + icon"></i>
         </span>
-        <template v-if="text" >{{ text }}</template>
+        <template v-if="text">{{ text }}</template>
       </a>
     </p>
   </div>

@@ -18,6 +18,10 @@ export default {
     },
     value: {
       required: false
+    },
+    cellClass: {
+      type: Array,
+      required: false
     }
   }
 }

@@ -2,27 +2,27 @@
   <div class="container mw768">
     <form :model="contact" id="contact">
 
-      <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" iconLeft="user" ></vue-input>
+      <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" iconLeft="user"></vue-input>
 
-      <vue-select :list="companies" :selected-item="contact.company" label="Организация" item-name="company" @select="onSelect" icon="building" ></vue-select>
+      <vue-select :list="companies" :selected-item="contact.company" label="Организация" item-name="company" @select="onSelect" icon="building"></vue-select>
 
       <div class="columns">
         <div class="column is-half">
-          <vue-select :list="posts" :selected-item="contact.post" label="Должность" item-name="post" @select="onSelect" icon="tag" ></vue-select>
+          <vue-select :list="posts" :selected-item="contact.post" label="Должность" item-name="post" @select="onSelect" icon="tag"></vue-select>
         </div>
 
         <div class="column is-half">
-          <vue-select :list="departments" :selected-item="contact.department" label="Отдел" item-name="department" @select="onSelect" icon="tag" ></vue-select>
+          <vue-select :list="departments" :selected-item="contact.department" label="Отдел" item-name="department" @select="onSelect" icon="tag"></vue-select>
         </div>
       </div>
 
       <div class="columns">
         <div class="column is-half">
-          <vue-select :list="posts_go" :selected-item="contact.post_go" label="Должность ГО" item-name="post_go" @select="onSelect" icon="tag" ></vue-select>
+          <vue-select :list="posts_go" :selected-item="contact.post_go" label="Должность ГО" item-name="post_go" @select="onSelect" icon="tag"></vue-select>
         </div>
 
         <div class="column is-half">
-          <vue-select :list="ranks" :selected-item="contact.rank" label="Звание" item-name="rank" @select="onSelect" icon="tag" ></vue-select>
+          <vue-select :list="ranks" :selected-item="contact.rank" label="Звание" item-name="rank" @select="onSelect" icon="tag"></vue-select>
         </div>
       </div>
 
@@ -32,7 +32,7 @@
         </div>
 
         <div class="column is-two-thirds">
-          <vue-input v-model="contact.address" type="text" label placeholder="Адрес" iconLeft="address-card" ></vue-input>
+          <vue-input v-model="contact.address" type="text" label placeholder="Адрес" iconLeft="address-card"></vue-input>
         </div>
       </div>
 
@@ -101,17 +101,17 @@
         ></vue-input>
       </div>
 
-      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="contact.note" ></vue-input>
+      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="contact.note"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <vue-button text="Сохранить" color="primary" @click="submit" ></vue-button>
+          <vue-button text="Сохранить" color="primary" @click="submit"></vue-button>
         </div>
         <div class="control">
-          <vue-button text="Закрыть" @click="close" ></vue-button>
+          <vue-button text="Закрыть" @click="close"></vue-button>
         </div>
         <div class="control">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');" ></vue-button>
+          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></vue-button>
         </div>
       </div>
     </form>
