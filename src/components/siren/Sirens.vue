@@ -35,11 +35,6 @@ export default {
   created () {
     this.fetchData()
   },
-  // watch: {
-  //   '$route' (to, from) {
-  //     this.fetchData()
-  //   }
-  // },
   methods: {
     fetchData () {
       if (!this.fetched) {

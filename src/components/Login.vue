@@ -58,9 +58,6 @@ export default {
             router.push({ name: rightPage })
           }
         })
-        .catch(() => {
-          // console.log(error);
-        })
     },
     close () {
       this.$router.push('/')

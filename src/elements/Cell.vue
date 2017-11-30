@@ -10,13 +10,6 @@
 <script>
 export default {
   name: 'vue-cell',
-  data () {
-    return {
-      // query: '',
-      // page: 1,
-      // list: []
-    }
-  },
   props: {
     type: {
       type: String,

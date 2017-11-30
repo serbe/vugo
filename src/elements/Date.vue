@@ -28,7 +28,6 @@
 </template>
 
 <script>
-// import mixin from '@/mixins/funcs'
 export default {
   name: 'date',
   props: {

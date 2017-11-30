@@ -36,14 +36,6 @@ export default {
   created () {
     this.fetchData()
   },
-  watch: {
-    $route () {
-      this.fetchData()
-    }
-    // $router() {
-    //   console.log(this.$route.params)
-    // }
-  },
   methods: {
     fetchData () {
       if (!this.fetched) {

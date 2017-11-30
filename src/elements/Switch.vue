@@ -70,7 +70,7 @@ export default {
     z-index: 1;
     cursor: pointer;
   }
-  appearance: none;
+  // appearance: none;
   position: relative;
   outline: 0;
   border-radius: calc(0.8 * var(--height));
