@@ -43,7 +43,7 @@ export default {
       user: auth.user
     }
   },
-  created () {
+  mounted () {
     this.fetchPractices()
     this.fetchEducations()
   },

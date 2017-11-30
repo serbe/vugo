@@ -30,7 +30,7 @@ export default {
       list: []
     }
   },
-  created () {
+  mounted () {
     this.fetchData()
   },
   methods: {
