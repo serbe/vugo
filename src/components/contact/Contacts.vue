@@ -17,40 +17,40 @@
 </template>
 
 <script>
-import vtable from '@/elements/Table'
-import mixin from '@/mixins/funcs'
-import mix from '@/mixins/mix'
+  import vtable from '@/elements/Table'
+  import mixin from '@/mixins/funcs'
+  import mix from '@/mixins/mix'
 
-export default {
-  name: 'contacts',
-  components: {
-    'vue-table': vtable
-  },
-  mixins: [mixin, mix],
-  mounted () {
-    this.fetchData('contacts')
-  },
-  methods: {
-    createList (contacts) {
-      let list = []
-      if (contacts) {
-        list = contacts.map((c) => {
-          const str = [c.name, c.company_name, c.post_name]
-          if (c.phones.length > 0 && c.phones[0] !== '') {
-            str.push(c.phones.join(' '))
-          }
-          if (c.faxes.length > 0 && c.faxes[0] !== '') {
-            str.push(c.faxes.join(' '))
-          }
-          const nc = c
-          nc.str = str.join(' ').toLowerCase()
-          return nc
-        })
+  export default {
+    name: 'contacts',
+    components: {
+      'vue-table': vtable
+    },
+    mixins: [mixin, mix],
+    mounted () {
+      this.fetchData('contacts')
+    },
+    methods: {
+      createList (contacts) {
+        let list = []
+        if (contacts) {
+          list = contacts.map((c) => {
+            const str = [c.name, c.company_name, c.post_name]
+            if (c.phones.length > 0 && c.phones[0] !== '') {
+              str.push(c.phones.join(' '))
+            }
+            if (c.faxes.length > 0 && c.faxes[0] !== '') {
+              str.push(c.faxes.join(' '))
+            }
+            const nc = c
+            nc.str = str.join(' ').toLowerCase()
+            return nc
+          })
+        }
+        return list
       }
-      return list
     }
   }
-}
 </script>
 
 <style scoped>

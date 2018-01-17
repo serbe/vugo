@@ -7,6 +7,7 @@
       :tableData="list"
       tableClasses="is-narrow is-striped fullwidth"
       :headClasses="['', '', 'is-hidden-mobile']"
+      :cellTypes="['text', 'text', 'text']"
       pagination
       hyper
       search

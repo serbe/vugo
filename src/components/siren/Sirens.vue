@@ -12,36 +12,35 @@
       hyper
       search
       adding
-      fullwidth
     ></vue-table>
   </div>
 </template>
 
 <script>
-import vtable from '@/elements/Table'
-import mix from '@/mixins/mix'
+  import vtable from '@/elements/Table'
+  import mix from '@/mixins/mix'
 
-export default {
-  name: 'sirens',
-  components: {
-    'vue-table': vtable
-  },
-  mixins: [mix],
-  mounted () {
-    this.fetchData('sirens')
-  },
-  methods: {
-    createList (sirens) {
-      let list = []
-      if (sirens) {
-        list = sirens.map((e) => {
-          const str = [e.name, e.note]
-          e.str = str.join(' ').toLowerCase()
-          return e
-        })
+  export default {
+    name: 'sirens',
+    components: {
+      'vue-table': vtable
+    },
+    mixins: [mix],
+    mounted () {
+      this.fetchData('sirens')
+    },
+    methods: {
+      createList (sirens) {
+        let list = []
+        if (sirens) {
+          list = sirens.map((e) => {
+            const str = [e.name, e.note]
+            e.str = str.join(' ').toLowerCase()
+            return e
+          })
+        }
+        return list
       }
-      return list
     }
   }
-}
 </script>

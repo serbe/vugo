@@ -17,30 +17,30 @@
 </template>
 
 <script>
-import vtable from '@/elements/Table'
-import mix from '@/mixins/mix'
+  import vtable from '@/elements/Table'
+  import mix from '@/mixins/mix'
 
-export default {
-  name: 'educations',
-  components: {
-    'vue-table': vtable
-  },
-  mixin: [mix],
-  mounted () {
-    this.fetchData('educations')
-  },
-  methods: {
-    createList (educations) {
-      let list = []
-      if (educations) {
-        list = educations.map((e) => {
-          const str = [e.contact_name, e.start_str, e.end_str]
-          e.str = str.join(' ').toLowerCase()
-          return e
-        })
+  export default {
+    name: 'educations',
+    components: {
+      'vue-table': vtable
+    },
+    mixins: [mix],
+    mounted () {
+      this.fetchData('educations')
+    },
+    methods: {
+      createList (educations) {
+        let list = []
+        if (educations) {
+          list = educations.map((e) => {
+            const str = [e.contact_name, e.start_str, e.end_str]
+            e.str = str.join(' ').toLowerCase()
+            return e
+          })
+        }
+        return list
       }
-      return list
     }
   }
-}
 </script>

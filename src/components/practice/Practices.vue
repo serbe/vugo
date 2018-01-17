@@ -7,6 +7,7 @@
       :tableData="list"
       tableClasses="is-narrow is-striped fullwidth"
       :headClasses="['nowrap', '', 'is-hidden-mobile']"
+      :cellTypes="['text', 'text', 'text']"
       pagination
       hyper
       search
@@ -17,7 +18,6 @@
 
 <script>
   import vtable from '@/elements/Table'
-  import mixin from '@/mixins/funcs'
   import mix from '@/mixins/mix'
 
   export default {
@@ -25,7 +25,7 @@
     components: {
       'vue-table': vtable
     },
-    mixin: [mixin, mix],
+    mixins: [mix],
     mounted () {
       this.fetchData('practices')
     },
