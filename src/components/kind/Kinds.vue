@@ -25,7 +25,7 @@
     components: {
       'vue-table': vtable
     },
-    mixin: [mix],
+    mixins: [mix],
     mounted () {
       this.fetchData('kinds')
     },
