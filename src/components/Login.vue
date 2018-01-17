@@ -17,74 +17,74 @@
 </template>
 
 <script>
-import vinput from '@/elements/Input'
-import vbutton from '@/elements/Button'
-import auth from '@/auth'
-import axios from 'axios'
+  import vinput from '@/elements/Input'
+  import vbutton from '@/elements/Button'
+  import auth from '@/auth'
+  import axios from 'axios'
 
-export default {
-  name: 'login',
-  components: {
-    'vue-input': vinput,
-    'vue-button': vbutton
-  },
-  data () {
-    return {
-      name: '',
-      pass: '',
-      error: false
-    }
-  },
-  methods: {
-    login () {
-      const router = this.$router
-      let url = '/login'
-      const data = {
-        username: this.name,
-        password: this.pass
+  export default {
+    name: 'login',
+    components: {
+      'vue-input': vinput,
+      'vue-button': vbutton
+    },
+    data () {
+      return {
+        name: '',
+        pass: '',
+        error: false
       }
-      if (process.env.NODE_ENV === 'development') {
-        url = 'http://localhost:9090/login'
-      }
-      let rightPage = auth.right_page
-      axios({
-        url,
-        method: 'POST',
-        data
-      })
-        .then((r) => {
-          if (r.data.token && r.data.token !== '') {
-            auth.login(r.data)
-            router.push({ name: rightPage })
-          }
+    },
+    methods: {
+      login () {
+        const router = this.$router
+        let url = '/login'
+        const data = {
+          username: this.name,
+          password: this.pass
+        }
+        if (process.env.NODE_ENV === 'development') {
+          url = 'http://localhost:9090/login'
+        }
+        let rightPage = auth.right_page
+        axios({
+          url,
+          method: 'POST',
+          data
         })
-    },
-    close () {
-      this.$router.push('/')
-    },
-    onKeyup (event) {
-      if (event.event.key === 'Enter') {
-        this.login()
+          .then((r) => {
+            if (r.data.token && r.data.token !== '') {
+              auth.login(r.data)
+              router.push({name: rightPage})
+            }
+          })
+      },
+      close () {
+        this.$router.push('/')
+      },
+      onKeyup (event) {
+        if (event.event.key === 'Enter') {
+          this.login()
+        }
       }
     }
   }
-}
 </script>
 
 <style>
-.error {
-  color: red;
-}
+  .error {
+    color: red;
+  }
 
-.w300 {
-  width: 300px !important;
-}
+  .w300 {
+    width: 300px !important;
+  }
 
-.pt10 {
-  padding-top: 10px;
-}
+  .pt10 {
+    padding-top: 10px;
+  }
 
-.pl20 {
-  padding-left: 20px;
-}
+  .pl20 {
+    padding-left: 20px;
+  }
 </style>

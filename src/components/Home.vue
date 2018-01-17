@@ -29,84 +29,84 @@
 </template>
 
 <script>
-import auth from '@/auth'
-import request from '@/request'
+  import auth from '@/auth'
+  import request from '@/request'
 
-export default {
-  name: 'home',
-  data () {
-    return {
-      practicesFetched: false,
-      educationsFetched: false,
-      practicesList: [],
-      educationsList: [],
-      user: auth.user
-    }
-  },
-  mounted () {
-    this.fetchPractices()
-    this.fetchEducations()
-  },
-  methods: {
-    fetchPractices () {
-      if (this.user.authenticated && !this.fetched) {
-        request({
-          url: 'practices/near',
-          method: 'GET'
-        })
-          .then((r) => {
-            this.practicesList = r.data.practices
-            this.practicesFetched = true
+  export default {
+    name: 'home',
+    data () {
+      return {
+        practicesFetched: false,
+        educationsFetched: false,
+        practicesList: [],
+        educationsList: [],
+        user: auth.user
+      }
+    },
+    mounted () {
+      this.fetchPractices()
+      this.fetchEducations()
+    },
+    methods: {
+      fetchPractices () {
+        if (this.user.authenticated && !this.fetched) {
+          request({
+            url: 'practices/near',
+            method: 'GET'
           })
-      }
-    },
-    fetchEducations () {
-      if (this.user.authenticated && !this.fetched) {
-        request({
-          url: 'educations/near',
-          method: 'GET'
-        })
-          .then((r) => {
-            this.educationsList = r.data.educations
-            this.educationsFetched = true
+            .then((r) => {
+              this.practicesList = r.data.practices
+              this.practicesFetched = true
+            })
+        }
+      },
+      fetchEducations () {
+        if (this.user.authenticated && !this.fetched) {
+          request({
+            url: 'educations/near',
+            method: 'GET'
           })
+            .then((r) => {
+              this.educationsList = r.data.educations
+              this.educationsFetched = true
+            })
+        }
+      },
+      trClass (date) {
+        const m = new Date()
+        const d = new Date(date)
+        if (d < m) {
+          return 'is-success'
+        }
+        m.setMonth(m.getMonth() + 1)
+        if (d < m) {
+          return 'is-danger'
+        }
+        return 'is-warning'
+      },
+      tinyDate (date) {
+        if (date.length === 10) {
+          return `${date.substring(8, 10)}.${date.substring(5, 7)}.${date.substring(2, 4)}`
+        }
+        return date
       }
-    },
-    trClass (date) {
-      const m = new Date()
-      const d = new Date(date)
-      if (d < m) {
-        return 'is-success'
-      }
-      m.setMonth(m.getMonth() + 1)
-      if (d < m) {
-        return 'is-danger'
-      }
-      return 'is-warning'
-    },
-    tinyDate (date) {
-      if (date.length === 10) {
-        return `${date.substring(8, 10)}.${date.substring(5, 7)}.${date.substring(2, 4)}`
-      }
-      return date
     }
   }
-}
 </script>
 
 <style scoped>
-tr.is-success {
-  background-color: #23d160;
-  color: #fff;
-}
+  tr.is-success {
+    background-color: #23d160;
+    color: #fff;
+  }
 
-tr.is-warning {
-  background-color: #ffdd57;
-  color: rgba(0, 0, 0, 0.7);
-}
+  tr.is-warning {
+    background-color: #ffdd57;
+    color: rgba(0, 0, 0, 0.7);
+  }
 
-tr.is-danger {
-  background-color: #ff3860;
-  color: #fff;
-}
+  tr.is-danger {
+    background-color: #ff3860;
+    color: #fff;
+  }
 </style>

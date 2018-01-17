@@ -8,21 +8,21 @@
 </template>
 
 <script>
-export default {
-  name: 'vue-cell',
-  props: {
-    type: {
-      type: String,
-      required: false,
-      default: 'text'
-    },
-    value: {
-      required: false
-    },
-    cellClass: {
-      type: Array,
-      required: false
+  export default {
+    name: 'vue-cell',
+    props: {
+      type: {
+        type: String,
+        required: false,
+        default: 'text'
+      },
+      value: {
+        required: false
+      },
+      cellClass: {
+        type: Array,
+        required: false
+      }
     }
   }
-}
 </script>

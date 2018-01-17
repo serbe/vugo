@@ -41,7 +41,7 @@
             <a class="navbar-link">{{ user.name }}</a>
             <div class="navbar-dropdown is-right">
               <vue-button v-if="user.authenticated" class="navbar-item" text="Выход" color="info" @click="logout"></vue-button>
-          </div>
+            </div>
           </div>
         </div>
       </div>
@@ -50,44 +50,44 @@
 </template>
 
 <script>
-import auth from '@/auth'
-import vbutton from '@/elements/Button'
+  import auth from '@/auth'
+  import vbutton from '@/elements/Button'
 
-export default {
-  name: 'vue-navigation',
-  components: {
-    'vue-button': vbutton
-  },
-  data () {
-    return {
-      active: '',
-      tabShow: false,
-      tabSirenShow: false,
-      user: auth.user
-    }
-  },
-  methods: {
-    logout () {
-      auth.logout()
-      this.$router.push('/login')
+  export default {
+    name: 'vue-navigation',
+    components: {
+      'vue-button': vbutton
     },
-    toggle () {
-      this.active = this.active === '' ? 'is-active' : ''
+    data () {
+      return {
+        active: '',
+        tabShow: false,
+        tabSirenShow: false,
+        user: auth.user
+      }
     },
-    toggleTab () {
-      this.tabShow = !this.tabShow
-      this.tabSirenShow = false
-    },
-    toggleSirenTab () {
-      this.tabSirenShow = !this.tabSirenShow
-      this.tabShow = false
+    methods: {
+      logout () {
+        auth.logout()
+        this.$router.push('/login')
+      },
+      toggle () {
+        this.active = this.active === '' ? 'is-active' : ''
+      },
+      toggleTab () {
+        this.tabShow = !this.tabShow
+        this.tabSirenShow = false
+      },
+      toggleSirenTab () {
+        this.tabSirenShow = !this.tabSirenShow
+        this.tabShow = false
+      }
     }
   }
-}
 </script>
 
 <style scoped>
-a.is-active {
-  border-bottom: 3px solid #363636;
-}
+  a.is-active {
+    border-bottom: 3px solid #363636;
+  }
 </style>

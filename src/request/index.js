@@ -28,14 +28,14 @@ function request (options) {
     if (error.response) {
       if (error.response.status === 401 && auth.isAuth()) {
         auth.logout()
-        router.push({ name: 'login' })
+        router.push({name: 'login'})
       }
       // console.error('Status:', error.response.status);
       // console.error('Data:', error.response.data);
       // console.error('Headers:', error.response.headers);
     } else if (!error.response) {
       // auth.logout();
-      router.push({ name: 'login' })
+      router.push({name: 'login'})
     }
     return Promise.reject(error.response || error.message)
   }
