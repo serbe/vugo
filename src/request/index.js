@@ -2,10 +2,10 @@ import axios from 'axios'
 import auth from '@/auth'
 import router from '@/router'
 
-let baseURL = '/api/v1/'
+let baseURL = '/edds/api/'
 
 if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:9090/api/v1/'
+  baseURL = 'http://localhost:9090/edds/api/'
 }
 
 const client = axios.create({
