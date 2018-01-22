@@ -38,13 +38,13 @@
     methods: {
       login () {
         const router = this.$router
-        let url = '/login'
+        let url = '/api/v1/login'
         const data = {
           username: this.name,
           password: this.pass
         }
         if (process.env.NODE_ENV === 'development') {
-          url = 'http://localhost:9090/login'
+          url = 'http://localhost:9090/api/v1/login'
         }
         let rightPage = auth.right_page
         axios({
