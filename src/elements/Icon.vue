@@ -40,7 +40,7 @@ export default {
       return sClass
     },
     iconClass () {
-      return `fa fa-${this.icon}`
+      return `fas fa-${this.icon}`
     }
   }
 }
