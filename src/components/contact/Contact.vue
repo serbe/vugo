@@ -2,7 +2,7 @@
   <div class="container mw768">
     <form :model="contact" id="contact">
 
-      <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" iconLeft="user"></vue-input>
+      <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" icon="user"></vue-input>
 
       <vue-select :list="companies" :selected-item="contact.company" label="Организация" item-name="company" @select="onSelect" icon="building"></vue-select>
 
@@ -32,7 +32,7 @@
         </div>
 
         <div class="column is-two-thirds">
-          <vue-input v-model="contact.address" type="text" label placeholder="Адрес" iconLeft="address-card"></vue-input>
+          <vue-input v-model="contact.address" type="text" label placeholder="Адрес" icon="address-card"></vue-input>
         </div>
       </div>
 
@@ -46,7 +46,7 @@
               v-model="contact.emails[index].email"
               type="email"
               placeholder="Электронный адрес"
-              iconLeft="envelope"
+              icon="envelope"
               autocomplete="email"
               @blur="onBlur('emails', 'email')"
               pattern='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
@@ -64,7 +64,7 @@
               v-model="contact.phones[index].phone"
               type="tel"
               placeholder="Телефон"
-              iconLeft="phone"
+              icon="phone"
               autocomplete="tel"
               @blur="onBlur('phones', 'phone')"
             ></vue-input>
@@ -80,7 +80,7 @@
               v-model="contact.faxes[index].phone"
               type="tel"
               placeholder="Факс"
-              iconLeft="fax"
+              icon="fax"
               autocomplete="tel"
               @blur="onBlur('faxes', 'phone')"
             ></vue-input>
@@ -97,11 +97,11 @@
           :hyper="'/practice/' + practice.id"
           disabled
           :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic"
-          iconLeft="graduation-cap"
+          icon="graduation-cap"
         ></vue-input>
       </div>
 
-      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="contact.note"></vue-input>
+      <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="contact.note"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

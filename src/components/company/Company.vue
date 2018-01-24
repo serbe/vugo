@@ -2,11 +2,11 @@
   <div class="container mw768">
     <form :model="company" id="company">
 
-      <vue-input v-model="company.name" label placeholder="Наименование организации" iconLeft="building"></vue-input>
+      <vue-input v-model="company.name" label placeholder="Наименование организации" icon="building"></vue-input>
 
       <vue-select :list="scopes" :selected-item="company.scope" item-name="scope" label="Сфера деятельности" @select="onSelect" icon="tag"></vue-select>
 
-      <vue-input v-model="company.address" label placeholder="Адрес" iconLeft="address-card"></vue-input>
+      <vue-input v-model="company.address" label placeholder="Адрес" icon="address-card"></vue-input>
 
       <div class="columns">
         <div class="column">
@@ -18,7 +18,7 @@
               v-model="company.emails[index].email"
               type="email"
               placeholder="Электронный адрес"
-              iconLeft="envelope"
+              icon="envelope"
               autocomplete="email"
               @blur="onBlur('emails', 'email')"
               pattern='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
@@ -36,7 +36,7 @@
               v-model="company.phones[index].phone"
               type="tel"
               placeholder="Телефон"
-              iconLeft="phone"
+              icon="phone"
               autocomplete="tel"
               @blur="onBlur('phones', 'phone')"
             ></vue-input>
@@ -52,7 +52,7 @@
               v-model="company.faxes[index].phone"
               type="tel"
               placeholder="Факс"
-              iconLeft="phone"
+              icon="phone"
               autocomplete="tel"
               @blur="onBlur('faxes', 'phone')"
             ></vue-input>
@@ -67,7 +67,7 @@
           v-bind:key="practice.id"
           :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic"
           :hyper="'/practice/' + practice.id"
-          iconLeft="history"
+          icon="history"
           disabled
         ></vue-input>
       </div>
@@ -79,12 +79,12 @@
           v-bind:key="contact.id"
           :value="contact.name + ' - ' + contact.post_name"
           :hyper="'/contact/' + contact.id"
-          iconLeft="user"
+          icon="user"
           disabled
         ></vue-input>
       </div>
 
-      <vue-input v-model="company.note" label placeholder="Заметка" iconLeft="sticky-note"></vue-input>
+      <vue-input v-model="company.note" label placeholder="Заметка" icon="sticky-note"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

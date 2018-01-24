@@ -2,9 +2,9 @@
   <div class="container mw768">
     <form :model="scope" id="scope">
 
-      <vue-input v-model="scope.name" label placeholder="Наименование сферы дефтельности" iconLeft="tag"></vue-input>
+      <vue-input v-model="scope.name" label placeholder="Наименование сферы дефтельности" icon="tag"></vue-input>
 
-      <vue-input v-model="scope.note" label placeholder="Заметка" iconLeft="comment"></vue-input>
+      <vue-input v-model="scope.note" label placeholder="Заметка" icon="comment"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

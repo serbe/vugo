@@ -2,9 +2,9 @@
   <div class="container mw768">
     <form :model="rank" id="rank">
 
-      <vue-input v-model="rank.name" label placeholder="Наименование чина" iconLeft="tag"></vue-input>
+      <vue-input v-model="rank.name" label placeholder="Наименование чина" icon="tag"></vue-input>
 
-      <vue-input v-model="rank.note" label placeholder="Заметка" iconLeft="comment"></vue-input>
+      <vue-input v-model="rank.note" label placeholder="Заметка" icon="comment"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

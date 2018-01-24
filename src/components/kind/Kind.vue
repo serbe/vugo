@@ -2,11 +2,11 @@
   <div class="container mw768">
     <form :model="kind" id="kind">
 
-      <vue-input v-model="kind.name" label placeholder="Наименование типа тренировки" iconLeft="tag"></vue-input>
+      <vue-input v-model="kind.name" label placeholder="Наименование типа тренировки" icon="tag"></vue-input>
 
-      <vue-input v-model="kind.short_name" label placeholder="Сокращенное наименование" iconLeft="tag"></vue-input>
+      <vue-input v-model="kind.short_name" label placeholder="Сокращенное наименование" icon="tag"></vue-input>
 
-      <vue-input v-model="kind.note" label placeholder="Заметка" iconLeft="comment"></vue-input>
+      <vue-input v-model="kind.note" label placeholder="Заметка" icon="comment"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

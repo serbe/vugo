@@ -17,9 +17,7 @@
         @keyup.enter="onKeyEnter"
         @keydown.delete="onKeyDelete"
       >
-      <span v-if="icon" class="icon is-left">
-        <i :class="'fa fa-' + icon"></i>
-      </span>
+      <vue-icon v-if="icon" :icon="icon" :color="color" :size="size"/>
       <div class="select-box" v-if="opened">
         <div class="select-item" @click.stop="selectItem({id:0,name:''})" @mousedown="mousedownItem"></div>
         <div class="select-item" v-for="item in listWithFilter" v-bind:key="item.id" @click.stop="selectItem(item)" @mousedown="mousedownItem">{{ item.name }}
@@ -30,8 +28,13 @@
 </template>
 
 <script>
+import icon from '@/elements/Icon'
+
 export default {
   name: 'vue-select',
+  components: {
+    'vue-icon': icon
+  },
   props: {
     selectedItem: {
       default () {
@@ -43,28 +46,27 @@ export default {
     },
     icon: {
       type: [String, Boolean],
-      required: false,
+      default: false
+    },
+    iconPosition: {
+      type: [String, Boolean],
       default: false
     },
     color: {
       type: [String, Boolean],
-      default: false,
-      required: false
+      default: false
     },
     size: {
       type: [String, Boolean],
-      default: false,
-      required: false
+      default: false
     },
     state: {
       type: [String, Boolean],
-      default: false,
-      required: false
+      default: false
     },
     label: {
       type: [String, Boolean],
-      default: false,
-      required: false
+      default: false
     },
     list: {
       required: true,
@@ -75,7 +77,6 @@ export default {
     },
     itemName: {
       type: [String, Boolean],
-      required: false,
       default: false
     }
   },

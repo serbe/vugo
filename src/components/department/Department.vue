@@ -2,9 +2,9 @@
   <div class="container mw768">
     <form :model="department" id="department">
 
-      <vue-input v-model="department.name" label placeholder="Наименование отдела" iconLeft="tag"></vue-input>
+      <vue-input v-model="department.name" label placeholder="Наименование отдела" icon="tag"></vue-input>
 
-      <vue-input v-model="department.note" label placeholder="Заметка" iconLeft="comment"></vue-input>
+      <vue-input v-model="department.note" label placeholder="Заметка" icon="comment"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

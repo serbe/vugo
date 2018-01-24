@@ -6,11 +6,11 @@
 
       <vue-select :list="kinds" :selected-item="practice.kind" label="Тип тренировки" item-name="kind" @select="onSelect" icon="tag"></vue-select>
 
-      <vue-input type="text" label placeholder="Тема тренировки" iconLeft="tag" v-model="practice.topic"></vue-input>
+      <vue-input type="text" label placeholder="Тема тренировки" icon="tag" v-model="practice.topic"></vue-input>
 
       <vue-date v-model="practice.date_of_practice" label="Дата проведения тренировки"></vue-date>
 
-      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="practice.note"></vue-input>
+      <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="practice.note"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

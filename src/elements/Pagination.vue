@@ -48,8 +48,8 @@ export default {
       required: true
     },
     size: {
-      type: String,
-      required: false
+      type: [String, Boolean],
+      default: false
     }
   },
   computed: {

@@ -2,9 +2,7 @@
   <div class="field">
     <p class="control">
       <a :class="aClassList" @click="click">
-        <span v-if="icon" class="icon is-small">
-          <i :class="'fa fa-' + icon"></i>
-        </span>
+        <vue-icon v-if="icon" :size="size" :icon="icon" :position="iconPosition" :color="color"/>
         <template v-if="text">{{ text }}</template>
       </a>
     </p>
@@ -12,33 +10,37 @@
 </template>
 
 <script>
+import icon from '@/elements/Icon'
+
 export default {
   name: 'vue-button',
+  components: {
+    'vue-icon': icon
+  },
   props: {
     text: {
       type: [String, Boolean],
-      default: false,
-      required: false
+      default: false
     },
     icon: {
       type: [String, Boolean],
-      required: false,
       default: false
+    },
+    iconPosition: {
+      type: String,
+      default: 'left'
     },
     color: {
       type: [String, Boolean],
-      default: false,
-      required: false
+      default: false
     },
     size: {
       type: [String, Boolean],
-      default: false,
-      required: false
+      default: false
     },
     state: {
       type: [String, Boolean],
-      default: false,
-      required: false
+      default: false
     }
   },
   computed: {

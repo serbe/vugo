@@ -1,7 +1,7 @@
 <template>
   <div class="field">
     <label v-if="getLabel" class="label">{{ getLabel }}</label>
-    <p :class="classList">
+    <div :class="classList">
       <a v-if="hyper" :href="hyper">
         <input
           ref="input"
@@ -16,12 +16,7 @@
           @blur="onBlur"
           @keyup="onKeyup"
         >
-        <span v-if="iconLeft" class="icon is-left">
-          <i :class="'fa fa-' + iconLeft"></i>
-        </span>
-        <span v-if="iconRight" class="icon is-right">
-          <i :class="'fa fa-' + iconRight"></i>
-        </span>
+        <vue-icon v-if="icon" :size="size" :position="iconPosition" :icon="icon" :color="color"/>
         <p v-if="isError" class="help is-danger">{{ error }}</p>
       </a>
       <template v-else>
@@ -38,21 +33,84 @@
           @blur="onBlur"
           @keyup="onKeyup"
         >
-        <span v-if="iconLeft" class="icon is-left">
-          <i :class="'fa fa-' + iconLeft"></i>
-        </span>
-        <span v-if="iconRight" class="icon is-right">
-          <i :class="'fa fa-' + iconRight"></i>
-        </span>
+        <vue-icon v-if="icon" :size="size" :position="iconPosition" :icon="icon" :color="color"/>
         <p v-if="isError" class="help is-danger">{{ error }}</p>
       </template>
-    </p>
+    </div>
   </div>
 </template>
 
 <script>
+import icon from '@/elements/Icon'
+
 export default {
   name: 'vue-input',
+  components: {
+    'vue-icon': icon
+  },
+  props: {
+    value: '',
+    type: {
+      type: String,
+      default: 'text'
+    },
+    name: {
+      type: [String, Boolean],
+      default: false
+    },
+    icon: {
+      type: [String, Boolean],
+      default: false
+    },
+    iconPosition: {
+      type: String,
+      default: 'left'
+    },
+    color: {
+      type: [String, Boolean],
+      default: false
+    },
+    size: {
+      type: [String, Boolean],
+      default: false
+    },
+    state: {
+      type: [String, Boolean],
+      default: false
+    },
+    label: {
+      type: [String, Boolean],
+      default: false
+    },
+    placeholder: {
+      type: [String, Boolean],
+      default: false
+    },
+    autocomplete: {
+      type: [String, Boolean],
+      default: false
+    },
+    hyper: {
+      type: [String, Boolean],
+      default: false
+    },
+    id: {
+      type: [String, Boolean],
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    error: {
+      type: [String, Boolean],
+      default: false
+    },
+    pattern: {
+      type: [String, Boolean],
+      default: false
+    }
+  },
   data () {
     return {
       inputValue: this.value
@@ -61,11 +119,8 @@ export default {
   computed: {
     classList () {
       const res = ['control is-expanded']
-      if (this.iconLeft) {
-        res.push('has-icons-left')
-      }
-      if (this.iconRight) {
-        res.push('has-icons-right')
+      if (this.icon) {
+        res.push(`has-icons-${this.iconPosition}`)
       }
       return res
     },
@@ -114,84 +169,6 @@ export default {
     onKeyup (event) {
       const ret = { id: this.id, event }
       this.$emit('keyup', ret)
-    }
-  },
-  props: {
-    value: '',
-    type: {
-      type: String,
-      required: false,
-      default: 'text'
-    },
-    name: {
-      type: [String, Boolean],
-      default: false,
-      required: false
-    },
-    iconLeft: {
-      type: [String, Boolean],
-      required: false,
-      default: false
-    },
-    iconRight: {
-      type: [String, Boolean],
-      required: false,
-      default: false
-    },
-    color: {
-      type: [String, Boolean],
-      default: false,
-      required: false
-    },
-    size: {
-      type: [String, Boolean],
-      default: false,
-      required: false
-    },
-    state: {
-      type: [String, Boolean],
-      default: false,
-      required: false
-    },
-    label: {
-      type: [String, Boolean],
-      default: false,
-      required: false
-    },
-    placeholder: {
-      type: [String, Boolean],
-      required: false,
-      default: false
-    },
-    autocomplete: {
-      type: [String, Boolean],
-      required: false,
-      default: false
-    },
-    hyper: {
-      type: [String, Boolean],
-      required: false,
-      default: false
-    },
-    id: {
-      type: [String, Boolean],
-      required: false,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    error: {
-      type: [String, Boolean],
-      required: false,
-      default: false
-    },
-    pattern: {
-      type: [String, Boolean],
-      required: false,
-      default: false
     }
   }
 }

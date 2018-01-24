@@ -4,26 +4,26 @@
 
       <div class="columns">
         <div class="column is-half">
-          <vue-input v-model="siren.num_pass" type="text" label placeholder="Серийный номер" iconLeft="tag"></vue-input>
+          <vue-input v-model="siren.num_pass" type="text" label placeholder="Серийный номер" icon="tag"></vue-input>
         </div>
         <div class="column is-half">
           <vue-select :list="siren_types" :selected-item="siren.siren_type" label="Тип сирены" item-name="siren_type" @select="onSelect" icon="tag"></vue-select>
         </div>
       </div>
 
-      <vue-input v-model="siren.address" type="text" label placeholder="Адрес" iconLeft="address-card"></vue-input>
+      <vue-input v-model="siren.address" type="text" label placeholder="Адрес" icon="address-card"></vue-input>
       <vue-select :list="contacts" :selected-item="siren.contact" label="Контактное лицо" item-name="contact" @select="onSelect" icon="user"></vue-select>
       <vue-select :list="companies" :selected-item="siren.company" label="Организация" item-name="company" @select="onSelect" icon="building"></vue-select>
 
       <div class="columns">
         <div class="column is-half">
-          <vue-input v-model="siren.latitude" label placeholder="Широта" iconLeft="tag"></vue-input>
+          <vue-input v-model="siren.latitude" label placeholder="Широта" icon="tag"></vue-input>
         </div>
         <div class="column is-half">
-          <vue-input v-model="siren.longitude" label placeholder="Долгота" iconLeft="tag"></vue-input>
+          <vue-input v-model="siren.longitude" label placeholder="Долгота" icon="tag"></vue-input>
         </div>
       </div>
-      <vue-input v-model="siren.note" label placeholder="Заметка" iconLeft="comment"></vue-input>
+      <vue-input v-model="siren.note" label placeholder="Заметка" icon="comment"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

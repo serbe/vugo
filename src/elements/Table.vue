@@ -84,8 +84,8 @@ export default {
       required: false
     },
     tableClasses: {
-      type: String,
-      required: false
+      type: [String, Boolean],
+      default: false
     },
     headClasses: {
       type: Array,
@@ -105,28 +105,23 @@ export default {
     },
     search: {
       type: Boolean,
-      default: false,
-      required: false
+      default: false
     },
     pagination: {
       type: Boolean,
-      default: false,
-      required: false
+      default: false
     },
     rowsPerPage: {
       type: Number,
-      default: 50,
-      required: false
+      default: 50
     },
     hyper: {
       type: Boolean,
-      default: false,
-      required: false
+      default: false
     },
     adding: {
       type: Boolean,
-      default: false,
-      required: false
+      default: false
     }
   },
   computed: {

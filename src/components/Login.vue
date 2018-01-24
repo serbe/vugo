@@ -6,8 +6,8 @@
     <p v-if="$route.query.redirect">
       You need to login first.
     </p>
-    <vue-input v-model="name" label placeholder="Имя пользователя" iconLeft="user"></vue-input>
-    <vue-input v-model="pass" type="password" label placeholder="Пароль" iconLeft="lock" @keyup="onKeyup"></vue-input>
+    <vue-input v-model="name" label placeholder="Имя пользователя" icon="user"></vue-input>
+    <vue-input v-model="pass" type="password" label placeholder="Пароль" icon="lock" @keyup="onKeyup"></vue-input>
     <div class="field is-grouped pt10">
       <vue-button text="Вход" color="primary" @click="login" class="pl20"></vue-button>
       <vue-button text="Закрыть" @click="close" class="pl20" color="light"></vue-button>

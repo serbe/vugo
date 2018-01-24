@@ -2,9 +2,9 @@
   <div class="container mw768">
     <form :model="sirenType" id="sirenType">
 
-      <vue-input v-model="sirenType.name" label placeholder="Тип сирены" iconLeft="tag"></vue-input>
-      <vue-input v-model="sirenType.radius" label placeholder="Радиус действия сирены (метры)" iconLeft="circle-o" type="number"></vue-input>
-      <vue-input v-model="sirenType.note" label placeholder="Заметка" iconLeft="comment"></vue-input>
+      <vue-input v-model="sirenType.name" label placeholder="Тип сирены" icon="tag"></vue-input>
+      <vue-input v-model="sirenType.radius" label placeholder="Радиус действия сирены (метры)" icon="circle-o" type="number"></vue-input>
+      <vue-input v-model="sirenType.note" label placeholder="Заметка" icon="comment"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

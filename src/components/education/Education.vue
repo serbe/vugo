@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <vue-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="education.note"></vue-input>
+      <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="education.note"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

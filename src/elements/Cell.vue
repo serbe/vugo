@@ -13,16 +13,12 @@ export default {
   props: {
     type: {
       type: String,
-      required: false,
       default: 'text'
     },
     value: {
       required: false
     },
-    cellClass: {
-      type: Array,
-      required: false
-    }
+    cellClass: Array
   }
 }
 </script>

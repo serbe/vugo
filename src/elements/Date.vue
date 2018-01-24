@@ -36,8 +36,8 @@ export default {
       required: true
     },
     label: {
-      type: String,
-      required: false
+      type: [String, Boolean],
+      default: false
     }
   },
   data () {
@@ -57,7 +57,7 @@ export default {
   },
   computed: {
     getLabel () {
-      if (this.label && this.label !== '') {
+      if (this.label) {
         return this.label
       }
       return false

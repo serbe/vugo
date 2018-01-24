@@ -2,7 +2,7 @@
   <div class="container mw768">
     <form :model="certificate" id="certificate">
 
-      <vue-input v-model="certificate.num" label placeholder="Серийный номер удостоверения" iconLeft="tag"></vue-input>
+      <vue-input v-model="certificate.num" label placeholder="Серийный номер удостоверения" icon="tag"></vue-input>
 
       <vue-select :list="contacts" :selected-item="certificate.contact" item-name="contact" label="Полное имя" @select="onSelect" icon="user"></vue-select>
 
@@ -10,7 +10,7 @@
 
       <vue-date v-model="certificate.cert_date" label="Дата выдачи"></vue-date>
 
-      <vue-input v-model="certificate.note" label placeholder="Заметка" iconLeft="comment"></vue-input>
+      <vue-input v-model="certificate.note" label placeholder="Заметка" icon="comment"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

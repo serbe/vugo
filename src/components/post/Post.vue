@@ -2,11 +2,11 @@
   <div class="container mw768">
     <form :model="post" id="post">
 
-      <vue-input v-model="post.name" label placeholder="Наименование должности" iconLeft="tag"></vue-input>
+      <vue-input v-model="post.name" label placeholder="Наименование должности" icon="tag"></vue-input>
 
       <vue-switch :checked="post.go" v-model="post.go" label="Должность по гражданской обороне"></vue-switch>
 
-      <vue-input v-model="post.note" label placeholder="Заметка" iconLeft="comment"></vue-input>
+      <vue-input v-model="post.note" label placeholder="Заметка" icon="comment"></vue-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
