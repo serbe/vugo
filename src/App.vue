@@ -49,11 +49,11 @@ export default {
 
   $text: hsl(0, 0%, 14%);
 
-  $size-1: 2.85rem;
-  $size-2: 2.35rem;
-  $size-3: 1.85rem;
-  $size-4: 1.35rem;
-  $size-5: 1.1rem;
-  $size-6: 0.85rem;
-  $size-7: 0.6rem;
+  $size-1: 2.50rem;
+  $size-2: 2.08rem;
+  $size-3: 1.66rem;
+  $size-4: 1.25rem;
+  $size-5: 1.04rem;
+  $size-6: 0.83rem;
+  $size-7: 0.62rem;
 </style>
