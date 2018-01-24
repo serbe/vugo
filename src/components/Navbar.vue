@@ -22,16 +22,16 @@
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Справочники</a>
               <div class="navbar-dropdown">
-                <router-link to="/departments" class="navbar-item">Отделы</router-link>
-                <router-link to="/educations" class="navbar-item">Обучение</router-link>
-                <router-link to="/kinds" class="navbar-item">Типы</router-link>
-                <router-link to="/posts" class="navbar-item">Должности</router-link>
-                <router-link to="/practices" class="navbar-item">Учения</router-link>
-                <router-link to="/ranks" class="navbar-item">Чины</router-link>
-                <router-link to="/scopes" class="navbar-item">Сферы</router-link>
-                <router-link to="/certificates" class="navbar-item">Удостоверения</router-link>
+                <router-link to="/departments" class="navbar-item" @click="toggle">Отделы</router-link>
+                <router-link to="/educations" class="navbar-item" @click="toggle">Обучение</router-link>
+                <router-link to="/kinds" class="navbar-item" @click="toggle">Типы</router-link>
+                <router-link to="/posts" class="navbar-item" @click="toggle">Должности</router-link>
+                <router-link to="/practices" class="navbar-item" @click="toggle">Учения</router-link>
+                <router-link to="/ranks" class="navbar-item" @click="toggle">Чины</router-link>
+                <router-link to="/scopes" class="navbar-item" @click="toggle">Сферы</router-link>
+                <router-link to="/certificates" class="navbar-item" @click="toggle">Удостоверения</router-link>
                 <hr class="navbar-divider">
-                <router-link to="/sirentypes" class="navbar-item">Типы сирен</router-link>
+                <router-link to="/sirentypes" class="navbar-item" @click="toggle">Типы сирен</router-link>
               </div>
             </div>
           </template>
