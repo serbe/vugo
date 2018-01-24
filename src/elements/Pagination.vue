@@ -31,52 +31,52 @@
 </template>
 
 <script>
-  /* eslint no-bitwise: ["error", { "int32Hint": true }] */
-  export default {
-    name: 'vue-pagination',
-    props: {
-      allElems: {
-        type: Number,
-        required: true
-      },
-      page: {
-        type: Number,
-        required: true
-      },
-      perPage: {
-        type: Number,
-        required: true
-      },
-      size: {
-        type: String,
-        required: false
-      }
+/* eslint no-bitwise: ["error", { "int32Hint": true }] */
+export default {
+  name: 'vue-pagination',
+  props: {
+    allElems: {
+      type: Number,
+      required: true
     },
-    computed: {
-      value () {
-        if (this.page > this.max) {
-          this.onClick(this.max)
-        }
-        return this.page
-      },
-      max () {
-        if (this.allElems % this.perPage === 0) {
-          return this.allElems / this.perPage | 0
-        }
-        return (this.allElems / this.perPage | 0) + 1
-      },
-      sizeClass () {
-        if (this.size) {
-          return `is-${this.size}`
-        }
-        return ''
-      }
+    page: {
+      type: Number,
+      required: true
     },
-    methods: {
-      onClick (num) {
-        this.$emit('pagination', num)
-        window.scrollTo(0, 0)
+    perPage: {
+      type: Number,
+      required: true
+    },
+    size: {
+      type: String,
+      required: false
+    }
+  },
+  computed: {
+    value () {
+      if (this.page > this.max) {
+        this.onClick(this.max)
       }
+      return this.page
+    },
+    max () {
+      if (this.allElems % this.perPage === 0) {
+        return this.allElems / this.perPage | 0
+      }
+      return (this.allElems / this.perPage | 0) + 1
+    },
+    sizeClass () {
+      if (this.size) {
+        return `is-${this.size}`
+      }
+      return ''
+    }
+  },
+  methods: {
+    onClick (num) {
+      this.$emit('pagination', num)
+      window.scrollTo(0, 0)
     }
   }
+}
 </script>

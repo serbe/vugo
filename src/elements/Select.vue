@@ -30,178 +30,178 @@
 </template>
 
 <script>
-  export default {
-    name: 'vue-select',
-    props: {
-      selectedItem: {
-        default () {
-          return {
-            id: 0,
-            name: ''
-          }
-        }
-      },
-      icon: {
-        type: [String, Boolean],
-        required: false,
-        default: false
-      },
-      color: {
-        type: [String, Boolean],
-        default: false,
-        required: false
-      },
-      size: {
-        type: [String, Boolean],
-        default: false,
-        required: false
-      },
-      state: {
-        type: [String, Boolean],
-        default: false,
-        required: false
-      },
-      label: {
-        type: [String, Boolean],
-        default: false,
-        required: false
-      },
-      list: {
-        required: true,
-        default: [{
+export default {
+  name: 'vue-select',
+  props: {
+    selectedItem: {
+      default () {
+        return {
           id: 0,
           name: ''
-        }]
-      },
-      itemName: {
-        type: [String, Boolean],
-        required: false,
-        default: false
+        }
       }
     },
-    data () {
-      return {
-        opened: false,
-        searchText: this.selectedItem.name,
-        mousedownState: false,
-        placeholder: '',
-        isLoaded: false
+    icon: {
+      type: [String, Boolean],
+      required: false,
+      default: false
+    },
+    color: {
+      type: [String, Boolean],
+      default: false,
+      required: false
+    },
+    size: {
+      type: [String, Boolean],
+      default: false,
+      required: false
+    },
+    state: {
+      type: [String, Boolean],
+      default: false,
+      required: false
+    },
+    label: {
+      type: [String, Boolean],
+      default: false,
+      required: false
+    },
+    list: {
+      required: true,
+      default: [{
+        id: 0,
+        name: ''
+      }]
+    },
+    itemName: {
+      type: [String, Boolean],
+      required: false,
+      default: false
+    }
+  },
+  data () {
+    return {
+      opened: false,
+      searchText: this.selectedItem.name,
+      mousedownState: false,
+      placeholder: '',
+      isLoaded: false
+    }
+  },
+  computed: {
+    classList () {
+      const res = ['control is-expanded select is-fullwidth']
+      if (this.icon) {
+        res.push('has-icons-left')
+      }
+      return res
+    },
+    inputClassList () {
+      const res = ['input']
+      if (this.color) {
+        res.push(this.color.split(' ').map(e => `is${e}`))
+      }
+      if (this.size) {
+        res.push(this.size.split(' ').map(e => `is${e}`))
+      }
+      if (this.state) {
+        res.push(this.state.split(' ').map(e => `is${e}`))
+      }
+      return res
+    },
+    getLabel () {
+      if (this.label !== false && this.placeholder !== false && this.label === '') {
+        return this.placeholder
+      }
+      return this.label
+    },
+    getPlaceholder () {
+      return this.placeholder === '' && this.label && this.label !== '' ? this.label : this.placeholder
+    },
+    listWithFilter () {
+      if (this.searchText !== '') {
+        return this.list.filter(item => item.name.match(new RegExp(this.searchText, 'i')))
+      }
+      return this.list
+    },
+    item () {
+      if (this.selectedItem) {
+        return {id: this.selectedItem.id, name: this.selectedItem.name}
+      }
+      return {id: 0, name: ''}
+    }
+  },
+  methods: {
+    openOptions () {
+      this.isLoaded = true
+      this.$refs.vueSelect.focus()
+      this.searchText = ''
+      this.placeholder = this.selectedItem.name
+      this.opened = true
+      this.mousedownState = false
+    },
+    closeOptions () {
+      this.opened = false
+    },
+    mousedownItem () {
+      this.mousedownState = true
+    },
+    selectItem (item) {
+      this.searchText = item.name
+      this.closeOptions()
+      if (this.itemName) {
+        this.$emit('select', item, this.itemName)
+      } else {
+        this.$emit('select', item)
       }
     },
-    computed: {
-      classList () {
-        const res = ['control is-expanded select is-fullwidth']
-        if (this.icon) {
-          res.push('has-icons-left')
-        }
-        return res
-      },
-      inputClassList () {
-        const res = ['input']
-        if (this.color) {
-          res.push(this.color.split(' ').map(e => `is${e}`))
-        }
-        if (this.size) {
-          res.push(this.size.split(' ').map(e => `is${e}`))
-        }
-        if (this.state) {
-          res.push(this.state.split(' ').map(e => `is${e}`))
-        }
-        return res
-      },
-      getLabel () {
-        if (this.label !== false && this.placeholder !== false && this.label === '') {
-          return this.placeholder
-        }
-        return this.label
-      },
-      getPlaceholder () {
-        return this.placeholder === '' && this.label && this.label !== '' ? this.label : this.placeholder
-      },
-      listWithFilter () {
-        if (this.searchText !== '') {
-          return this.list.filter(item => item.name.match(new RegExp(this.searchText, 'i')))
-        }
-        return this.list
-      },
-      item () {
-        if (this.selectedItem) {
-          return {id: this.selectedItem.id, name: this.selectedItem.name}
-        }
-        return {id: 0, name: ''}
-      }
-    },
-    methods: {
-      openOptions () {
-        this.isLoaded = true
-        this.$refs.vueSelect.focus()
-        this.searchText = ''
-        this.placeholder = this.selectedItem.name
-        this.opened = true
-        this.mousedownState = false
-      },
-      closeOptions () {
-        this.opened = false
-      },
-      mousedownItem () {
-        this.mousedownState = true
-      },
-      selectItem (item) {
-        this.searchText = item.name
+    onBlur () {
+      if (!this.mousedownState) {
+        this.searchText = this.selectedItem.name
         this.closeOptions()
-        if (this.itemName) {
-          this.$emit('select', item, this.itemName)
-        } else {
-          this.$emit('select', item)
-        }
-      },
-      onBlur () {
-        if (!this.mousedownState) {
-          this.searchText = this.selectedItem.name
-          this.closeOptions()
-        }
-      },
-      onKeyUp () {
-        // const selectedItemIndex = this.filteredOptions.findIndex(item => {
-        //   return item.selected === true
-        // })
-        // if (selectedItemIndex === -1) {
-        //   this.filteredOptions[0].selected = true
-        // } else if (selectedItemIndex !== 0) {
-        //   this.filteredOptions[selectedItemIndex].selected = false
-        //   this.filteredOptions[selectedItemIndex - 1].selected = true
-        // }
-      },
-      onKeyDown () {
-        // const selectedItemIndex = this.filteredOptions.findIndex(item => {
-        //   return item.selected === true
-        // })
-        // if (selectedItemIndex === -1) {
-        //   this.filteredOptions[0].selected = true
-        // } else if (selectedItemIndex !== this.filteredOptions.length - 1) {
-        //   this.filteredOptions[selectedItemIndex].selected = false
-        //   this.filteredOptions[selectedItemIndex + 1].selected = true
-        // }
-      },
-      onKeyEnter () {
-        // const selectedItem = this.filteredOptions.find(item => {
-        //   return item.selected === true
-        // })
-        // if (selectedItem) {
-        //   this.selectItem(selectedItem)
-        // }
-      },
-      onKeyDelete () {
-        // if (!this.searchText && this.selectedOption) {
-        //   this.selectItem({})
-        //   this.openOptions()
-        // }
-      },
-      onInput (event) {
-        this.searchText = event.target.value
       }
+    },
+    onKeyUp () {
+      // const selectedItemIndex = this.filteredOptions.findIndex(item => {
+      //   return item.selected === true
+      // })
+      // if (selectedItemIndex === -1) {
+      //   this.filteredOptions[0].selected = true
+      // } else if (selectedItemIndex !== 0) {
+      //   this.filteredOptions[selectedItemIndex].selected = false
+      //   this.filteredOptions[selectedItemIndex - 1].selected = true
+      // }
+    },
+    onKeyDown () {
+      // const selectedItemIndex = this.filteredOptions.findIndex(item => {
+      //   return item.selected === true
+      // })
+      // if (selectedItemIndex === -1) {
+      //   this.filteredOptions[0].selected = true
+      // } else if (selectedItemIndex !== this.filteredOptions.length - 1) {
+      //   this.filteredOptions[selectedItemIndex].selected = false
+      //   this.filteredOptions[selectedItemIndex + 1].selected = true
+      // }
+    },
+    onKeyEnter () {
+      // const selectedItem = this.filteredOptions.find(item => {
+      //   return item.selected === true
+      // })
+      // if (selectedItem) {
+      //   this.selectItem(selectedItem)
+      // }
+    },
+    onKeyDelete () {
+      // if (!this.searchText && this.selectedOption) {
+      //   this.selectItem({})
+      //   this.openOptions()
+      // }
+    },
+    onInput (event) {
+      this.searchText = event.target.value
     }
   }
+}
 </script>
 
 <style scoped>

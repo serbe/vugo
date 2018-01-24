@@ -50,40 +50,40 @@
 </template>
 
 <script>
-  import auth from '@/auth'
-  import vbutton from '@/elements/Button'
+import auth from '@/auth'
+import vbutton from '@/elements/Button'
 
-  export default {
-    name: 'vue-navigation',
-    components: {
-      'vue-button': vbutton
+export default {
+  name: 'vue-navigation',
+  components: {
+    'vue-button': vbutton
+  },
+  data () {
+    return {
+      active: '',
+      tabShow: false,
+      tabSirenShow: false,
+      user: auth.user
+    }
+  },
+  methods: {
+    logout () {
+      auth.logout()
+      this.$router.push('/login')
     },
-    data () {
-      return {
-        active: '',
-        tabShow: false,
-        tabSirenShow: false,
-        user: auth.user
-      }
+    toggle () {
+      this.active = this.active === '' ? 'is-active' : ''
     },
-    methods: {
-      logout () {
-        auth.logout()
-        this.$router.push('/login')
-      },
-      toggle () {
-        this.active = this.active === '' ? 'is-active' : ''
-      },
-      toggleTab () {
-        this.tabShow = !this.tabShow
-        this.tabSirenShow = false
-      },
-      toggleSirenTab () {
-        this.tabSirenShow = !this.tabSirenShow
-        this.tabShow = false
-      }
+    toggleTab () {
+      this.tabShow = !this.tabShow
+      this.tabSirenShow = false
+    },
+    toggleSirenTab () {
+      this.tabSirenShow = !this.tabSirenShow
+      this.tabShow = false
     }
   }
+}
 </script>
 
 <style scoped>

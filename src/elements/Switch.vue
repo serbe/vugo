@@ -10,49 +10,49 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      disabled: Boolean,
-      isFullwidth: Boolean,
-      type: String,
-      size: String,
-      checked: Boolean,
-      name: String,
-      label: String
+export default {
+  props: {
+    disabled: Boolean,
+    isFullwidth: Boolean,
+    type: String,
+    size: String,
+    checked: Boolean,
+    name: String,
+    label: String
+  },
+  data () {
+    return {
+      value: null
+    }
+  },
+  beforeMount () {
+    this.value = this.checked
+  },
+  mounted () {
+    this.$emit('input', this.value = !!this.checked)
+  },
+  computed: {
+    getLabel () {
+      if (this.label !== false && this.label !== '') {
+        return this.label
+      }
+      return false
     },
-    data () {
+    classObject () {
+      const {type, size, value} = this
       return {
-        value: null
-      }
-    },
-    beforeMount () {
-      this.value = this.checked
-    },
-    mounted () {
-      this.$emit('input', this.value = !!this.checked)
-    },
-    computed: {
-      getLabel () {
-        if (this.label !== false && this.label !== '') {
-          return this.label
-        }
-        return false
-      },
-      classObject () {
-        const {type, size, value} = this
-        return {
-          [`is-${type}`]: type,
-          [`is-${size}`]: size,
-          checked: value
-        }
-      }
-    },
-    watch: {
-      value (val) {
-        this.$emit('input', val)
+        [`is-${type}`]: type,
+        [`is-${size}`]: size,
+        checked: value
       }
     }
+  },
+  watch: {
+    value (val) {
+      this.$emit('input', val)
+    }
   }
+}
 </script>
 
 <style lang="scss">

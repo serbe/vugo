@@ -22,67 +22,67 @@
 </template>
 
 <script>
-  import vinput from '@/elements/Input'
-  import vbutton from '@/elements/Button'
-  import request from '@/request'
+import vinput from '@/elements/Input'
+import vbutton from '@/elements/Button'
+import request from '@/request'
 
-  export default {
-    name: 'sirenType',
-    components: {
-      'vue-input': vinput,
-      'vue-button': vbutton
-    },
-    data () {
-      return {
-        title: '',
-        sirenType: {
-          id: 0,
-          name: '',
-          radius: 0,
-          note: ''
-        }
-      }
-    },
-    mounted () {
-      this.fetchData()
-    },
-    methods: {
-      submit () {
-        let url = 'sirentypes'
-        let method = 'POST'
-        if (this.$route.params.id !== '0') {
-          url = `${url}/${this.$route.params.id}`
-          method = 'PUT'
-        }
-        const values = this.sirenType
-        request({
-          url,
-          method,
-          mode: 'cors',
-          data: JSON.stringify(values)
-        })
-          .then(() => {
-            this.close()
-          })
-      },
-      close () {
-        this.$router.push('/sirentypes')
-      },
-      delete () {
-        // console.log('delete!');
-      },
-      fetchData () {
-        request({
-          url: `sirentypes/${this.$route.params.id}`,
-          method: 'GET'
-        })
-          .then((r) => {
-            this.sirenType = r.data.siren_type
-            this.isLoaded = true
-          })
+export default {
+  name: 'sirenType',
+  components: {
+    'vue-input': vinput,
+    'vue-button': vbutton
+  },
+  data () {
+    return {
+      title: '',
+      sirenType: {
+        id: 0,
+        name: '',
+        radius: 0,
+        note: ''
       }
     }
+  },
+  mounted () {
+    this.fetchData()
+  },
+  methods: {
+    submit () {
+      let url = 'sirentypes'
+      let method = 'POST'
+      if (this.$route.params.id !== '0') {
+        url = `${url}/${this.$route.params.id}`
+        method = 'PUT'
+      }
+      const values = this.sirenType
+      request({
+        url,
+        method,
+        mode: 'cors',
+        data: JSON.stringify(values)
+      })
+        .then(() => {
+          this.close()
+        })
+    },
+    close () {
+      this.$router.push('/sirentypes')
+    },
+    delete () {
+      // console.log('delete!');
+    },
+    fetchData () {
+      request({
+        url: `sirentypes/${this.$route.params.id}`,
+        method: 'GET'
+      })
+        .then((r) => {
+          this.sirenType = r.data.siren_type
+          this.isLoaded = true
+        })
+    }
   }
+}
 </script>
 
 <style scoped>
