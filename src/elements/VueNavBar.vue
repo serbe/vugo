@@ -54,7 +54,7 @@ import auth from '@/auth'
 import VueButton from '@/elements/VueButton'
 
 export default {
-  name: 'NavBar',
+  name: 'VueNavBar',
   components: {
     'vue-button': VueButton
   },

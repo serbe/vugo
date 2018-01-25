@@ -6,19 +6,19 @@
     </section>
     <footer class="footer bot">
       <div class="container">
-        <div class="content has-text-centered">© 2017 Сочи</div>
+        <div class="content has-text-centered">© 2018 Сочи</div>
       </div>
     </footer>
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar'
+import VueNavBar from '@/elements/VueNavBar'
 
 export default {
   name: 'app',
   components: {
-    'vue-navbar': NavBar
+    'vue-navbar': VueNavBar
   }
 }
 </script>
