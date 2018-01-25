@@ -38,7 +38,8 @@ export default {
     }
   },
   mounted () {
-    console.log(this.$auth.redirect())
+    console.log(this.$auth.check())
+    console.log(this.$auth.token())
     // Can set query parameter here for auth redirect or just do it silently in login redirect.
   },
   methods: {
@@ -51,13 +52,15 @@ export default {
       }
 
       this.$auth.login({
+        url: 'login',
         data: data, // Axios
-        rememberMe: this.rememberMe,
-        redirect: {name: redirect ? redirect.from.name : 'account'},
-        fetchUser: this.fetchUser
+        // rememberMe: this.rememberMe,
+        redirect: {name: redirect ? '/' : 'account'}
+        // fetchUser: this.fetchUser
       })
-        .then(() => {
+        .then((res) => {
           console.log('success ' + this.context)
+          console.log(res.data)
         }, (res) => {
           console.log('error ' + this.context)
           this.error = res.data
