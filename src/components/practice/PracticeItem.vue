@@ -1,0 +1,136 @@
+<template>
+  <div class="container mw768">
+    <form :model="practice" id="practice">
+
+      <vue-select :list="companies" :selected-item="practice.company" label="Организация" item-name="company" @select="onSelect" icon="building"></vue-select>
+
+      <vue-select :list="kinds" :selected-item="practice.kind" label="Тип тренировки" item-name="kind" @select="onSelect" icon="tag"></vue-select>
+
+      <vue-input type="text" label placeholder="Тема тренировки" icon="tag" v-model="practice.topic"></vue-input>
+
+      <vue-date v-model="practice.date_of_practice" label="Дата проведения тренировки"></vue-date>
+
+      <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="practice.note"></vue-input>
+
+      <div class="field is-grouped is-grouped-centered">
+        <div class="control">
+          <vue-button text="Сохранить" color="primary" @click="submit"></vue-button>
+        </div>
+        <div class="control">
+          <vue-button text="Закрыть" @click="close"></vue-button>
+        </div>
+        <div class="control">
+          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></vue-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</template>
+
+<script>
+import VueInput from '@/elements/VueInput'
+import VueButton from '@/elements/VueButton'
+import VueDate from '@/elements/VueDate'
+import VueSelect from '@/elements/VueSelect'
+import request from '@/request'
+
+export default {
+  name: 'PracticeItem',
+  components: {
+    'vue-input': VueInput,
+    'vue-button': VueButton,
+    'vue-date': VueDate,
+    'vue-select': VueSelect
+  },
+  data () {
+    return {
+      title: '',
+      practice: {
+        id: 0,
+        company_id: 0,
+        company: {
+          id: 0,
+          name: ''
+        },
+        company_name: '',
+        kind_id: 0,
+        kind: {
+          id: 0,
+          name: ''
+        },
+        kind_name: '',
+        date_of_practice: '',
+        topic: '',
+        note: ''
+      },
+      companies: [{
+        id: 0,
+        name: ''
+      }],
+      kinds: [{
+        id: 0,
+        name: ''
+      }]
+    }
+  },
+  mounted () {
+    this.fetchData()
+  },
+  methods: {
+    onSelect (item, itemName) {
+      this.practice[itemName] = item
+      this.practice[`${itemName}_id`] = item.id
+    },
+    submit () {
+      let url = 'practices'
+      let method = 'POST'
+      if (this.$route.params.id !== '0') {
+        url = `${url}/${this.$route.params.id}`
+        method = 'PUT'
+      }
+      const values = this.practice
+      request({
+        url,
+        method,
+        mode: 'cors',
+        data: JSON.stringify(values)
+      })
+        .then(() => {
+          this.close()
+        })
+    },
+    close () {
+      this.$router.push('/practices')
+    },
+    delete () {
+      // console.log('delete!');
+    },
+    fetchData () {
+      request({
+        url: `practices/${this.$route.params.id}`,
+        method: 'GET'
+      })
+        .then((r) => {
+          this.practice = r.data.practice
+          this.companies = r.data.companies
+          this.kinds = r.data.kinds
+          this.isLoaded = true
+        })
+    }
+  }
+}
+</script>
+
+<style scoped>
+.columns {
+  margin-bottom: -0.25rem !important;
+}
+
+.field .is-grouped {
+  margin-bottom: 0 !important;
+}
+
+.w300 {
+  width: 300px !important;
+}
+</style>

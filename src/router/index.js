@@ -12,8 +12,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: lazyLoad('Home'),
+      name: 'HomePage',
+      component: lazyLoad('HomePage'),
       meta: {
         requiresAuth: true,
         title: 'ЕДДС'
@@ -21,16 +21,16 @@ export default new Router({
     },
     {
       path: '/login',
-      name: 'login',
-      component: lazyLoad('Login'),
+      name: 'LoginPage',
+      component: lazyLoad('LoginPage'),
       meta: {
         title: 'Авторизация'
       }
     },
     {
       path: '/companies',
-      name: 'companies',
-      component: lazyLoad('company/Companies'),
+      name: 'CompanyList',
+      component: lazyLoad('company/CompanyList'),
       meta: {
         requiresAuth: true,
         title: 'Список организаций'
@@ -38,8 +38,8 @@ export default new Router({
     },
     {
       path: '/company/:id',
-      name: 'company',
-      component: lazyLoad('company/Company'),
+      name: 'CompanyItem',
+      component: lazyLoad('company/CompanyItem'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр организации'
@@ -47,8 +47,8 @@ export default new Router({
     },
     {
       path: '/contacts',
-      name: 'contacts',
-      component: lazyLoad('contact/Contacts'),
+      name: 'ContactList',
+      component: lazyLoad('contact/ContactList'),
       meta: {
         requiresAuth: true,
         title: 'Список контактов'
@@ -56,8 +56,8 @@ export default new Router({
     },
     {
       path: '/contact/:id',
-      name: 'contact',
-      component: lazyLoad('contact/Contact'),
+      name: 'ContactItem',
+      component: lazyLoad('contact/ContactItem'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр контакта'
@@ -65,8 +65,8 @@ export default new Router({
     },
     {
       path: '/departments',
-      name: 'departments',
-      component: lazyLoad('department/Departments'),
+      name: 'DepartmentList',
+      component: lazyLoad('department/DepartmentList'),
       meta: {
         requiresAuth: true,
         title: 'Список отделов'
@@ -74,8 +74,8 @@ export default new Router({
     },
     {
       path: '/department/:id',
-      name: 'department',
-      component: lazyLoad('department/Department'),
+      name: 'DepartmentItem',
+      component: lazyLoad('department/DepartmentItem'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр отдела'
@@ -83,8 +83,8 @@ export default new Router({
     },
     {
       path: '/educations',
-      name: 'educations',
-      component: lazyLoad('education/Educations'),
+      name: 'EducationList',
+      component: lazyLoad('education/EducationList'),
       meta: {
         requiresAuth: true,
         title: 'Список обучений в УМЦ'
@@ -92,8 +92,8 @@ export default new Router({
     },
     {
       path: '/education/:id',
-      name: 'education',
-      component: lazyLoad('education/Education'),
+      name: 'EducationItem',
+      component: lazyLoad('education/EducationItem'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр обучения в УМЦ'
@@ -101,8 +101,8 @@ export default new Router({
     },
     {
       path: '/kinds',
-      name: 'kinds',
-      component: lazyLoad('kind/Kinds'),
+      name: 'KindList',
+      component: lazyLoad('kind/KindList'),
       meta: {
         requiresAuth: true,
         title: 'Список типов тренировок'
@@ -110,8 +110,8 @@ export default new Router({
     },
     {
       path: '/kind/:id',
-      name: 'kind',
-      component: lazyLoad('kind/Kind'),
+      name: 'KindItem',
+      component: lazyLoad('kind/KindItem'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр типа тренировки'
@@ -119,8 +119,8 @@ export default new Router({
     },
     {
       path: '/posts',
-      name: 'posts',
-      component: lazyLoad('post/Posts'),
+      name: 'PostList',
+      component: lazyLoad('post/PostList'),
       meta: {
         requiresAuth: true,
         title: 'Список должностей'
@@ -128,8 +128,8 @@ export default new Router({
     },
     {
       path: '/post/:id',
-      name: 'post',
-      component: lazyLoad('post/Post'),
+      name: 'PostItem',
+      component: lazyLoad('post/PostItem'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр должности'
@@ -137,8 +137,8 @@ export default new Router({
     },
     {
       path: '/practices',
-      name: 'practices',
-      component: lazyLoad('practice/Practices'),
+      name: 'PracticeList',
+      component: lazyLoad('practice/PracticeList'),
       meta: {
         requiresAuth: true,
         title: 'Список тренировок в организациях'
@@ -146,8 +146,8 @@ export default new Router({
     },
     {
       path: '/practice/:id',
-      name: 'practice',
-      component: lazyLoad('practice/Practice'),
+      name: 'PracticeItem',
+      component: lazyLoad('practice/PracticeItem'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр тренировки'
@@ -155,8 +155,8 @@ export default new Router({
     },
     {
       path: '/ranks',
-      name: 'ranks',
-      component: lazyLoad('rank/Ranks'),
+      name: 'RankList',
+      component: lazyLoad('rank/RankList'),
       meta: {
         requiresAuth: true,
         title: 'Список чинов'
@@ -164,8 +164,8 @@ export default new Router({
     },
     {
       path: '/rank/:id',
-      name: 'rank',
-      component: lazyLoad('rank/Rank'),
+      name: 'RankItem',
+      component: lazyLoad('rank/RankItem'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр чина'
@@ -173,8 +173,8 @@ export default new Router({
     },
     {
       path: '/scopes',
-      name: 'scopes',
-      component: lazyLoad('scope/Scopes'),
+      name: 'ScopeList',
+      component: lazyLoad('scope/ScopeList'),
       meta: {
         requiresAuth: true,
         title: 'Список сфер деятельности'
@@ -182,8 +182,8 @@ export default new Router({
     },
     {
       path: '/scope/:id',
-      name: 'scope',
-      component: lazyLoad('scope/Scope'),
+      name: 'ScopeItem',
+      component: lazyLoad('scope/ScopeItem'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр сферы деятельности'
@@ -191,8 +191,8 @@ export default new Router({
     },
     {
       path: '/sirentypes',
-      name: 'sirentypes',
-      component: lazyLoad('sirentype/SirenTypes'),
+      name: 'SirenTypeList',
+      component: lazyLoad('sirentype/SirenTypeList'),
       meta: {
         requiresAuth: true,
         title: 'Список типов сирен'
@@ -200,8 +200,8 @@ export default new Router({
     },
     {
       path: '/sirentype/:id',
-      name: 'sirentype',
-      component: lazyLoad('sirentype/SirenType'),
+      name: 'SirenTypeItem',
+      component: lazyLoad('sirentype/SirenTypeItem'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр типа сирены'
@@ -209,8 +209,8 @@ export default new Router({
     },
     {
       path: '/sirens',
-      name: 'sirens',
-      component: lazyLoad('siren/Sirens'),
+      name: 'SirenList',
+      component: lazyLoad('siren/SirenList'),
       meta: {
         requiresAuth: true,
         title: 'Список сирен'
@@ -218,8 +218,8 @@ export default new Router({
     },
     {
       path: '/siren/:id',
-      name: 'siren',
-      component: lazyLoad('siren/Siren'),
+      name: 'SirenItem',
+      component: lazyLoad('siren/SirenItem'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр сирены'
@@ -227,8 +227,8 @@ export default new Router({
     },
     {
       path: '/certificates',
-      name: 'certificates',
-      component: lazyLoad('certificate/Certificates'),
+      name: 'CertificateList',
+      component: lazyLoad('certificate/CertificateList'),
       meta: {
         requiresAuth: true,
         title: 'Список удостоверений'
@@ -236,8 +236,8 @@ export default new Router({
     },
     {
       path: '/certificate/:id',
-      name: 'certificate',
-      component: lazyLoad('certificate/Certificate'),
+      name: 'CertificateItem',
+      component: lazyLoad('certificate/CertificateItem'),
       meta: {
         requiresAuth: true,
         title: 'Просмотр удостоверения'

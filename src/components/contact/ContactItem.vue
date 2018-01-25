@@ -1,0 +1,291 @@
+<template>
+  <div class="container mw768">
+    <form :model="contact" id="contact">
+
+      <vue-input v-model="contact.name" type="text" label placeholder="Полное имя" icon="user"></vue-input>
+
+      <vue-select :list="companies" :selected-item="contact.company" label="Организация" item-name="company" @select="onSelect" icon="building"></vue-select>
+
+      <div class="columns">
+        <div class="column is-half">
+          <vue-select :list="posts" :selected-item="contact.post" label="Должность" item-name="post" @select="onSelect" icon="tag"></vue-select>
+        </div>
+
+        <div class="column is-half">
+          <vue-select :list="departments" :selected-item="contact.department" label="Отдел" item-name="department" @select="onSelect" icon="tag"></vue-select>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column is-half">
+          <vue-select :list="posts_go" :selected-item="contact.post_go" label="Должность ГО" item-name="post_go" @select="onSelect" icon="tag"></vue-select>
+        </div>
+
+        <div class="column is-half">
+          <vue-select :list="ranks" :selected-item="contact.rank" label="Звание" item-name="rank" @select="onSelect" icon="tag"></vue-select>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <vue-date v-model="contact.birthday" label="Дата рождения"></vue-date>
+        </div>
+
+        <div class="column is-two-thirds">
+          <vue-input v-model="contact.address" type="text" label placeholder="Адрес" icon="address-card"></vue-input>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Электронный адрес</label>
+            <vue-input
+              v-for="(email, index) in contact.emails"
+              :key="index"
+              v-model="contact.emails[index].email"
+              type="email"
+              placeholder="Электронный адрес"
+              icon="envelope"
+              autocomplete="email"
+              @blur="onBlur('emails', 'email')"
+              pattern='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+              error="Неправильный email"
+            ></vue-input>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <label class="label">Телефон</label>
+            <vue-input
+              v-for="(phone, index) in contact.phones"
+              :key="index"
+              v-model="contact.phones[index].phone"
+              type="tel"
+              placeholder="Телефон"
+              icon="phone"
+              autocomplete="tel"
+              @blur="onBlur('phones', 'phone')"
+            ></vue-input>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <label class="label">Факс</label>
+            <vue-input
+              v-for="(fax, index) in contact.faxes"
+              :key="index"
+              v-model="contact.faxes[index].phone"
+              type="tel"
+              placeholder="Факс"
+              icon="fax"
+              autocomplete="tel"
+              @blur="onBlur('faxes', 'phone')"
+            ></vue-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="field" v-if="contact.practices" key="practices">
+        <label class="label">Тренировки</label>
+        <vue-input
+          v-for="practice in contact.practices"
+          :key="practice.id"
+          type="text"
+          :hyper="'/practice/' + practice.id"
+          disabled
+          :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic"
+          icon="graduation-cap"
+        ></vue-input>
+      </div>
+
+      <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="contact.note"></vue-input>
+
+      <div class="field is-grouped is-grouped-centered">
+        <div class="control">
+          <vue-button text="Сохранить" color="primary" @click="submit"></vue-button>
+        </div>
+        <div class="control">
+          <vue-button text="Закрыть" @click="close"></vue-button>
+        </div>
+        <div class="control">
+          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></vue-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</template>
+
+<script>
+import VueInput from '@/elements/VueInput'
+import VueButton from '@/elements/VueButton'
+import VueSelect from '@/elements/VueSelect'
+import VueDate from '@/elements/VueDate'
+import mixin from '@/mixins/funcs'
+import request from '@/request'
+
+export default {
+  name: 'ContactItem',
+  components: {
+    'vue-input': VueInput,
+    'vue-button': VueButton,
+    'vue-select': VueSelect,
+    'vue-date': VueDate
+  },
+  mixins: [mixin],
+  data () {
+    return {
+      title: '',
+      contact: {
+        id: 0,
+        name: '',
+        birthday: '',
+        company: {
+          id: 0,
+          name: ''
+        },
+        company_id: 0,
+        post: {
+          id: 0,
+          name: ''
+        },
+        post_id: 0,
+        department: [{
+          id: 0,
+          email: ''
+        }],
+        department_id: 0,
+        post_go: {
+          id: 0,
+          name: ''
+        },
+        post_go_id: 0,
+        rank: {
+          id: 0,
+          name: ''
+        },
+        rank_id: 0,
+        emails: [{
+          id: 0,
+          email: ''
+        }],
+        phones: [{
+          id: 0,
+          phone: ''
+        }],
+        faxes: [{
+          id: 0,
+          phone: ''
+        }],
+        note: ''
+      },
+      companies: [{
+        id: 0,
+        name: ''
+      }],
+      posts: [{
+        id: 0,
+        name: ''
+      }],
+      posts_go: [{
+        id: 0,
+        name: ''
+      }],
+      departments: [{
+        id: 0,
+        name: ''
+      }],
+      ranks: [{
+        id: 0,
+        name: ''
+      }]
+    }
+  },
+  mounted () {
+    this.fetchData()
+  },
+  methods: {
+    onBlur (arr, key) {
+      if (this.checkArray(this.contact[arr], key)) {
+        const obj = {}
+        obj.id = this.contact[arr].length + 1
+        obj[key] = ''
+        this.contact[arr].push(obj)
+      }
+    },
+    onSelect (item, itemName) {
+      this.contact[itemName] = item
+      this.contact[`${itemName}_id`] = item.id
+    },
+    submit () {
+      let url = '/contacts'
+      let method = 'POST'
+      if (this.$route.params.id !== '0') {
+        url = `${url}/${this.$route.params.id}`
+        method = 'PUT'
+      }
+      const values = this.contact
+      values.emails = this.filterArray(values.emails, 'email')
+      values.phones = this.filterArray(values.phones, 'phone')
+      values.faxes = this.filterArray(values.faxes, 'phone')
+      request({
+        url,
+        method,
+        mode: 'cors',
+        data: JSON.stringify(values)
+      })
+        .then(() => {
+          this.close()
+        })
+    },
+    close () {
+      this.$router.push('/contacts')
+    },
+    delete () {
+      // console.log('delete!');
+    },
+    fetchData () {
+      request({
+        url: `contacts/${this.$route.params.id}`,
+        method: 'GET'
+      })
+        .then((r) => {
+          this.contact = r.data.contact
+          this.companies = r.data.companies
+          this.posts = r.data.posts
+          this.departments = r.data.departments
+          this.posts_go = r.data.posts_go
+          this.ranks = r.data.ranks
+          if (this.contact.emails) {
+            this.contact.emails.push({ id: this.contact.emails.length + 1, email: '' })
+          } else {
+            this.contact.emails = [{ id: 1, email: '' }]
+          }
+          if (this.contact.phones) {
+            this.contact.phones.push({ id: this.contact.phones.length + 1, phone: '' })
+          } else {
+            this.contact.phones = [{ id: 1, phone: '' }]
+          }
+          if (this.contact.faxes) {
+            this.contact.faxes.push({ id: this.contact.faxes.length + 1, phone: '' })
+          } else {
+            this.contact.faxes = [{ id: 1, phone: '' }]
+          }
+          this.isLoaded = true
+        })
+    }
+  }
+}
+</script>
+
+<style scoped>
+.columns {
+  margin-bottom: -0.25rem !important;
+}
+
+.field .is-grouped {
+  margin-bottom: 0 !important;
+}
+</style>

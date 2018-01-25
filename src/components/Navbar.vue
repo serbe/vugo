@@ -40,7 +40,7 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">{{ user.name }}</a>
             <div class="navbar-dropdown is-right">
-              <vue-button v-if="user.authenticated" class="navbar-item" text="Выход" color="info" @click="logout"></vue-button>
+              <vue-button v-if="user.authenticated" class="navbar-item" text="Выход" color="info" @click="logout" key="user"></vue-button>
             </div>
           </div>
         </div>
@@ -51,12 +51,12 @@
 
 <script>
 import auth from '@/auth'
-import vbutton from '@/elements/Button'
+import VueButton from '@/elements/VueButton'
 
 export default {
-  name: 'vue-navigation',
+  name: 'NavBar',
   components: {
-    'vue-button': vbutton
+    'vue-button': VueButton
   },
   data () {
     return {
