@@ -25,27 +25,29 @@
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
     <vue-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"></vue-pagination>
-    <table class="table center-table" :class="tableClass">
-      <thead>
-      <tr>
-        <th v-for="(name, index) in head" :key="index" :class="headClass(index)">{{ name }}</th>
-      </tr>
+    <table
+      class="table center-table"
+      :class="tableClass">
+      <thead v-if="headClasses">
+        <tr>
+          <th v-for="(name, index) in head" :key="index" :class="headClass(index)">{{ name }}</th>
+        </tr>
       </thead>
-      <tbody>
-      <template v-if="hyper">
-        <tr v-for="(item, key) in rows" :key="key" @click="onClickTr(item)" class="link">
-          <td v-for="(name, index) in body" :key="index" :class="cellClass(index)">
-            <vue-cell :type="cellType(index)" :value="item[name]"></vue-cell>
-          </td>
-        </tr>
-      </template>
-      <template v-else>
-        <tr v-for="(item, key) in rows" :key="key">
-          <td v-for="(name, index) in body" :key="index" :class="cellClass(index)">
-            <vue-cell :type="cellType(index)" :value="item[name]"></vue-cell>
-          </td>
-        </tr>
-      </template>
+      <tbody v-if="rows.length">
+        <template v-if="hyper">
+          <template v-for="(row, key) in rows">
+            <tr :key="key" @click="onClickTr(row)" class="link">
+              <vue-table-tr v-for="(name, index) in body" :key="index" :class="cellClass(index)" :type="cellType(index)" :value="row[name]"/>
+            </tr>
+          </template>
+        </template>
+        <template v-else>
+          <template v-for="(row, key) in rows">
+            <tr :key="key">
+              <vue-table-tr v-for="(name, index) in body" :key="index" :class="cellClass(index)" :type="cellType(index)" :value="row[name]"/>
+            </tr>
+          </template>
+        </template>
       </tbody>
     </table>
     <vue-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"></vue-pagination>
@@ -54,13 +56,13 @@
 
 <script>
 import VuePagination from '@/elements/VuePagination'
-import VueCell from '@/elements/VueCell'
+import VueTableTr from '@/elements/VueTableTr'
 
 export default {
   name: 'VueTable',
   components: {
     'vue-pagination': VuePagination,
-    'vue-cell': VueCell
+    'vue-table-tr': VueTableTr
   },
   data () {
     return {
