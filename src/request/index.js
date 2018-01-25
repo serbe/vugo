@@ -13,9 +13,9 @@ const client = axios.create({
 })
 
 function request (options) {
-  if (auth.isAuth()) {
-    client.defaults.headers.common.Authorization = auth.getAuthHeader()
-  }
+  // if (auth.isAuth()) {
+  //   client.defaults.headers.common.Authorization = auth.getAuthHeader()
+  // }
 
   function onSuccess (response) {
     // console.debug('Request Successful!', response)
@@ -28,14 +28,14 @@ function request (options) {
     if (error.response) {
       if (error.response.status === 401 && auth.isAuth()) {
         auth.logout()
-        router.push({name: 'login'})
+        router.push({name: 'LoginPage'})
       }
       // console.error('Status:', error.response.status);
       // console.error('Data:', error.response.data);
       // console.error('Headers:', error.response.headers);
     } else if (!error.response) {
       // auth.logout();
-      router.push({name: 'login'})
+      router.push({name: 'LoginPage'})
     }
     return Promise.reject(error.response || error.message)
   }

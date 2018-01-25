@@ -21,6 +21,18 @@ export default {
   name: 'app',
   components: {
     'vue-navbar': VueNavBar
+  },
+  data () {
+    return {
+      context: 'app context',
+      loaded: false
+    }
+  },
+  created () {
+    // var _this = this
+    this.$auth.ready(function () {
+      console.log('ready ' + this.context)
+    })
   }
 }
 </script>

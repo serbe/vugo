@@ -24,7 +24,8 @@ export default new Router({
       name: 'LoginPage',
       component: lazyLoad('LoginPage'),
       meta: {
-        title: 'Авторизация'
+        title: 'Авторизация',
+        auth: false
       }
     },
     {

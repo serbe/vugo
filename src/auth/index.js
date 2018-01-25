@@ -1,5 +1,5 @@
 export default {
-  right_page: 'home',
+  right_page: 'HomePage',
   user: {
     name: '',
     authenticated: false
