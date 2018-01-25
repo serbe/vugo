@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <vue-navbar></vue-navbar>
-    <section class="section pt1">
-      <router-view></router-view>
-    </section>
+    <div v-if="$auth.ready()">
+      <vue-navbar/>
+      <section class="section pt1">
+        <router-view></router-view>
+      </section>
+    </div>
     <footer class="footer bot">
       <div class="container">
         <div class="content has-text-centered">© 2018 Сочи</div>
