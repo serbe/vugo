@@ -19,8 +19,8 @@
 <script>
 import VueInput from '@/elements/VueInput'
 import VueButton from '@/elements/VueButton'
-// import auth from '@/auth'
-// import axios from 'axios'
+import auth from '@/auth'
+import axios from 'axios'
 
 export default {
   name: 'LoginPage',
@@ -33,59 +33,35 @@ export default {
       name: '',
       pass: '',
       error: false,
-      rememberMe: true,
-      fetchUser: false
+      rememberMe: true
     }
   },
   mounted () {
-    console.log(this.$auth.check())
-    console.log(this.$auth.token())
     // Can set query parameter here for auth redirect or just do it silently in login redirect.
   },
   methods: {
     login () {
-      var redirect = this.$auth.redirect()
-
+      const router = this.$router
+      let url = '/edds/api/login'
       const data = {
         username: this.name,
         password: this.pass
       }
-
-      this.$auth.login({
-        url: 'login',
-        data: data, // Axios
-        // rememberMe: this.rememberMe,
-        redirect: {name: redirect ? '/' : 'account'}
-        // fetchUser: this.fetchUser
+      if (process.env.NODE_ENV === 'development') {
+        url = 'http://localhost:9090/edds/api/login'
+      }
+      let rightPage = auth.right_page
+      axios({
+        url,
+        method: 'POST',
+        data
       })
-        .then((res) => {
-          console.log('success ' + this.context)
-          console.log(res.data)
-        }, (res) => {
-          console.log('error ' + this.context)
-          this.error = res.data
+        .then((r) => {
+          if (r.data.token && r.data.token !== '') {
+            auth.login(r.data)
+            router.push({name: rightPage})
+          }
         })
-      // const router = this.$router
-      // let url = '/edds/api/login'
-      // const data = {
-      //   username: this.name,
-      //   password: this.pass
-      // }
-      // if (process.env.NODE_ENV === 'development') {
-      //   url = 'http://localhost:9090/edds/api/login'
-      // }
-      // let rightPage = auth.right_page
-      // axios({
-      //   url,
-      //   method: 'POST',
-      //   data
-      // })
-      //   .then((r) => {
-      //     if (r.data.token && r.data.token !== '') {
-      //       auth.login(r.data)
-      //       router.push({name: rightPage})
-      //     }
-      //   })
     },
     close () {
       this.$router.push('/')

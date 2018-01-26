@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <div v-if="$auth.ready()">
+    <!-- <div v-if="$auth.ready()"> -->
       <vue-navbar/>
       <section class="section pt1">
         <router-view></router-view>
       </section>
-    </div>
+    <!-- </div> -->
     <footer class="footer bot">
       <div class="container">
         <div class="content has-text-centered">© 2018 Сочи</div>
@@ -21,18 +21,6 @@ export default {
   name: 'app',
   components: {
     'vue-navbar': VueNavBar
-  },
-  data () {
-    return {
-      context: 'app context',
-      loaded: false
-    }
-  },
-  created () {
-    // var _this = this
-    this.$auth.ready(function () {
-      console.log('ready ' + this.context)
-    })
   }
 }
 </script>
