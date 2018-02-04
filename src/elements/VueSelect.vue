@@ -17,7 +17,7 @@
         @keyup.enter="onKeyEnter"
         @keydown.delete="onKeyDelete"
       >
-      <vue-icon v-if="icon" :icon="icon" :color="color" :size="size"/>
+      <vue-icon v-if="icon" :icon="icon" :position="iconPosition" :color="color" :size="size"/>
       <div class="select-box" v-if="opened">
         <div class="select-item" @click.stop="selectItem({id:0,name:''})" @mousedown="mousedownItem"></div>
         <div class="select-item" v-for="item in listWithFilter" :key="item.id" @click.stop="selectItem(item)" @mousedown="mousedownItem">{{ item.name }}
@@ -48,8 +48,8 @@ export default {
       default: false
     },
     iconPosition: {
-      type: [String, Boolean],
-      default: false
+      type: String,
+      default: 'left'
     },
     color: {
       type: [String, Boolean],
