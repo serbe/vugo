@@ -123,6 +123,7 @@ import VueInput from '@/elements/VueInput'
 import VueButton from '@/elements/VueButton'
 import VueSelect from '@/elements/VueSelect'
 import VueDate from '@/elements/VueDate'
+// import VueCalendar from '@/elements/VueCalendar'
 import mixin from '@/mixins/funcs'
 import request from '@/request'
 
@@ -132,6 +133,7 @@ export default {
     'vue-input': VueInput,
     'vue-button': VueButton,
     'vue-select': VueSelect,
+    // 'vue-calendar': VueCalendar,
     'vue-date': VueDate
   },
   mixins: [mixin],
