@@ -13,13 +13,13 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.17",
+    "axios": "^0.18",
     "bulma": "^0.6",
-    "bulma-calendar": "^0.2.0",
-    "node-sass": "^4.6",
-    "sass-loader": "^6.0.6",
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "bulma-calendar": "^1.0.0",
+    "node-sass": "^4.0",
+    "sass-loader": "^6.0.0",
+    "vue": "^2.0.0",
+    "vue-router": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
