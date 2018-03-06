@@ -7,7 +7,7 @@
           <router-link to="/contacts" class="navbar-item">Контакты</router-link>
           <router-link to="/companies" class="navbar-item">Организации</router-link>
         </template>
-        <router-link v-else to="/login" class="navbar-item">Авторизация</router-link>
+        <router-link v-else to="/login" class="navbar-item" key="NavbarNotLogged">Авторизация</router-link>
         <div class="navbar-burger burger" data-target="navMenu" @click="toggle" :class="active">
           <span></span>
           <span></span>
@@ -87,7 +87,7 @@ export default {
 </script>
 
 <style scoped>
-  a.is-active {
-    border-bottom: 3px solid #363636;
-  }
+.is-active {
+  border-bottom: 3px solid #363636;
+}
 </style>

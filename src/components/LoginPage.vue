@@ -75,20 +75,20 @@ export default {
 }
 </script>
 
-<style>
-  .error {
-    color: red;
-  }
+<style scoped>
+.error {
+  color: red;
+}
 
-  .w300 {
-    width: 300px !important;
-  }
+.w300 {
+  width: 300px !important;
+}
 
-  .pt10 {
-    padding-top: 10px;
-  }
+.pt10 {
+  padding-top: 10px;
+}
 
-  .pl20 {
-    padding-left: 20px;
-  }
+.pl20 {
+  padding-left: 20px;
+}
 </style>

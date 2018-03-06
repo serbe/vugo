@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav v-if="adding" class="level is-mobile">
+    <nav v-if="adding" class="level is-mobile" key="TableNav">
       <div class="level-left">
         <p class="level-item">
           <a class="button" :href="'/' + this.name + '/0'">Добавить</a>
@@ -21,19 +21,19 @@
         </p>
       </div>
     </nav>
-    <p class="control mb1" v-if="search">
+    <p class="control mb1" v-if="search" key="TableSearch">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
-    <bulma-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"></bulma-pagination>
+    <bulma-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter" key="TablePaginationTop"></bulma-pagination>
     <table
       class="table center-table"
       :class="tableClass">
-      <thead v-if="headClasses">
+      <thead v-if="headClasses" key="TableThead">
         <tr>
           <th v-for="(name, index) in head" :key="index" :class="headClass(index)">{{ name }}</th>
         </tr>
       </thead>
-      <tbody v-if="rows.length">
+      <tbody v-if="rows.length" key="TableBody">
         <template v-if="hyper">
           <template v-for="(row, key) in rows">
             <tr :key="key" @click="onClickTr(row)" class="link">
@@ -50,7 +50,7 @@
         </template>
       </tbody>
     </table>
-    <bulma-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"></bulma-pagination>
+    <bulma-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter" key="TablePaginationBottom"></bulma-pagination>
   </div>
 </template>
 
@@ -180,27 +180,27 @@ export default {
 </script>
 
 <style scoped>
-  .link {
-    cursor: pointer !important;
-  }
+.link {
+  cursor: pointer !important;
+}
 
-  .mb1 {
-    margin-bottom: 1rem;
-  }
+.mb1 {
+  margin-bottom: 1rem;
+}
 
-  /*.fixed_table {*/
-  /*table-layout: fixed !important;*/
-  /*}*/
+/*.fixed_table {*/
+/*table-layout: fixed !important;*/
+/*}*/
 
-  .center-table {
-    margin: auto;
-  }
+.center-table {
+  margin: auto;
+}
 
-  .fullwidth {
-    width: 100%;
-  }
+.fullwidth {
+  width: 100%;
+}
 
-  .nowrap {
-    white-space: nowrap;
-  }
+.nowrap {
+  white-space: nowrap;
+}
 </style>

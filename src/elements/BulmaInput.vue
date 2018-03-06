@@ -1,6 +1,6 @@
 <template>
   <div class="field">
-    <label v-if="getLabel" class="label">{{ getLabel }}</label>
+    <label v-if="getLabel" class="label" key="InputLabel">{{ getLabel }}</label>
     <div :class="classList">
       <a v-if="hyper" :href="hyper">
         <input
@@ -16,8 +16,8 @@
           @blur="onBlur"
           @keyup="onKeyup"
         >
-        <bulma-icon v-if="icon" :size="size" :position="iconPosition" :icon="icon" :color="color"/>
-        <p v-if="isError" class="help is-danger">{{ error }}</p>
+        <bulma-icon v-if="icon" :size="size" :position="iconPosition" :icon="icon" :color="color" key="InbutIcon"/>
+        <p v-if="isError" class="help is-danger" key="InputError">{{ error }}</p>
       </a>
       <template v-else>
         <input
@@ -33,8 +33,8 @@
           @blur="onBlur"
           @keyup="onKeyup"
         >
-        <bulma-icon v-if="icon" :size="size" :position="iconPosition" :icon="icon" :color="color"/>
-        <p v-if="isError" class="help is-danger">{{ error }}</p>
+        <bulma-icon v-if="icon" :size="size" :position="iconPosition" :icon="icon" :color="color" key="InputIcon"/>
+        <p v-if="isError" class="help is-danger" key="InputError">{{ error }}</p>
       </template>
     </div>
   </div>

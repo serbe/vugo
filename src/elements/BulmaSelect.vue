@@ -1,6 +1,6 @@
 <template>
   <div class="field">
-    <label v-if="getLabel" class="label">{{ getLabel }}</label>
+    <label v-if="getLabel" class="label" key="SelectLabel">{{ getLabel }}</label>
     <div :class="classList" @click="openOptions">
       <input
         type="text"
@@ -17,8 +17,8 @@
         @keyup.enter="onKeyEnter"
         @keydown.delete="onKeyDelete"
       >
-      <bulma-icon v-if="icon" :icon="icon" :position="iconPosition" :color="color" :size="size"/>
-      <div class="select-box" v-if="opened">
+      <bulma-icon v-if="icon" :icon="icon" :position="iconPosition" :color="color" :size="size" key="SelectIcon"/>
+      <div class="select-box" v-if="opened" key="SelectOpened">
         <div class="select-item" @click.stop="selectItem({id:0,name:''})" @mousedown="mousedownItem"></div>
         <div class="select-item" v-for="item in listWithFilter" :key="item.id" @click.stop="selectItem(item)" @mousedown="mousedownItem">{{ item.name }}
         </div>
@@ -205,40 +205,40 @@ export default {
 </script>
 
 <style scoped>
-  .field {
-    margin-bottom: 0.75rem;
-  }
+.field {
+  margin-bottom: 0.75rem;
+}
 
-  .select-box {
-    box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);
-    /*display: inline-block;*/
-    position: absolute;
-    border: 1px solid #1fc8db;
-    /*visibility: hidden;*/
-    background-color: #FFF;
-    left: 0;
-    /*top: 20%;*/
-    width: 100%;
-    overflow: auto;
-    z-index: 5;
-    /*margin-top: -10px;*/
-    max-height: 300px;
-  }
+.select-box {
+  box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);
+  /*display: inline-block;*/
+  position: absolute;
+  border: 1px solid #1fc8db;
+  /*visibility: hidden;*/
+  background-color: #FFF;
+  left: 0;
+  /*top: 20%;*/
+  width: 100%;
+  overflow: auto;
+  z-index: 5;
+  /*margin-top: -10px;*/
+  max-height: 300px;
+}
 
-  .select-item {
-    background-color: white;
-    /*border: 1px solid #d3d6db;*/
-    /*border-radius: 3px;*/
-    color: #222324;
-    height: 22px;
-    padding: 3px 8px;
-    font-size: 12px;
-    white-space: nowrap;
-    /*box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);*/
-  }
+.select-item {
+  background-color: white;
+  /*border: 1px solid #d3d6db;*/
+  /*border-radius: 3px;*/
+  color: #222324;
+  height: 22px;
+  padding: 3px 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  /*box-shadow: inset 0 1px 2px rgba(17, 17, 17, 0.1);*/
+}
 
-  .select-item:hover {
-    background-color: #3273dc;
-    color: #fff;
-  }
+.select-item:hover {
+  background-color: #3273dc;
+  color: #fff;
+}
 </style>

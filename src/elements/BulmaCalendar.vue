@@ -1,6 +1,6 @@
 <template>
   <div :id="id" class="datepicker" :class="overlay">
-    <div v-if="options.overlay" class="modal-background"></div>
+    <div v-if="options.overlay" class="modal-background" key="ModalBackground"></div>
     <div class="calendar">
       <div class="calendar-nav">
         <div class="calendar-nav-month">

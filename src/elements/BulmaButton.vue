@@ -2,7 +2,7 @@
   <div class="field">
     <p class="control">
       <a :class="aClassList" @click="click">
-        <bulma-icon v-if="icon" :size="size" :icon="icon" :position="iconPosition" :color="color"/>
+        <bulma-icon v-if="icon" :size="size" :icon="icon" :position="iconPosition" :color="color" key="ButtonIcon"/>
         <template v-if="text">{{ text }}</template>
       </a>
     </p>

@@ -1,6 +1,6 @@
 <template>
   <div class="field">
-    <label v-if="getLabel" class="label">{{ getLabel }}</label>
+    <label v-if="getLabel" class="label" key="DateLabel">{{ getLabel }}</label>
     <div class="field has-addons">
       <p class="control">
         <span class="select">

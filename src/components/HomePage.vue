@@ -76,13 +76,13 @@ export default {
       const m = new Date()
       const d = new Date(date)
       if (d < m) {
-        return 'is-success'
+        return 'tr-is-success'
       }
       m.setMonth(m.getMonth() + 1)
       if (d < m) {
-        return 'is-danger'
+        return 'tr-is-danger'
       }
-      return 'is-warning'
+      return 'tr-is-warning'
     },
     tinyDate (date) {
       if (date.length === 10) {
@@ -95,18 +95,18 @@ export default {
 </script>
 
 <style scoped>
-  tr.is-success {
-    background-color: #23d160;
-    color: #fff;
-  }
+.tr-is-success {
+  background-color: #23d160;
+  color: #fff;
+}
 
-  tr.is-warning {
-    background-color: #ffdd57;
-    color: rgba(0, 0, 0, 0.7);
-  }
+.tr-is-warning {
+  background-color: #ffdd57;
+  color: rgba(0, 0, 0, 0.7);
+}
 
-  tr.is-danger {
-    background-color: #ff3860;
-    color: #fff;
-  }
+.tr-is-danger {
+  background-color: #ff3860;
+  color: #fff;
+}
 </style>

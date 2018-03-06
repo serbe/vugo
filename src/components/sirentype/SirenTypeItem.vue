@@ -86,15 +86,15 @@ export default {
 </script>
 
 <style scoped>
-  .columns {
-    margin-bottom: -0.25rem !important;
-  }
+.columns {
+  margin-bottom: -0.25rem !important;
+}
 
-  .field .is-grouped {
-    margin-bottom: 0 !important;
-  }
+.field .is-grouped {
+  margin-bottom: 0 !important;
+}
 
-  .w300 {
-    width: 300px !important;
-  }
+.w300 {
+  width: 300px !important;
+}
 </style>
