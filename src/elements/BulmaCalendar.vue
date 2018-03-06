@@ -53,7 +53,7 @@
 // import DatePicker from 'bulma-calendar/datepicker'
 import { DatepickerLangs } from './calendar'
 export default {
-  name: 'VueCalentar',
+  name: 'BulmaCalentar',
   data () {
     return {
       picker: null,

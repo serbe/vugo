@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <vue-table
+    <bulma-table
       name="sirenType"
       :names="['Тип сирены', 'Радиус', 'Заметка']"
       :columns="['name', 'radius', 'note']"
@@ -12,18 +12,18 @@
       hyper
       search
       adding
-    ></vue-table>
+    ></bulma-table>
   </div>
 </template>
 
 <script>
-import VueTable from '@/elements/VueTable'
+import BulmaTable from '@/elements/BulmaTable'
 import mix from '@/mixins/mix'
 
 export default {
   name: 'SirenTypeList',
   components: {
-    'vue-table': VueTable
+    'bulma-table': BulmaTable
   },
   mixins: [mix],
   mounted () {

@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: 'VueDate',
+  name: 'BulmaDate',
   props: {
     value: {
       type: String,

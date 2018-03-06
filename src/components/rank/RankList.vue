@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <vue-table
+    <bulma-table
       name="rank"
       :names="['Наименование чина', 'Заметка']"
       :columns="['name', 'note']"
@@ -12,18 +12,18 @@
       hyper
       search
       adding
-    ></vue-table>
+    ></bulma-table>
   </div>
 </template>
 
 <script>
-import VueTable from '@/elements/VueTable'
+import BulmaTable from '@/elements/BulmaTable'
 import mix from '@/mixins/mix'
 
 export default {
   name: 'RankList',
   components: {
-    'vue-table': VueTable
+    'bulma-table': BulmaTable
   },
   mixins: [mix],
   mounted () {

@@ -2,7 +2,7 @@
   <div class="field">
     <p class="control">
       <a :class="aClassList" @click="click">
-        <vue-icon v-if="icon" :size="size" :icon="icon" :position="iconPosition" :color="color"/>
+        <bulma-icon v-if="icon" :size="size" :icon="icon" :position="iconPosition" :color="color"/>
         <template v-if="text">{{ text }}</template>
       </a>
     </p>
@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import VueIcon from '@/elements/VueIcon'
+import BulmaIcon from '@/elements/BulmaIcon'
 
 export default {
-  name: 'VueButton',
+  name: 'BulmaButton',
   components: {
-    'vue-icon': VueIcon
+    'bulma-icon': BulmaIcon
   },
   props: {
     text: {

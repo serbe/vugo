@@ -2,25 +2,25 @@
   <div class="container mw768">
     <form :model="certificate" id="certificate">
 
-      <vue-input v-model="certificate.num" label placeholder="Серийный номер удостоверения" icon="tag"></vue-input>
+      <bulma-input v-model="certificate.num" label placeholder="Серийный номер удостоверения" icon="tag"></bulma-input>
 
-      <vue-select :list="contacts" :selected-item="certificate.contact" item-name="contact" label="Полное имя" @select="onSelect" icon="user"></vue-select>
+      <bulma-select :list="contacts" :selected-item="certificate.contact" item-name="contact" label="Полное имя" @select="onSelect" icon="user"></bulma-select>
 
-      <vue-select :list="companies" :selected-item="certificate.company" item-name="company" label="Учебно методический центр" @select="onSelect" icon="building"></vue-select>
+      <bulma-select :list="companies" :selected-item="certificate.company" item-name="company" label="Учебно методический центр" @select="onSelect" icon="building"></bulma-select>
 
-      <vue-date v-model="certificate.cert_date" label="Дата выдачи"></vue-date>
+      <bulma-date v-model="certificate.cert_date" label="Дата выдачи"></bulma-date>
 
-      <vue-input v-model="certificate.note" label placeholder="Заметка" icon="comment"></vue-input>
+      <bulma-input v-model="certificate.note" label placeholder="Заметка" icon="comment"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <vue-button text="Сохранить" color="primary" @click="submit"></vue-button>
+          <bulma-button text="Сохранить" color="primary" @click="submit"></bulma-button>
         </div>
         <div class="control">
-          <vue-button text="Закрыть" @click="close"></vue-button>
+          <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></vue-button>
+          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
         </div>
       </div>
     </form>
@@ -28,19 +28,19 @@
 </template>
 
 <script>
-import VueInput from '@/elements/VueInput'
-import VueButton from '@/elements/VueButton'
-import VueSelect from '@/elements/VueSelect'
-import VueDate from '@/elements/VueDate'
+import BulmaInput from '@/elements/BulmaInput'
+import BulmaButton from '@/elements/BulmaButton'
+import BulmaSelect from '@/elements/BulmaSelect'
+import BulmaDate from '@/elements/BulmaDate'
 import request from '@/request'
 
 export default {
   name: 'CertificateItem',
   components: {
-    'vue-input': VueInput,
-    'vue-button': VueButton,
-    'vue-select': VueSelect,
-    'vue-date': VueDate
+    'bulma-input': BulmaInput,
+    'bulma-button': BulmaButton,
+    'bulma-select': BulmaSelect,
+    'bulma-date': BulmaDate
   },
   data () {
     return {

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <vue-table
+    <bulma-table
       name="scope"
       :names="['Сфера деятельности', 'Заметка']"
       :columns="['name', 'note']"
@@ -12,18 +12,18 @@
       hyper
       search
       adding
-    ></vue-table>
+    ></bulma-table>
    </div>
 </template>
 
 <script>
-import VueTable from '@/elements/VueTable'
+import BulmaTable from '@/elements/BulmaTable'
 import mix from '@/mixins/mix'
 
 export default {
   name: 'ScopeList',
   components: {
-    'vue-table': VueTable
+    'bulma-table': BulmaTable
   },
   mixins: [mix],
   mounted () {

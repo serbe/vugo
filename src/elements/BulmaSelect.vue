@@ -17,7 +17,7 @@
         @keyup.enter="onKeyEnter"
         @keydown.delete="onKeyDelete"
       >
-      <vue-icon v-if="icon" :icon="icon" :position="iconPosition" :color="color" :size="size"/>
+      <bulma-icon v-if="icon" :icon="icon" :position="iconPosition" :color="color" :size="size"/>
       <div class="select-box" v-if="opened">
         <div class="select-item" @click.stop="selectItem({id:0,name:''})" @mousedown="mousedownItem"></div>
         <div class="select-item" v-for="item in listWithFilter" :key="item.id" @click.stop="selectItem(item)" @mousedown="mousedownItem">{{ item.name }}
@@ -28,11 +28,11 @@
 </template>
 
 <script>
-import VueIcon from '@/elements/VueIcon'
+import BulmaIcon from '@/elements/BulmaIcon'
 export default {
-  name: 'VueSelect',
+  name: 'BulmaSelect',
   components: {
-    'vue-icon': VueIcon
+    'bulma-icon': BulmaIcon
   },
   props: {
     selectedItem: {

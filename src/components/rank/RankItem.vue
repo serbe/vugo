@@ -2,19 +2,19 @@
   <div class="container mw768">
     <form :model="rank" id="rank">
 
-      <vue-input v-model="rank.name" label placeholder="Наименование чина" icon="tag"></vue-input>
+      <bulma-input v-model="rank.name" label placeholder="Наименование чина" icon="tag"></bulma-input>
 
-      <vue-input v-model="rank.note" label placeholder="Заметка" icon="comment"></vue-input>
+      <bulma-input v-model="rank.note" label placeholder="Заметка" icon="comment"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <vue-button text="Сохранить" color="primary" @click="submit"></vue-button>
+          <bulma-button text="Сохранить" color="primary" @click="submit"></bulma-button>
         </div>
         <div class="control">
-          <vue-button text="Закрыть" @click="close"></vue-button>
+          <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></vue-button>
+          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
         </div>
       </div>
     </form>
@@ -22,15 +22,15 @@
 </template>
 
 <script>
-import VueInput from '@/elements/VueInput'
-import VueButton from '@/elements/VueButton'
+import BulmaInput from '@/elements/BulmaInput'
+import BulmaButton from '@/elements/BulmaButton'
 import request from '@/request'
 
 export default {
   name: 'RankItem',
   components: {
-    'vue-input': VueInput,
-    'vue-button': VueButton
+    'bulma-input': BulmaInput,
+    'bulma-button': BulmaButton
   },
   data () {
     return {

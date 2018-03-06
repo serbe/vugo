@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <div v-if="$auth.ready()"> -->
-      <vue-navbar/>
+      <bulma-navbar/>
       <section class="section pt1">
         <router-view></router-view>
       </section>
@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import VueNavBar from '@/elements/VueNavBar'
+import BulmaNavBar from '@/elements/BulmaNavBar'
 
 export default {
   name: 'app',
   components: {
-    'vue-navbar': VueNavBar
+    'bulma-navbar': BulmaNavBar
   }
 }
 </script>

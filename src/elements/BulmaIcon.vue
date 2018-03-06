@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'VueIcon',
+  name: 'BulmaIcon',
   props: {
     icon: {
       type: String,

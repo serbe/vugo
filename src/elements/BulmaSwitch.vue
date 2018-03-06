@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'VueSwitch',
+  name: 'BulmaSwitch',
   props: {
     disabled: {
       type: Boolean,

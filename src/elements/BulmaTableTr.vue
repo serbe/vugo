@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'VueTableTr',
+  name: 'BulmaTableTr',
   props: {
     type: {
       type: String,

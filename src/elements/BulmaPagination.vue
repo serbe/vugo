@@ -33,7 +33,7 @@
 <script>
 /* eslint no-bitwise: ["error", { "int32Hint": true }] */
 export default {
-  name: 'VuePagination',
+  name: 'BulmaPagination',
   props: {
     allElems: {
       type: Number,

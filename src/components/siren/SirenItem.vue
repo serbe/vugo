@@ -4,36 +4,36 @@
 
       <div class="columns">
         <div class="column is-half">
-          <vue-input v-model="siren.num_pass" type="text" label placeholder="Серийный номер" icon="tag"></vue-input>
+          <bulma-input v-model="siren.num_pass" type="text" label placeholder="Серийный номер" icon="tag"></bulma-input>
         </div>
         <div class="column is-half">
-          <vue-select :list="siren_types" :selected-item="siren.siren_type" label="Тип сирены" item-name="siren_type" @select="onSelect" icon="tag"></vue-select>
+          <bulma-select :list="siren_types" :selected-item="siren.siren_type" label="Тип сирены" item-name="siren_type" @select="onSelect" icon="tag"></bulma-select>
         </div>
       </div>
 
-      <vue-input v-model="siren.address" type="text" label placeholder="Адрес" icon="address-card"></vue-input>
-      <vue-select :list="contacts" :selected-item="siren.contact" label="Контактное лицо" item-name="contact" @select="onSelect" icon="user"></vue-select>
-      <vue-select :list="companies" :selected-item="siren.company" label="Организация" item-name="company" @select="onSelect" icon="building"></vue-select>
+      <bulma-input v-model="siren.address" type="text" label placeholder="Адрес" icon="address-card"></bulma-input>
+      <bulma-select :list="contacts" :selected-item="siren.contact" label="Контактное лицо" item-name="contact" @select="onSelect" icon="user"></bulma-select>
+      <bulma-select :list="companies" :selected-item="siren.company" label="Организация" item-name="company" @select="onSelect" icon="building"></bulma-select>
 
       <div class="columns">
         <div class="column is-half">
-          <vue-input v-model="siren.latitude" label placeholder="Широта" icon="tag"></vue-input>
+          <bulma-input v-model="siren.latitude" label placeholder="Широта" icon="tag"></bulma-input>
         </div>
         <div class="column is-half">
-          <vue-input v-model="siren.longitude" label placeholder="Долгота" icon="tag"></vue-input>
+          <bulma-input v-model="siren.longitude" label placeholder="Долгота" icon="tag"></bulma-input>
         </div>
       </div>
-      <vue-input v-model="siren.note" label placeholder="Заметка" icon="comment"></vue-input>
+      <bulma-input v-model="siren.note" label placeholder="Заметка" icon="comment"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <vue-button text="Сохранить" color="primary" @click="submit"></vue-button>
+          <bulma-button text="Сохранить" color="primary" @click="submit"></bulma-button>
         </div>
         <div class="control">
-          <vue-button text="Закрыть" @click="close"></vue-button>
+          <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></vue-button>
+          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
         </div>
       </div>
     </form>
@@ -47,17 +47,17 @@
 // Stage     int64     `sql:"stage,null"      json:"stage"      form:"stage"      query:"stage"`
 // Own       string    `sql:"own,null"        json:"own"        form:"own"        query:"own"`
 
-import VueInput from '@/elements/VueInput'
-import VueButton from '@/elements/VueButton'
-import VueSelect from '@/elements/VueSelect'
+import BulmaInput from '@/elements/BulmaInput'
+import BulmaButton from '@/elements/BulmaButton'
+import BulmaSelect from '@/elements/BulmaSelect'
 import request from '@/request'
 
 export default {
   name: 'SirenItem',
   components: {
-    'vue-input': VueInput,
-    'vue-button': VueButton,
-    'vue-select': VueSelect
+    'bulma-input': BulmaInput,
+    'bulma-button': BulmaButton,
+    'bulma-select': BulmaSelect
   },
   data () {
     return {

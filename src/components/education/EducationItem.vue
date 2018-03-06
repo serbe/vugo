@@ -2,31 +2,31 @@
   <div class="container mw768">
     <form :model="education" id="education">
 
-      <vue-select :list="contacts" :selected-item="education.contact" label="Полное имя обучаемого" item-name="contact" @select="onSelect" icon="user"></vue-select>
+      <bulma-select :list="contacts" :selected-item="education.contact" label="Полное имя обучаемого" item-name="contact" @select="onSelect" icon="user"></bulma-select>
 
-      <vue-select :list="posts" :selected-item="education.post" label="Должность ГО ЧС" item-name="post" @select="onSelect" icon="tag"></vue-select>
+      <bulma-select :list="posts" :selected-item="education.post" label="Должность ГО ЧС" item-name="post" @select="onSelect" icon="tag"></bulma-select>
 
       <div class="columns">
         <div class="column">
-          <vue-date v-model="education.start_date" label="Дата начала обучения"></vue-date>
+          <bulma-date v-model="education.start_date" label="Дата начала обучения"></bulma-date>
         </div>
 
         <div class="column">
-          <vue-date v-model="education.end_date" label="Дата конца обучения"></vue-date>
+          <bulma-date v-model="education.end_date" label="Дата конца обучения"></bulma-date>
         </div>
       </div>
 
-      <vue-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="education.note"></vue-input>
+      <bulma-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="education.note"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <vue-button text="Сохранить" color="primary" @click="submit"></vue-button>
+          <bulma-button text="Сохранить" color="primary" @click="submit"></bulma-button>
         </div>
         <div class="control">
-          <vue-button text="Закрыть" @click="close"></vue-button>
+          <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></vue-button>
+          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
         </div>
       </div>
     </form>
@@ -34,19 +34,19 @@
 </template>
 
 <script>
-import VueInput from '@/elements/VueInput'
-import VueButton from '@/elements/VueButton'
-import VueSelect from '@/elements/VueSelect'
-import VueDate from '@/elements/VueDate'
+import BulmaInput from '@/elements/BulmaInput'
+import BulmaButton from '@/elements/BulmaButton'
+import BulmaSelect from '@/elements/BulmaSelect'
+import BulmaDate from '@/elements/BulmaDate'
 import request from '@/request'
 
 export default {
   name: 'EducationItem',
   components: {
-    'vue-input': VueInput,
-    'vue-button': VueButton,
-    'vue-select': VueSelect,
-    'vue-date': VueDate
+    'bulma-input': BulmaInput,
+    'bulma-button': BulmaButton,
+    'bulma-select': BulmaSelect,
+    'bulma-date': BulmaDate
   },
   data () {
     return {

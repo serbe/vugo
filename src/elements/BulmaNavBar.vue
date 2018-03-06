@@ -40,7 +40,7 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">{{ user.name }}</a>
             <div class="navbar-dropdown is-right">
-              <vue-button v-if="user.authenticated" class="navbar-item" text="Выход" color="info" @click="logout" key="user"></vue-button>
+              <bulma-button v-if="user.authenticated" class="navbar-item" text="Выход" color="info" @click="logout" key="user"></bulma-button>
             </div>
           </div>
         </div>
@@ -51,12 +51,12 @@
 
 <script>
 import auth from '@/auth'
-import VueButton from '@/elements/VueButton'
+import BulmaButton from '@/elements/BulmaButton'
 
 export default {
-  name: 'VueNavBar',
+  name: 'BulmaNavBar',
   components: {
-    'vue-button': VueButton
+    'bulma-button': BulmaButton
   },
   data () {
     return {

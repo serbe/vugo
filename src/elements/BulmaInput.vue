@@ -16,7 +16,7 @@
           @blur="onBlur"
           @keyup="onKeyup"
         >
-        <vue-icon v-if="icon" :size="size" :position="iconPosition" :icon="icon" :color="color"/>
+        <bulma-icon v-if="icon" :size="size" :position="iconPosition" :icon="icon" :color="color"/>
         <p v-if="isError" class="help is-danger">{{ error }}</p>
       </a>
       <template v-else>
@@ -33,7 +33,7 @@
           @blur="onBlur"
           @keyup="onKeyup"
         >
-        <vue-icon v-if="icon" :size="size" :position="iconPosition" :icon="icon" :color="color"/>
+        <bulma-icon v-if="icon" :size="size" :position="iconPosition" :icon="icon" :color="color"/>
         <p v-if="isError" class="help is-danger">{{ error }}</p>
       </template>
     </div>
@@ -41,12 +41,12 @@
 </template>
 
 <script>
-import VueIcon from '@/elements/VueIcon'
+import BulmaIcon from '@/elements/BulmaIcon'
 
 export default {
-  name: 'VueInput',
+  name: 'BulmaInput',
   components: {
-    'vue-icon': VueIcon
+    'bulma-icon': BulmaIcon
   },
   props: {
     value: '',

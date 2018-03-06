@@ -2,17 +2,17 @@
   <div class="container mw768">
     <form :model="company" id="company">
 
-      <vue-input v-model="company.name" label placeholder="Наименование организации" icon="building"></vue-input>
+      <bulma-input v-model="company.name" label placeholder="Наименование организации" icon="building"></bulma-input>
 
-      <vue-select :list="scopes" :selected-item="company.scope" item-name="scope" label="Сфера деятельности" @select="onSelect" icon="tag"></vue-select>
+      <bulma-select :list="scopes" :selected-item="company.scope" item-name="scope" label="Сфера деятельности" @select="onSelect" icon="tag"></bulma-select>
 
-      <vue-input v-model="company.address" label placeholder="Адрес" icon="address-card"></vue-input>
+      <bulma-input v-model="company.address" label placeholder="Адрес" icon="address-card"></bulma-input>
 
       <div class="columns">
         <div class="column">
           <div class="field">
             <label class="label">Электронный адрес</label>
-            <vue-input
+            <bulma-input
               v-for="(email, index) in company.emails"
               :key="index"
               v-model="company.emails[index].email"
@@ -23,14 +23,14 @@
               @blur="onBlur('emails', 'email')"
               pattern='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
               error="Неправильный email"
-            ></vue-input>
+            ></bulma-input>
           </div>
         </div>
 
         <div class="column">
           <div class="field">
             <label class="label">Телефон</label>
-            <vue-input
+            <bulma-input
               v-for="(phone, index) in company.phones"
               :key="index"
               v-model="company.phones[index].phone"
@@ -39,14 +39,14 @@
               icon="phone"
               autocomplete="tel"
               @blur="onBlur('phones', 'phone')"
-            ></vue-input>
+            ></bulma-input>
           </div>
         </div>
 
         <div class="column">
           <div class="field">
             <label class="label">Факс</label>
-            <vue-input
+            <bulma-input
               v-for="(fax, index) in company.faxes"
               :key="index"
               v-model="company.faxes[index].phone"
@@ -55,46 +55,46 @@
               icon="phone"
               autocomplete="tel"
               @blur="onBlur('faxes', 'phone')"
-            ></vue-input>
+            ></bulma-input>
           </div>
         </div>
       </div>
 
       <div class="field" v-if="company.practices" key="practices">
         <label class="label">Тренировки</label>
-        <vue-input
+        <bulma-input
           v-for="practice in company.practices"
           :key="practice.id"
           :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic"
           :hyper="'/practice/' + practice.id"
           icon="history"
           disabled
-        ></vue-input>
+        ></bulma-input>
       </div>
 
       <div class="field" v-if="company.contacts" key="contacts">
         <label class="label">Сотрудники</label>
-        <vue-input
+        <bulma-input
           v-for="contact in company.contacts"
           :key="contact.id"
           :value="contact.name + ' - ' + contact.post_name"
           :hyper="'/contact/' + contact.id"
           icon="user"
           disabled
-        ></vue-input>
+        ></bulma-input>
       </div>
 
-      <vue-input v-model="company.note" label placeholder="Заметка" icon="sticky-note"></vue-input>
+      <bulma-input v-model="company.note" label placeholder="Заметка" icon="sticky-note"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <vue-button text="Сохранить" color="primary" @click="submit"></vue-button>
+          <bulma-button text="Сохранить" color="primary" @click="submit"></bulma-button>
         </div>
         <div class="control">
-          <vue-button text="Закрыть" @click="close"></vue-button>
+          <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <vue-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></vue-button>
+          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
         </div>
       </div>
     </form>
@@ -102,18 +102,18 @@
 </template>
 
 <script>
-import VueInput from '@/elements/VueInput'
-import VueButton from '@/elements/VueButton'
-import VueSelect from '@/elements/VueSelect'
+import BulmaInput from '@/elements/BulmaInput'
+import BulmaButton from '@/elements/BulmaButton'
+import BulmaSelect from '@/elements/BulmaSelect'
 import mixin from '@/mixins/funcs'
 import request from '@/request'
 
 export default {
   name: 'CompanyItem',
   components: {
-    'vue-input': VueInput,
-    'vue-button': VueButton,
-    'vue-select': VueSelect
+    'bulma-input': BulmaInput,
+    'bulma-button': BulmaButton,
+    'bulma-select': BulmaSelect
   },
   mixins: [mixin],
   data () {

@@ -24,7 +24,7 @@
     <p class="control mb1" v-if="search">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
-    <vue-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"></vue-pagination>
+    <bulma-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"></bulma-pagination>
     <table
       class="table center-table"
       :class="tableClass">
@@ -37,32 +37,32 @@
         <template v-if="hyper">
           <template v-for="(row, key) in rows">
             <tr :key="key" @click="onClickTr(row)" class="link">
-              <vue-table-tr v-for="(name, index) in body" :key="index" :class="cellClass(index)" :type="cellType(index)" :value="row[name]"/>
+              <bulma-table-tr v-for="(name, index) in body" :key="index" :class="cellClass(index)" :type="cellType(index)" :value="row[name]"/>
             </tr>
           </template>
         </template>
         <template v-else>
           <template v-for="(row, key) in rows">
             <tr :key="key">
-              <vue-table-tr v-for="(name, index) in body" :key="index" :class="cellClass(index)" :type="cellType(index)" :value="row[name]"/>
+              <bulma-table-tr v-for="(name, index) in body" :key="index" :class="cellClass(index)" :type="cellType(index)" :value="row[name]"/>
             </tr>
           </template>
         </template>
       </tbody>
     </table>
-    <vue-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"></vue-pagination>
+    <bulma-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter"></bulma-pagination>
   </div>
 </template>
 
 <script>
-import VuePagination from '@/elements/VuePagination'
-import VueTableTr from '@/elements/VueTableTr'
+import BulmaPagination from '@/elements/BulmaPagination'
+import BulmaTableTr from '@/elements/BulmaTableTr'
 
 export default {
-  name: 'VueTable',
+  name: 'BulmaTable',
   components: {
-    'vue-pagination': VuePagination,
-    'vue-table-tr': VueTableTr
+    'bulma-pagination': BulmaPagination,
+    'bulma-table-tr': BulmaTableTr
   },
   data () {
     return {
