@@ -56,6 +56,9 @@ export default {
         })
           .then((r) => {
             this.practicesList = r.data.practices
+            if (this.practicesList) {
+              this.practicesList = this.practicesList.reverse()
+            }
             this.practicesFetched = true
           })
       }
@@ -68,6 +71,9 @@ export default {
         })
           .then((r) => {
             this.educationsList = r.data.educations
+            if (this.educationsList) {
+              this.educationsList = this.educationsList.reverse()
+            }
             this.educationsFetched = true
           })
       }
@@ -95,18 +101,34 @@ export default {
 </script>
 
 <style scoped>
-.tr-is-success {
-  background-color: #23d160;
-  color: #fff;
+.tr-is-success, .tr-is-success:hover {
+  /* background-color: rgba(35, 209, 96, 0.5); */
+  border-bottom: 2px solid #23d160;
 }
 
-.tr-is-warning {
-  background-color: #ffdd57;
-  color: rgba(0, 0, 0, 0.7);
+.tr-is-warning, .tr-is-warning:hover {
+  /* background-color: rgba(255, 221, 87, 0.5); */
+  border-bottom: 2px solid #ffdd57;
 }
 
-.tr-is-danger {
-  background-color: #ff3860;
-  color: #fff;
+.tr-is-danger, .tr-is-danger:hover {
+  /* background-color: rgba(255, 56, 96, 0.5); */
+  border-bottom: 2px solid #fc0032;
+}
+
+.tr-is-success:hover {
+  background-color: rgba(35, 209, 96, 0.7);
+}
+
+.tr-is-warning:hover {
+  background-color: rgba(255, 221, 87, 0.7);
+}
+
+.tr-is-danger:hover {
+  background-color: rgba(255, 56, 96, 0.7);
+}
+
+tr a {
+  color: #363636;
 }
 </style>
