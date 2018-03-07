@@ -26,6 +26,7 @@
 <script>
 import BulmaInput from '@/elements/BulmaInput'
 import BulmaButton from '@/elements/BulmaButton'
+import Kind from '@/objects/Kind'
 import request from '@/request'
 
 export default {
@@ -37,12 +38,7 @@ export default {
   data () {
     return {
       title: '',
-      kind: {
-        id: 0,
-        name: '',
-        short_name: '',
-        note: ''
-      }
+      kind: Kind
     }
   },
   mounted () {

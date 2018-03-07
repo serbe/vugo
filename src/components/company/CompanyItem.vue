@@ -105,6 +105,8 @@
 import BulmaInput from '@/elements/BulmaInput'
 import BulmaButton from '@/elements/BulmaButton'
 import BulmaSelect from '@/elements/BulmaSelect'
+import Company from '@/objects/Company'
+import SelectItem from '@/objects/SelectItem'
 import mixin from '@/mixins/funcs'
 import request from '@/request'
 
@@ -119,48 +121,8 @@ export default {
   data () {
     return {
       title: '',
-      company: {
-        id: 0,
-        name: '',
-        address: '',
-        scope: {
-          id: 0,
-          name: ''
-        },
-        scope_id: 0,
-        note: '',
-        emails: [{
-          id: 0,
-          email: ''
-        }],
-        phones: [{
-          id: 0,
-          phone: '',
-          fax: false
-        }],
-        faxes: [{
-          id: 0,
-          phone: '',
-          fax: true
-        }],
-        practices: [{
-          id: 0,
-          date_str: '',
-          kind_name: '',
-          topic: ''
-        }],
-        contacts: [{
-          id: 0,
-          name: '',
-          department_name: '',
-          post_name: '',
-          post_go_name: ''
-        }]
-      },
-      scopes: [{
-        id: 0,
-        name: ''
-      }]
+      company: Company,
+      scopes: [SelectItem]
     }
   },
   mounted () {

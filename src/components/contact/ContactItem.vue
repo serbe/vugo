@@ -119,90 +119,35 @@
 </template>
 
 <script>
+// import BulmaCalendar from '@/elements/BulmaCalendar'
 import BulmaInput from '@/elements/BulmaInput'
 import BulmaButton from '@/elements/BulmaButton'
 import BulmaSelect from '@/elements/BulmaSelect'
 import BulmaDate from '@/elements/BulmaDate'
-// import BulmaCalendar from '@/elements/BulmaCalendar'
+import Contact from '@/objects/Contact'
+import SelectItem from '@/objects/SelectItem'
 import mixin from '@/mixins/funcs'
 import request from '@/request'
 
 export default {
   name: 'ContactItem',
   components: {
+    // 'bulma-calendar': BulmaCalendar,
     'bulma-input': BulmaInput,
     'bulma-button': BulmaButton,
     'bulma-select': BulmaSelect,
-    // 'bulma-calendar': BulmaCalendar,
     'bulma-date': BulmaDate
   },
   mixins: [mixin],
   data () {
     return {
       title: '',
-      contact: {
-        id: 0,
-        name: '',
-        birthday: '',
-        company: {
-          id: 0,
-          name: ''
-        },
-        company_id: 0,
-        post: {
-          id: 0,
-          name: ''
-        },
-        post_id: 0,
-        department: [{
-          id: 0,
-          email: ''
-        }],
-        department_id: 0,
-        post_go: {
-          id: 0,
-          name: ''
-        },
-        post_go_id: 0,
-        rank: {
-          id: 0,
-          name: ''
-        },
-        rank_id: 0,
-        emails: [{
-          id: 0,
-          email: ''
-        }],
-        phones: [{
-          id: 0,
-          phone: ''
-        }],
-        faxes: [{
-          id: 0,
-          phone: ''
-        }],
-        note: ''
-      },
-      companies: [{
-        id: 0,
-        name: ''
-      }],
-      posts: [{
-        id: 0,
-        name: ''
-      }],
-      posts_go: [{
-        id: 0,
-        name: ''
-      }],
-      departments: [{
-        id: 0,
-        name: ''
-      }],
-      ranks: [{
-        id: 0,
-        name: ''
-      }]
+      contact: Contact,
+      companies: [SelectItem],
+      posts: [SelectItem],
+      posts_go: [SelectItem],
+      departments: [SelectItem],
+      ranks: [SelectItem]
     }
   },
   mounted () {

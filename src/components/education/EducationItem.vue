@@ -38,6 +38,8 @@ import BulmaInput from '@/elements/BulmaInput'
 import BulmaButton from '@/elements/BulmaButton'
 import BulmaSelect from '@/elements/BulmaSelect'
 import BulmaDate from '@/elements/BulmaDate'
+import Education from '@/objects/Education'
+import SelectItem from '@/objects/SelectItem'
 import request from '@/request'
 
 export default {
@@ -51,30 +53,9 @@ export default {
   data () {
     return {
       title: '',
-      education: {
-        id: 0,
-        contact_id: 0,
-        contact: {
-          id: 0,
-          name: ''
-        },
-        post_id: 0,
-        post: {
-          id: 0,
-          name: ''
-        },
-        start_date: '',
-        end_date: '',
-        note: ''
-      },
-      contacts: [{
-        id: 0,
-        name: ''
-      }],
-      posts: [{
-        id: 0,
-        name: ''
-      }]
+      education: Education,
+      contacts: [SelectItem],
+      posts: [SelectItem]
     }
   },
   mounted () {

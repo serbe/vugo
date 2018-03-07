@@ -50,6 +50,8 @@
 import BulmaInput from '@/elements/BulmaInput'
 import BulmaButton from '@/elements/BulmaButton'
 import BulmaSelect from '@/elements/BulmaSelect'
+import Siren from '@/objects/Siren'
+import SelectItem from '@/objects/SelectItem'
 import request from '@/request'
 
 export default {
@@ -62,46 +64,10 @@ export default {
   data () {
     return {
       title: '',
-      siren: {
-        id: 0,
-        num_id: 0,
-        num_pass: '',
-        siren_type_id: '',
-        siren_type: {
-          id: 0,
-          name: ''
-        },
-        address: '',
-        radio: '',
-        desk: '',
-        contact_id: 0,
-        contact: {
-          id: 0,
-          name: ''
-        },
-        company_id: 0,
-        company: {
-          id: 0,
-          name: ''
-        },
-        latitude: '',
-        longtitude: '',
-        stage: '',
-        own: '',
-        note: ''
-      },
-      siren_types: [{
-        id: 0,
-        name: ''
-      }],
-      contacts: [{
-        id: 0,
-        name: ''
-      }],
-      companies: [{
-        id: 0,
-        name: ''
-      }]
+      siren: Siren,
+      siren_types: [SelectItem],
+      contacts: [SelectItem],
+      companies: [SelectItem]
     }
   },
   mounted () {

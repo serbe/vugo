@@ -32,6 +32,8 @@ import BulmaInput from '@/elements/BulmaInput'
 import BulmaButton from '@/elements/BulmaButton'
 import BulmaDate from '@/elements/BulmaDate'
 import BulmaSelect from '@/elements/BulmaSelect'
+import Practice from '@/objects/Practice'
+import SelectItem from '@/objects/SelectItem'
 import request from '@/request'
 
 export default {
@@ -45,32 +47,9 @@ export default {
   data () {
     return {
       title: '',
-      practice: {
-        id: 0,
-        company_id: 0,
-        company: {
-          id: 0,
-          name: ''
-        },
-        company_name: '',
-        kind_id: 0,
-        kind: {
-          id: 0,
-          name: ''
-        },
-        kind_name: '',
-        date_of_practice: '',
-        topic: '',
-        note: ''
-      },
-      companies: [{
-        id: 0,
-        name: ''
-      }],
-      kinds: [{
-        id: 0,
-        name: ''
-      }]
+      practice: Practice,
+      companies: [SelectItem],
+      kinds: [SelectItem]
     }
   },
   mounted () {

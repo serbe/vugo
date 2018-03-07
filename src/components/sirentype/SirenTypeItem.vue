@@ -24,6 +24,7 @@
 <script>
 import BulmaInput from '@/elements/BulmaInput'
 import BulmaButton from '@/elements/BulmaButton'
+import SirenType from '@/objects/SirenType'
 import request from '@/request'
 
 export default {
@@ -35,12 +36,7 @@ export default {
   data () {
     return {
       title: '',
-      sirenType: {
-        id: 0,
-        name: '',
-        radius: 0,
-        note: ''
-      }
+      sirenType: SirenType
     }
   },
   mounted () {

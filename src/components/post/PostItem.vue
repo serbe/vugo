@@ -27,6 +27,7 @@
 import BulmaInput from '@/elements/BulmaInput'
 import BulmaButton from '@/elements/BulmaButton'
 import BulmaSwitch from '@/elements/BulmaSwitch'
+import Kind from '@/objects/Kind'
 import request from '@/request'
 
 export default {
@@ -39,12 +40,7 @@ export default {
   data () {
     return {
       title: '',
-      post: {
-        id: 0,
-        name: '',
-        go: false,
-        note: ''
-      }
+      post: Kind
     }
   },
   mounted () {

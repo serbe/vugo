@@ -13,9 +13,9 @@ const client = axios.create({
 })
 
 function request (options) {
-  // if (auth.isAuth()) {
-  //   client.defaults.headers.common.Authorization = auth.getAuthHeader()
-  // }
+  if (auth.isAuth()) {
+    client.defaults.headers.common.Authorization = auth.getAuthHeader()
+  }
 
   function onSuccess (response) {
     // console.debug('Request Successful!', response)

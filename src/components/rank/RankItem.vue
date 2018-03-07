@@ -24,6 +24,7 @@
 <script>
 import BulmaInput from '@/elements/BulmaInput'
 import BulmaButton from '@/elements/BulmaButton'
+import Rank from '@/objects/Rank'
 import request from '@/request'
 
 export default {
@@ -35,11 +36,7 @@ export default {
   data () {
     return {
       title: '',
-      rank: {
-        id: 0,
-        name: '',
-        note: ''
-      }
+      rank: Rank
     }
   },
   mounted () {

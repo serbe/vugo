@@ -24,6 +24,7 @@
 <script>
 import BulmaInput from '@/elements/BulmaInput'
 import BulmaButton from '@/elements/BulmaButton'
+import Department from '@/objects/Department'
 import request from '@/request'
 
 export default {
@@ -35,11 +36,7 @@ export default {
   data () {
     return {
       title: '',
-      department: {
-        id: 0,
-        name: '',
-        note: ''
-      }
+      department: Department
     }
   },
   mounted () {

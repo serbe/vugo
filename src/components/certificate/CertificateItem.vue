@@ -32,6 +32,8 @@ import BulmaInput from '@/elements/BulmaInput'
 import BulmaButton from '@/elements/BulmaButton'
 import BulmaSelect from '@/elements/BulmaSelect'
 import BulmaDate from '@/elements/BulmaDate'
+import Certificate from '@/objects/Certificate'
+import SelectItem from '@/objects/SelectItem'
 import request from '@/request'
 
 export default {
@@ -45,30 +47,9 @@ export default {
   data () {
     return {
       title: '',
-      certificate: {
-        id: 0,
-        num: '',
-        contact_id: 0,
-        contact: {
-          id: 0,
-          name: ''
-        },
-        company_id: 0,
-        company: {
-          id: 0,
-          name: ''
-        },
-        cert_date: '',
-        note: ''
-      },
-      contacts: [{
-        id: 0,
-        name: ''
-      }],
-      companies: [{
-        id: 0,
-        name: ''
-      }]
+      certificate: Certificate,
+      contacts: [SelectItem],
+      companies: [SelectItem]
     }
   },
   mounted () {
