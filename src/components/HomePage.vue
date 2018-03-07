@@ -2,7 +2,7 @@
   <div class="container">
     <div class="content has-text-centered">
       <div class="columns">
-        <div class="column is-half">
+        <div class="column is-one-third">
           <table v-if="educationsFetched" class="table" key="educations">
             <tbody>
               <tr v-for="(item, index) in educationsList" :key="index" :class="trClass(item.start_date)">
@@ -12,7 +12,7 @@
             </tbody>
           </table>
         </div>
-        <div class="column">
+        <div class="column is-one-third is-offset-one-third">
           <table v-if="practicesFetched" class="table" key="practices">
             <tbody>
               <tr v-for="(item, index) in practicesList" :key="index" :class="trClass(item.date_of_practice)">
