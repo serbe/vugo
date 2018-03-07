@@ -25,11 +25,9 @@ function request (options) {
 
   function onError (error) {
     // console.error('Request Failed:', error.config);
-    if (error.response) {
-      if (error.response.status === 401 && auth.isAuth()) {
-        auth.logout()
-        router.push({name: 'LoginPage'})
-      }
+    if (error.response && error.response.status === 401 && auth.isAuth()) {
+      auth.logout()
+      router.push({name: 'LoginPage'})
       // console.error('Status:', error.response.status);
       // console.error('Data:', error.response.data);
       // console.error('Headers:', error.response.headers);

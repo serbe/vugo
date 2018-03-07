@@ -11,7 +11,6 @@ export default {
     localStorage.setItem('token', data.token)
     localStorage.setItem('user', data.name)
     const currentDate = new Date()
-    // console.log(data)
     localStorage.setItem('expire', currentDate.valueOf() + 86400000)
     this.user.name = data.name
     this.user.authenticated = true

@@ -24,7 +24,7 @@
     <p class="control mb1" v-if="search" key="TableSearch">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
-    <bulma-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter" key="TablePaginationTop"></bulma-pagination>
+    <bulma-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter" key="TablePaginationTop" size="small"></bulma-pagination>
     <table
       class="table center-table"
       :class="tableClass">
@@ -50,7 +50,7 @@
         </template>
       </tbody>
     </table>
-    <bulma-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter" key="TablePaginationBottom"></bulma-pagination>
+    <bulma-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter" key="TablePaginationBottom" size="small"></bulma-pagination>
   </div>
 </template>
 
