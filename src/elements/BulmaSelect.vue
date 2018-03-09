@@ -99,13 +99,13 @@ export default {
     inputClassList () {
       const res = ['input']
       if (this.color) {
-        res.push(this.color.split(' ').map(e => `is${e}`))
+        res.push(`is-${this.color}`)
       }
       if (this.size) {
-        res.push(this.size.split(' ').map(e => `is${e}`))
+        res.push(`is-${this.size}`)
       }
       if (this.state) {
-        res.push(this.state.split(' ').map(e => `is${e}`))
+        res.push(`is-${this.state}`)
       }
       return res
     },
