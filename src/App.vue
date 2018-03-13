@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import BulmaNavBar from '@/elements/BulmaNavBar'
+import BulmaNavBar from '@/components/BulmaNavBar'
 
 export default {
   name: 'app',

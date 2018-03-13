@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const lazyLoad = (path) => () => import(`@/components/${path}`)
+const lazyLoad = (path) => () => import(`@/views/${path}`)
 
 Vue.use(Router)
 
