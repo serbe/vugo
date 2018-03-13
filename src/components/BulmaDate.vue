@@ -96,3 +96,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+/* option {
+  font-size: 13px !important;
+  text-align: center !important;
+} */
+</style>

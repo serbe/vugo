@@ -40,7 +40,9 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">{{ user.name }}</a>
             <div class="navbar-dropdown is-right">
-              <bulma-button v-if="user.authenticated" class="navbar-item" text="Выход" color="info" @click="logout" key="user"></bulma-button>
+              <div v-if="user.authenticated" class="field navbar-item">
+                <bulma-button text="Выход" color="info" @click="logout" key="user"></bulma-button>
+              </div>
             </div>
           </div>
         </div>
