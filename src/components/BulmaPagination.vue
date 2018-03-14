@@ -22,7 +22,7 @@
         <li v-if="value < max - 2" key="li5">
           <span class="pagination-ellipsis">&hellip;</span>
         </li>
-        <li v-if="value != max" key="li6">
+        <li v-if="value !== max" key="li6">
           <a class="pagination-link" @click="onClick(max)">{{ max }}</a>
         </li>
       </ul>
