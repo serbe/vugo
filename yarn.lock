@@ -1337,8 +1337,8 @@ builtin-status-codes@^3.0.0:
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
 
 bulma-calendar@^1.0.0:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/bulma-calendar/-/bulma-calendar-1.1.2.tgz#830b7933e41bb3f0cec9be57d69390f35935d3cc"
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/bulma-calendar/-/bulma-calendar-1.1.9.tgz#7cdfc6d7ac12a1f62688fd370edae71c2d24cbcf"
   dependencies:
     camelcase "^4.1.0"
 

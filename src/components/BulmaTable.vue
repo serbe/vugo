@@ -203,4 +203,9 @@ export default {
 .nowrap {
   white-space: nowrap;
 }
+
+.table {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 </style>
