@@ -90,24 +90,21 @@ export default {
   },
   computed: {
     classList () {
-      const res = ['control is-expanded select is-fullwidth']
-      if (this.icon) {
-        res.push('has-icons-left')
+      return {
+        'control': true,
+        'is-expanded': true,
+        'select': true,
+        'is-fullwidth': true,
+        'has-icons-left': this.icon
       }
-      return res
     },
     inputClassList () {
-      const res = ['input']
-      if (this.color) {
-        res.push(`is-${this.color}`)
+      return {
+        'input': true,
+        [`is-${this.color}`]: this.color,
+        [`is-${this.size}`]: this.size,
+        [`is-${this.state}`]: this.state
       }
-      if (this.size) {
-        res.push(`is-${this.size}`)
-      }
-      if (this.state) {
-        res.push(`is-${this.state}`)
-      }
-      return res
     },
     getLabel () {
       if (this.label !== false && this.placeholder !== false && this.label === '') {

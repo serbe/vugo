@@ -49,11 +49,10 @@ export default {
       return this.label
     },
     classObject () {
-      const {type, size, value} = this
       return {
-        [`is-${type}`]: type,
-        [`is-${size}`]: size,
-        checked: value
+        [`is-${this.type}`]: this.type,
+        [`is-${this.size}`]: this.size,
+        checked: this.value
       }
     }
   },

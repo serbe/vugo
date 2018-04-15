@@ -12,6 +12,10 @@ export default {
       type: String,
       required: true
     },
+    color: {
+      type: [String, Boolean],
+      default: false
+    },
     size: {
       type: [String, Boolean],
       default: false
@@ -19,25 +23,16 @@ export default {
     position: {
       type: [String, Boolean],
       default: false
-    },
-    color: {
-      type: [String, Boolean],
-      default: false
     }
   },
   computed: {
     spanClass () {
-      let classList = ['icon']
-      if (this.size) {
-        classList.push(`is-${this.size}`)
+      return {
+        'icon': true,
+        [`is-${this.color}`]: this.color,
+        [`is-${this.size}`]: this.size,
+        [`is-${this.position}`]: this.position
       }
-      if (this.position) {
-        classList.push(`is-${this.position}`)
-      }
-      if (this.color) {
-        classList.push(`is-${this.color}`)
-      }
-      return classList
     },
     iconClass () {
       return `fas fa-${this.icon}`

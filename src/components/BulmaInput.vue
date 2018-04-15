@@ -118,24 +118,19 @@ export default {
   },
   computed: {
     classList () {
-      const res = ['control is-expanded']
-      if (this.icon) {
-        res.push(`has-icons-${this.iconPosition}`)
+      return {
+        'control': true,
+        'is-expanded': true,
+        [`has-icons-${this.iconPosition}`]: this.icon
       }
-      return res
     },
     inputClassList () {
-      const res = ['input']
-      if (this.color) {
-        res.push(`is-${this.color}`)
+      return {
+        'input': true,
+        [`is-${this.color}`]: this.color,
+        [`is-${this.size}`]: this.size,
+        [`is-${this.state}`]: this.state
       }
-      if (this.size) {
-        res.push(`is-${this.size}`)
-      }
-      if (this.state) {
-        res.push(`is-${this.state}`)
-      }
-      return res
     },
     getLabel () {
       if (this.label !== false && this.placeholder !== false && this.label === '') {

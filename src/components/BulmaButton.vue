@@ -19,14 +19,12 @@ export default {
       default: false
     },
     color: {
-      validator (value) {
-        return ['white', 'light', 'dark', 'text', 'primary', 'link', 'info', 'success', 'warning', 'danger'].indexOf(value) !== -1
-      }
+      type: [String, Boolean],
+      default: false
     },
     size: {
-      validator (value) {
-        return ['small', 'medium', 'large'].indexOf(value) !== -1
-      }
+      type: [String, Boolean],
+      default: false
     },
     outlined: {
       type: Boolean,
@@ -76,7 +74,7 @@ export default {
   computed: {
     classList () {
       return {
-        button: true,
+        'button': true,
         [`is-${this.color}`]: this.color,
         [`is-${this.size}`]: this.size,
         'is-outlined': this.outlined,
