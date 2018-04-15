@@ -19,12 +19,14 @@ export default {
       default: false
     },
     color: {
-      type: [String, Boolean],
-      default: false
+      validator (value) {
+        return ['white', 'light', 'dark', 'text', 'primary', 'link', 'info', 'success', 'warning', 'danger'].indexOf(value) !== -1
+      }
     },
     size: {
-      type: [String, Boolean],
-      default: false
+      validator (value) {
+        return ['small', 'medium', 'large'].indexOf(value) !== -1
+      }
     },
     outlined: {
       type: Boolean,
@@ -73,38 +75,19 @@ export default {
   },
   computed: {
     classList () {
-      const res = ['button']
-      if (this.color) {
-        res.push(`is-${this.color}`)
+      return {
+        button: true,
+        [`is-${this.color}`]: this.color,
+        [`is-${this.size}`]: this.size,
+        'is-outlined': this.outlined,
+        'is-inverted': this.inverted,
+        'is-rounded': this.rounded,
+        'is-hovered': this.hovered,
+        'is-focused': this.focused,
+        'is-active': this.active,
+        'is-loading': this.loading,
+        'is-static': this.static
       }
-      if (this.size) {
-        res.push(`is-${this.size}`)
-      }
-      if (this.outlined) {
-        res.push('is-outlined')
-      }
-      if (this.inverted) {
-        res.push('is-inverted')
-      }
-      if (this.rounded) {
-        res.push('is-rounded')
-      }
-      if (this.hovered) {
-        res.push('is-hovered')
-      }
-      if (this.focused) {
-        res.push('is-focused')
-      }
-      if (this.active) {
-        res.push('is-active')
-      }
-      if (this.loading) {
-        res.push('is-loading')
-      }
-      if (this.static) {
-        res.push('is-static')
-      }
-      return res
     }
   },
   methods: {
