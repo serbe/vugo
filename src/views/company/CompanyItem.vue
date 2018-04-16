@@ -108,6 +108,7 @@ import BulmaSelect from '@/components/BulmaSelect'
 import Company from '@/objects/Company'
 import SelectItem from '@/objects/SelectItem'
 import mixin from '@/mixins/funcs'
+import mixItem from '@/mixins/mixItem'
 import request from '@/request'
 
 export default {
@@ -117,7 +118,7 @@ export default {
     'bulma-button': BulmaButton,
     'bulma-select': BulmaSelect
   },
-  mixins: [mixin],
+  mixins: [mixin, mixItem],
   data () {
     return {
       title: '',
@@ -169,30 +170,24 @@ export default {
     //  console.log('delete!');
     },
     fetchData () {
-      request({
-        url: `companies/${this.$route.params.id}`,
-        method: 'GET'
-      })
-        .then((r) => {
-          this.company = r.data.company
-          this.scopes = r.data.scopes
-          if (this.company.emails) {
-            this.company.emails.push({ id: this.company.emails.length + 1, email: '' })
-          } else {
-            this.company.emails = [{ id: 1, email: '' }]
-          }
-          if (this.company.phones) {
-            this.company.phones.push({ id: this.company.phones.length + 1, phone: '' })
-          } else {
-            this.company.phones = [{ id: 1, phone: '' }]
-          }
-          if (this.company.faxes) {
-            this.company.faxes.push({ id: this.company.faxes.length + 1, phone: '' })
-          } else {
-            this.company.faxes = [{ id: 1, phone: '' }]
-          }
-          this.isLoaded = true
-        })
+      this.fetchItem('companies', ['company', 'scopes'], true)
+    },
+    afterFetch () {
+      if (this.company.emails) {
+        this.company.emails.push({ id: this.company.emails.length + 1, email: '' })
+      } else {
+        this.company.emails = [{ id: 1, email: '' }]
+      }
+      if (this.company.phones) {
+        this.company.phones.push({ id: this.company.phones.length + 1, phone: '' })
+      } else {
+        this.company.phones = [{ id: 1, phone: '' }]
+      }
+      if (this.company.faxes) {
+        this.company.faxes.push({ id: this.company.faxes.length + 1, phone: '' })
+      } else {
+        this.company.faxes = [{ id: 1, phone: '' }]
+      }
     },
     customLabel (val) {
       return val.name

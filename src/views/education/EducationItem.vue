@@ -87,25 +87,15 @@ export default {
       // console.log('delete!')
     },
     fetchData () {
-      request({
-        url: `educations/${this.$route.params.id}`,
-        method: 'GET'
-      })
-        .then((r) => {
-          this.education = r.data.education
-          this.contacts = r.data.contacts
-          this.posts = r.data.posts
-          this.setSelect('education', 'contacts', 'contact', 'contact_id')
-          this.setSelect('education', 'posts', 'post', 'post_id')
-          this.isLoaded = true
-        })
+      this.fetchItem('educations', ['education', 'contacts', 'posts'], true)
     },
     onSelect (item, itemName) {
       this.education[itemName] = item
       this.education[`${itemName}_id`] = item.id
     },
-    setSelect (root, list, item, value) {
-      this[root][item] = this[list].find(v => v.id === this[root][value])
+    afterFetch () {
+      this.setSelect('education', 'contacts', 'contact', 'contact_id')
+      this.setSelect('education', 'posts', 'post', 'post_id')
     }
   }
 }
