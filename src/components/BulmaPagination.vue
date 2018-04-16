@@ -54,22 +54,13 @@ export default {
   },
   computed: {
     value () {
-      if (this.page > this.max) {
-        this.onClick(this.max)
-      }
-      return this.page
+      return (this.page > this.max) ? this.onClick(this.max) : this.page
     },
     max () {
-      if (this.allElems % this.perPage === 0) {
-        return this.allElems / this.perPage | 0
-      }
-      return (this.allElems / this.perPage | 0) + 1
+      return (this.allElems % this.perPage === 0) ? this.allElems / this.perPage | 0 : (this.allElems / this.perPage | 0) + 1
     },
     sizeClass () {
-      if (this.size) {
-        return `is-${this.size}`
-      }
-      return ''
+      return this.size ? `is-${this.size}` : ''
     }
   },
   methods: {

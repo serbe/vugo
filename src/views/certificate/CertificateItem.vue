@@ -35,6 +35,7 @@ import BulmaDate from '@/components/BulmaDate'
 import Certificate from '@/objects/Certificate'
 import SelectItem from '@/objects/SelectItem'
 import request from '@/request'
+import mixItem from '@/mixins/mixItem'
 
 export default {
   name: 'CertificateItem',
@@ -44,6 +45,7 @@ export default {
     'bulma-select': BulmaSelect,
     'bulma-date': BulmaDate
   },
+  mixins: [mixItem],
   data () {
     return {
       title: '',
@@ -85,16 +87,7 @@ export default {
       // console.log('delete!');
     },
     fetchData () {
-      request({
-        url: `certificates/${this.$route.params.id}`,
-        method: 'GET'
-      })
-        .then((r) => {
-          this.certificate = r.data.certificate
-          this.contacts = r.data.contacts
-          this.companies = r.data.companies
-          this.isLoaded = true
-        })
+      this.fetchItem('certificates', ['certificate', 'contacts', 'companies'])
     }
   }
 }

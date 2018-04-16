@@ -18,14 +18,14 @@
 
 <script>
 import BulmaTable from '@/components/BulmaTable'
-import mix from '@/mixins/mix'
+import mixList from '@/mixins/mixList'
 
 export default {
   name: 'SirenList',
   components: {
     'bulma-table': BulmaTable
   },
-  mixins: [mix],
+  mixins: [mixList],
   mounted () {
     this.fetchData('sirens')
   },

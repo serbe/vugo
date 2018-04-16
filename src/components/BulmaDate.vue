@@ -57,10 +57,7 @@ export default {
   },
   computed: {
     getLabel () {
-      if (this.label) {
-        return this.label
-      }
-      return false
+      return this.label ? this.label : false
     },
     yearList () {
       const currentYear = new Date().getFullYear()

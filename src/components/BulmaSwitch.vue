@@ -121,15 +121,15 @@ export default {
     }
   }
   // Colors
-  @each $name, $pair in $colors {
-    $color: nth($pair, 1);
-    &.is-#{$name} {
-      &.checked {
-        border-color: $color;
-        background-color: $color;
-      }
-    }
-  }
+  // @each $name, $pair in $colors {
+  //   $color: nth($pair, 1);
+  //   &.is-#{$name} {
+  //     &.checked {
+  //       border-color: $color;
+  //       background-color: $color;
+  //     }
+  //   }
+  // }
   // Sizes
   &.is-small {
     --height: 12px

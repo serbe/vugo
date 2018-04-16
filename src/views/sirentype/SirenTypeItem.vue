@@ -25,6 +25,7 @@
 import BulmaInput from '@/components/BulmaInput'
 import BulmaButton from '@/components/BulmaButton'
 import SirenType from '@/objects/SirenType'
+import mixItem from '@/mixins/mixItem'
 import request from '@/request'
 
 export default {
@@ -33,6 +34,7 @@ export default {
     'bulma-input': BulmaInput,
     'bulma-button': BulmaButton
   },
+  mixins: [mixItem],
   data () {
     return {
       title: '',
@@ -68,14 +70,7 @@ export default {
       // console.log('delete!');
     },
     fetchData () {
-      request({
-        url: `sirentypes/${this.$route.params.id}`,
-        method: 'GET'
-      })
-        .then((r) => {
-          this.sirenType = r.data.siren_type
-          this.isLoaded = true
-        })
+      this.fetchItem('sirentypes', ['siren_type'])
     }
   }
 }

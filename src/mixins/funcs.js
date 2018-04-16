@@ -20,8 +20,7 @@ export default {
       return fillElem === values.length
     },
     filterArray (values, key) {
-      values.filter(e => e[key] && e[key] !== '')
-      return values
+      return values.filter(e => e[key] && e[key] !== '')
     },
     telephone (value) {
       let v = value

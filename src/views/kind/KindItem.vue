@@ -27,6 +27,7 @@
 import BulmaInput from '@/components/BulmaInput'
 import BulmaButton from '@/components/BulmaButton'
 import Kind from '@/objects/Kind'
+import mixItem from '@/mixins/mixItem'
 import request from '@/request'
 
 export default {
@@ -35,6 +36,7 @@ export default {
     'bulma-input': BulmaInput,
     'bulma-button': BulmaButton
   },
+  mixins: [mixItem],
   data () {
     return {
       title: '',
@@ -70,14 +72,7 @@ export default {
       // console.log('delete!');
     },
     fetchData () {
-      request({
-        url: `kinds/${this.$route.params.id}`,
-        method: 'GET'
-      })
-        .then((r) => {
-          this.kind = r.data.kind
-          this.isLoaded = true
-        })
+      this.fetchItem('kinds', ['kind'])
     }
   }
 }

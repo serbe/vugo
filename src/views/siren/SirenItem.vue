@@ -52,6 +52,7 @@ import BulmaButton from '@/components/BulmaButton'
 import BulmaSelect from '@/components/BulmaSelect'
 import Siren from '@/objects/Siren'
 import SelectItem from '@/objects/SelectItem'
+import mixItem from '@/mixins/mixItem'
 import request from '@/request'
 
 export default {
@@ -61,6 +62,7 @@ export default {
     'bulma-button': BulmaButton,
     'bulma-select': BulmaSelect
   },
+  mixins: [mixItem],
   data () {
     return {
       title: '',
@@ -103,20 +105,12 @@ export default {
       // console.log('delete!');
     },
     fetchData () {
-      request({
-        url: `sirens/${this.$route.params.id}`,
-        method: 'GET'
-      })
-        .then((r) => {
-          this.siren = r.data.siren
-          this.siren_types = r.data.siren_types
-          this.contacts = r.data.contacts
-          this.companies = r.data.companies
-          this.setSelect('siren', 'siren_types', 'siren_type', 'siren_type_id')
-          this.setSelect('siren', 'contacts', 'contact', 'contact_id')
-          this.setSelect('siren', 'companies', 'company', 'company_id')
-          this.isLoaded = true
-        })
+      this.fetchItem('sirens', ['siren', 'siren_types', 'contacts', 'companies'])
+      if (this.fetched) {
+        this.setSelect('siren', 'siren_types', 'siren_type', 'siren_type_id')
+        this.setSelect('siren', 'contacts', 'contact', 'contact_id')
+        this.setSelect('siren', 'companies', 'company', 'company_id')
+      }
     },
     setSelect (root, list, item, value) {
       this[root][item] = this[list].find(v => v.id === this[root][value])

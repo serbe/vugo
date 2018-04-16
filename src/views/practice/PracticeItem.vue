@@ -34,6 +34,7 @@ import BulmaDate from '@/components/BulmaDate'
 import BulmaSelect from '@/components/BulmaSelect'
 import Practice from '@/objects/Practice'
 import SelectItem from '@/objects/SelectItem'
+import mixItem from '@/mixins/mixItem'
 import request from '@/request'
 
 export default {
@@ -44,6 +45,7 @@ export default {
     'bulma-date': BulmaDate,
     'bulma-select': BulmaSelect
   },
+  mixins: [mixItem],
   data () {
     return {
       title: '',
@@ -85,16 +87,7 @@ export default {
       // console.log('delete!');
     },
     fetchData () {
-      request({
-        url: `practices/${this.$route.params.id}`,
-        method: 'GET'
-      })
-        .then((r) => {
-          this.practice = r.data.practice
-          this.companies = r.data.companies
-          this.kinds = r.data.kinds
-          this.isLoaded = true
-        })
+      this.fetchItem('practices', ['practice', 'companies', 'kinds'])
     }
   }
 }
