@@ -18,8 +18,6 @@ function request (options) {
   }
 
   function onSuccess (response) {
-    // console.debug('Request Successful!', response)
-    // return response.data
     return response
   }
 

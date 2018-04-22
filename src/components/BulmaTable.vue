@@ -10,12 +10,7 @@
         <p class="level-item">
           <span class="select">
             <select v-model="rowsSelect">
-              <option>10</option>
-              <option>20</option>
-              <option>30</option>
-              <option>40</option>
-              <option>50</option>
-              <option>100</option>
+              <option v-for="(value, index) in options" :key="index">{{ value }}</option>
             </select>
           </span>
         </p>
@@ -69,7 +64,8 @@ export default {
       query: '',
       page: 1,
       list: [],
-      rowsSelect: 50
+      rowsSelect: 50,
+      options: [10, 20, 30, 40, 50, 100]
     }
   },
   props: {
