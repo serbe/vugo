@@ -96,7 +96,8 @@ export default {
         'is-expanded': true,
         'select': true,
         'is-fullwidth': true,
-        'has-icons-left': this.icon
+        'has-icons-left': this.iconLeft,
+        'has-icons-right': this.iconRight
       }
     },
     inputClassList () {

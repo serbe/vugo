@@ -14,13 +14,13 @@ export default {
     },
     color: {
       type: [String, Boolean],
-      default: false,
-      validator: (value) => ['info', 'success', 'warning', 'danger'].includes(value)
+      default: false
+      // validator: (value) => ['info', 'success', 'warning', 'danger'].includes(value)
     },
     size: {
       type: [String, Boolean],
-      default: false,
-      validator: (value) => ['small', 'medium', 'large'].includes(value)
+      default: false
+      // validator: (value) => ['small', 'medium', 'large'].includes(value)
     },
     position: {
       type: [String],

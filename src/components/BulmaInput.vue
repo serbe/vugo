@@ -54,18 +54,18 @@ export default {
     value: '',
     type: {
       type: String,
-      default: 'text',
-      validator: (value) => ['text', 'password', 'email', 'tel'].includes(value)
+      default: 'text'
+      // validator: (value) => ['text', 'password', 'email', 'tel'].includes(value)
     },
     color: {
       type: [String, Boolean],
-      default: false,
-      validator: (value) => ['primary', 'info', 'success', 'warning', 'danger'].includes(value)
+      default: false
+      // validator: (value) => ['primary', 'info', 'success', 'warning', 'danger'].includes(value)
     },
     size: {
       type: [String, Boolean],
-      default: false,
-      validator: (value) => ['small', 'medium', 'large'].includes(value)
+      default: false
+      // validator: (value) => ['small', 'medium', 'large'].includes(value)
     },
     state: {
       type: [String, Boolean],
@@ -126,7 +126,8 @@ export default {
       return {
         'control': true,
         'is-expanded': true,
-        [`has-icons-${this.iconPosition}`]: this.icon
+        'has-icons-left': this.iconLeft,
+        'has-icons-right': this.iconRight
       }
     },
     inputClassList () {
