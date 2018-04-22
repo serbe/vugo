@@ -2,9 +2,9 @@
   <div class="container mw768">
     <form :model="department" id="department">
 
-      <bulma-input v-model="department.name" label placeholder="Наименование отдела" icon="tag"></bulma-input>
+      <bulma-input v-model="department.name" label placeholder="Наименование отдела" iconLeft="tag"></bulma-input>
 
-      <bulma-input v-model="department.note" label placeholder="Заметка" icon="comment"></bulma-input>
+      <bulma-input v-model="department.note" label placeholder="Заметка" iconLeft="comment"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

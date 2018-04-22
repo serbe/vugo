@@ -2,9 +2,9 @@
   <div class="container mw768">
     <form :model="rank" id="rank">
 
-      <bulma-input v-model="rank.name" label placeholder="Наименование чина" icon="tag"></bulma-input>
+      <bulma-input v-model="rank.name" label placeholder="Наименование чина" iconLeft="tag"></bulma-input>
 
-      <bulma-input v-model="rank.note" label placeholder="Заметка" icon="comment"></bulma-input>
+      <bulma-input v-model="rank.note" label placeholder="Заметка" iconLeft="comment"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

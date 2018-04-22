@@ -2,11 +2,11 @@
   <div class="container mw768">
     <form :model="post" id="post">
 
-      <bulma-input v-model="post.name" label placeholder="Наименование должности" icon="tag"></bulma-input>
+      <bulma-input v-model="post.name" label placeholder="Наименование должности" iconLeft="tag"></bulma-input>
 
       <bulma-switch :checked="post.go" v-model="post.go" label="Должность по гражданской обороне"></bulma-switch>
 
-      <bulma-input v-model="post.note" label placeholder="Заметка" icon="comment"></bulma-input>
+      <bulma-input v-model="post.note" label placeholder="Заметка" iconLeft="comment"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

@@ -16,7 +16,8 @@
           @blur="onBlur"
           @keyup="onKeyup"
         >
-        <bulma-icon v-if="icon" :size="size" :position="iconPosition" :icon="icon" :color="color" key="InbutIcon"/>
+        <bulma-icon v-if="iconLeft" :size="size" position="left" :icon="iconLeft" :color="color" key="InputIconLeft"/>
+        <bulma-icon v-if="iconRight" :size="size" position="right" :icon="iconRight" :color="color" key="InputIconRight"/>
         <p v-if="isError" class="help is-danger" key="InputError">{{ error }}</p>
       </a>
       <template v-else>
@@ -33,7 +34,8 @@
           @blur="onBlur"
           @keyup="onKeyup"
         >
-        <bulma-icon v-if="icon" :size="size" :position="iconPosition" :icon="icon" :color="color" key="InputIcon"/>
+        <bulma-icon v-if="iconLeft" :size="size" position="left" :icon="iconLeft" :color="color" key="InputIconLeft"/>
+        <bulma-icon v-if="iconRight" :size="size" position="right" :icon="iconRight" :color="color" key="InputIconRight"/>
         <p v-if="isError" class="help is-danger" key="InputError">{{ error }}</p>
       </template>
     </div>
@@ -52,15 +54,18 @@ export default {
     value: '',
     type: {
       type: String,
-      default: 'text'
+      default: 'text',
+      validator: (value) => ['text', 'password', 'email', 'tel'].includes(value)
     },
     color: {
       type: [String, Boolean],
-      default: false
+      default: false,
+      validator: (value) => ['primary', 'info', 'success', 'warning', 'danger'].includes(value)
     },
     size: {
       type: [String, Boolean],
-      default: false
+      default: false,
+      validator: (value) => ['small', 'medium', 'large'].includes(value)
     },
     state: {
       type: [String, Boolean],
@@ -70,13 +75,13 @@ export default {
       type: [String, Boolean],
       default: false
     },
-    icon: {
+    iconLeft: {
       type: [String, Boolean],
       default: false
     },
-    iconPosition: {
-      type: String,
-      default: 'left'
+    iconRight: {
+      type: [String, Boolean],
+      default: false
     },
     label: {
       type: [String, Boolean],

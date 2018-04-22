@@ -2,15 +2,15 @@
   <div class="container mw768">
     <form :model="certificate" id="certificate">
 
-      <bulma-input v-model="certificate.num" label placeholder="Серийный номер удостоверения" icon="tag"></bulma-input>
+      <bulma-input v-model="certificate.num" label placeholder="Серийный номер удостоверения" iconLeft="tag"></bulma-input>
 
-      <bulma-select :list="contacts" :selected-item="certificate.contact" item-name="contact" label="Полное имя" @select="onSelect" icon="user"></bulma-select>
+      <bulma-select :list="contacts" :selected-item="certificate.contact" item-name="contact" label="Полное имя" @select="onSelect" iconLeft="user"></bulma-select>
 
-      <bulma-select :list="companies" :selected-item="certificate.company" item-name="company" label="Учебно методический центр" @select="onSelect" icon="building"></bulma-select>
+      <bulma-select :list="companies" :selected-item="certificate.company" item-name="company" label="Учебно методический центр" @select="onSelect" iconLeft="building"></bulma-select>
 
       <bulma-date v-model="certificate.cert_date" label="Дата выдачи"></bulma-date>
 
-      <bulma-input v-model="certificate.note" label placeholder="Заметка" icon="comment"></bulma-input>
+      <bulma-input v-model="certificate.note" label placeholder="Заметка" iconLeft="comment"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

@@ -4,26 +4,26 @@
 
       <div class="columns">
         <div class="column is-half">
-          <bulma-input v-model="siren.num_pass" type="text" label placeholder="Серийный номер" icon="tag"></bulma-input>
+          <bulma-input v-model="siren.num_pass" type="text" label placeholder="Серийный номер" iconLeft="tag"></bulma-input>
         </div>
         <div class="column is-half">
-          <bulma-select :list="siren_types" :selected-item="siren.siren_type" label="Тип сирены" item-name="siren_type" @select="onSelect" icon="tag"></bulma-select>
+          <bulma-select :list="siren_types" :selected-item="siren.siren_type" label="Тип сирены" item-name="siren_type" @select="onSelect" iconLeft="tag"></bulma-select>
         </div>
       </div>
 
-      <bulma-input v-model="siren.address" type="text" label placeholder="Адрес" icon="address-card"></bulma-input>
-      <bulma-select :list="contacts" :selected-item="siren.contact" label="Контактное лицо" item-name="contact" @select="onSelect" icon="user"></bulma-select>
-      <bulma-select :list="companies" :selected-item="siren.company" label="Организация" item-name="company" @select="onSelect" icon="building"></bulma-select>
+      <bulma-input v-model="siren.address" type="text" label placeholder="Адрес" iconLeft="address-card"></bulma-input>
+      <bulma-select :list="contacts" :selected-item="siren.contact" label="Контактное лицо" item-name="contact" @select="onSelect" iconLeft="user"></bulma-select>
+      <bulma-select :list="companies" :selected-item="siren.company" label="Организация" item-name="company" @select="onSelect" iconLeft="building"></bulma-select>
 
       <div class="columns">
         <div class="column is-half">
-          <bulma-input v-model="siren.latitude" label placeholder="Широта" icon="tag"></bulma-input>
+          <bulma-input v-model="siren.latitude" label placeholder="Широта" iconLeft="tag"></bulma-input>
         </div>
         <div class="column is-half">
-          <bulma-input v-model="siren.longitude" label placeholder="Долгота" icon="tag"></bulma-input>
+          <bulma-input v-model="siren.longitude" label placeholder="Долгота" iconLeft="tag"></bulma-input>
         </div>
       </div>
-      <bulma-input v-model="siren.note" label placeholder="Заметка" icon="comment"></bulma-input>
+      <bulma-input v-model="siren.note" label placeholder="Заметка" iconLeft="comment"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

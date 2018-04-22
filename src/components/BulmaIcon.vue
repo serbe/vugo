@@ -14,22 +14,24 @@ export default {
     },
     color: {
       type: [String, Boolean],
-      default: false
+      default: false,
+      validator: (value) => ['info', 'success', 'warning', 'danger'].includes(value)
     },
     size: {
       type: [String, Boolean],
-      default: false
+      default: false,
+      validator: (value) => ['small', 'medium', 'large'].includes(value)
     },
     position: {
-      type: [String, Boolean],
-      default: false
+      type: [String],
+      validator: (value) => ['left', 'right'].includes(value)
     }
   },
   computed: {
     spanClass () {
       return {
         'icon': true,
-        [`is-${this.color}`]: this.color,
+        [`has-text-${this.color}`]: this.color,
         [`is-${this.size}`]: this.size,
         [`is-${this.position}`]: this.position
       }

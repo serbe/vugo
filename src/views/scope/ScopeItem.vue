@@ -2,9 +2,9 @@
   <div class="container mw768">
     <form :model="scope" id="scope">
 
-      <bulma-input v-model="scope.name" label placeholder="Наименование сферы дефтельности" icon="tag"></bulma-input>
+      <bulma-input v-model="scope.name" label placeholder="Наименование сферы дефтельности" iconLeft="tag"></bulma-input>
 
-      <bulma-input v-model="scope.note" label placeholder="Заметка" icon="comment"></bulma-input>
+      <bulma-input v-model="scope.note" label placeholder="Заметка" iconLeft="comment"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

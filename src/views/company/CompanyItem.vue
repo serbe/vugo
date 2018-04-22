@@ -2,11 +2,11 @@
   <div class="container mw768">
     <form :model="company" id="company">
 
-      <bulma-input v-model="company.name" label placeholder="Наименование организации" icon="building"></bulma-input>
+      <bulma-input v-model="company.name" label placeholder="Наименование организации" iconLeft="building"></bulma-input>
 
-      <bulma-select :list="scopes" :selected-item="company.scope" item-name="scope" label="Сфера деятельности" @select="onSelect" icon="tag"></bulma-select>
+      <bulma-select :list="scopes" :selected-item="company.scope" item-name="scope" label="Сфера деятельности" @select="onSelect" iconLeft="tag"></bulma-select>
 
-      <bulma-input v-model="company.address" label placeholder="Адрес" icon="address-card"></bulma-input>
+      <bulma-input v-model="company.address" label placeholder="Адрес" iconLeft="address-card"></bulma-input>
 
       <div class="columns">
         <div class="column">
@@ -18,7 +18,7 @@
               v-model="company.emails[index].email"
               type="email"
               placeholder="Электронный адрес"
-              icon="envelope"
+              iconLeft="envelope"
               autocomplete="email"
               @blur="onBlur('emails', 'email')"
               pattern='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
@@ -36,7 +36,7 @@
               v-model="company.phones[index].phone"
               type="tel"
               placeholder="Телефон"
-              icon="phone"
+              iconLeft="phone"
               autocomplete="tel"
               @blur="onBlur('phones', 'phone')"
             ></bulma-input>
@@ -52,7 +52,7 @@
               v-model="company.faxes[index].phone"
               type="tel"
               placeholder="Факс"
-              icon="phone"
+              iconLeft="phone"
               autocomplete="tel"
               @blur="onBlur('faxes', 'phone')"
             ></bulma-input>
@@ -67,7 +67,7 @@
           :key="practice.id"
           :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic"
           :hyper="'/practice/' + practice.id"
-          icon="history"
+          iconLeft="history"
           disabled
         ></bulma-input>
       </div>
@@ -79,12 +79,12 @@
           :key="contact.id"
           :value="contact.name + ' - ' + contact.post_name"
           :hyper="'/contact/' + contact.id"
-          icon="user"
+          iconLeft="user"
           disabled
         ></bulma-input>
       </div>
 
-      <bulma-input v-model="company.note" label placeholder="Заметка" icon="sticky-note"></bulma-input>
+      <bulma-input v-model="company.note" label placeholder="Заметка" iconLeft="sticky-note"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">

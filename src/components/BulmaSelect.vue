@@ -17,7 +17,8 @@
         @keyup.enter="onKeyEnter"
         @keydown.delete="onKeyDelete"
       >
-      <bulma-icon v-if="icon" :icon="icon" :position="iconPosition" :color="color" :size="size" key="SelectIcon"/>
+      <bulma-icon v-if="iconLeft" :icon="iconLeft" position="left" :color="color" :size="size" key="SelectIconLeft"/>
+      <bulma-icon v-if="iconRight" :icon="iconRight" position="right" :color="color" :size="size" key="SelectIconRight"/>
       <div class="select-box" v-if="opened" key="SelectOpened">
         <div class="select-item" @click.stop="selectItem({id:0,name:''})" @mousedown="mousedownItem"></div>
         <div class="select-item" v-for="item in listWithFilter" :key="item.id" @click.stop="selectItem(item)" @mousedown="mousedownItem">{{ item.name }}
@@ -43,13 +44,13 @@ export default {
         }
       }
     },
-    icon: {
+    iconLeft: {
       type: [String, Boolean],
       default: false
     },
-    iconPosition: {
-      type: String,
-      default: 'left'
+    iconRight: {
+      type: [String, Boolean],
+      default: false
     },
     color: {
       type: [String, Boolean],

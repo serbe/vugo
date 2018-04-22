@@ -1,6 +1,7 @@
 <template>
   <a :class="classList" @click="click" :disabled="disabled">
-    <bulma-icon v-if="icon" :size="size" :icon="icon" :position="iconPosition" :color="color" key="ButtonIcon"/>
+    <bulma-icon v-if="iconLeft" :size="size" :icon="iconLeft" position="left" :color="color" key="ButtonIconLeft"/>
+    <bulma-icon v-if="iconRight" :size="size" :icon="iconRight" position="right" :color="color" key="ButtonIconRight"/>
     <span v-if="text">{{ text }}</span>
   </a>
 </template>
@@ -62,13 +63,13 @@ export default {
       type: Boolean,
       default: false
     },
-    icon: {
+    iconLeft: {
       type: [String, Boolean],
       default: false
     },
-    iconPosition: {
-      type: String,
-      default: 'left'
+    iconRight: {
+      type: [String, Boolean],
+      default: false
     }
   },
   computed: {

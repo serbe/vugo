@@ -2,9 +2,9 @@
   <div class="container mw768">
     <form :model="education" id="education">
 
-      <bulma-select :list="contacts" :selected-item="education.contact" label="Полное имя обучаемого" item-name="contact" @select="onSelect" icon="user"></bulma-select>
+      <bulma-select :list="contacts" :selected-item="education.contact" label="Полное имя обучаемого" item-name="contact" @select="onSelect" iconLeft="user"></bulma-select>
 
-      <bulma-select :list="posts" :selected-item="education.post" label="Должность ГО ЧС" item-name="post" @select="onSelect" icon="tag"></bulma-select>
+      <bulma-select :list="posts" :selected-item="education.post" label="Должность ГО ЧС" item-name="post" @select="onSelect" iconLeft="tag"></bulma-select>
 
       <div class="columns">
         <div class="column">
@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <bulma-input type="text" label="Заметка" placeholder="Заметка" icon="comment" v-model="education.note"></bulma-input>
+      <bulma-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="education.note"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
