@@ -54,7 +54,8 @@ export default {
     },
     color: {
       type: [String, Boolean],
-      default: false
+      default: false,
+      validator: (value) => ['primary', 'info', 'success', 'warning', 'danger'].includes(value) || !value
     },
     size: {
       type: [String, Boolean],

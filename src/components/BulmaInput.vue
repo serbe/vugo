@@ -54,18 +54,18 @@ export default {
     value: '',
     type: {
       type: String,
-      default: 'text'
-      // validator: (value) => ['text', 'password', 'email', 'tel'].includes(value)
+      default: 'text',
+      validator: (value) => ['text', 'password', 'email', 'tel'].includes(value) || !value
     },
     color: {
       type: [String, Boolean],
-      default: false
-      // validator: (value) => ['primary', 'info', 'success', 'warning', 'danger'].includes(value)
+      default: false,
+      validator: (value) => ['primary', 'info', 'success', 'warning', 'danger'].includes(value) || !value
     },
     size: {
       type: [String, Boolean],
-      default: false
-      // validator: (value) => ['small', 'medium', 'large'].includes(value)
+      default: false,
+      validator: (value) => ['small', 'medium', 'large'].includes(value) || !value
     },
     state: {
       type: [String, Boolean],
