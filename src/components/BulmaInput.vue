@@ -15,6 +15,8 @@
           @input="onInput"
           @blur="onBlur"
           @keyup="onKeyup"
+          :required="required"
+          :autofocus="autofocus"
         >
         <bulma-icon v-if="iconLeft" :size="size" position="left" :icon="iconLeft" :color="color" key="InputIconLeft"/>
         <bulma-icon v-if="iconRight" :size="size" position="right" :icon="iconRight" :color="color" key="InputIconRight"/>
@@ -33,6 +35,8 @@
           @input="onInput"
           @blur="onBlur"
           @keyup="onKeyup"
+          :required="required"
+          :autofocus="autofocus"
         >
         <bulma-icon v-if="iconLeft" :size="size" position="left" :icon="iconLeft" :color="color" key="InputIconLeft"/>
         <bulma-icon v-if="iconRight" :size="size" position="right" :icon="iconRight" :color="color" key="InputIconRight"/>
@@ -113,6 +117,14 @@ export default {
     },
     pattern: {
       type: [String, Boolean],
+      default: false
+    },
+    required: {
+      type: Boolean,
+      default: false
+    },
+    autofocus: {
+      type: Boolean,
       default: false
     }
   },
