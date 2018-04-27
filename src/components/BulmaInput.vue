@@ -10,7 +10,8 @@
           :name="name"
           :placeholder="placeholder"
           :value="value"
-          :disabled="getDisabled"
+          :disabled="disabled"
+          :readonly="readonly"
           :autocomplete="autocomplete"
           @input="onInput"
           @blur="onBlur"
@@ -30,7 +31,8 @@
           :name="name"
           :placeholder="placeholder"
           :value="value"
-          :disabled="getDisabled"
+          :disabled="disabled"
+          :readonly="readonly"
           :autocomplete="autocomplete"
           @input="onInput"
           @blur="onBlur"
@@ -111,6 +113,10 @@ export default {
       type: Boolean,
       default: false
     },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
     error: {
       type: [String, Boolean],
       default: false
@@ -155,12 +161,6 @@ export default {
         return this.placeholder
       }
       return this.label
-    },
-    getDisabled () {
-      if (this.disabled) {
-        return 'disabled'
-      }
-      return false
     },
     isError () {
       if (this.value !== '' && this.pattern) {
