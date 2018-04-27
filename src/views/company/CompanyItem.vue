@@ -68,7 +68,7 @@
           :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic"
           :hyper="'/practice/' + practice.id"
           iconLeft="history"
-          disabled
+          readonly
         ></bulma-input>
       </div>
 
@@ -80,7 +80,7 @@
           :value="contact.name + ' - ' + contact.post_name"
           :hyper="'/contact/' + contact.id"
           iconLeft="user"
-          disabled
+          readonly
         ></bulma-input>
       </div>
 

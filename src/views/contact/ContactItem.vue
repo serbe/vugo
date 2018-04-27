@@ -95,7 +95,7 @@
           :key="practice.id"
           type="text"
           :hyper="'/practice/' + practice.id"
-          disabled
+          readonly
           :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic"
           iconLeft="graduation-cap"
         ></bulma-input>
