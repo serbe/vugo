@@ -40,6 +40,7 @@ import BulmaSelect from '@/components/BulmaSelect'
 import BulmaDate from '@/components/BulmaDate'
 import Education from '@/objects/Education'
 import SelectItem from '@/objects/SelectItem'
+import mixItem from '@/mixins/mixItem'
 import request from '@/request'
 
 export default {
@@ -50,6 +51,7 @@ export default {
     'bulma-select': BulmaSelect,
     'bulma-date': BulmaDate
   },
+  mixins: [mixItem],
   data () {
     return {
       title: '',
