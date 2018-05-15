@@ -17,30 +17,30 @@
 </template>
 
 <script>
-import BulmaTable from '@/components/BulmaTable'
-import mixList from '@/mixins/mixList'
+import BulmaTable from "@/components/BulmaTable";
+import mixList from "@/mixins/mixList";
 
 export default {
-  name: 'EducationList',
+  name: "EducationList",
   components: {
-    'bulma-table': BulmaTable
+    "bulma-table": BulmaTable
   },
   mixins: [mixList],
-  mounted () {
-    this.fetchData('educations')
+  mounted() {
+    this.fetchData("educations");
   },
   methods: {
-    createList (educations) {
-      let list = []
+    createList(educations) {
+      let list = [];
       if (educations) {
-        list = educations.map((e) => {
-          const str = [e.contact_name, e.start_str, e.end_str]
-          e.str = str.join(' ').toLowerCase()
-          return e
-        })
+        list = educations.map(e => {
+          const str = [e.contact_name, e.start_str, e.end_str];
+          e.str = str.join(" ").toLowerCase();
+          return e;
+        });
       }
-      return list
+      return list;
     }
   }
-}
+};
 </script>

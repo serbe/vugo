@@ -17,31 +17,37 @@
 </template>
 
 <script>
-import BulmaTable from '@/components/BulmaTable'
-import mixList from '@/mixins/mixList'
+import BulmaTable from "@/components/BulmaTable";
+import mixList from "@/mixins/mixList";
 
 export default {
-  name: 'CertificateList',
+  name: "CertificateList",
   components: {
-    'bulma-table': BulmaTable
+    "bulma-table": BulmaTable
   },
   mixins: [mixList],
-  mounted () {
-    this.fetchData('certificates')
+  mounted() {
+    this.fetchData("certificates");
   },
   methods: {
-    createList (certificates) {
-      let list = []
+    createList(certificates) {
+      let list = [];
       if (certificates) {
-        list = certificates.map((e) => {
-          const str = [e.num, e.contact_name, e.company_name, e.cert_date, e.note]
-          const ne = e
-          ne.str = str.join(' ').toLowerCase()
-          return ne
-        })
+        list = certificates.map(e => {
+          const str = [
+            e.num,
+            e.contact_name,
+            e.company_name,
+            e.cert_date,
+            e.note
+          ];
+          const ne = e;
+          ne.str = str.join(" ").toLowerCase();
+          return ne;
+        });
       }
-      return list
+      return list;
     }
   }
-}
+};
 </script>

@@ -1,6 +1,6 @@
 export default {
   id: 0,
-  name: '',
+  name: "",
   radius: 0,
-  note: ''
-}
+  note: ""
+};

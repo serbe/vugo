@@ -17,42 +17,41 @@
 </template>
 
 <script>
-import BulmaTable from '@/components/BulmaTable'
-import mixin from '@/mixins/funcs'
-import mixList from '@/mixins/mixList'
+import BulmaTable from "@/components/BulmaTable";
+import mixin from "@/mixins/funcs";
+import mixList from "@/mixins/mixList";
 
 export default {
-  name: 'ContactList',
+  name: "ContactList",
   components: {
-    'bulma-table': BulmaTable
+    "bulma-table": BulmaTable
   },
   mixins: [mixin, mixList],
-  mounted () {
-    this.fetchData('contacts')
+  mounted() {
+    this.fetchData("contacts");
   },
   methods: {
-    createList (contacts) {
-      let list = []
+    createList(contacts) {
+      let list = [];
       if (contacts) {
-        list = contacts.map((c) => {
-          const str = [c.name, c.company_name, c.post_name]
-          if (c.phones.length > 0 && c.phones[0] !== '') {
-            str.push(c.phones.join(' '))
+        list = contacts.map(c => {
+          const str = [c.name, c.company_name, c.post_name];
+          if (c.phones.length > 0 && c.phones[0] !== "") {
+            str.push(c.phones.join(" "));
           }
-          if (c.faxes.length > 0 && c.faxes[0] !== '') {
-            str.push(c.faxes.join(' '))
+          if (c.faxes.length > 0 && c.faxes[0] !== "") {
+            str.push(c.faxes.join(" "));
           }
-          const nc = c
-          nc.str = str.join(' ').toLowerCase()
-          return nc
-        })
+          const nc = c;
+          nc.str = str.join(" ").toLowerCase();
+          return nc;
+        });
       }
-      return list
+      return list;
     }
   }
-}
+};
 </script>
 
 <style scoped>
-
 </style>

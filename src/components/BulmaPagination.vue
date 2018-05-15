@@ -33,7 +33,7 @@
 <script>
 /* eslint no-bitwise: ["error", { "int32Hint": true }] */
 export default {
-  name: 'BulmaPagination',
+  name: "BulmaPagination",
   props: {
     allElems: {
       type: Number,
@@ -50,7 +50,7 @@ export default {
     size: {
       type: [String, Boolean],
       default: false,
-      validator: (value) => ['small', 'medium', 'large'].includes(value) || !value
+      validator: value => ["small", "medium", "large"].includes(value) || !value
     },
     rounded: {
       type: Boolean,
@@ -59,30 +59,32 @@ export default {
     position: {
       type: [String, Boolean],
       default: false,
-      validator: (value) => ['centered', 'right'].includes(value) || !value
+      validator: value => ["centered", "right"].includes(value) || !value
     }
   },
   computed: {
-    value () {
-      return (this.page > this.max) ? this.onClick(this.max) : this.page
+    value() {
+      return this.page > this.max ? this.onClick(this.max) : this.page;
     },
-    max () {
-      return (this.allElems % this.perPage === 0) ? this.allElems / this.perPage | 0 : (this.allElems / this.perPage | 0) + 1
+    max() {
+      return this.allElems % this.perPage === 0
+        ? (this.allElems / this.perPage) | 0
+        : ((this.allElems / this.perPage) | 0) + 1;
     },
-    classList () {
+    classList() {
       return {
-        'pagination': true,
-        'is-centered': this.centered,
+        pagination: true,
+        "is-centered": this.centered,
         [`is-${this.position}`]: this.position,
         [`is-${this.size}`]: this.size
-      }
+      };
     }
   },
   methods: {
-    onClick (num) {
-      this.$emit('pagination', num)
-      window.scrollTo(0, 0)
+    onClick(num) {
+      this.$emit("pagination", num);
+      window.scrollTo(0, 0);
     }
   }
-}
+};
 </script>

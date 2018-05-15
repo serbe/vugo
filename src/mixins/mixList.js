@@ -1,27 +1,26 @@
-import request from '@/request'
+import request from "@/request";
 
 export default {
-  data () {
+  data() {
     return {
       fetched: false,
       list: []
-    }
+    };
   },
   methods: {
-    fetchData (url, name) {
+    fetchData(url, name) {
       if (!name) {
-        name = url
+        name = url;
       }
       if (!this.fetched) {
         request({
           url: url,
-          method: 'GET'
-        })
-          .then((r) => {
-            this.list = this.createList(r.data[name])
-            this.fetched = true
-          })
+          method: "GET"
+        }).then(r => {
+          this.list = this.createList(r.data[name]);
+          this.fetched = true;
+        });
       }
     }
   }
-}
+};

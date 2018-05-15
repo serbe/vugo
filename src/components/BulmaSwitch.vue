@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'BulmaSwitch',
+  name: "BulmaSwitch",
   props: {
     disabled: {
       type: Boolean,
@@ -33,40 +33,40 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       value: null
-    }
+    };
   },
-  beforeMount () {
-    this.value = this.checked
+  beforeMount() {
+    this.value = this.checked;
   },
-  mounted () {
-    this.$emit('input', this.value = !!this.checked)
+  mounted() {
+    this.$emit("input", (this.value = !!this.checked));
   },
   computed: {
-    getLabel () {
-      return this.label
+    getLabel() {
+      return this.label;
     },
-    classObject () {
+    classObject() {
       return {
         [`is-${this.type}`]: this.type,
         [`is-${this.size}`]: this.size,
         checked: this.value
-      }
+      };
     }
   },
   watch: {
-    value (val) {
-      this.$emit('input', val)
+    value(val) {
+      this.$emit("input", val);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma/sass/utilities/initial-variables';
-@import '~bulma/sass/utilities/derived-variables';
+@import "~bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/derived-variables";
 
 .switch {
   --height: 22px;
@@ -99,7 +99,7 @@ export default {
     left: 0;
     height: calc(var(--height) - 2px);
     border-radius: calc((var(--height) - 2px) / 2);
-    transition: .233s;
+    transition: 0.233s;
   }
   &:before {
     width: calc(1.625 * var(--height) - 2px);
@@ -107,7 +107,7 @@ export default {
   }
   &:after {
     width: calc(var(--height) - 2px);
-    background-color: #FFF;
+    background-color: #fff;
     box-shadow: 0 2px 3px rgba(17, 17, 17, 0.1);
   }
   &.checked {
@@ -132,13 +132,13 @@ export default {
   // }
   // Sizes
   &.is-small {
-    --height: 12px
+    --height: 12px;
   }
   &.is-medium {
-    --height: 28px
+    --height: 28px;
   }
   &.is-large {
-    --height: 32px
+    --height: 32px;
   }
 }
 </style>

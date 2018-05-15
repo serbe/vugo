@@ -9,16 +9,16 @@
 
 <script>
 export default {
-  name: 'BulmaTableTr',
+  name: "BulmaTableTr",
   props: {
     type: {
       type: String,
-      default: 'text'
+      default: "text"
     },
     value: {
       required: false
     },
     cellClass: Array
   }
-}
+};
 </script>

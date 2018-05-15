@@ -34,73 +34,72 @@
 </template>
 
 <script>
-import BulmaInput from '@/components/BulmaInput'
-import BulmaButton from '@/components/BulmaButton'
-import BulmaSelect from '@/components/BulmaSelect'
-import BulmaDate from '@/components/BulmaDate'
-import Education from '@/objects/Education'
-import SelectItem from '@/objects/SelectItem'
-import mixItem from '@/mixins/mixItem'
-import request from '@/request'
+import BulmaInput from "@/components/BulmaInput";
+import BulmaButton from "@/components/BulmaButton";
+import BulmaSelect from "@/components/BulmaSelect";
+import BulmaDate from "@/components/BulmaDate";
+import Education from "@/objects/Education";
+import SelectItem from "@/objects/SelectItem";
+import mixItem from "@/mixins/mixItem";
+import request from "@/request";
 
 export default {
-  name: 'EducationItem',
+  name: "EducationItem",
   components: {
-    'bulma-input': BulmaInput,
-    'bulma-button': BulmaButton,
-    'bulma-select': BulmaSelect,
-    'bulma-date': BulmaDate
+    "bulma-input": BulmaInput,
+    "bulma-button": BulmaButton,
+    "bulma-select": BulmaSelect,
+    "bulma-date": BulmaDate
   },
   mixins: [mixItem],
-  data () {
+  data() {
     return {
-      title: '',
+      title: "",
       education: Education,
       contacts: [SelectItem],
       posts: [SelectItem]
-    }
+    };
   },
-  mounted () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    submit () {
-      let url = 'educations'
-      let method = 'POST'
-      if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`
-        method = 'PUT'
+    submit() {
+      let url = "educations";
+      let method = "POST";
+      if (this.$route.params.id !== "0") {
+        url = `${url}/${this.$route.params.id}`;
+        method = "PUT";
       }
-      const values = this.education
+      const values = this.education;
       request({
         url,
         method,
-        mode: 'cors',
+        mode: "cors",
         data: JSON.stringify(values)
-      })
-        .then(() => {
-          this.close()
-        })
+      }).then(() => {
+        this.close();
+      });
     },
-    close () {
-      this.$router.push('/educations')
+    close() {
+      this.$router.push("/educations");
     },
-    delete () {
+    delete() {
       // console.log('delete!')
     },
-    fetchData () {
-      this.fetchItem('educations', ['education', 'contacts', 'posts'], true)
+    fetchData() {
+      this.fetchItem("educations", ["education", "contacts", "posts"], true);
     },
-    onSelect (item, itemName) {
-      this.education[itemName] = item
-      this.education[`${itemName}_id`] = item.id
+    onSelect(item, itemName) {
+      this.education[itemName] = item;
+      this.education[`${itemName}_id`] = item.id;
     },
-    afterFetch () {
-      this.setSelect('education', 'contacts', 'contact', 'contact_id')
-      this.setSelect('education', 'posts', 'post', 'post_id')
+    afterFetch() {
+      this.setSelect("education", "contacts", "contact", "contact_id");
+      this.setSelect("education", "posts", "post", "post_id");
     }
   }
-}
+};
 </script>
 
 <style scoped>

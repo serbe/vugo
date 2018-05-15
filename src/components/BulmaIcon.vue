@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'BulmaIcon',
+  name: "BulmaIcon",
   props: {
     icon: {
       type: String,
@@ -15,30 +15,31 @@ export default {
     color: {
       type: [String, Boolean],
       default: false,
-      validator: (value) => ['info', 'success', 'warning', 'danger'].includes(value) || !value
+      validator: value =>
+        ["info", "success", "warning", "danger"].includes(value) || !value
     },
     size: {
       type: [String, Boolean],
       default: false,
-      validator: (value) => ['small', 'medium', 'large'].includes(value) || !value
+      validator: value => ["small", "medium", "large"].includes(value) || !value
     },
     position: {
       type: [String],
-      validator: (value) => ['left', 'right'].includes(value)
+      validator: value => ["left", "right"].includes(value)
     }
   },
   computed: {
-    spanClass () {
+    spanClass() {
       return {
-        'icon': true,
+        icon: true,
         [`has-text-${this.color}`]: this.color,
         [`is-${this.size}`]: this.size,
         [`is-${this.position}`]: this.position
-      }
+      };
     },
-    iconClass () {
-      return `fas fa-${this.icon}`
+    iconClass() {
+      return `fas fa-${this.icon}`;
     }
   }
-}
+};
 </script>

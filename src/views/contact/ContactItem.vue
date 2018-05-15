@@ -120,111 +120,118 @@
 
 <script>
 // import BulmaCalendar from '@/components/BulmaCalendar'
-import BulmaInput from '@/components/BulmaInput'
-import BulmaButton from '@/components/BulmaButton'
-import BulmaSelect from '@/components/BulmaSelect'
-import BulmaDate from '@/components/BulmaDate'
-import Contact from '@/objects/Contact'
-import SelectItem from '@/objects/SelectItem'
-import mixin from '@/mixins/funcs'
-import request from '@/request'
+import BulmaInput from "@/components/BulmaInput";
+import BulmaButton from "@/components/BulmaButton";
+import BulmaSelect from "@/components/BulmaSelect";
+import BulmaDate from "@/components/BulmaDate";
+import Contact from "@/objects/Contact";
+import SelectItem from "@/objects/SelectItem";
+import mixin from "@/mixins/funcs";
+import request from "@/request";
 
 export default {
-  name: 'ContactItem',
+  name: "ContactItem",
   components: {
     // 'bulma-calendar': BulmaCalendar,
-    'bulma-input': BulmaInput,
-    'bulma-button': BulmaButton,
-    'bulma-select': BulmaSelect,
-    'bulma-date': BulmaDate
+    "bulma-input": BulmaInput,
+    "bulma-button": BulmaButton,
+    "bulma-select": BulmaSelect,
+    "bulma-date": BulmaDate
   },
   mixins: [mixin],
-  data () {
+  data() {
     return {
-      title: '',
+      title: "",
       contact: Contact,
       companies: [SelectItem],
       posts: [SelectItem],
       posts_go: [SelectItem],
       departments: [SelectItem],
       ranks: [SelectItem]
-    }
+    };
   },
-  mounted () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    onBlur (arr, key) {
+    onBlur(arr, key) {
       if (this.checkArray(this.contact[arr], key)) {
-        const obj = {}
-        obj.id = this.contact[arr].length + 1
-        obj[key] = ''
-        this.contact[arr].push(obj)
+        const obj = {};
+        obj.id = this.contact[arr].length + 1;
+        obj[key] = "";
+        this.contact[arr].push(obj);
       }
     },
-    onSelect (item, itemName) {
-      this.contact[itemName] = item
-      this.contact[`${itemName}_id`] = item.id
+    onSelect(item, itemName) {
+      this.contact[itemName] = item;
+      this.contact[`${itemName}_id`] = item.id;
     },
-    submit () {
-      let url = '/contacts'
-      let method = 'POST'
-      if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`
-        method = 'PUT'
+    submit() {
+      let url = "/contacts";
+      let method = "POST";
+      if (this.$route.params.id !== "0") {
+        url = `${url}/${this.$route.params.id}`;
+        method = "PUT";
       }
-      const values = this.contact
-      values.emails = this.filterArray(values.emails, 'email')
-      values.phones = this.filterArray(values.phones, 'phone')
-      values.faxes = this.filterArray(values.faxes, 'phone')
+      const values = this.contact;
+      values.emails = this.filterArray(values.emails, "email");
+      values.phones = this.filterArray(values.phones, "phone");
+      values.faxes = this.filterArray(values.faxes, "phone");
       request({
         url,
         method,
-        mode: 'cors',
+        mode: "cors",
         data: JSON.stringify(values)
-      })
-        .then(() => {
-          this.close()
-        })
+      }).then(() => {
+        this.close();
+      });
     },
-    close () {
-      this.$router.push('/contacts')
+    close() {
+      this.$router.push("/contacts");
     },
-    delete () {
+    delete() {
       // console.log('delete!');
     },
-    fetchData () {
+    fetchData() {
       request({
         url: `contacts/${this.$route.params.id}`,
-        method: 'GET'
-      })
-        .then((r) => {
-          this.contact = r.data.contact
-          this.companies = r.data.companies
-          this.posts = r.data.posts
-          this.departments = r.data.departments
-          this.posts_go = r.data.posts_go
-          this.ranks = r.data.ranks
-          if (this.contact.emails) {
-            this.contact.emails.push({ id: this.contact.emails.length + 1, email: '' })
-          } else {
-            this.contact.emails = [{ id: 1, email: '' }]
-          }
-          if (this.contact.phones) {
-            this.contact.phones.push({ id: this.contact.phones.length + 1, phone: '' })
-          } else {
-            this.contact.phones = [{ id: 1, phone: '' }]
-          }
-          if (this.contact.faxes) {
-            this.contact.faxes.push({ id: this.contact.faxes.length + 1, phone: '' })
-          } else {
-            this.contact.faxes = [{ id: 1, phone: '' }]
-          }
-          this.isLoaded = true
-        })
+        method: "GET"
+      }).then(r => {
+        this.contact = r.data.contact;
+        this.companies = r.data.companies;
+        this.posts = r.data.posts;
+        this.departments = r.data.departments;
+        this.posts_go = r.data.posts_go;
+        this.ranks = r.data.ranks;
+        if (this.contact.emails) {
+          this.contact.emails.push({
+            id: this.contact.emails.length + 1,
+            email: ""
+          });
+        } else {
+          this.contact.emails = [{ id: 1, email: "" }];
+        }
+        if (this.contact.phones) {
+          this.contact.phones.push({
+            id: this.contact.phones.length + 1,
+            phone: ""
+          });
+        } else {
+          this.contact.phones = [{ id: 1, phone: "" }];
+        }
+        if (this.contact.faxes) {
+          this.contact.faxes.push({
+            id: this.contact.faxes.length + 1,
+            phone: ""
+          });
+        } else {
+          this.contact.faxes = [{ id: 1, phone: "" }];
+        }
+        this.isLoaded = true;
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped>

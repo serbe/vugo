@@ -41,82 +41,84 @@
 </template>
 
 <script>
-
 // Radio     string    `sql:"radio,null"      json:"radio"      form:"radio"      query:"radio"`
 // Panel      string    `sql:"desk,null"       json:"desk"       form:"desk"       query:"desk"`
 // Stage     int64     `sql:"stage,null"      json:"stage"      form:"stage"      query:"stage"`
 // Own       string    `sql:"own,null"        json:"own"        form:"own"        query:"own"`
 
-import BulmaInput from '@/components/BulmaInput'
-import BulmaButton from '@/components/BulmaButton'
-import BulmaSelect from '@/components/BulmaSelect'
-import Siren from '@/objects/Siren'
-import SelectItem from '@/objects/SelectItem'
-import mixItem from '@/mixins/mixItem'
-import request from '@/request'
+import BulmaInput from "@/components/BulmaInput";
+import BulmaButton from "@/components/BulmaButton";
+import BulmaSelect from "@/components/BulmaSelect";
+import Siren from "@/objects/Siren";
+import SelectItem from "@/objects/SelectItem";
+import mixItem from "@/mixins/mixItem";
+import request from "@/request";
 
 export default {
-  name: 'SirenItem',
+  name: "SirenItem",
   components: {
-    'bulma-input': BulmaInput,
-    'bulma-button': BulmaButton,
-    'bulma-select': BulmaSelect
+    "bulma-input": BulmaInput,
+    "bulma-button": BulmaButton,
+    "bulma-select": BulmaSelect
   },
   mixins: [mixItem],
-  data () {
+  data() {
     return {
-      title: '',
+      title: "",
       siren: Siren,
       siren_types: [SelectItem],
       contacts: [SelectItem],
       companies: [SelectItem]
-    }
+    };
   },
-  mounted () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    submit () {
-      let url = 'sirens'
-      let method = 'POST'
-      if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`
-        method = 'PUT'
+    submit() {
+      let url = "sirens";
+      let method = "POST";
+      if (this.$route.params.id !== "0") {
+        url = `${url}/${this.$route.params.id}`;
+        method = "PUT";
       }
-      const values = this.siren
+      const values = this.siren;
       request({
         url,
         method,
-        mode: 'cors',
+        mode: "cors",
         data: JSON.stringify(values)
-      })
-        .then(() => {
-          this.close()
-        })
+      }).then(() => {
+        this.close();
+      });
     },
-    close () {
-      this.$router.push('/sirens')
+    close() {
+      this.$router.push("/sirens");
     },
-    onSelect (item, itemName) {
-      this.siren[itemName] = item
-      this.siren[`${itemName}_id`] = item.id
+    onSelect(item, itemName) {
+      this.siren[itemName] = item;
+      this.siren[`${itemName}_id`] = item.id;
     },
-    delete () {
+    delete() {
       // console.log('delete!');
     },
-    fetchData () {
-      this.fetchItem('sirens', ['siren', 'siren_types', 'contacts', 'companies'], true)
+    fetchData() {
+      this.fetchItem(
+        "sirens",
+        ["siren", "siren_types", "contacts", "companies"],
+        true
+      );
     },
-    afterFetch () {
-      this.setSelect('siren', 'siren_types', 'siren_type', 'siren_type_id')
-      this.setSelect('siren', 'contacts', 'contact', 'contact_id')
-      this.setSelect('siren', 'companies', 'company', 'company_id')
+    afterFetch() {
+      this.setSelect("siren", "siren_types", "siren_type", "siren_type_id");
+      this.setSelect("siren", "contacts", "contact", "contact_id");
+      this.setSelect("siren", "companies", "company", "company_id");
     },
-    setSelect (root, list, item, value) {
-      this[root][item] = this[list].find(v => v.id === this[root][value])
+    setSelect(root, list, item, value) {
+      this[root][item] = this[list].find(v => v.id === this[root][value]);
     }
   }
-}
+};
 </script>
 
 <style scoped>

@@ -1,12 +1,12 @@
-import Email from '@/objects/Email'
-import Phone from '@/objects/Phone'
-import Fax from '@/objects/Fax'
-import SelectItem from '@/objects/SelectItem'
+import Email from "@/objects/Email";
+import Phone from "@/objects/Phone";
+import Fax from "@/objects/Fax";
+import SelectItem from "@/objects/SelectItem";
 
 export default {
   id: 0,
-  name: '',
-  birthday: '',
+  name: "",
+  birthday: "",
   company: SelectItem,
   company_id: 0,
   post: SelectItem,
@@ -20,5 +20,5 @@ export default {
   emails: [Email],
   phones: [Phone],
   faxes: [Fax],
-  note: ''
-}
+  note: ""
+};

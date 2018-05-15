@@ -29,19 +29,19 @@
 </template>
 
 <script>
-import BulmaIcon from '@/components/BulmaIcon'
+import BulmaIcon from "@/components/BulmaIcon";
 export default {
-  name: 'BulmaSelect',
+  name: "BulmaSelect",
   components: {
-    'bulma-icon': BulmaIcon
+    "bulma-icon": BulmaIcon
   },
   props: {
     selectedItem: {
-      default () {
+      default() {
         return {
           id: 0,
-          name: ''
-        }
+          name: ""
+        };
       }
     },
     iconLeft: {
@@ -55,7 +55,9 @@ export default {
     color: {
       type: [String, Boolean],
       default: false,
-      validator: (value) => ['primary', 'info', 'success', 'warning', 'danger'].includes(value) || !value
+      validator: value =>
+        ["primary", "info", "success", "warning", "danger"].includes(value) ||
+        !value
     },
     size: {
       type: [String, Boolean],
@@ -71,97 +73,107 @@ export default {
     },
     list: {
       required: true,
-      default: [{
-        id: 0,
-        name: ''
-      }]
+      default: [
+        {
+          id: 0,
+          name: ""
+        }
+      ]
     },
     itemName: {
       type: [String, Boolean],
       default: false
     }
   },
-  data () {
+  data() {
     return {
       opened: false,
       searchText: this.selectedItem.name,
       mousedownState: false,
-      placeholder: '',
+      placeholder: "",
       isLoaded: false
-    }
+    };
   },
   computed: {
-    classList () {
+    classList() {
       return {
-        'control': true,
-        'is-expanded': true,
-        'select': true,
-        'is-fullwidth': true,
-        'has-icons-left': this.iconLeft,
-        'has-icons-right': this.iconRight
-      }
+        control: true,
+        "is-expanded": true,
+        select: true,
+        "is-fullwidth": true,
+        "has-icons-left": this.iconLeft,
+        "has-icons-right": this.iconRight
+      };
     },
-    inputClassList () {
+    inputClassList() {
       return {
-        'input': true,
+        input: true,
         [`is-${this.color}`]: this.color,
         [`is-${this.size}`]: this.size,
         [`is-${this.state}`]: this.state
+      };
+    },
+    getLabel() {
+      if (
+        this.label !== false &&
+        this.placeholder !== false &&
+        this.label === ""
+      ) {
+        return this.placeholder;
       }
+      return this.label;
     },
-    getLabel () {
-      if (this.label !== false && this.placeholder !== false && this.label === '') {
-        return this.placeholder
+    getPlaceholder() {
+      return this.placeholder === "" && this.label && this.label !== ""
+        ? this.label
+        : this.placeholder;
+    },
+    listWithFilter() {
+      if (this.searchText !== "") {
+        return this.list.filter(item =>
+          item.name.match(new RegExp(this.searchText, "i"))
+        );
       }
-      return this.label
+      return this.list;
     },
-    getPlaceholder () {
-      return this.placeholder === '' && this.label && this.label !== '' ? this.label : this.placeholder
-    },
-    listWithFilter () {
-      if (this.searchText !== '') {
-        return this.list.filter(item => item.name.match(new RegExp(this.searchText, 'i')))
-      }
-      return this.list
-    },
-    item () {
+    item() {
       if (this.selectedItem) {
-        return {id: this.selectedItem.id, name: this.selectedItem.name}
+        return { id: this.selectedItem.id, name: this.selectedItem.name };
       }
-      return {id: 0, name: ''}
+      return { id: 0, name: "" };
     }
   },
   methods: {
-    openOptions () {
-      this.isLoaded = true
-      this.$refs.vueSelect.focus()
-      this.searchText = ''
-      this.placeholder = this.selectedItem.name
-      this.opened = true
-      this.mousedownState = false
+    openOptions() {
+      this.isLoaded = true;
+      this.$refs.vueSelect.focus();
+      this.searchText = "";
+      this.placeholder = this.selectedItem.name;
+      this.opened = true;
+      this.mousedownState = false;
     },
-    closeOptions () {
-      this.opened = false
+    closeOptions() {
+      this.opened = false;
     },
-    mousedownItem () {
-      this.mousedownState = true
+    mousedownItem() {
+      this.mousedownState = true;
     },
-    selectItem (item) {
-      this.searchText = item.name
-      this.closeOptions()
+    selectItem(item) {
+      this.searchText = item.name;
+      this.closeOptions();
       if (this.itemName) {
-        this.$emit('select', item, this.itemName)
+        this.$emit("select", item, this.itemName);
       } else {
-        this.$emit('select', item)
+        this.$emit("select", item);
       }
     },
-    onBlur () {
+    onBlur() {
       if (!this.mousedownState) {
-        this.searchText = this.selectedItem.name
-        this.closeOptions()
+        this.searchText = this.selectedItem.name;
+        this.closeOptions();
       }
     },
-    onKeyUp () {
+    onKeyUp() {
       // const selectedItemIndex = this.filteredOptions.findIndex(item => {
       //   return item.selected === true
       // })
@@ -172,7 +184,7 @@ export default {
       //   this.filteredOptions[selectedItemIndex - 1].selected = true
       // }
     },
-    onKeyDown () {
+    onKeyDown() {
       // const selectedItemIndex = this.filteredOptions.findIndex(item => {
       //   return item.selected === true
       // })
@@ -183,7 +195,7 @@ export default {
       //   this.filteredOptions[selectedItemIndex + 1].selected = true
       // }
     },
-    onKeyEnter () {
+    onKeyEnter() {
       // const selectedItem = this.filteredOptions.find(item => {
       //   return item.selected === true
       // })
@@ -191,17 +203,17 @@ export default {
       //   this.selectItem(selectedItem)
       // }
     },
-    onKeyDelete () {
+    onKeyDelete() {
       // if (!this.searchText && this.selectedOption) {
       //   this.selectItem({})
       //   this.openOptions()
       // }
     },
-    onInput (event) {
-      this.searchText = event.target.value
+    onInput(event) {
+      this.searchText = event.target.value;
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -215,7 +227,7 @@ export default {
   position: absolute;
   border: 1px solid #1fc8db;
   /*visibility: hidden;*/
-  background-color: #FFF;
+  background-color: #fff;
   left: 0;
   /*top: 20%;*/
   width: 100%;

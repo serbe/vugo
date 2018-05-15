@@ -17,41 +17,41 @@
 </template>
 
 <script>
-import BulmaTable from '@/components/BulmaTable'
-import mixin from '@/mixins/funcs'
-import mixList from '@/mixins/mixList'
+import BulmaTable from "@/components/BulmaTable";
+import mixin from "@/mixins/funcs";
+import mixList from "@/mixins/mixList";
 
 export default {
-  name: 'CompanyList',
+  name: "CompanyList",
   components: {
-    'bulma-table': BulmaTable
+    "bulma-table": BulmaTable
   },
   mixins: [mixin, mixList],
-  mounted () {
-    this.fetchData('companies')
+  mounted() {
+    this.fetchData("companies");
   },
   methods: {
-    createList (companies) {
-      let list = []
+    createList(companies) {
+      let list = [];
       if (companies) {
-        list = companies.map((c) => {
-          const str = [c.name, c.address, c.scope_name]
-          if (c.phones.length > 0 && c.phones[0] !== '') {
-            str.push(c.phones.join(' '))
+        list = companies.map(c => {
+          const str = [c.name, c.address, c.scope_name];
+          if (c.phones.length > 0 && c.phones[0] !== "") {
+            str.push(c.phones.join(" "));
           }
-          if (c.faxes.length > 0 && c.faxes[0] !== '') {
-            str.push(c.faxes.join(' '))
+          if (c.faxes.length > 0 && c.faxes[0] !== "") {
+            str.push(c.faxes.join(" "));
           }
-          if (c.practices.length > 0 && c.practices[0] !== '') {
-            str.push(c.practices.join(' '))
+          if (c.practices.length > 0 && c.practices[0] !== "") {
+            str.push(c.practices.join(" "));
           }
-          const nc = c
-          nc.str = str.join(' ').toLowerCase()
-          return nc
-        })
+          const nc = c;
+          nc.str = str.join(" ").toLowerCase();
+          return nc;
+        });
       }
-      return list
+      return list;
     }
   }
-}
+};
 </script>

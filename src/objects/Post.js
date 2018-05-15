@@ -1,6 +1,6 @@
 export default {
   id: 0,
-  name: '',
+  name: "",
   go: false,
-  note: ''
-}
+  note: ""
+};

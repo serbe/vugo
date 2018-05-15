@@ -29,89 +29,93 @@
 </template>
 
 <script>
-import auth from '@/auth'
-import request from '@/request'
+import auth from "@/auth";
+import request from "@/request";
 
 export default {
-  name: 'HomePage',
-  data () {
+  name: "HomePage",
+  data() {
     return {
       practicesFetched: false,
       educationsFetched: false,
       practicesList: [],
       educationsList: [],
       user: auth.user
-    }
+    };
   },
-  mounted () {
-    this.fetchPractices()
-    this.fetchEducations()
+  mounted() {
+    this.fetchPractices();
+    this.fetchEducations();
   },
   methods: {
-    fetchPractices () {
+    fetchPractices() {
       if (this.user.authenticated && !this.fetched) {
         request({
-          url: 'practices/near',
-          method: 'GET'
-        })
-          .then((r) => {
-            this.practicesList = r.data.practices
-            if (this.practicesList) {
-              this.practicesList = this.practicesList.reverse()
-            }
-            this.practicesFetched = true
-          })
+          url: "practices/near",
+          method: "GET"
+        }).then(r => {
+          this.practicesList = r.data.practices;
+          if (this.practicesList) {
+            this.practicesList = this.practicesList.reverse();
+          }
+          this.practicesFetched = true;
+        });
       }
     },
-    fetchEducations () {
+    fetchEducations() {
       if (this.user.authenticated && !this.fetched) {
         request({
-          url: 'educations/near',
-          method: 'GET'
-        })
-          .then((r) => {
-            this.educationsList = r.data.educations
-            if (this.educationsList) {
-              this.educationsList = this.educationsList.reverse()
-            }
-            this.educationsFetched = true
-          })
+          url: "educations/near",
+          method: "GET"
+        }).then(r => {
+          this.educationsList = r.data.educations;
+          if (this.educationsList) {
+            this.educationsList = this.educationsList.reverse();
+          }
+          this.educationsFetched = true;
+        });
       }
     },
-    trClass (date) {
-      const m = new Date()
-      const d = new Date(date)
+    trClass(date) {
+      const m = new Date();
+      const d = new Date(date);
       if (d < m) {
-        return 'tr-is-success'
+        return "tr-is-success";
       }
-      m.setMonth(m.getMonth() + 1)
+      m.setMonth(m.getMonth() + 1);
       if (d < m) {
-        return 'tr-is-danger'
+        return "tr-is-danger";
       }
-      return 'tr-is-warning'
+      return "tr-is-warning";
     },
-    tinyDate (date) {
+    tinyDate(date) {
       if (date.length === 10) {
-        return `${date.substring(8, 10)}.${date.substring(5, 7)}.${date.substring(2, 4)}`
+        return `${date.substring(8, 10)}.${date.substring(
+          5,
+          7
+        )}.${date.substring(2, 4)}`;
       }
-      return date
+      return date;
     }
   }
-}
+};
 </script>
 
 <style scoped>
-.tr-is-success, .tr-is-success:hover {
+.tr-is-success,
+.tr-is-success:hover {
   /* background-color: rgba(35, 209, 96, 0.5); */
   border-bottom: 2px solid #23d160;
 }
 
-.tr-is-warning, .tr-is-warning:hover {
+.tr-is-warning,
+.tr-is-warning:hover {
   /* background-color: rgba(255, 221, 87, 0.5); */
   border-bottom: 2px solid #ffdd57;
 }
 
-.tr-is-danger, .tr-is-danger:hover {
+.tr-is-danger,
+.tr-is-danger:hover {
   /* background-color: rgba(255, 56, 96, 0.5); */
   border-bottom: 2px solid #fc0032;
 }

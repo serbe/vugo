@@ -28,69 +28,68 @@
 </template>
 
 <script>
-import BulmaInput from '@/components/BulmaInput'
-import BulmaButton from '@/components/BulmaButton'
-import BulmaDate from '@/components/BulmaDate'
-import BulmaSelect from '@/components/BulmaSelect'
-import Practice from '@/objects/Practice'
-import SelectItem from '@/objects/SelectItem'
-import mixItem from '@/mixins/mixItem'
-import request from '@/request'
+import BulmaInput from "@/components/BulmaInput";
+import BulmaButton from "@/components/BulmaButton";
+import BulmaDate from "@/components/BulmaDate";
+import BulmaSelect from "@/components/BulmaSelect";
+import Practice from "@/objects/Practice";
+import SelectItem from "@/objects/SelectItem";
+import mixItem from "@/mixins/mixItem";
+import request from "@/request";
 
 export default {
-  name: 'PracticeItem',
+  name: "PracticeItem",
   components: {
-    'bulma-input': BulmaInput,
-    'bulma-button': BulmaButton,
-    'bulma-date': BulmaDate,
-    'bulma-select': BulmaSelect
+    "bulma-input": BulmaInput,
+    "bulma-button": BulmaButton,
+    "bulma-date": BulmaDate,
+    "bulma-select": BulmaSelect
   },
   mixins: [mixItem],
-  data () {
+  data() {
     return {
-      title: '',
+      title: "",
       practice: Practice,
       companies: [SelectItem],
       kinds: [SelectItem]
-    }
+    };
   },
-  mounted () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    onSelect (item, itemName) {
-      this.practice[itemName] = item
-      this.practice[`${itemName}_id`] = item.id
+    onSelect(item, itemName) {
+      this.practice[itemName] = item;
+      this.practice[`${itemName}_id`] = item.id;
     },
-    submit () {
-      let url = 'practices'
-      let method = 'POST'
-      if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`
-        method = 'PUT'
+    submit() {
+      let url = "practices";
+      let method = "POST";
+      if (this.$route.params.id !== "0") {
+        url = `${url}/${this.$route.params.id}`;
+        method = "PUT";
       }
-      const values = this.practice
+      const values = this.practice;
       request({
         url,
         method,
-        mode: 'cors',
+        mode: "cors",
         data: JSON.stringify(values)
-      })
-        .then(() => {
-          this.close()
-        })
+      }).then(() => {
+        this.close();
+      });
     },
-    close () {
-      this.$router.push('/practices')
+    close() {
+      this.$router.push("/practices");
     },
-    delete () {
+    delete() {
       // console.log('delete!');
     },
-    fetchData () {
-      this.fetchItem('practices', ['practice', 'companies', 'kinds'])
+    fetchData() {
+      this.fetchItem("practices", ["practice", "companies", "kinds"]);
     }
   }
-}
+};
 </script>
 
 <style scoped>

@@ -24,58 +24,57 @@
 </template>
 
 <script>
-import BulmaInput from '@/components/BulmaInput'
-import BulmaButton from '@/components/BulmaButton'
-import Kind from '@/objects/Kind'
-import mixItem from '@/mixins/mixItem'
-import request from '@/request'
+import BulmaInput from "@/components/BulmaInput";
+import BulmaButton from "@/components/BulmaButton";
+import Kind from "@/objects/Kind";
+import mixItem from "@/mixins/mixItem";
+import request from "@/request";
 
 export default {
-  name: 'KindItem',
+  name: "KindItem",
   components: {
-    'bulma-input': BulmaInput,
-    'bulma-button': BulmaButton
+    "bulma-input": BulmaInput,
+    "bulma-button": BulmaButton
   },
   mixins: [mixItem],
-  data () {
+  data() {
     return {
-      title: '',
+      title: "",
       kind: Kind
-    }
+    };
   },
-  mounted () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    submit () {
-      let url = 'kinds'
-      let method = 'POST'
-      if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`
-        method = 'PUT'
+    submit() {
+      let url = "kinds";
+      let method = "POST";
+      if (this.$route.params.id !== "0") {
+        url = `${url}/${this.$route.params.id}`;
+        method = "PUT";
       }
-      const values = this.kind
+      const values = this.kind;
       request({
         url,
         method,
-        mode: 'cors',
+        mode: "cors",
         data: JSON.stringify(values)
-      })
-        .then(() => {
-          this.close()
-        })
+      }).then(() => {
+        this.close();
+      });
     },
-    close () {
-      this.$router.push('/kinds')
+    close() {
+      this.$router.push("/kinds");
     },
-    delete () {
+    delete() {
       // console.log('delete!');
     },
-    fetchData () {
-      this.fetchItem('kinds', ['kind'])
+    fetchData() {
+      this.fetchItem("kinds", ["kind"]);
     }
   }
-}
+};
 </script>
 
 <style scoped>

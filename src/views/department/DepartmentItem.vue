@@ -22,58 +22,57 @@
 </template>
 
 <script>
-import BulmaInput from '@/components/BulmaInput'
-import BulmaButton from '@/components/BulmaButton'
-import Department from '@/objects/Department'
-import mixItem from '@/mixins/mixItem'
-import request from '@/request'
+import BulmaInput from "@/components/BulmaInput";
+import BulmaButton from "@/components/BulmaButton";
+import Department from "@/objects/Department";
+import mixItem from "@/mixins/mixItem";
+import request from "@/request";
 
 export default {
-  name: 'DepartmentItem',
+  name: "DepartmentItem",
   components: {
-    'bulma-input': BulmaInput,
-    'bulma-button': BulmaButton
+    "bulma-input": BulmaInput,
+    "bulma-button": BulmaButton
   },
   mixins: [mixItem],
-  data () {
+  data() {
     return {
-      title: '',
+      title: "",
       department: Department
-    }
+    };
   },
-  mounted () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    submit () {
-      let url = 'departments'
-      let method = 'POST'
-      if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`
-        method = 'PUT'
+    submit() {
+      let url = "departments";
+      let method = "POST";
+      if (this.$route.params.id !== "0") {
+        url = `${url}/${this.$route.params.id}`;
+        method = "PUT";
       }
-      const values = this.department
+      const values = this.department;
       request({
         url,
         method,
-        mode: 'cors',
+        mode: "cors",
         data: JSON.stringify(values)
-      })
-        .then(() => {
-          this.close()
-        })
+      }).then(() => {
+        this.close();
+      });
     },
-    close () {
-      this.$router.push('/departments')
+    close() {
+      this.$router.push("/departments");
     },
-    delete () {
+    delete() {
       // console.log('delete!')
     },
-    fetchData () {
-      this.fetchItem('departments', ['department'])
+    fetchData() {
+      this.fetchItem("departments", ["department"]);
     }
   }
-}
+};
 </script>
 
 <style scoped>

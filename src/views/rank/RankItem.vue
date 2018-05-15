@@ -22,58 +22,57 @@
 </template>
 
 <script>
-import BulmaInput from '@/components/BulmaInput'
-import BulmaButton from '@/components/BulmaButton'
-import Rank from '@/objects/Rank'
-import mixItem from '@/mixins/mixItem'
-import request from '@/request'
+import BulmaInput from "@/components/BulmaInput";
+import BulmaButton from "@/components/BulmaButton";
+import Rank from "@/objects/Rank";
+import mixItem from "@/mixins/mixItem";
+import request from "@/request";
 
 export default {
-  name: 'RankItem',
+  name: "RankItem",
   components: {
-    'bulma-input': BulmaInput,
-    'bulma-button': BulmaButton
+    "bulma-input": BulmaInput,
+    "bulma-button": BulmaButton
   },
   mixins: [mixItem],
-  data () {
+  data() {
     return {
-      title: '',
+      title: "",
       rank: Rank
-    }
+    };
   },
-  mounted () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    submit () {
-      let url = 'ranks'
-      let method = 'POST'
-      if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`
-        method = 'PUT'
+    submit() {
+      let url = "ranks";
+      let method = "POST";
+      if (this.$route.params.id !== "0") {
+        url = `${url}/${this.$route.params.id}`;
+        method = "PUT";
       }
-      const values = this.rank
+      const values = this.rank;
       request({
         url,
         method,
-        mode: 'cors',
+        mode: "cors",
         data: JSON.stringify(values)
-      })
-        .then(() => {
-          this.close()
-        })
+      }).then(() => {
+        this.close();
+      });
     },
-    close () {
-      this.$router.push('/ranks')
+    close() {
+      this.$router.push("/ranks");
     },
-    delete () {
+    delete() {
       // console.log('delete!');
     },
-    fetchData () {
-      this.fetchItem('practices', ['rank'])
+    fetchData() {
+      this.fetchItem("practices", ["rank"]);
     }
   }
-}
+};
 </script>
 
 <style scoped>

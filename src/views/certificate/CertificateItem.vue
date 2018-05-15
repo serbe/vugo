@@ -28,69 +28,68 @@
 </template>
 
 <script>
-import BulmaInput from '@/components/BulmaInput'
-import BulmaButton from '@/components/BulmaButton'
-import BulmaSelect from '@/components/BulmaSelect'
-import BulmaDate from '@/components/BulmaDate'
-import Certificate from '@/objects/Certificate'
-import SelectItem from '@/objects/SelectItem'
-import request from '@/request'
-import mixItem from '@/mixins/mixItem'
+import BulmaInput from "@/components/BulmaInput";
+import BulmaButton from "@/components/BulmaButton";
+import BulmaSelect from "@/components/BulmaSelect";
+import BulmaDate from "@/components/BulmaDate";
+import Certificate from "@/objects/Certificate";
+import SelectItem from "@/objects/SelectItem";
+import request from "@/request";
+import mixItem from "@/mixins/mixItem";
 
 export default {
-  name: 'CertificateItem',
+  name: "CertificateItem",
   components: {
-    'bulma-input': BulmaInput,
-    'bulma-button': BulmaButton,
-    'bulma-select': BulmaSelect,
-    'bulma-date': BulmaDate
+    "bulma-input": BulmaInput,
+    "bulma-button": BulmaButton,
+    "bulma-select": BulmaSelect,
+    "bulma-date": BulmaDate
   },
   mixins: [mixItem],
-  data () {
+  data() {
     return {
-      title: '',
+      title: "",
       certificate: Certificate,
       contacts: [SelectItem],
       companies: [SelectItem]
-    }
+    };
   },
-  mounted () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    onSelect (item, itemName) {
-      this.certificate[itemName] = item
-      this.certificate[`${itemName}_id`] = item.id
+    onSelect(item, itemName) {
+      this.certificate[itemName] = item;
+      this.certificate[`${itemName}_id`] = item.id;
     },
-    submit () {
-      let url = 'certificates'
-      let method = 'POST'
-      if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`
-        method = 'PUT'
+    submit() {
+      let url = "certificates";
+      let method = "POST";
+      if (this.$route.params.id !== "0") {
+        url = `${url}/${this.$route.params.id}`;
+        method = "PUT";
       }
-      const values = this.certificate
+      const values = this.certificate;
       request({
         url,
         method,
-        mode: 'cors',
+        mode: "cors",
         data: JSON.stringify(values)
-      })
-        .then(() => {
-          this.close()
-        })
+      }).then(() => {
+        this.close();
+      });
     },
-    close () {
-      this.$router.push('/certificates')
+    close() {
+      this.$router.push("/certificates");
     },
-    delete () {
+    delete() {
       // console.log('delete!');
     },
-    fetchData () {
-      this.fetchItem('certificates', ['certificate', 'contacts', 'companies'])
+    fetchData() {
+      this.fetchItem("certificates", ["certificate", "contacts", "companies"]);
     }
   }
-}
+};
 </script>
 
 <style scoped>

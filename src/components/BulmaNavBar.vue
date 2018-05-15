@@ -52,40 +52,40 @@
 </template>
 
 <script>
-import auth from '@/auth'
-import BulmaButton from '@/components/BulmaButton'
+import auth from "@/auth";
+import BulmaButton from "@/components/BulmaButton";
 
 export default {
-  name: 'BulmaNavBar',
+  name: "BulmaNavBar",
   components: {
-    'bulma-button': BulmaButton
+    "bulma-button": BulmaButton
   },
-  data () {
+  data() {
     return {
-      active: '',
+      active: "",
       tabShow: false,
       tabSirenShow: false,
       user: auth.user
-    }
+    };
   },
   methods: {
-    logout () {
-      auth.logout()
-      this.$router.push('/login')
+    logout() {
+      auth.logout();
+      this.$router.push("/login");
     },
-    toggle () {
-      this.active = this.active === '' ? 'is-active' : ''
+    toggle() {
+      this.active = this.active === "" ? "is-active" : "";
     },
-    toggleTab () {
-      this.tabShow = !this.tabShow
-      this.tabSirenShow = false
+    toggleTab() {
+      this.tabShow = !this.tabShow;
+      this.tabSirenShow = false;
     },
-    toggleSirenTab () {
-      this.tabSirenShow = !this.tabSirenShow
-      this.tabShow = false
+    toggleSirenTab() {
+      this.tabSirenShow = !this.tabSirenShow;
+      this.tabShow = false;
     }
   }
-}
+};
 </script>
 
 <style scoped>

@@ -17,62 +17,61 @@
 </template>
 
 <script>
-import BulmaInput from '@/components/BulmaInput'
-import BulmaButton from '@/components/BulmaButton'
-import auth from '@/auth'
-import axios from 'axios'
+import BulmaInput from "@/components/BulmaInput";
+import BulmaButton from "@/components/BulmaButton";
+import auth from "@/auth";
+import axios from "axios";
 
 export default {
-  name: 'LoginPage',
+  name: "LoginPage",
   components: {
-    'bulma-input': BulmaInput,
-    'bulma-button': BulmaButton
+    "bulma-input": BulmaInput,
+    "bulma-button": BulmaButton
   },
-  data () {
+  data() {
     return {
-      name: '',
-      pass: '',
+      name: "",
+      pass: "",
       error: false,
       rememberMe: true
-    }
+    };
   },
-  mounted () {
+  mounted() {
     // Can set query parameter here for auth redirect or just do it silently in login redirect.
   },
   methods: {
-    login () {
-      const router = this.$router
-      let url = '/edds/api/login'
+    login() {
+      const router = this.$router;
+      let url = "/edds/api/login";
       const data = {
         username: this.name,
         password: this.pass
+      };
+      if (process.env.NODE_ENV === "development") {
+        url = "http://localhost:9090/edds/api/login";
       }
-      if (process.env.NODE_ENV === 'development') {
-        url = 'http://localhost:9090/edds/api/login'
-      }
-      let rightPage = auth.right_page
+      let rightPage = auth.right_page;
       axios({
         url,
-        method: 'POST',
+        method: "POST",
         data
-      })
-        .then((r) => {
-          if (r.data.token && r.data.token !== '') {
-            auth.login(r.data)
-            router.push({name: rightPage})
-          }
-        })
+      }).then(r => {
+        if (r.data.token && r.data.token !== "") {
+          auth.login(r.data);
+          router.push({ name: rightPage });
+        }
+      });
     },
-    close () {
-      this.$router.push('/')
+    close() {
+      this.$router.push("/");
     },
-    onKeyup (event) {
-      if (event.event.key === 'Enter') {
-        this.login()
+    onKeyup(event) {
+      if (event.event.key === "Enter") {
+        this.login();
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>

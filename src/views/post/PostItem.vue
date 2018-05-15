@@ -24,60 +24,59 @@
 </template>
 
 <script>
-import BulmaInput from '@/components/BulmaInput'
-import BulmaButton from '@/components/BulmaButton'
-import BulmaSwitch from '@/components/BulmaSwitch'
-import Kind from '@/objects/Kind'
-import mixItem from '@/mixins/mixItem'
-import request from '@/request'
+import BulmaInput from "@/components/BulmaInput";
+import BulmaButton from "@/components/BulmaButton";
+import BulmaSwitch from "@/components/BulmaSwitch";
+import Kind from "@/objects/Kind";
+import mixItem from "@/mixins/mixItem";
+import request from "@/request";
 
 export default {
-  name: 'PostItem',
+  name: "PostItem",
   components: {
-    'bulma-input': BulmaInput,
-    'bulma-button': BulmaButton,
-    'bulma-switch': BulmaSwitch
+    "bulma-input": BulmaInput,
+    "bulma-button": BulmaButton,
+    "bulma-switch": BulmaSwitch
   },
   mixins: [mixItem],
-  data () {
+  data() {
     return {
-      title: '',
+      title: "",
       post: Kind
-    }
+    };
   },
-  mounted () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    submit () {
-      let url = 'posts'
-      let method = 'POST'
-      if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`
-        method = 'PUT'
+    submit() {
+      let url = "posts";
+      let method = "POST";
+      if (this.$route.params.id !== "0") {
+        url = `${url}/${this.$route.params.id}`;
+        method = "PUT";
       }
-      const values = this.post
+      const values = this.post;
       request({
         url,
         method,
-        mode: 'cors',
+        mode: "cors",
         data: JSON.stringify(values)
-      })
-        .then(() => {
-          this.close()
-        })
+      }).then(() => {
+        this.close();
+      });
     },
-    close () {
-      this.$router.push('/posts')
+    close() {
+      this.$router.push("/posts");
     },
-    delete () {
+    delete() {
       // console.log('delete!');
     },
-    fetchData () {
-      this.fetchItem('posts', ['post'])
+    fetchData() {
+      this.fetchItem("posts", ["post"]);
     }
   }
-}
+};
 </script>
 
 <style scoped>

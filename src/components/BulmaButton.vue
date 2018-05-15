@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import BulmaIcon from '@/components/BulmaIcon'
+import BulmaIcon from "@/components/BulmaIcon";
 
 export default {
-  name: 'BulmaButton',
+  name: "BulmaButton",
   components: {
-    'bulma-icon': BulmaIcon
+    "bulma-icon": BulmaIcon
   },
   props: {
     text: {
@@ -22,12 +22,24 @@ export default {
     color: {
       type: [String, Boolean],
       default: false,
-      validator: (value) => ['white', 'light', 'dark', 'black', 'text', 'primary', 'info', 'success', 'warning', 'danger'].includes(value) || !value
+      validator: value =>
+        [
+          "white",
+          "light",
+          "dark",
+          "black",
+          "text",
+          "primary",
+          "info",
+          "success",
+          "warning",
+          "danger"
+        ].includes(value) || !value
     },
     size: {
       type: [String, Boolean],
       default: false,
-      validator: (value) => ['small', 'medium', 'large'].includes(value) || !value
+      validator: value => ["small", "medium", "large"].includes(value) || !value
     },
     outlined: {
       type: Boolean,
@@ -75,26 +87,26 @@ export default {
     }
   },
   computed: {
-    classList () {
+    classList() {
       return {
-        'button': true,
+        button: true,
         [`is-${this.color}`]: this.color,
         [`is-${this.size}`]: this.size,
-        'is-outlined': this.outlined,
-        'is-inverted': this.inverted,
-        'is-rounded': this.rounded,
-        'is-hovered': this.hovered,
-        'is-focused': this.focused,
-        'is-active': this.active,
-        'is-loading': this.loading,
-        'is-static': this.static
-      }
+        "is-outlined": this.outlined,
+        "is-inverted": this.inverted,
+        "is-rounded": this.rounded,
+        "is-hovered": this.hovered,
+        "is-focused": this.focused,
+        "is-active": this.active,
+        "is-loading": this.loading,
+        "is-static": this.static
+      };
     }
   },
   methods: {
-    click () {
-      this.$emit('click')
+    click() {
+      this.$emit("click");
     }
   }
-}
+};
 </script>

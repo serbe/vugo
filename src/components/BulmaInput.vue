@@ -49,29 +49,32 @@
 </template>
 
 <script>
-import BulmaIcon from '@/components/BulmaIcon'
+import BulmaIcon from "@/components/BulmaIcon";
 
 export default {
-  name: 'BulmaInput',
+  name: "BulmaInput",
   components: {
-    'bulma-icon': BulmaIcon
+    "bulma-icon": BulmaIcon
   },
   props: {
-    value: '',
+    value: "",
     type: {
       type: String,
-      default: 'text',
-      validator: (value) => ['text', 'password', 'email', 'tel'].includes(value) || !value
+      default: "text",
+      validator: value =>
+        ["text", "password", "email", "tel"].includes(value) || !value
     },
     color: {
       type: [String, Boolean],
       default: false,
-      validator: (value) => ['primary', 'info', 'success', 'warning', 'danger'].includes(value) || !value
+      validator: value =>
+        ["primary", "info", "success", "warning", "danger"].includes(value) ||
+        !value
     },
     size: {
       type: [String, Boolean],
       default: false,
-      validator: (value) => ['small', 'medium', 'large'].includes(value) || !value
+      validator: value => ["small", "medium", "large"].includes(value) || !value
     },
     state: {
       type: [String, Boolean],
@@ -134,55 +137,59 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       inputValue: this.value
-    }
+    };
   },
   computed: {
-    classList () {
+    classList() {
       return {
-        'control': true,
-        'is-expanded': true,
-        'has-icons-left': this.iconLeft,
-        'has-icons-right': this.iconRight
-      }
+        control: true,
+        "is-expanded": true,
+        "has-icons-left": this.iconLeft,
+        "has-icons-right": this.iconRight
+      };
     },
-    inputClassList () {
+    inputClassList() {
       return {
-        'input': true,
+        input: true,
         [`is-${this.color}`]: this.color,
         [`is-${this.size}`]: this.size,
         [`is-${this.state}`]: this.state
-      }
+      };
     },
-    getLabel () {
-      if (this.label !== false && this.placeholder !== false && this.label === '') {
-        return this.placeholder
+    getLabel() {
+      if (
+        this.label !== false &&
+        this.placeholder !== false &&
+        this.label === ""
+      ) {
+        return this.placeholder;
       }
-      return this.label
+      return this.label;
     },
-    isError () {
-      if (this.value !== '' && this.pattern) {
-        const patt = new RegExp(this.pattern)
-        return !patt.test(this.value)
+    isError() {
+      if (this.value !== "" && this.pattern) {
+        const patt = new RegExp(this.pattern);
+        return !patt.test(this.value);
       }
-      return false
+      return false;
     }
   },
   methods: {
-    onInput (event) {
-      const val = event.target.value
-      this.$emit('input', val)
+    onInput(event) {
+      const val = event.target.value;
+      this.$emit("input", val);
     },
-    onBlur (event) {
-      const ret = { id: this.id, event }
-      this.$emit('blur', ret)
+    onBlur(event) {
+      const ret = { id: this.id, event };
+      this.$emit("blur", ret);
     },
-    onKeyup (event) {
-      const ret = { id: this.id, event }
-      this.$emit('keyup', ret)
+    onKeyup(event) {
+      const ret = { id: this.id, event };
+      this.$emit("keyup", ret);
     }
   }
-}
+};
 </script>

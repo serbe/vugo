@@ -50,23 +50,23 @@
 </template>
 
 <script>
-import BulmaPagination from '@/components/BulmaPagination'
-import BulmaTableTr from '@/components/BulmaTableTr'
+import BulmaPagination from "@/components/BulmaPagination";
+import BulmaTableTr from "@/components/BulmaTableTr";
 
 export default {
-  name: 'BulmaTable',
+  name: "BulmaTable",
   components: {
-    'bulma-pagination': BulmaPagination,
-    'bulma-table-tr': BulmaTableTr
+    "bulma-pagination": BulmaPagination,
+    "bulma-table-tr": BulmaTableTr
   },
-  data () {
+  data() {
     return {
-      query: '',
+      query: "",
       page: 1,
       list: [],
       rowsSelect: 50,
       options: [10, 20, 30, 40, 50, 100]
-    }
+    };
   },
   props: {
     name: {
@@ -108,71 +108,79 @@ export default {
     }
   },
   computed: {
-    head () {
-      return this.names ? this.names : Object.keys(this.tableData[0])
+    head() {
+      return this.names ? this.names : Object.keys(this.tableData[0]);
     },
-    body () {
-      return this.columns ? this.columns : Object.keys(this.tableData[0])
+    body() {
+      return this.columns ? this.columns : Object.keys(this.tableData[0]);
     },
-    rows () {
-      let result = []
+    rows() {
+      let result = [];
       if (this.filtered) {
-        const tp = this.page
-        const pp = this.perPage
-        result = this.filtered.filter((c, i) => i >= (tp - 1) * pp && i < tp * pp)
+        const tp = this.page;
+        const pp = this.perPage;
+        result = this.filtered.filter(
+          (c, i) => i >= (tp - 1) * pp && i < tp * pp
+        );
       }
-      return result
+      return result;
     },
-    all () {
-      return this.filtered ? this.filtered.length : 0
+    all() {
+      return this.filtered ? this.filtered.length : 0;
     },
-    filtered () {
+    filtered() {
       if (this.tableData) {
-        const queryArr = this.query.toLowerCase().split(' ')
-        return this.tableData.filter(f => queryArr.every(q => f.str.includes(q)))
+        const queryArr = this.query.toLowerCase().split(" ");
+        return this.tableData.filter(f =>
+          queryArr.every(q => f.str.includes(q))
+        );
       }
-      return []
+      return [];
     },
-    tableClass () {
-      return this.tableClasses ? this.tableClasses : ''
+    tableClass() {
+      return this.tableClasses ? this.tableClasses : "";
     },
-    perPage () {
-      return Number(this.rowsSelect)
+    perPage() {
+      return Number(this.rowsSelect);
     }
   },
-  mounted () {
-    if (this.pagination && this.rowsPerPage > 0 && this.rowsPerPage !== this.rowsSelect) {
-      this.rowsSelect = this.rowsPerPage
+  mounted() {
+    if (
+      this.pagination &&
+      this.rowsPerPage > 0 &&
+      this.rowsPerPage !== this.rowsSelect
+    ) {
+      this.rowsSelect = this.rowsPerPage;
     }
   },
   methods: {
-    onClickTr (item) {
-      if ('id' in item) {
-        this.$router.push(`/${this.name}/${item.id}`)
+    onClickTr(item) {
+      if ("id" in item) {
+        this.$router.push(`/${this.name}/${item.id}`);
       }
     },
-    headClass (index) {
-      return this.headClasses ? this.headClasses[index] : ''
+    headClass(index) {
+      return this.headClasses ? this.headClasses[index] : "";
     },
-    cellClass (index) {
-      return this.cellClasses ? this.cellClasses[index] : this.headClass(index)
+    cellClass(index) {
+      return this.cellClasses ? this.cellClasses[index] : this.headClass(index);
     },
-    cellType (index) {
-      return this.cellTypes ? this.cellTypes[index] : ''
+    cellType(index) {
+      return this.cellTypes ? this.cellTypes[index] : "";
     },
-    filter (num) {
+    filter(num) {
       if (num !== this.page) {
-        this.page = num
+        this.page = num;
       }
     }
   },
   watch: {
-    query (val) {
-      this.query = val
-      this.page = 1
+    query(val) {
+      this.query = val;
+      this.page = 1;
     }
   }
-}
+};
 </script>
 
 <style scoped>

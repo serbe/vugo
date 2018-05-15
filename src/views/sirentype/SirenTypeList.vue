@@ -17,30 +17,30 @@
 </template>
 
 <script>
-import BulmaTable from '@/components/BulmaTable'
-import mixList from '@/mixins/mixList'
+import BulmaTable from "@/components/BulmaTable";
+import mixList from "@/mixins/mixList";
 
 export default {
-  name: 'SirenTypeList',
+  name: "SirenTypeList",
   components: {
-    'bulma-table': BulmaTable
+    "bulma-table": BulmaTable
   },
   mixins: [mixList],
-  mounted () {
-    this.fetchData('sirentypes', 'siren_types')
+  mounted() {
+    this.fetchData("sirentypes", "siren_types");
   },
   methods: {
-    createList (sirenTypes) {
-      let list = []
+    createList(sirenTypes) {
+      let list = [];
       if (sirenTypes) {
-        list = sirenTypes.map((e) => {
-          const str = [e.name, e.radius, e.note]
-          e.str = str.join(' ').toLowerCase()
-          return e
-        })
+        list = sirenTypes.map(e => {
+          const str = [e.name, e.radius, e.note];
+          e.str = str.join(" ").toLowerCase();
+          return e;
+        });
       }
-      return list
+      return list;
     }
   }
-}
+};
 </script>

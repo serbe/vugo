@@ -17,31 +17,31 @@
 </template>
 
 <script>
-import BulmaTable from '@/components/BulmaTable'
-import mixList from '@/mixins/mixList'
+import BulmaTable from "@/components/BulmaTable";
+import mixList from "@/mixins/mixList";
 
 export default {
-  name: 'KindList',
+  name: "KindList",
   components: {
-    'bulma-table': BulmaTable
+    "bulma-table": BulmaTable
   },
   mixins: [mixList],
-  mounted () {
-    this.fetchData('kinds')
+  mounted() {
+    this.fetchData("kinds");
   },
   methods: {
-    createList (kinds) {
-      let list = []
+    createList(kinds) {
+      let list = [];
       if (kinds) {
-        list = kinds.map((e) => {
-          const str = [e.name, e.short_name, e.note]
-          const ne = e
-          ne.str = str.join(' ').toLowerCase()
-          return ne
-        })
+        list = kinds.map(e => {
+          const str = [e.name, e.short_name, e.note];
+          const ne = e;
+          ne.str = str.join(" ").toLowerCase();
+          return ne;
+        });
       }
-      return list
+      return list;
     }
   }
-}
+};
 </script>

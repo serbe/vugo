@@ -102,96 +102,104 @@
 </template>
 
 <script>
-import BulmaInput from '@/components/BulmaInput'
-import BulmaButton from '@/components/BulmaButton'
-import BulmaSelect from '@/components/BulmaSelect'
-import Company from '@/objects/Company'
-import SelectItem from '@/objects/SelectItem'
-import mixin from '@/mixins/funcs'
-import mixItem from '@/mixins/mixItem'
-import request from '@/request'
+import BulmaInput from "@/components/BulmaInput";
+import BulmaButton from "@/components/BulmaButton";
+import BulmaSelect from "@/components/BulmaSelect";
+import Company from "@/objects/Company";
+import SelectItem from "@/objects/SelectItem";
+import mixin from "@/mixins/funcs";
+import mixItem from "@/mixins/mixItem";
+import request from "@/request";
 
 export default {
-  name: 'CompanyItem',
+  name: "CompanyItem",
   components: {
-    'bulma-input': BulmaInput,
-    'bulma-button': BulmaButton,
-    'bulma-select': BulmaSelect
+    "bulma-input": BulmaInput,
+    "bulma-button": BulmaButton,
+    "bulma-select": BulmaSelect
   },
   mixins: [mixin, mixItem],
-  data () {
+  data() {
     return {
-      title: '',
+      title: "",
       company: Company,
       scopes: [SelectItem]
-    }
+    };
   },
-  mounted () {
-    this.fetchData()
+  mounted() {
+    this.fetchData();
   },
   methods: {
-    onBlur (arr, key) {
+    onBlur(arr, key) {
       if (this.checkArray(this.company[arr], key)) {
-        const obj = {}
-        obj.id = this.company[arr].length + 1
-        obj[key] = ''
-        this.company[arr].push(obj)
+        const obj = {};
+        obj.id = this.company[arr].length + 1;
+        obj[key] = "";
+        this.company[arr].push(obj);
       }
     },
-    onSelect (item) {
-      this.scope = item
-      this.company.scope_id = item.id
+    onSelect(item) {
+      this.scope = item;
+      this.company.scope_id = item.id;
     },
-    submit () {
-      let url = 'companies'
-      let method = 'POST'
-      if (this.$route.params.id !== '0') {
-        url = `${url}/${this.$route.params.id}`
-        method = 'PUT'
+    submit() {
+      let url = "companies";
+      let method = "POST";
+      if (this.$route.params.id !== "0") {
+        url = `${url}/${this.$route.params.id}`;
+        method = "PUT";
       }
-      const values = this.company
-      values.emails = this.filterArray(values.emails, 'email')
-      values.phones = this.filterArray(values.phones, 'phone')
-      values.faxes = this.filterArray(values.faxes, 'phone')
+      const values = this.company;
+      values.emails = this.filterArray(values.emails, "email");
+      values.phones = this.filterArray(values.phones, "phone");
+      values.faxes = this.filterArray(values.faxes, "phone");
       request({
         url,
         method,
-        mode: 'cors',
+        mode: "cors",
         data: JSON.stringify(values)
-      })
-        .then(() => {
-          this.close()
-        })
+      }).then(() => {
+        this.close();
+      });
     },
-    close () {
-      this.$router.push('/companies')
+    close() {
+      this.$router.push("/companies");
     },
-    delete () {
-    //  console.log('delete!');
+    delete() {
+      //  console.log('delete!');
     },
-    fetchData () {
-      this.fetchItem('companies', ['company', 'scopes'], true)
+    fetchData() {
+      this.fetchItem("companies", ["company", "scopes"], true);
     },
-    afterFetch () {
+    afterFetch() {
       if (this.company.emails) {
-        this.company.emails.push({ id: this.company.emails.length + 1, email: '' })
+        this.company.emails.push({
+          id: this.company.emails.length + 1,
+          email: ""
+        });
       } else {
-        this.company.emails = [{ id: 1, email: '' }]
+        this.company.emails = [{ id: 1, email: "" }];
       }
       if (this.company.phones) {
-        this.company.phones.push({ id: this.company.phones.length + 1, phone: '' })
+        this.company.phones.push({
+          id: this.company.phones.length + 1,
+          phone: ""
+        });
       } else {
-        this.company.phones = [{ id: 1, phone: '' }]
+        this.company.phones = [{ id: 1, phone: "" }];
       }
       if (this.company.faxes) {
-        this.company.faxes.push({ id: this.company.faxes.length + 1, phone: '' })
+        this.company.faxes.push({
+          id: this.company.faxes.length + 1,
+          phone: ""
+        });
       } else {
-        this.company.faxes = [{ id: 1, phone: '' }]
+        this.company.faxes = [{ id: 1, phone: "" }];
       }
     },
-    customLabel (val) {
-      return val.name
+    customLabel(val) {
+      return val.name;
     }
   }
-}
+};
 </script>

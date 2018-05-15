@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import BulmaNavBar from '@/components/BulmaNavBar'
+import BulmaNavBar from "@/components/BulmaNavBar";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    'bulma-navbar': BulmaNavBar
+    "bulma-navbar": BulmaNavBar
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -47,11 +47,11 @@ body {
   padding: 6rem 1.5rem 3rem !important;
 }
 
-$primary: #2B2B2B;
+$primary: #2b2b2b;
 
 $text: hsl(0, 0%, 14%);
 
-$size-1: 2.50rem;
+$size-1: 2.5rem;
 $size-2: 2.08rem;
 $size-3: 1.66rem;
 $size-4: 1.25rem;
