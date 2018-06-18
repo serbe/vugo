@@ -2,7 +2,6 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import auth from "./auth";
-
 import "./assets/sass/main.scss";
 import "./assets/css/main.css";
 

@@ -1,7 +1,32 @@
 import Vue from "vue";
 import Router from "vue-router";
-
-const lazyLoad = path => () => import(`@/views/${path}`);
+import HomePage from "@/views/HomePage";
+import LoginPage from "@/views/LoginPage";
+import CompanyList from "@/views/company/CompanyList";
+import CompanyItem from "@/views/certificate/CertificateItem";
+import ContactList from "@/views/contact/ContactList";
+import ContactItem from "@/views/contact/ContactItem";
+import DepartmentList from "@/views/department/DepartmentList";
+import DepartmentItem from "@/views/department/DepartmentItem";
+import EducationList from "@/views/education/EducationList";
+import EducationItem from "@/views/education/EducationItem";
+import KindList from "@/views/kind/KindList";
+import KindItem from "@/views/kind/KindItem";
+import PostList from "@/views/post/PostList";
+import PostItem from "@/views/post/PostItem";
+import PracticeList from "@/views/practice/PracticeList";
+import PracticeItem from "@/views/practice/PracticeItem";
+import RankList from "@/views/rank/RankList";
+import RankItem from "@/views/rank/RankItem";
+import ScopeList from "@/views/scope/ScopeList";
+import ScopeItem from "@/views/scope/ScopeItem";
+import SirenTypeList from "@/views/sirentype/SirenTypeList";
+import SirenTypeItem from "@/views/sirentype/SirenTypeItem";
+import SirenList from "@/views/siren/SirenList";
+import SirenItem from "@/views/siren/SirenItem";
+import CertificateList from "@/views/certificate/CertificateList";
+import CertificateItem from "@/views/certificate/CertificateItem";
+import NotFoundComponent from "@/views/NotFoundComponent";
 
 Vue.use(Router);
 
@@ -13,7 +38,7 @@ export default new Router({
     {
       path: "/",
       name: "HomePage",
-      component: lazyLoad("HomePage"),
+      component: HomePage,
       meta: {
         requiresAuth: true,
         title: "ЕДДС"
@@ -22,7 +47,7 @@ export default new Router({
     {
       path: "/login",
       name: "LoginPage",
-      component: lazyLoad("LoginPage"),
+      component: LoginPage,
       meta: {
         title: "Авторизация",
         auth: false
@@ -31,7 +56,7 @@ export default new Router({
     {
       path: "/companies",
       name: "CompanyList",
-      component: lazyLoad("company/CompanyList"),
+      component: CompanyList,
       meta: {
         requiresAuth: true,
         title: "Список организаций"
@@ -40,7 +65,7 @@ export default new Router({
     {
       path: "/company/:id",
       name: "CompanyItem",
-      component: lazyLoad("company/CompanyItem"),
+      component: CompanyItem,
       meta: {
         requiresAuth: true,
         title: "Просмотр организации"
@@ -49,7 +74,7 @@ export default new Router({
     {
       path: "/contacts",
       name: "ContactList",
-      component: lazyLoad("contact/ContactList"),
+      component: ContactList,
       meta: {
         requiresAuth: true,
         title: "Список контактов"
@@ -58,7 +83,7 @@ export default new Router({
     {
       path: "/contact/:id",
       name: "ContactItem",
-      component: lazyLoad("contact/ContactItem"),
+      component: ContactItem,
       meta: {
         requiresAuth: true,
         title: "Просмотр контакта"
@@ -67,7 +92,7 @@ export default new Router({
     {
       path: "/departments",
       name: "DepartmentList",
-      component: lazyLoad("department/DepartmentList"),
+      component: DepartmentList,
       meta: {
         requiresAuth: true,
         title: "Список отделов"
@@ -76,7 +101,7 @@ export default new Router({
     {
       path: "/department/:id",
       name: "DepartmentItem",
-      component: lazyLoad("department/DepartmentItem"),
+      component: DepartmentItem,
       meta: {
         requiresAuth: true,
         title: "Просмотр отдела"
@@ -85,7 +110,7 @@ export default new Router({
     {
       path: "/educations",
       name: "EducationList",
-      component: lazyLoad("education/EducationList"),
+      component: EducationList,
       meta: {
         requiresAuth: true,
         title: "Список обучений в УМЦ"
@@ -94,7 +119,7 @@ export default new Router({
     {
       path: "/education/:id",
       name: "EducationItem",
-      component: lazyLoad("education/EducationItem"),
+      component: EducationItem,
       meta: {
         requiresAuth: true,
         title: "Просмотр обучения в УМЦ"
@@ -103,7 +128,7 @@ export default new Router({
     {
       path: "/kinds",
       name: "KindList",
-      component: lazyLoad("kind/KindList"),
+      component: KindList,
       meta: {
         requiresAuth: true,
         title: "Список типов тренировок"
@@ -112,7 +137,7 @@ export default new Router({
     {
       path: "/kind/:id",
       name: "KindItem",
-      component: lazyLoad("kind/KindItem"),
+      component: KindItem,
       meta: {
         requiresAuth: true,
         title: "Просмотр типа тренировки"
@@ -121,7 +146,7 @@ export default new Router({
     {
       path: "/posts",
       name: "PostList",
-      component: lazyLoad("post/PostList"),
+      component: PostList,
       meta: {
         requiresAuth: true,
         title: "Список должностей"
@@ -130,7 +155,7 @@ export default new Router({
     {
       path: "/post/:id",
       name: "PostItem",
-      component: lazyLoad("post/PostItem"),
+      component: PostItem,
       meta: {
         requiresAuth: true,
         title: "Просмотр должности"
@@ -139,7 +164,7 @@ export default new Router({
     {
       path: "/practices",
       name: "PracticeList",
-      component: lazyLoad("practice/PracticeList"),
+      component: PracticeList,
       meta: {
         requiresAuth: true,
         title: "Список тренировок в организациях"
@@ -148,7 +173,7 @@ export default new Router({
     {
       path: "/practice/:id",
       name: "PracticeItem",
-      component: lazyLoad("practice/PracticeItem"),
+      component: PracticeItem,
       meta: {
         requiresAuth: true,
         title: "Просмотр тренировки"
@@ -157,7 +182,7 @@ export default new Router({
     {
       path: "/ranks",
       name: "RankList",
-      component: lazyLoad("rank/RankList"),
+      component: RankList,
       meta: {
         requiresAuth: true,
         title: "Список чинов"
@@ -166,7 +191,7 @@ export default new Router({
     {
       path: "/rank/:id",
       name: "RankItem",
-      component: lazyLoad("rank/RankItem"),
+      component: RankItem,
       meta: {
         requiresAuth: true,
         title: "Просмотр чина"
@@ -175,7 +200,7 @@ export default new Router({
     {
       path: "/scopes",
       name: "ScopeList",
-      component: lazyLoad("scope/ScopeList"),
+      component: ScopeList,
       meta: {
         requiresAuth: true,
         title: "Список сфер деятельности"
@@ -184,7 +209,7 @@ export default new Router({
     {
       path: "/scope/:id",
       name: "ScopeItem",
-      component: lazyLoad("scope/ScopeItem"),
+      component: ScopeItem,
       meta: {
         requiresAuth: true,
         title: "Просмотр сферы деятельности"
@@ -193,7 +218,7 @@ export default new Router({
     {
       path: "/sirentypes",
       name: "SirenTypeList",
-      component: lazyLoad("sirentype/SirenTypeList"),
+      component: SirenTypeList,
       meta: {
         requiresAuth: true,
         title: "Список типов сирен"
@@ -202,7 +227,7 @@ export default new Router({
     {
       path: "/sirentype/:id",
       name: "SirenTypeItem",
-      component: lazyLoad("sirentype/SirenTypeItem"),
+      component: SirenTypeItem,
       meta: {
         requiresAuth: true,
         title: "Просмотр типа сирены"
@@ -211,7 +236,7 @@ export default new Router({
     {
       path: "/sirens",
       name: "SirenList",
-      component: lazyLoad("siren/SirenList"),
+      component: SirenList,
       meta: {
         requiresAuth: true,
         title: "Список сирен"
@@ -220,7 +245,7 @@ export default new Router({
     {
       path: "/siren/:id",
       name: "SirenItem",
-      component: lazyLoad("siren/SirenItem"),
+      component: SirenItem,
       meta: {
         requiresAuth: true,
         title: "Просмотр сирены"
@@ -229,7 +254,7 @@ export default new Router({
     {
       path: "/certificates",
       name: "CertificateList",
-      component: lazyLoad("certificate/CertificateList"),
+      component: CertificateList,
       meta: {
         requiresAuth: true,
         title: "Список удостоверений"
@@ -238,7 +263,7 @@ export default new Router({
     {
       path: "/certificate/:id",
       name: "CertificateItem",
-      component: lazyLoad("certificate/CertificateItem"),
+      component: CertificateItem,
       meta: {
         requiresAuth: true,
         title: "Просмотр удостоверения"
@@ -247,7 +272,7 @@ export default new Router({
     {
       path: "*",
       name: "error",
-      component: lazyLoad("NotFoundComponent")
+      component: NotFoundComponent
     }
   ]
 });
