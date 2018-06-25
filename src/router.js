@@ -3,7 +3,7 @@ import Router from "vue-router";
 import HomePage from "@/views/HomePage";
 import LoginPage from "@/views/LoginPage";
 import CompanyList from "@/views/company/CompanyList";
-import CompanyItem from "@/views/certificate/CertificateItem";
+import CompanyItem from "@/views/company/CompanyItem";
 import ContactList from "@/views/contact/ContactList";
 import ContactItem from "@/views/contact/ContactItem";
 import DepartmentList from "@/views/department/DepartmentList";
