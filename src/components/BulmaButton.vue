@@ -30,6 +30,7 @@ export default {
           "black",
           "text",
           "primary",
+          "link",
           "info",
           "success",
           "warning",
@@ -40,6 +41,10 @@ export default {
       type: [String, Boolean],
       default: false,
       validator: value => ["small", "medium", "large"].includes(value) || !value
+    },
+    fullwidth: {
+      type: Boolean,
+      default: false
     },
     outlined: {
       type: Boolean,
@@ -92,6 +97,7 @@ export default {
         button: true,
         [`is-${this.color}`]: this.color,
         [`is-${this.size}`]: this.size,
+        "is-fullwidth": this.fullwidth,
         "is-outlined": this.outlined,
         "is-inverted": this.inverted,
         "is-rounded": this.rounded,
