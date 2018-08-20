@@ -76,7 +76,19 @@ export default {
       default: false,
       validator: value => ["small", "medium", "large"].includes(value) || !value
     },
-    state: {
+    rounded: {
+      type: [String, Boolean],
+      default: false
+    },
+    hovered: {
+      type: [String, Boolean],
+      default: false
+    },
+    focused: {
+      type: [String, Boolean],
+      default: false
+    },
+    loading: {
       type: [String, Boolean],
       default: false
     },
@@ -156,7 +168,10 @@ export default {
         input: true,
         [`is-${this.color}`]: this.color,
         [`is-${this.size}`]: this.size,
-        [`is-${this.state}`]: this.state
+        "is-rounded": this.rounded,
+        "is-hovered": this.hovered,
+        "is-focused": this.focused,
+        "is-loading": this.loading
       };
     },
     getLabel() {
