@@ -1,32 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import HomePage from "@/views/HomePage";
-import LoginPage from "@/views/LoginPage";
-import CompanyList from "@/views/company/CompanyList";
-import CompanyItem from "@/views/company/CompanyItem";
-import ContactList from "@/views/contact/ContactList";
-import ContactItem from "@/views/contact/ContactItem";
-import DepartmentList from "@/views/department/DepartmentList";
-import DepartmentItem from "@/views/department/DepartmentItem";
-import EducationList from "@/views/education/EducationList";
-import EducationItem from "@/views/education/EducationItem";
-import KindList from "@/views/kind/KindList";
-import KindItem from "@/views/kind/KindItem";
-import PostList from "@/views/post/PostList";
-import PostItem from "@/views/post/PostItem";
-import PracticeList from "@/views/practice/PracticeList";
-import PracticeItem from "@/views/practice/PracticeItem";
-import RankList from "@/views/rank/RankList";
-import RankItem from "@/views/rank/RankItem";
-import ScopeList from "@/views/scope/ScopeList";
-import ScopeItem from "@/views/scope/ScopeItem";
-import SirenTypeList from "@/views/sirentype/SirenTypeList";
-import SirenTypeItem from "@/views/sirentype/SirenTypeItem";
-import SirenList from "@/views/siren/SirenList";
-import SirenItem from "@/views/siren/SirenItem";
-import CertificateList from "@/views/certificate/CertificateList";
-import CertificateItem from "@/views/certificate/CertificateItem";
-import NotFoundComponent from "@/views/NotFoundComponent";
 
 Vue.use(Router);
 
@@ -34,11 +7,13 @@ export default new Router({
   hashbang: false,
   linkActiveClass: "is-active",
   mode: "history",
+  base: process.env.BASE_URL,
   routes: [
     {
       path: "/",
       name: "HomePage",
-      component: HomePage,
+      component: () =>
+        import(/* webpackChunkName: "HomePage" */ "./views/HomePage.vue"),
       meta: {
         requiresAuth: true,
         title: "ЕДДС"
@@ -47,7 +22,8 @@ export default new Router({
     {
       path: "/login",
       name: "LoginPage",
-      component: LoginPage,
+      component: () =>
+        import(/* webpackChunkName: "LoginPage" */ "./views/LoginPage.vue"),
       meta: {
         title: "Авторизация",
         auth: false
@@ -56,7 +32,8 @@ export default new Router({
     {
       path: "/companies",
       name: "CompanyList",
-      component: CompanyList,
+      component: () =>
+        import(/* webpackChunkName: "CompanyList" */ "./views/company/CompanyList.vue"),
       meta: {
         requiresAuth: true,
         title: "Список организаций"
@@ -65,7 +42,8 @@ export default new Router({
     {
       path: "/company/:id",
       name: "CompanyItem",
-      component: CompanyItem,
+      component: () =>
+        import(/* webpackChunkName: "CompanyItem" */ "./views/company/CompanyItem.vue"),
       meta: {
         requiresAuth: true,
         title: "Просмотр организации"
@@ -74,7 +52,8 @@ export default new Router({
     {
       path: "/contacts",
       name: "ContactList",
-      component: ContactList,
+      component: () =>
+        import(/* webpackChunkName: "ContactList" */ "./views/contact/ContactList.vue"),
       meta: {
         requiresAuth: true,
         title: "Список контактов"
@@ -83,7 +62,8 @@ export default new Router({
     {
       path: "/contact/:id",
       name: "ContactItem",
-      component: ContactItem,
+      component: () =>
+        import(/* webpackChunkName: "ContactItem" */ "./views/contact/ContactItem.vue"),
       meta: {
         requiresAuth: true,
         title: "Просмотр контакта"
@@ -92,7 +72,8 @@ export default new Router({
     {
       path: "/departments",
       name: "DepartmentList",
-      component: DepartmentList,
+      component: () =>
+        import(/* webpackChunkName: "DepartmentList" */ "./views/department/DepartmentList.vue"),
       meta: {
         requiresAuth: true,
         title: "Список отделов"
@@ -101,7 +82,8 @@ export default new Router({
     {
       path: "/department/:id",
       name: "DepartmentItem",
-      component: DepartmentItem,
+      component: () =>
+        import(/* webpackChunkName: "DepartmentItem" */ "./views/department/DepartmentItem.vue"),
       meta: {
         requiresAuth: true,
         title: "Просмотр отдела"
@@ -110,7 +92,8 @@ export default new Router({
     {
       path: "/educations",
       name: "EducationList",
-      component: EducationList,
+      component: () =>
+        import(/* webpackChunkName: "EducationList" */ "./views/education/EducationList.vue"),
       meta: {
         requiresAuth: true,
         title: "Список обучений в УМЦ"
@@ -119,7 +102,8 @@ export default new Router({
     {
       path: "/education/:id",
       name: "EducationItem",
-      component: EducationItem,
+      component: () =>
+        import(/* webpackChunkName: "EducationItem" */ "./views/education/EducationItem.vue"),
       meta: {
         requiresAuth: true,
         title: "Просмотр обучения в УМЦ"
@@ -128,7 +112,8 @@ export default new Router({
     {
       path: "/kinds",
       name: "KindList",
-      component: KindList,
+      component: () =>
+        import(/* webpackChunkName: "KindList" */ "./views/kind/KindList.vue"),
       meta: {
         requiresAuth: true,
         title: "Список типов тренировок"
@@ -137,7 +122,8 @@ export default new Router({
     {
       path: "/kind/:id",
       name: "KindItem",
-      component: KindItem,
+      component: () =>
+        import(/* webpackChunkName: "KindItem" */ "./views/kind/KindItem.vue"),
       meta: {
         requiresAuth: true,
         title: "Просмотр типа тренировки"
@@ -146,7 +132,8 @@ export default new Router({
     {
       path: "/posts",
       name: "PostList",
-      component: PostList,
+      component: () =>
+        import(/* webpackChunkName: "PostList" */ "./views/post/PostList.vue"),
       meta: {
         requiresAuth: true,
         title: "Список должностей"
@@ -155,7 +142,8 @@ export default new Router({
     {
       path: "/post/:id",
       name: "PostItem",
-      component: PostItem,
+      component: () =>
+        import(/* webpackChunkName: "PostItem" */ "./views/post/PostItem.vue"),
       meta: {
         requiresAuth: true,
         title: "Просмотр должности"
@@ -164,7 +152,8 @@ export default new Router({
     {
       path: "/practices",
       name: "PracticeList",
-      component: PracticeList,
+      component: () =>
+        import(/* webpackChunkName: "PracticeList" */ "./views/practice/PracticeList.vue"),
       meta: {
         requiresAuth: true,
         title: "Список тренировок в организациях"
@@ -173,7 +162,8 @@ export default new Router({
     {
       path: "/practice/:id",
       name: "PracticeItem",
-      component: PracticeItem,
+      component: () =>
+        import(/* webpackChunkName: "PracticeItem" */ "./views/practice/PracticeItem.vue"),
       meta: {
         requiresAuth: true,
         title: "Просмотр тренировки"
@@ -182,7 +172,8 @@ export default new Router({
     {
       path: "/ranks",
       name: "RankList",
-      component: RankList,
+      component: () =>
+        import(/* webpackChunkName: "RankList" */ "./views/rank/RankList.vue"),
       meta: {
         requiresAuth: true,
         title: "Список чинов"
@@ -191,7 +182,8 @@ export default new Router({
     {
       path: "/rank/:id",
       name: "RankItem",
-      component: RankItem,
+      component: () =>
+        import(/* webpackChunkName: "RankItem" */ "./views/rank/RankItem.vue"),
       meta: {
         requiresAuth: true,
         title: "Просмотр чина"
@@ -200,7 +192,8 @@ export default new Router({
     {
       path: "/scopes",
       name: "ScopeList",
-      component: ScopeList,
+      component: () =>
+        import(/* webpackChunkName: "ScopeList" */ "./views/scope/ScopeList.vue"),
       meta: {
         requiresAuth: true,
         title: "Список сфер деятельности"
@@ -209,7 +202,8 @@ export default new Router({
     {
       path: "/scope/:id",
       name: "ScopeItem",
-      component: ScopeItem,
+      component: () =>
+        import(/* webpackChunkName: "ScopeItem" */ "./views/scope/ScopeItem.vue"),
       meta: {
         requiresAuth: true,
         title: "Просмотр сферы деятельности"
@@ -218,7 +212,8 @@ export default new Router({
     {
       path: "/sirentypes",
       name: "SirenTypeList",
-      component: SirenTypeList,
+      component: () =>
+        import(/* webpackChunkName: "SirenTypeList" */ "./views/sirentype/SirenTypeList.vue"),
       meta: {
         requiresAuth: true,
         title: "Список типов сирен"
@@ -227,7 +222,8 @@ export default new Router({
     {
       path: "/sirentype/:id",
       name: "SirenTypeItem",
-      component: SirenTypeItem,
+      component: () =>
+        import(/* webpackChunkName: "SirenTypeItem" */ "./views/sirentype/SirenTypeItem.vue"),
       meta: {
         requiresAuth: true,
         title: "Просмотр типа сирены"
@@ -236,7 +232,8 @@ export default new Router({
     {
       path: "/sirens",
       name: "SirenList",
-      component: SirenList,
+      component: () =>
+        import(/* webpackChunkName: "SirenList" */ "./views/siren/SirenList.vue"),
       meta: {
         requiresAuth: true,
         title: "Список сирен"
@@ -245,7 +242,8 @@ export default new Router({
     {
       path: "/siren/:id",
       name: "SirenItem",
-      component: SirenItem,
+      component: () =>
+        import(/* webpackChunkName: "SirenItem" */ "./views/siren/SirenItem.vue"),
       meta: {
         requiresAuth: true,
         title: "Просмотр сирены"
@@ -254,7 +252,8 @@ export default new Router({
     {
       path: "/certificates",
       name: "CertificateList",
-      component: CertificateList,
+      component: () =>
+        import(/* webpackChunkName: "CertificateList" */ "./views/certificate/CertificateList.vue"),
       meta: {
         requiresAuth: true,
         title: "Список удостоверений"
@@ -263,7 +262,8 @@ export default new Router({
     {
       path: "/certificate/:id",
       name: "CertificateItem",
-      component: CertificateItem,
+      component: () =>
+        import(/* webpackChunkName: "CertificateItem" */ "./views/certificate/CertificateItem.vue"),
       meta: {
         requiresAuth: true,
         title: "Просмотр удостоверения"
@@ -272,7 +272,8 @@ export default new Router({
     {
       path: "*",
       name: "error",
-      component: NotFoundComponent
+      component: () =>
+        import(/* webpackChunkName: "NotFoundComponent" */ "./views/NotFoundComponent.vue")
     }
   ]
 });
