@@ -19,10 +19,16 @@
     <p class="control mb1" v-if="search" key="TableSearch">
       <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
     </p>
-    <bulma-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter" key="TablePaginationTop" size="small"></bulma-pagination>
-    <table
-      class="table center-table"
-      :class="tableClass">
+    <bulma-pagination
+      v-if="pagination"
+      :page="page"
+      :allElems="all"
+      :perPage="perPage"
+      @pagination="filter"
+      key="TablePaginationTop"
+      size="small"
+    ></bulma-pagination>
+    <table class="table center-table" :class="tableClass">
       <thead v-if="headClasses" key="TableThead">
         <tr>
           <th v-for="(name, index) in head" :key="index" :class="headClass(index)">{{ name }}</th>
@@ -32,20 +38,40 @@
         <template v-if="hyper">
           <template v-for="(row, key) in rows">
             <tr :key="key" @click="onClickTr(row)" class="link">
-              <bulma-table-tr v-for="(name, index) in body" :key="index" :class="cellClass(index)" :type="cellType(index)" :value="row[name]"/>
+              <bulma-table-tr
+                v-for="(name, index) in body"
+                :key="index"
+                :class="cellClass(index)"
+                :type="cellType(index)"
+                :value="row[name]"
+              />
             </tr>
           </template>
         </template>
         <template v-else>
           <template v-for="(row, key) in rows">
             <tr :key="key">
-              <bulma-table-tr v-for="(name, index) in body" :key="index" :class="cellClass(index)" :type="cellType(index)" :value="row[name]"/>
+              <bulma-table-tr
+                v-for="(name, index) in body"
+                :key="index"
+                :class="cellClass(index)"
+                :type="cellType(index)"
+                :value="row[name]"
+              />
             </tr>
           </template>
         </template>
       </tbody>
     </table>
-    <bulma-pagination v-if="pagination" :page="page" :allElems="all" :perPage="perPage" @pagination="filter" key="TablePaginationBottom" size="small"></bulma-pagination>
+    <bulma-pagination
+      v-if="pagination"
+      :page="page"
+      :allElems="all"
+      :perPage="perPage"
+      @pagination="filter"
+      key="TablePaginationBottom"
+      size="small"
+    ></bulma-pagination>
   </div>
 </template>
 

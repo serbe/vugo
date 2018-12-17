@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="calendar-nav-day">
-          <div class="calendar-day"> {{ day }}</div>
+          <div class="calendar-day">{{ day }}</div>
         </div>
         <div class="calendar-nav-year">
           <div class="calendar-nav-previous-year">

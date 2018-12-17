@@ -1,9 +1,14 @@
 <template>
   <div class="container mw768">
     <form :model="sirenType" id="sirenType">
-
       <bulma-input v-model="sirenType.name" label placeholder="Тип сирены" iconLeft="tag"></bulma-input>
-      <bulma-input v-model="sirenType.radius" label placeholder="Радиус действия сирены (метры)" iconLeft="circle-o" type="number"></bulma-input>
+      <bulma-input
+        v-model="sirenType.radius"
+        label
+        placeholder="Радиус действия сирены (метры)"
+        iconLeft="circle-o"
+        type="number"
+      ></bulma-input>
       <bulma-input v-model="sirenType.note" label placeholder="Заметка" iconLeft="comment"></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
@@ -14,7 +19,11 @@
           <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
+          <bulma-button
+            text="Удалить"
+            color="danger"
+            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+          ></bulma-button>
         </div>
       </div>
     </form>

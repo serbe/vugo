@@ -19,8 +19,22 @@
           :required="required"
           :autofocus="autofocus"
         >
-        <bulma-icon v-if="iconLeft" :size="size" position="left" :icon="iconLeft" :color="color" key="InputIconLeft"/>
-        <bulma-icon v-if="iconRight" :size="size" position="right" :icon="iconRight" :color="color" key="InputIconRight"/>
+        <bulma-icon
+          v-if="iconLeft"
+          :size="size"
+          position="left"
+          :icon="iconLeft"
+          :color="color"
+          key="InputIconLeft"
+        />
+        <bulma-icon
+          v-if="iconRight"
+          :size="size"
+          position="right"
+          :icon="iconRight"
+          :color="color"
+          key="InputIconRight"
+        />
         <p v-if="isError" class="help is-danger" key="InputError">{{ error }}</p>
       </a>
       <template v-else>
@@ -40,8 +54,22 @@
           :required="required"
           :autofocus="autofocus"
         >
-        <bulma-icon v-if="iconLeft" :size="size" position="left" :icon="iconLeft" :color="color" key="InputIconLeft"/>
-        <bulma-icon v-if="iconRight" :size="size" position="right" :icon="iconRight" :color="color" key="InputIconRight"/>
+        <bulma-icon
+          v-if="iconLeft"
+          :size="size"
+          position="left"
+          :icon="iconLeft"
+          :color="color"
+          key="InputIconLeft"
+        />
+        <bulma-icon
+          v-if="iconRight"
+          :size="size"
+          position="right"
+          :icon="iconRight"
+          :color="color"
+          key="InputIconRight"
+        />
         <p v-if="isError" class="help is-danger" key="InputError">{{ error }}</p>
       </template>
     </div>
@@ -57,7 +85,10 @@ export default {
     "bulma-icon": BulmaIcon
   },
   props: {
-    value: "",
+    value: {
+      type: [String, Boolean],
+      default: false
+    },
     type: {
       type: String,
       default: "text",

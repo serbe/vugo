@@ -13,7 +13,7 @@
       search
       adding
     ></bulma-table>
-   </div>
+  </div>
 </template>
 
 <script>

@@ -1,28 +1,68 @@
 <template>
   <div class="container mw768">
     <form :model="contact" id="contact">
+      <bulma-input
+        v-model="contact.name"
+        type="text"
+        label
+        placeholder="Полное имя"
+        iconLeft="user"
+      ></bulma-input>
 
-      <bulma-input v-model="contact.name" type="text" label placeholder="Полное имя" iconLeft="user"></bulma-input>
-
-      <bulma-select :list="companies" :selected-item="contact.company" label="Организация" item-name="company" @select="onSelect" iconLeft="building"></bulma-select>
+      <bulma-select
+        :list="companies"
+        :selected-item="contact.company"
+        label="Организация"
+        item-name="company"
+        @select="onSelect"
+        iconLeft="building"
+      ></bulma-select>
 
       <div class="columns">
         <div class="column is-half">
-          <bulma-select :list="posts" :selected-item="contact.post" label="Должность" item-name="post" @select="onSelect" iconLeft="tag"></bulma-select>
+          <bulma-select
+            :list="posts"
+            :selected-item="contact.post"
+            label="Должность"
+            item-name="post"
+            @select="onSelect"
+            iconLeft="tag"
+          ></bulma-select>
         </div>
 
         <div class="column is-half">
-          <bulma-select :list="departments" :selected-item="contact.department" label="Отдел" item-name="department" @select="onSelect" iconLeft="tag"></bulma-select>
+          <bulma-select
+            :list="departments"
+            :selected-item="contact.department"
+            label="Отдел"
+            item-name="department"
+            @select="onSelect"
+            iconLeft="tag"
+          ></bulma-select>
         </div>
       </div>
 
       <div class="columns">
         <div class="column is-half">
-          <bulma-select :list="posts_go" :selected-item="contact.post_go" label="Должность ГО" item-name="post_go" @select="onSelect" iconLeft="tag"></bulma-select>
+          <bulma-select
+            :list="posts_go"
+            :selected-item="contact.post_go"
+            label="Должность ГО"
+            item-name="post_go"
+            @select="onSelect"
+            iconLeft="tag"
+          ></bulma-select>
         </div>
 
         <div class="column is-half">
-          <bulma-select :list="ranks" :selected-item="contact.rank" label="Звание" item-name="rank" @select="onSelect" iconLeft="tag"></bulma-select>
+          <bulma-select
+            :list="ranks"
+            :selected-item="contact.rank"
+            label="Звание"
+            item-name="rank"
+            @select="onSelect"
+            iconLeft="tag"
+          ></bulma-select>
         </div>
       </div>
 
@@ -32,7 +72,13 @@
         </div>
 
         <div class="column is-two-thirds">
-          <bulma-input v-model="contact.address" type="text" label placeholder="Адрес" iconLeft="address-card"></bulma-input>
+          <bulma-input
+            v-model="contact.address"
+            type="text"
+            label
+            placeholder="Адрес"
+            iconLeft="address-card"
+          ></bulma-input>
         </div>
       </div>
 
@@ -101,7 +147,13 @@
         ></bulma-input>
       </div>
 
-      <bulma-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="contact.note"></bulma-input>
+      <bulma-input
+        type="text"
+        label="Заметка"
+        placeholder="Заметка"
+        iconLeft="comment"
+        v-model="contact.note"
+      ></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
@@ -111,7 +163,11 @@
           <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
+          <bulma-button
+            text="Удалить"
+            color="danger"
+            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+          ></bulma-button>
         </div>
       </div>
     </form>

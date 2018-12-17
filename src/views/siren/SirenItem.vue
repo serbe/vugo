@@ -1,19 +1,51 @@
 <template>
   <div class="container mw768">
     <form :model="siren" id="siren">
-
       <div class="columns">
         <div class="column is-half">
-          <bulma-input v-model="siren.num_pass" type="text" label placeholder="Серийный номер" iconLeft="tag"></bulma-input>
+          <bulma-input
+            v-model="siren.num_pass"
+            type="text"
+            label
+            placeholder="Серийный номер"
+            iconLeft="tag"
+          ></bulma-input>
         </div>
         <div class="column is-half">
-          <bulma-select :list="siren_types" :selected-item="siren.siren_type" label="Тип сирены" item-name="siren_type" @select="onSelect" iconLeft="tag"></bulma-select>
+          <bulma-select
+            :list="siren_types"
+            :selected-item="siren.siren_type"
+            label="Тип сирены"
+            item-name="siren_type"
+            @select="onSelect"
+            iconLeft="tag"
+          ></bulma-select>
         </div>
       </div>
 
-      <bulma-input v-model="siren.address" type="text" label placeholder="Адрес" iconLeft="address-card"></bulma-input>
-      <bulma-select :list="contacts" :selected-item="siren.contact" label="Контактное лицо" item-name="contact" @select="onSelect" iconLeft="user"></bulma-select>
-      <bulma-select :list="companies" :selected-item="siren.company" label="Организация" item-name="company" @select="onSelect" iconLeft="building"></bulma-select>
+      <bulma-input
+        v-model="siren.address"
+        type="text"
+        label
+        placeholder="Адрес"
+        iconLeft="address-card"
+      ></bulma-input>
+      <bulma-select
+        :list="contacts"
+        :selected-item="siren.contact"
+        label="Контактное лицо"
+        item-name="contact"
+        @select="onSelect"
+        iconLeft="user"
+      ></bulma-select>
+      <bulma-select
+        :list="companies"
+        :selected-item="siren.company"
+        label="Организация"
+        item-name="company"
+        @select="onSelect"
+        iconLeft="building"
+      ></bulma-select>
 
       <div class="columns">
         <div class="column is-half">
@@ -33,7 +65,11 @@
           <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
+          <bulma-button
+            text="Удалить"
+            color="danger"
+            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+          ></bulma-button>
         </div>
       </div>
     </form>

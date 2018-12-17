@@ -5,9 +5,17 @@
         <div class="column is-one-third">
           <table v-if="educationsFetched" class="table" key="educations">
             <tbody>
-              <tr v-for="(item, index) in educationsList" :key="index" :class="trClass(item.start_date)">
-                <td><a :href="'/education/' + item.id">{{ tinyDate(item.start_date) }}</a></td>
-                <td><a :href="'/contact/' + item.contact_id">{{ item.contact_name }}</a></td>
+              <tr
+                v-for="(item, index) in educationsList"
+                :key="index"
+                :class="trClass(item.start_date)"
+              >
+                <td>
+                  <a :href="'/education/' + item.id">{{ tinyDate(item.start_date) }}</a>
+                </td>
+                <td>
+                  <a :href="'/contact/' + item.contact_id">{{ item.contact_name }}</a>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -15,10 +23,20 @@
         <div class="column is-one-third is-offset-one-third">
           <table v-if="practicesFetched" class="table" key="practices">
             <tbody>
-              <tr v-for="(item, index) in practicesList" :key="index" :class="trClass(item.date_of_practice)">
-                <td><a :href="'/practice/' + item.id">{{ tinyDate(item.date_of_practice) }}</a></td>
-                <td><a :href="'/practice/' + item.id">{{ item.kind_short_name }}</a></td>
-                <td><a :href="'/company/' + item.company_id">{{ item.company_name }}</a></td>
+              <tr
+                v-for="(item, index) in practicesList"
+                :key="index"
+                :class="trClass(item.date_of_practice)"
+              >
+                <td>
+                  <a :href="'/practice/' + item.id">{{ tinyDate(item.date_of_practice) }}</a>
+                </td>
+                <td>
+                  <a :href="'/practice/' + item.id">{{ item.kind_short_name }}</a>
+                </td>
+                <td>
+                  <a :href="'/company/' + item.company_id">{{ item.company_name }}</a>
+                </td>
               </tr>
             </tbody>
           </table>

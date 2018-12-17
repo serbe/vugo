@@ -1,12 +1,30 @@
 <template>
   <div class="container mw768">
     <form :model="certificate" id="certificate">
+      <bulma-input
+        v-model="certificate.num"
+        label
+        placeholder="Серийный номер удостоверения"
+        iconLeft="tag"
+      ></bulma-input>
 
-      <bulma-input v-model="certificate.num" label placeholder="Серийный номер удостоверения" iconLeft="tag"></bulma-input>
+      <bulma-select
+        :list="contacts"
+        :selected-item="certificate.contact"
+        item-name="contact"
+        label="Полное имя"
+        @select="onSelect"
+        iconLeft="user"
+      ></bulma-select>
 
-      <bulma-select :list="contacts" :selected-item="certificate.contact" item-name="contact" label="Полное имя" @select="onSelect" iconLeft="user"></bulma-select>
-
-      <bulma-select :list="companies" :selected-item="certificate.company" item-name="company" label="Учебно методический центр" @select="onSelect" iconLeft="building"></bulma-select>
+      <bulma-select
+        :list="companies"
+        :selected-item="certificate.company"
+        item-name="company"
+        label="Учебно методический центр"
+        @select="onSelect"
+        iconLeft="building"
+      ></bulma-select>
 
       <bulma-date v-model="certificate.cert_date" label="Дата выдачи"></bulma-date>
 
@@ -20,7 +38,11 @@
           <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
+          <bulma-button
+            text="Удалить"
+            color="danger"
+            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+          ></bulma-button>
         </div>
       </div>
     </form>

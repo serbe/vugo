@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <!-- <div v-if="$auth.ready()" key="AuthReady"> -->
-      <bulma-navbar/>
-      <section class="section pt1">
-        <router-view></router-view>
-      </section>
+    <bulma-navbar/>
+    <section class="section pt1">
+      <router-view></router-view>
+    </section>
     <!-- </div> -->
     <footer class="footer bot">
       <div class="container">

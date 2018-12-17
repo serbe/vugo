@@ -1,8 +1,12 @@
 <template>
   <div class="container mw768">
     <form :model="scope" id="scope">
-
-      <bulma-input v-model="scope.name" label placeholder="Наименование сферы дефтельности" iconLeft="tag"></bulma-input>
+      <bulma-input
+        v-model="scope.name"
+        label
+        placeholder="Наименование сферы дефтельности"
+        iconLeft="tag"
+      ></bulma-input>
 
       <bulma-input v-model="scope.note" label placeholder="Заметка" iconLeft="comment"></bulma-input>
 
@@ -14,7 +18,11 @@
           <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
+          <bulma-button
+            text="Удалить"
+            color="danger"
+            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+          ></bulma-button>
         </div>
       </div>
     </form>

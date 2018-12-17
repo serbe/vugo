@@ -1,10 +1,21 @@
 <template>
   <div class="container mw768">
     <form :model="company" id="company">
+      <bulma-input
+        v-model="company.name"
+        label
+        placeholder="Наименование организации"
+        iconLeft="building"
+      ></bulma-input>
 
-      <bulma-input v-model="company.name" label placeholder="Наименование организации" iconLeft="building"></bulma-input>
-
-      <bulma-select :list="scopes" :selected-item="company.scope" item-name="scope" label="Сфера деятельности" @select="onSelect" iconLeft="tag"></bulma-select>
+      <bulma-select
+        :list="scopes"
+        :selected-item="company.scope"
+        item-name="scope"
+        label="Сфера деятельности"
+        @select="onSelect"
+        iconLeft="tag"
+      ></bulma-select>
 
       <bulma-input v-model="company.address" label placeholder="Адрес" iconLeft="address-card"></bulma-input>
 
@@ -94,7 +105,11 @@
           <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
+          <bulma-button
+            text="Удалить"
+            color="danger"
+            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+          ></bulma-button>
         </div>
       </div>
     </form>

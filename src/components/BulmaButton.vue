@@ -1,7 +1,21 @@
 <template>
   <a :class="classList" @click="click" :disabled="disabled">
-    <bulma-icon v-if="iconLeft" :size="size" :icon="iconLeft" position="left" :color="color" key="ButtonIconLeft"/>
-    <bulma-icon v-if="iconRight" :size="size" :icon="iconRight" position="right" :color="color" key="ButtonIconRight"/>
+    <bulma-icon
+      v-if="iconLeft"
+      :size="size"
+      :icon="iconLeft"
+      position="left"
+      :color="color"
+      key="ButtonIconLeft"
+    />
+    <bulma-icon
+      v-if="iconRight"
+      :size="size"
+      :icon="iconRight"
+      position="right"
+      :color="color"
+      key="ButtonIconRight"
+    />
     <span v-if="text">{{ text }}</span>
   </a>
 </template>

@@ -1,8 +1,18 @@
 <template>
   <div>
     <nav v-if="max > 1" ref="pagination" :class="classList" key="Pagination">
-      <a class="pagination-previous" v-if="value > 1" @click="onClick(value - 1)" key="PaginationPrev">Назад</a>
-      <a class="pagination-next" v-if="value < max" @click="onClick(value + 1)" key="PaginationNext">Далее</a>
+      <a
+        class="pagination-previous"
+        v-if="value > 1"
+        @click="onClick(value - 1)"
+        key="PaginationPrev"
+      >Назад</a>
+      <a
+        class="pagination-next"
+        v-if="value < max"
+        @click="onClick(value + 1)"
+        key="PaginationNext"
+      >Далее</a>
       <ul class="pagination-list">
         <li v-if="value !== 1" key="li1">
           <a class="pagination-link" @click="onClick(1)">1</a>

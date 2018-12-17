@@ -1,16 +1,41 @@
 <template>
   <div class="container mw768">
     <form :model="practice" id="practice">
+      <bulma-select
+        :list="companies"
+        :selected-item="practice.company"
+        label="Организация"
+        item-name="company"
+        @select="onSelect"
+        iconLeft="building"
+      ></bulma-select>
 
-      <bulma-select :list="companies" :selected-item="practice.company" label="Организация" item-name="company" @select="onSelect" iconLeft="building"></bulma-select>
+      <bulma-select
+        :list="kinds"
+        :selected-item="practice.kind"
+        label="Тип тренировки"
+        item-name="kind"
+        @select="onSelect"
+        iconLeft="tag"
+      ></bulma-select>
 
-      <bulma-select :list="kinds" :selected-item="practice.kind" label="Тип тренировки" item-name="kind" @select="onSelect" iconLeft="tag"></bulma-select>
-
-      <bulma-input type="text" label placeholder="Тема тренировки" iconLeft="tag" v-model="practice.topic"></bulma-input>
+      <bulma-input
+        type="text"
+        label
+        placeholder="Тема тренировки"
+        iconLeft="tag"
+        v-model="practice.topic"
+      ></bulma-input>
 
       <bulma-date v-model="practice.date_of_practice" label="Дата проведения тренировки"></bulma-date>
 
-      <bulma-input type="text" label="Заметка" placeholder="Заметка" iconLeft="comment" v-model="practice.note"></bulma-input>
+      <bulma-input
+        type="text"
+        label="Заметка"
+        placeholder="Заметка"
+        iconLeft="comment"
+        v-model="practice.note"
+      ></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
@@ -20,7 +45,11 @@
           <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
+          <bulma-button
+            text="Удалить"
+            color="danger"
+            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+          ></bulma-button>
         </div>
       </div>
     </form>

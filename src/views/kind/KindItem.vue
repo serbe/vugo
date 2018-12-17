@@ -1,10 +1,19 @@
 <template>
   <div class="container mw768">
     <form :model="kind" id="kind">
+      <bulma-input
+        v-model="kind.name"
+        label
+        placeholder="Наименование типа тренировки"
+        iconLeft="tag"
+      ></bulma-input>
 
-      <bulma-input v-model="kind.name" label placeholder="Наименование типа тренировки" iconLeft="tag"></bulma-input>
-
-      <bulma-input v-model="kind.short_name" label placeholder="Сокращенное наименование" iconLeft="tag"></bulma-input>
+      <bulma-input
+        v-model="kind.short_name"
+        label
+        placeholder="Сокращенное наименование"
+        iconLeft="tag"
+      ></bulma-input>
 
       <bulma-input v-model="kind.note" label placeholder="Заметка" iconLeft="comment"></bulma-input>
 
@@ -16,7 +25,11 @@
           <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
+          <bulma-button
+            text="Удалить"
+            color="danger"
+            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+          ></bulma-button>
         </div>
       </div>
     </form>

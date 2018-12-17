@@ -1,7 +1,6 @@
 <template>
   <div class="container mw768">
     <form :model="post" id="post">
-
       <bulma-input v-model="post.name" label placeholder="Наименование должности" iconLeft="tag"></bulma-input>
 
       <bulma-switch :checked="post.go" v-model="post.go" label="Должность по гражданской обороне"></bulma-switch>
@@ -16,7 +15,11 @@
           <bulma-button text="Закрыть" @click="close"></bulma-button>
         </div>
         <div class="control">
-          <bulma-button text="Удалить" color="danger" onclick="return confirm('Вы действительно хотите удалить эту запись?');"></bulma-button>
+          <bulma-button
+            text="Удалить"
+            color="danger"
+            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+          ></bulma-button>
         </div>
       </div>
     </form>
