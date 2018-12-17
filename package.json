@@ -1,6 +1,6 @@
 {
   "name": "vugo",
-  "version": "2.0.0",
+  "version": "2.1.1",
   "description": "UI on Vue.js",
   "author": "Valeriy Kostikov <mkoctuk@gmail.com>",
   "private": true,
@@ -12,32 +12,21 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bulma": "^0.7.0",
-    "bulma-calendar": "^4.0.0",
-    "vue": "^2.5.0",
-    "vue-router": "^3.0.0",
-    "vuex": "^3.0.0"
+    "bulma-calendar": "^5.0.1",
+    "vue": "^2.5.21",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0",
-    "@vue/cli-plugin-eslint": "^3.0.0",
-    "@vue/cli-service": "^3.0.0",
-    "@vue/eslint-config-prettier": "^3.0.0",
-    "lint-staged": "^7.2.0",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.0"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
-      "git add"
-    ]
+    "@vue/cli-plugin-babel": "^3.2.0",
+    "@vue/cli-plugin-eslint": "^3.2.1",
+    "@vue/cli-service": "^3.2.0",
+    "@vue/eslint-config-prettier": "^4.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.10.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.5.21"
   }
 }
