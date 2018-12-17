@@ -30,7 +30,6 @@
       </div>
 
       <bulma-input
-        type="text"
         label="Заметка"
         placeholder="Заметка"
         iconLeft="comment"

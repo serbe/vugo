@@ -20,7 +20,6 @@
       ></bulma-select>
 
       <bulma-input
-        type="text"
         label
         placeholder="Тема тренировки"
         iconLeft="tag"
@@ -30,7 +29,6 @@
       <bulma-date v-model="practice.date_of_practice" label="Дата проведения тренировки"></bulma-date>
 
       <bulma-input
-        type="text"
         label="Заметка"
         placeholder="Заметка"
         iconLeft="comment"

@@ -3,7 +3,6 @@
     <label v-if="getLabel" class="label" key="SelectLabel">{{ getLabel }}</label>
     <div :class="classList" @click="openOptions">
       <input
-        type="text"
         ref="vueSelect"
         autocomplete="off"
         tabindex="0"

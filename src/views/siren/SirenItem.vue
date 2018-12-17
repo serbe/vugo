@@ -5,7 +5,6 @@
         <div class="column is-half">
           <bulma-input
             v-model="siren.num_pass"
-            type="text"
             label
             placeholder="Серийный номер"
             iconLeft="tag"
@@ -25,7 +24,6 @@
 
       <bulma-input
         v-model="siren.address"
-        type="text"
         label
         placeholder="Адрес"
         iconLeft="address-card"

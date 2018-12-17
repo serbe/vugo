@@ -3,7 +3,6 @@
     <form :model="contact" id="contact">
       <bulma-input
         v-model="contact.name"
-        type="text"
         label
         placeholder="Полное имя"
         iconLeft="user"
@@ -74,7 +73,6 @@
         <div class="column is-two-thirds">
           <bulma-input
             v-model="contact.address"
-            type="text"
             label
             placeholder="Адрес"
             iconLeft="address-card"
@@ -139,7 +137,6 @@
         <bulma-input
           v-for="practice in contact.practices"
           :key="practice.id"
-          type="text"
           :hyper="'/practice/' + practice.id"
           readonly
           :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic"
@@ -148,7 +145,6 @@
       </div>
 
       <bulma-input
-        type="text"
         label="Заметка"
         placeholder="Заметка"
         iconLeft="comment"
