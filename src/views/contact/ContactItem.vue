@@ -66,17 +66,8 @@
       </div>
 
       <div class="columns">
-        <div class="column">
+        <div class="column is-one-third">
           <bulma-date v-model="contact.birthday" label="Дата рождения"></bulma-date>
-        </div>
-
-        <div class="column is-two-thirds">
-          <bulma-input
-            v-model="contact.address"
-            label
-            placeholder="Адрес"
-            iconLeft="address-card"
-          ></bulma-input>
         </div>
       </div>
 

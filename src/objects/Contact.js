@@ -6,7 +6,6 @@ import SelectItem from "@/objects/SelectItem";
 export default {
   id: 0,
   name: "",
-  address: "",
   birthday: "",
   company: SelectItem,
   company_id: 0,
