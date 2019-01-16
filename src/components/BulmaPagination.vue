@@ -41,7 +41,6 @@
 </template>
 
 <script>
-/* eslint no-bitwise: ["error", { "int32Hint": true }] */
 export default {
   name: "BulmaPagination",
   props: {
