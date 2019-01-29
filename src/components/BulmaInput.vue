@@ -18,7 +18,7 @@
           @keyup="onKeyup"
           :required="required"
           :autofocus="autofocus"
-        >
+        />
         <bulma-icon
           v-if="iconLeft"
           :size="size"
@@ -35,7 +35,9 @@
           :color="color"
           key="InputIconRight"
         />
-        <p v-if="isError" class="help is-danger" key="InputError">{{ error }}</p>
+        <p v-if="isError" class="help is-danger" key="InputError">
+          {{ error }}
+        </p>
       </a>
       <template v-else>
         <input
@@ -53,7 +55,7 @@
           @keyup="onKeyup"
           :required="required"
           :autofocus="autofocus"
-        >
+        />
         <bulma-icon
           v-if="iconLeft"
           :size="size"
@@ -70,7 +72,9 @@
           :color="color"
           key="InputIconRight"
         />
-        <p v-if="isError" class="help is-danger" key="InputError">{{ error }}</p>
+        <p v-if="isError" class="help is-danger" key="InputError">
+          {{ error }}
+        </p>
       </template>
     </div>
   </div>

@@ -11,10 +11,14 @@
                 :class="trClass(item.start_date)"
               >
                 <td>
-                  <a :href="'/education/' + item.id">{{ tinyDate(item.start_date) }}</a>
+                  <a :href="'/education/' + item.id">{{
+                    tinyDate(item.start_date)
+                  }}</a>
                 </td>
                 <td>
-                  <a :href="'/contact/' + item.contact_id">{{ item.contact_name }}</a>
+                  <a :href="'/contact/' + item.contact_id">{{
+                    item.contact_name
+                  }}</a>
                 </td>
               </tr>
             </tbody>
@@ -29,13 +33,19 @@
                 :class="trClass(item.date_of_practice)"
               >
                 <td>
-                  <a :href="'/practice/' + item.id">{{ tinyDate(item.date_of_practice) }}</a>
+                  <a :href="'/practice/' + item.id">{{
+                    tinyDate(item.date_of_practice)
+                  }}</a>
                 </td>
                 <td>
-                  <a :href="'/practice/' + item.id">{{ item.kind_short_name }}</a>
+                  <a :href="'/practice/' + item.id">{{
+                    item.kind_short_name
+                  }}</a>
                 </td>
                 <td>
-                  <a :href="'/company/' + item.company_id">{{ item.company_name }}</a>
+                  <a :href="'/company/' + item.company_id">{{
+                    item.company_name
+                  }}</a>
                 </td>
               </tr>
             </tbody>

@@ -5,21 +5,27 @@
       <p class="control">
         <span class="select">
           <select v-model="day" @change="changeDate">
-            <option v-for="item in dayList" :key="item" :value="item">{{ item }}</option>
+            <option v-for="item in dayList" :key="item" :value="item">{{
+              item
+            }}</option>
           </select>
         </span>
       </p>
       <p class="control">
         <span class="select">
           <select v-model="month" @change="changeDate">
-            <option v-for="item in monthList" :key="item" :value="item">{{ item }}</option>
+            <option v-for="item in monthList" :key="item" :value="item">{{
+              item
+            }}</option>
           </select>
         </span>
       </p>
       <p class="control">
         <span class="select">
           <select v-model="year" @change="changeDate">
-            <option v-for="item in yearList" :key="item" :value="item">{{ item }}</option>
+            <option v-for="item in yearList" :key="item" :value="item">{{
+              item
+            }}</option>
           </select>
         </span>
       </p>

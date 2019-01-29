@@ -2,11 +2,32 @@
   <div class="container">
     <bulma-table
       name="company"
-      :names="['Наименование', 'Адрес', 'Сфера деятельности', 'Телефон', 'Факс', 'Тренировки']"
-      :columns="['name', 'address', 'scope_name', 'phones', 'faxes', 'practices']"
+      :names="[
+        'Наименование',
+        'Адрес',
+        'Сфера деятельности',
+        'Телефон',
+        'Факс',
+        'Тренировки'
+      ]"
+      :columns="[
+        'name',
+        'address',
+        'scope_name',
+        'phones',
+        'faxes',
+        'practices'
+      ]"
       :tableData="list"
       tableClasses="is-narrow is-striped fullwidth"
-      :headClasses="['', 'is-hidden-touch', 'is-hidden-mobile', 'w9 nowrap', 'is-hidden-touch w9 nowrap', 'is-hidden-touch is-hidden-desktop-only w9 nowrap']"
+      :headClasses="[
+        '',
+        'is-hidden-touch',
+        'is-hidden-mobile',
+        'w9 nowrap',
+        'is-hidden-touch w9 nowrap',
+        'is-hidden-touch is-hidden-desktop-only w9 nowrap'
+      ]"
       :cellTypes="['text', 'text', 'text', 'array', 'array', 'array']"
       pagination
       hyper

@@ -10,14 +10,22 @@
         <p class="level-item">
           <span class="select">
             <select v-model="rowsSelect">
-              <option v-for="(value, index) in options" :key="index">{{ value }}</option>
+              <option v-for="(value, index) in options" :key="index">{{
+                value
+              }}</option>
             </select>
           </span>
         </p>
       </div>
     </nav>
     <p class="control mb1" v-if="search" key="TableSearch">
-      <input class="input is-expanded" type="search" placeholder="Поиск" v-model="query" autofocus>
+      <input
+        class="input is-expanded"
+        type="search"
+        placeholder="Поиск"
+        v-model="query"
+        autofocus
+      />
     </p>
     <bulma-pagination
       v-if="pagination"
@@ -31,7 +39,13 @@
     <table class="table center-table" :class="tableClass">
       <thead v-if="headClasses" key="TableThead">
         <tr>
-          <th v-for="(name, index) in head" :key="index" :class="headClass(index)">{{ name }}</th>
+          <th
+            v-for="(name, index) in head"
+            :key="index"
+            :class="headClass(index)"
+          >
+            {{ name }}
+          </th>
         </tr>
       </thead>
       <tbody v-if="rows.length" key="TableBody">

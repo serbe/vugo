@@ -1,6 +1,8 @@
 <template>
   <div class="field">
-    <label v-if="getLabel" class="label" key="SelectLabel">{{ getLabel }}</label>
+    <label v-if="getLabel" class="label" key="SelectLabel">{{
+      getLabel
+    }}</label>
     <div :class="classList" @click="openOptions">
       <input
         ref="vueSelect"
@@ -15,7 +17,7 @@
         @keydown.down="onKeyDown"
         @keyup.enter="onKeyEnter"
         @keydown.delete="onKeyDelete"
-      >
+      />
       <bulma-icon
         v-if="iconLeft"
         :icon="iconLeft"
@@ -35,7 +37,7 @@
       <div class="select-box" v-if="opened" key="SelectOpened">
         <div
           class="select-item"
-          @click.stop="selectItem({id:0,name:''})"
+          @click.stop="selectItem({ id: 0, name: '' })"
           @mousedown="mousedownItem"
         ></div>
         <div
@@ -44,7 +46,9 @@
           :key="item.id"
           @click.stop="selectItem(item)"
           @mousedown="mousedownItem"
-        >{{ item.name }}</div>
+        >
+          {{ item.name }}
+        </div>
       </div>
     </div>
   </div>

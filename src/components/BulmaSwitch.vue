@@ -3,7 +3,12 @@
     <label v-if="getLabel" class="label" key="SwitchLabel">{{ label }}</label>
     <p class="control">
       <label class="switch" :class="classObject">
-        <input type="checkbox" :name="name" :disabled="disabled" v-model="value">
+        <input
+          type="checkbox"
+          :name="name"
+          :disabled="disabled"
+          v-model="value"
+        />
       </label>
     </p>
   </div>

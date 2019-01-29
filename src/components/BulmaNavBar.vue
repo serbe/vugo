@@ -5,10 +5,23 @@
         <template v-if="user.authenticated">
           <router-link to="/" class="navbar-item" exact>ЕДДС</router-link>
           <router-link to="/contacts" class="navbar-item">Контакты</router-link>
-          <router-link to="/companies" class="navbar-item">Организации</router-link>
+          <router-link to="/companies" class="navbar-item"
+            >Организации</router-link
+          >
         </template>
-        <router-link v-else to="/login" class="navbar-item" key="NavbarNotLogged">Авторизация</router-link>
-        <div class="navbar-burger burger" data-target="navMenu" @click="toggle" :class="active">
+        <router-link
+          v-else
+          to="/login"
+          class="navbar-item"
+          key="NavbarNotLogged"
+          >Авторизация</router-link
+        >
+        <div
+          class="navbar-burger burger"
+          data-target="navMenu"
+          @click="toggle"
+          :class="active"
+        >
           <span></span>
           <span></span>
           <span></span>
@@ -22,16 +35,46 @@
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Справочники</a>
               <div class="navbar-dropdown">
-                <router-link to="/departments" class="navbar-item" @click="toggle">Отделы</router-link>
-                <router-link to="/educations" class="navbar-item" @click="toggle">Обучение</router-link>
-                <router-link to="/kinds" class="navbar-item" @click="toggle">Типы</router-link>
-                <router-link to="/posts" class="navbar-item" @click="toggle">Должности</router-link>
-                <router-link to="/practices" class="navbar-item" @click="toggle">Учения</router-link>
-                <router-link to="/ranks" class="navbar-item" @click="toggle">Чины</router-link>
-                <router-link to="/scopes" class="navbar-item" @click="toggle">Сферы</router-link>
-                <router-link to="/certificates" class="navbar-item" @click="toggle">Удостоверения</router-link>
-                <hr class="navbar-divider">
-                <router-link to="/sirentypes" class="navbar-item" @click="toggle">Типы сирен</router-link>
+                <router-link
+                  to="/departments"
+                  class="navbar-item"
+                  @click="toggle"
+                  >Отделы</router-link
+                >
+                <router-link
+                  to="/educations"
+                  class="navbar-item"
+                  @click="toggle"
+                  >Обучение</router-link
+                >
+                <router-link to="/kinds" class="navbar-item" @click="toggle"
+                  >Типы</router-link
+                >
+                <router-link to="/posts" class="navbar-item" @click="toggle"
+                  >Должности</router-link
+                >
+                <router-link to="/practices" class="navbar-item" @click="toggle"
+                  >Учения</router-link
+                >
+                <router-link to="/ranks" class="navbar-item" @click="toggle"
+                  >Чины</router-link
+                >
+                <router-link to="/scopes" class="navbar-item" @click="toggle"
+                  >Сферы</router-link
+                >
+                <router-link
+                  to="/certificates"
+                  class="navbar-item"
+                  @click="toggle"
+                  >Удостоверения</router-link
+                >
+                <hr class="navbar-divider" />
+                <router-link
+                  to="/sirentypes"
+                  class="navbar-item"
+                  @click="toggle"
+                  >Типы сирен</router-link
+                >
               </div>
             </div>
           </template>
@@ -41,7 +84,12 @@
             <a class="navbar-link">{{ user.name }}</a>
             <div class="navbar-dropdown is-right">
               <div v-if="user.authenticated" class="field navbar-item">
-                <bulma-button text="Выход" color="info" @click="logout" key="user"></bulma-button>
+                <bulma-button
+                  text="Выход"
+                  color="info"
+                  @click="logout"
+                  key="user"
+                ></bulma-button>
               </div>
             </div>
           </div>

@@ -17,7 +17,12 @@
         iconLeft="tag"
       ></bulma-select>
 
-      <bulma-input v-model="company.address" label placeholder="Адрес" iconLeft="address-card"></bulma-input>
+      <bulma-input
+        v-model="company.address"
+        label
+        placeholder="Адрес"
+        iconLeft="address-card"
+      ></bulma-input>
 
       <div class="columns">
         <div class="column">
@@ -76,7 +81,13 @@
         <bulma-input
           v-for="practice in company.practices"
           :key="practice.id"
-          :value="practice.date_str + ' - ' + practice.kind_name + ' - ' + practice.topic"
+          :value="
+            practice.date_str +
+              ' - ' +
+              practice.kind_name +
+              ' - ' +
+              practice.topic
+          "
           :hyper="'/practice/' + practice.id"
           iconLeft="history"
           readonly
@@ -95,11 +106,20 @@
         ></bulma-input>
       </div>
 
-      <bulma-input v-model="company.note" label placeholder="Заметка" iconLeft="sticky-note"></bulma-input>
+      <bulma-input
+        v-model="company.note"
+        label
+        placeholder="Заметка"
+        iconLeft="sticky-note"
+      ></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <bulma-button text="Сохранить" color="primary" @click="submit"></bulma-button>
+          <bulma-button
+            text="Сохранить"
+            color="primary"
+            @click="submit"
+          ></bulma-button>
         </div>
         <div class="control">
           <bulma-button text="Закрыть" @click="close"></bulma-button>

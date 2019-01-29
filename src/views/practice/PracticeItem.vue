@@ -26,7 +26,10 @@
         v-model="practice.topic"
       ></bulma-input>
 
-      <bulma-date v-model="practice.date_of_practice" label="Дата проведения тренировки"></bulma-date>
+      <bulma-date
+        v-model="practice.date_of_practice"
+        label="Дата проведения тренировки"
+      ></bulma-date>
 
       <bulma-input
         label="Заметка"
@@ -37,7 +40,11 @@
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <bulma-button text="Сохранить" color="primary" @click="submit"></bulma-button>
+          <bulma-button
+            text="Сохранить"
+            color="primary"
+            @click="submit"
+          ></bulma-button>
         </div>
         <div class="control">
           <bulma-button text="Закрыть" @click="close"></bulma-button>

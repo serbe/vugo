@@ -26,13 +26,25 @@
         iconLeft="building"
       ></bulma-select>
 
-      <bulma-date v-model="certificate.cert_date" label="Дата выдачи"></bulma-date>
+      <bulma-date
+        v-model="certificate.cert_date"
+        label="Дата выдачи"
+      ></bulma-date>
 
-      <bulma-input v-model="certificate.note" label placeholder="Заметка" iconLeft="comment"></bulma-input>
+      <bulma-input
+        v-model="certificate.note"
+        label
+        placeholder="Заметка"
+        iconLeft="comment"
+      ></bulma-input>
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <bulma-button text="Сохранить" color="primary" @click="submit"></bulma-button>
+          <bulma-button
+            text="Сохранить"
+            color="primary"
+            @click="submit"
+          ></bulma-button>
         </div>
         <div class="control">
           <bulma-button text="Закрыть" @click="close"></bulma-button>

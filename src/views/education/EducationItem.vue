@@ -21,11 +21,17 @@
 
       <div class="columns">
         <div class="column">
-          <bulma-date v-model="education.start_date" label="Дата начала обучения"></bulma-date>
+          <bulma-date
+            v-model="education.start_date"
+            label="Дата начала обучения"
+          ></bulma-date>
         </div>
 
         <div class="column">
-          <bulma-date v-model="education.end_date" label="Дата конца обучения"></bulma-date>
+          <bulma-date
+            v-model="education.end_date"
+            label="Дата конца обучения"
+          ></bulma-date>
         </div>
       </div>
 
@@ -38,7 +44,11 @@
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <bulma-button text="Сохранить" color="primary" @click="submit"></bulma-button>
+          <bulma-button
+            text="Сохранить"
+            color="primary"
+            @click="submit"
+          ></bulma-button>
         </div>
         <div class="control">
           <bulma-button text="Закрыть" @click="close"></bulma-button>

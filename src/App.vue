@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <div v-if="$auth.ready()" key="AuthReady"> -->
-    <bulma-navbar/>
+    <bulma-navbar />
     <section class="section pt1">
       <router-view></router-view>
     </section>

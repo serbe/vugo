@@ -2,11 +2,23 @@
   <div class="container">
     <bulma-table
       name="contact"
-      :names="['Фамилия Имя Отчество', 'Организация', 'Должность', 'Телефон', 'Факс']"
+      :names="[
+        'Фамилия Имя Отчество',
+        'Организация',
+        'Должность',
+        'Телефон',
+        'Факс'
+      ]"
       :columns="['name', 'company_name', 'post_name', 'phones', 'faxes']"
       :tableData="list"
       tableClasses="is-narrow is-striped fullwidth"
-      :headClasses="['', 'is-hidden-mobile', 'is-hidden-touch', 'w9 nowrap', 'is-hidden-mobile w9 nowrap']"
+      :headClasses="[
+        '',
+        'is-hidden-mobile',
+        'is-hidden-touch',
+        'w9 nowrap',
+        'is-hidden-mobile w9 nowrap'
+      ]"
       :cellTypes="['text', 'text', 'text', 'array', 'array']"
       pagination
       hyper
@@ -53,5 +65,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

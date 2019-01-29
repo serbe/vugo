@@ -4,7 +4,12 @@
       <h2>Авторизация</h2>
     </div>
     <p v-if="$route.query.redirect" key="redirect">You need to login first.</p>
-    <bulma-input v-model="name" label placeholder="Имя пользователя" iconLeft="user"></bulma-input>
+    <bulma-input
+      v-model="name"
+      label
+      placeholder="Имя пользователя"
+      iconLeft="user"
+    ></bulma-input>
     <bulma-input
       v-model="pass"
       type="password"
@@ -14,8 +19,18 @@
       @keyup="onKeyup"
     ></bulma-input>
     <div class="field is-grouped pt10">
-      <bulma-button text="Вход" color="primary" @click="login" class="pl20"></bulma-button>
-      <bulma-button text="Закрыть" @click="close" class="pl20" color="light"></bulma-button>
+      <bulma-button
+        text="Вход"
+        color="primary"
+        @click="login"
+        class="pl20"
+      ></bulma-button>
+      <bulma-button
+        text="Закрыть"
+        @click="close"
+        class="pl20"
+        color="light"
+      ></bulma-button>
     </div>
     <p v-if="error" class="error" key="error">Bad login information</p>
   </div>

@@ -2,7 +2,12 @@
   <div class="container">
     <bulma-table
       name="education"
-      :names="['Обучаемый', 'Должность ГО ЧС', 'Начало обучения', 'Конец обучения']"
+      :names="[
+        'Обучаемый',
+        'Должность ГО ЧС',
+        'Начало обучения',
+        'Конец обучения'
+      ]"
       :columns="['contact_name', 'post_name', 'start_str', 'end_str']"
       :tableData="list"
       tableClasses="is-narrow is-striped fullwidth"

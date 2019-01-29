@@ -67,7 +67,10 @@
 
       <div class="columns">
         <div class="column is-one-third">
-          <bulma-date v-model="contact.birthday" label="Дата рождения"></bulma-date>
+          <bulma-date
+            v-model="contact.birthday"
+            label="Дата рождения"
+          ></bulma-date>
         </div>
       </div>
 
@@ -130,7 +133,13 @@
           :key="practice.id"
           :hyper="'/practice/' + practice.id"
           readonly
-          :value="practice.date_str + ' - ' + practice.kind.name + ' - ' + practice.topic"
+          :value="
+            practice.date_str +
+              ' - ' +
+              practice.kind.name +
+              ' - ' +
+              practice.topic
+          "
           iconLeft="graduation-cap"
         ></bulma-input>
       </div>
@@ -144,7 +153,11 @@
 
       <div class="field is-grouped is-grouped-centered">
         <div class="control">
-          <bulma-button text="Сохранить" color="primary" @click="submit"></bulma-button>
+          <bulma-button
+            text="Сохранить"
+            color="primary"
+            @click="submit"
+          ></bulma-button>
         </div>
         <div class="control">
           <bulma-button text="Закрыть" @click="close"></bulma-button>
