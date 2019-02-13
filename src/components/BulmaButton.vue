@@ -1,5 +1,10 @@
 <template>
-  <button v-if="tag='button'" :class="classList" @click="click" :disabled="disabled">
+  <button
+    v-if="(tag = 'button')"
+    :class="classList"
+    @click="click"
+    :disabled="disabled"
+  >
     <bulma-icon
       v-if="iconLeft"
       :size="size"
@@ -25,7 +30,7 @@
     type="tag"
     :disabled="disabled"
     :value="text"
-  >
+  />
   <a v-else :class="classList" @click="click" :disabled="disabled">
     <bulma-icon
       v-if="iconLeft"

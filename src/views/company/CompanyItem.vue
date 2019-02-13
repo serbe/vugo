@@ -37,7 +37,7 @@
               iconLeft="envelope"
               autocomplete="email"
               @blur="onBlur('emails', 'email')"
-              pattern='^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+              pattern="pattern"
               error="Неправильный email"
             ></bulma-input>
           </div>
@@ -158,7 +158,9 @@ export default {
     return {
       title: "",
       company: Company,
-      scopes: [SelectItem]
+      scopes: [SelectItem],
+      pattern:
+        '^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$'
     };
   },
   mounted() {

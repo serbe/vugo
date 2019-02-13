@@ -8,7 +8,7 @@
     <!-- </div> -->
     <footer class="footer bot">
       <div class="container">
-        <div class="content has-text-centered">© 2018 Сочи</div>
+        <div class="content has-text-centered">© 2019 Сочи</div>
       </div>
     </footer>
   </div>
