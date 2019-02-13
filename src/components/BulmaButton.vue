@@ -1,5 +1,32 @@
 <template>
-  <a :class="classList" @click="click" :disabled="disabled">
+  <button v-if="tag='button'" :class="classList" @click="click" :disabled="disabled">
+    <bulma-icon
+      v-if="iconLeft"
+      :size="size"
+      :icon="iconLeft"
+      position="left"
+      :color="color"
+      key="ButtonIconLeft"
+    />
+    <bulma-icon
+      v-if="iconRight"
+      :size="size"
+      :icon="iconRight"
+      position="right"
+      :color="color"
+      key="ButtonIconRight"
+    />
+    <span v-if="text">{{ text }}</span>
+  </button>
+  <input
+    v-else-if="['submit', 'reset'].includes(tag)"
+    :class="classList"
+    @click="click"
+    type="tag"
+    :disabled="disabled"
+    :value="text"
+  >
+  <a v-else :class="classList" @click="click" :disabled="disabled">
     <bulma-icon
       v-if="iconLeft"
       :size="size"
@@ -29,6 +56,11 @@ export default {
     "bulma-icon": BulmaIcon
   },
   props: {
+    tag: {
+      type: String,
+      default: "a",
+      validator: value => ["a", "button", "submit", "reset"].includes(value)
+    },
     text: {
       type: [String, Boolean],
       default: false
@@ -37,6 +69,7 @@ export default {
       type: [String, Boolean],
       default: false,
       validator: value =>
+        !value ||
         [
           "white",
           "light",
@@ -49,12 +82,13 @@ export default {
           "success",
           "warning",
           "danger"
-        ].includes(value) || !value
+        ].includes(value)
     },
     size: {
       type: [String, Boolean],
       default: false,
-      validator: value => ["small", "medium", "large"].includes(value) || !value
+      validator: value =>
+        !value || ["small", "normal", "medium", "large"].includes(value)
     },
     fullwidth: {
       type: Boolean,
