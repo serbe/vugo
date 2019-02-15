@@ -16,7 +16,7 @@ export default {
       type: [String, Boolean],
       default: false,
       validator: value =>
-        ["info", "success", "warning", "danger"].includes(value)
+        !value || ["info", "success", "warning", "danger"].includes(value)
     },
     size: {
       type: [String, Boolean],

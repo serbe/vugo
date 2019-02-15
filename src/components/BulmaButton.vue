@@ -1,6 +1,6 @@
 <template>
   <button
-    v-if="(tag = 'button')"
+    v-if="(inputType = 'button')"
     :class="classList"
     @click="click"
     :disabled="disabled"
@@ -24,10 +24,10 @@
     <span v-if="text">{{ text }}</span>
   </button>
   <input
-    v-else-if="['submit', 'reset'].includes(tag)"
+    v-else-if="['submit', 'reset'].includes(inputType)"
     :class="classList"
     @click="click"
-    type="tag"
+    :type="inputType"
     :disabled="disabled"
     :value="text"
   />
@@ -143,6 +143,11 @@ export default {
       type: [String, Boolean],
       default: false
     }
+  },
+  data() {
+    return {
+      inputType: this.tag
+    };
   },
   computed: {
     classList() {
