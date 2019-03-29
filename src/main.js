@@ -2,9 +2,9 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import auth from "./auth";
-import store from "./store";
+// import store from "./store";
 import "./assets/sass/main.scss";
-import "./assets/css/main.css";
+// import "./assets/css/main.css";
 
 auth.checkAuth();
 
@@ -35,6 +35,6 @@ router.beforeEach((to, from, next) => {
 /* eslint-disable no-new */
 new Vue({
   router,
-  store,
+  // store,
   render: h => h(App)
 }).$mount("#app");
