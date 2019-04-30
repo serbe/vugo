@@ -80,7 +80,7 @@ export default {
       });
     },
     close() {
-      this.$router.push("/ranks");
+      this.$router.go(-2)
     },
     delete() {
       // console.log('delete!');

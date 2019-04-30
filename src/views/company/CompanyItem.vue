@@ -200,7 +200,7 @@ export default {
       });
     },
     close() {
-      this.$router.push("/companies");
+      this.$router.go(-2)
     },
     delete() {
       //  console.log('delete!');

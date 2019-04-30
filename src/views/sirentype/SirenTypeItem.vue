@@ -86,7 +86,7 @@ export default {
       });
     },
     close() {
-      this.$router.push("/sirentypes");
+      this.$router.go(-2)
     },
     delete() {
       // console.log('delete!');

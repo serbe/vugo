@@ -87,7 +87,7 @@ export default {
       });
     },
     close() {
-      this.$router.push("/kinds");
+      this.$router.go(-2)
     },
     delete() {
       // console.log('delete!');

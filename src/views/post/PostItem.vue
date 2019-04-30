@@ -88,7 +88,7 @@ export default {
       });
     },
     close() {
-      this.$router.push("/posts");
+      this.$router.go(-2)
     },
     delete() {
       // console.log('delete!');

@@ -245,7 +245,7 @@ export default {
       });
     },
     close() {
-      this.$router.push("/contacts");
+      this.$router.go(-2)
     },
     delete() {
       // console.log('delete!');

@@ -114,7 +114,7 @@ export default {
       });
     },
     close() {
-      this.$router.push("/educations");
+      this.$router.go(-2)
     },
     delete() {
       // console.log('delete!')

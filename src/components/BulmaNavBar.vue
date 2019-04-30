@@ -119,7 +119,7 @@ export default {
   methods: {
     logout() {
       auth.logout();
-      this.$router.push("/login");
+      this.$router.push({ name: "/login" });
     },
     toggle() {
       this.active = this.active === "" ? "is-active" : "";

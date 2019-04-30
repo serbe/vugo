@@ -146,7 +146,7 @@ export default {
       });
     },
     close() {
-      this.$router.push("/sirens");
+      this.$router.go(-2)
     },
     onSelect(item, itemName) {
       this.siren[itemName] = item;
