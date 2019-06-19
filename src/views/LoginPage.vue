@@ -82,9 +82,9 @@ export default {
         }
       });
     },
-    close() {
-      this.$router.push("/");
-    },
+    // close() {
+    //   this.$router.push("/");
+    // },
     onKeyup(event) {
       if (event.event.key === "Enter") {
         this.login();

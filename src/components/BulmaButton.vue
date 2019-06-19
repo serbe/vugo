@@ -26,7 +26,7 @@
   <input
     v-else-if="['submit', 'reset'].includes(inputType)"
     :class="classList"
-    @click="click"
+    @click.once="click"
     :type="inputType"
     :disabled="disabled"
     :value="text"

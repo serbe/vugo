@@ -4,7 +4,6 @@ import Router from "vue-router";
 Vue.use(Router);
 
 export default new Router({
-  hashbang: false,
   linkActiveClass: "is-active",
   mode: "history",
   base: process.env.BASE_URL,

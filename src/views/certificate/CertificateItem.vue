@@ -113,9 +113,10 @@ export default {
         this.close();
       });
     },
-    close() {
-      this.$router.go(-2);
-    },
+    // close() {
+    //   // store.commit('increment', this.$router.);
+    //   this.$router.back();
+    // },
     delete() {
       // console.log('delete!');
     },

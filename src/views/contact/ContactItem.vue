@@ -204,8 +204,7 @@ export default {
       posts_go: [SelectItem],
       departments: [SelectItem],
       ranks: [SelectItem],
-      pattern:
-        '^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$'
+      pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
     };
   },
   mounted() {
@@ -244,9 +243,9 @@ export default {
         this.close();
       });
     },
-    close() {
-      this.$router.go(-2);
-    },
+    // close() {
+    //   window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
+    // },
     delete() {
       // console.log('delete!');
     },

@@ -145,9 +145,9 @@ export default {
         this.close();
       });
     },
-    close() {
-      this.$router.go(-2);
-    },
+    // close() {
+    //   this.$router.back();
+    // },
     onSelect(item, itemName) {
       this.siren[itemName] = item;
       this.siren[`${itemName}_id`] = item.id;
