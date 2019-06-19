@@ -137,20 +137,20 @@
 </template>
 
 <script>
-import BulmaInput from "@/components/BulmaInput";
 import BulmaButton from "@/components/BulmaButton";
+import BulmaInput from "@/components/BulmaInput";
 import BulmaSelect from "@/components/BulmaSelect";
 import Company from "@/objects/Company";
 import SelectItem from "@/objects/SelectItem";
-import mixin from "@/mixins/funcs";
 import mixItem from "@/mixins/mixItem";
+import mixin from "@/mixins/funcs";
 import request from "@/request";
 
 export default {
   name: "CompanyItem",
   components: {
-    "bulma-input": BulmaInput,
     "bulma-button": BulmaButton,
+    "bulma-input": BulmaInput,
     "bulma-select": BulmaSelect
   },
   mixins: [mixin, mixItem],

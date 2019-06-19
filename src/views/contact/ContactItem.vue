@@ -176,10 +176,10 @@
 
 <script>
 // import BulmaCalendar from '@/components/BulmaCalendar'
-import BulmaInput from "@/components/BulmaInput";
 import BulmaButton from "@/components/BulmaButton";
-import BulmaSelect from "@/components/BulmaSelect";
 import BulmaDate from "@/components/BulmaDate";
+import BulmaInput from "@/components/BulmaInput";
+import BulmaSelect from "@/components/BulmaSelect";
 import Contact from "@/objects/Contact";
 import SelectItem from "@/objects/SelectItem";
 import mixin from "@/mixins/funcs";
@@ -189,10 +189,10 @@ export default {
   name: "ContactItem",
   components: {
     // 'bulma-calendar': BulmaCalendar,
-    "bulma-input": BulmaInput,
     "bulma-button": BulmaButton,
-    "bulma-select": BulmaSelect,
-    "bulma-date": BulmaDate
+    "bulma-date": BulmaDate,
+    "bulma-input": BulmaInput,
+    "bulma-select": BulmaSelect
   },
   mixins: [mixin],
   data() {

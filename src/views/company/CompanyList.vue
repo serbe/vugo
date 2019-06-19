@@ -39,8 +39,8 @@
 
 <script>
 import BulmaTable from "@/components/BulmaTable";
-import mixin from "@/mixins/funcs";
 import mixList from "@/mixins/mixList";
+import mixin from "@/mixins/funcs";
 
 export default {
   name: "CompanyList",

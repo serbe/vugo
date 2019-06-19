@@ -45,19 +45,20 @@
 </template>
 
 <script>
-import BulmaInput from "@/components/BulmaInput";
 import BulmaButton from "@/components/BulmaButton";
+import BulmaInput from "@/components/BulmaInput";
 import SirenType from "@/objects/SirenType";
 import mixItem from "@/mixins/mixItem";
+import mixin from "@/mixins/funcs";
 import request from "@/request";
 
 export default {
   name: "SirenTypeItem",
   components: {
-    "bulma-input": BulmaInput,
-    "bulma-button": BulmaButton
+    "bulma-button": BulmaButton,
+    "bulma-input": BulmaInput
   },
-  mixins: [mixItem],
+  mixins: [mixin, mixItem],
   data() {
     return {
       title: "",

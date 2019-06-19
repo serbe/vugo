@@ -90,14 +90,14 @@ export default {
   },
   props: {
     value: {
-      type: [String, Boolean],
+      type: [String, Number, Boolean],
       default: false
     },
     type: {
       type: String,
       default: "text",
       validator: value =>
-        ["text", "password", "email", "tel"].includes(value) || !value
+        ["text", "number", "password", "email", "tel"].includes(value) || !value
     },
     color: {
       type: [String, Boolean],

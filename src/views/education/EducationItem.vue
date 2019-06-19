@@ -66,24 +66,25 @@
 </template>
 
 <script>
-import BulmaInput from "@/components/BulmaInput";
 import BulmaButton from "@/components/BulmaButton";
-import BulmaSelect from "@/components/BulmaSelect";
 import BulmaDate from "@/components/BulmaDate";
+import BulmaInput from "@/components/BulmaInput";
+import BulmaSelect from "@/components/BulmaSelect";
 import Education from "@/objects/Education";
 import SelectItem from "@/objects/SelectItem";
 import mixItem from "@/mixins/mixItem";
+import mixin from "@/mixins/funcs";
 import request from "@/request";
 
 export default {
   name: "EducationItem",
   components: {
-    "bulma-input": BulmaInput,
     "bulma-button": BulmaButton,
-    "bulma-select": BulmaSelect,
-    "bulma-date": BulmaDate
+    "bulma-date": BulmaDate,
+    "bulma-input": BulmaInput,
+    "bulma-select": BulmaSelect
   },
-  mixins: [mixItem],
+  mixins: [mixin, mixItem],
   data() {
     return {
       title: "",

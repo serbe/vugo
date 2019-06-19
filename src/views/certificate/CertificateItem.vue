@@ -62,24 +62,25 @@
 </template>
 
 <script>
-import BulmaInput from "@/components/BulmaInput";
 import BulmaButton from "@/components/BulmaButton";
-import BulmaSelect from "@/components/BulmaSelect";
 import BulmaDate from "@/components/BulmaDate";
+import BulmaInput from "@/components/BulmaInput";
+import BulmaSelect from "@/components/BulmaSelect";
 import Certificate from "@/objects/Certificate";
 import SelectItem from "@/objects/SelectItem";
-import request from "@/request";
 import mixItem from "@/mixins/mixItem";
+import mixin from "@/mixins/funcs";
+import request from "@/request";
 
 export default {
   name: "CertificateItem",
   components: {
-    "bulma-input": BulmaInput,
     "bulma-button": BulmaButton,
-    "bulma-select": BulmaSelect,
-    "bulma-date": BulmaDate
+    "bulma-date": BulmaDate,
+    "bulma-input": BulmaInput,
+    "bulma-select": BulmaSelect
   },
-  mixins: [mixItem],
+  mixins: [mixin, mixItem],
   data() {
     return {
       title: "",

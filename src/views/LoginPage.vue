@@ -27,7 +27,7 @@
       ></bulma-button>
       <bulma-button
         text="Закрыть"
-        @click="close"
+        @click="close_login"
         class="pl20"
         color="light"
       ></bulma-button>
@@ -82,9 +82,9 @@ export default {
         }
       });
     },
-    // close() {
-    //   this.$router.push("/");
-    // },
+    close_login() {
+      this.$router.push("/");
+    },
     onKeyup(event) {
       if (event.event.key === "Enter") {
         this.login();

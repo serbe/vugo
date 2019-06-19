@@ -99,22 +99,23 @@
 // Stage     int64     `sql:"stage,null"      json:"stage"      form:"stage"      query:"stage"`
 // Own       string    `sql:"own,null"        json:"own"        form:"own"        query:"own"`
 
-import BulmaInput from "@/components/BulmaInput";
 import BulmaButton from "@/components/BulmaButton";
+import BulmaInput from "@/components/BulmaInput";
 import BulmaSelect from "@/components/BulmaSelect";
-import Siren from "@/objects/Siren";
 import SelectItem from "@/objects/SelectItem";
+import Siren from "@/objects/Siren";
 import mixItem from "@/mixins/mixItem";
+import mixin from "@/mixins/funcs";
 import request from "@/request";
 
 export default {
   name: "SirenItem",
   components: {
-    "bulma-input": BulmaInput,
     "bulma-button": BulmaButton,
+    "bulma-input": BulmaInput,
     "bulma-select": BulmaSelect
   },
-  mixins: [mixItem],
+  mixins: [mixin, mixItem],
   data() {
     return {
       title: "",
