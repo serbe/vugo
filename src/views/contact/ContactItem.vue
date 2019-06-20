@@ -87,7 +87,7 @@
               iconLeft="envelope"
               autocomplete="email"
               @blur="onBlur('emails', 'email')"
-              pattern="pattern"
+              :pattern="pattern"
               error="Неправильный email"
             ></bulma-input>
           </div>
