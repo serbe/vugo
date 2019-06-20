@@ -11,12 +11,12 @@
                 :class="trClass(item.start_date)"
               >
                 <td>
-                  <router-link to="'/education/' + item.id">{{
+                  <router-link :to="'/education/' + item.id">{{
                     tinyDate(item.start_date)
                   }}</router-link>
                 </td>
                 <td>
-                  <router-link to="'/contact/' + item.contact_id">{{
+                  <router-link :to="'/contact/' + item.contact_id">{{
                     item.contact_name
                   }}</router-link>
                 </td>
@@ -33,17 +33,17 @@
                 :class="trClass(item.date_of_practice)"
               >
                 <td>
-                  <router-link to="'/practice/' + item.id">{{
+                  <router-link :to="'/practice/' + item.id">{{
                     tinyDate(item.date_of_practice)
                   }}</router-link>
                 </td>
                 <td>
-                  <router-link to="'/practice/' + item.id">{{
+                  <router-link :to="'/practice/' + item.id">{{
                     item.kind_short_name
                   }}</router-link>
                 </td>
                 <td>
-                  <router-link to="'/company/' + item.company_id">{{
+                  <router-link :to="'/company/' + item.company_id">{{
                     item.company_name
                   }}</router-link>
                 </td>
