@@ -40,7 +40,7 @@ export default {
   },
   mixins: [mixin, mixList],
   mounted() {
-    this.fetchData("contacts");
+    this.fetchData("contact/list", "ContactList");
   },
   methods: {
     createList(contacts) {

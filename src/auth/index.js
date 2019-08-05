@@ -2,7 +2,7 @@ export default {
   right_page: "HomePage",
   user: {
     name: "",
-    authenticated: false
+    authenticated: true
   },
   getToken() {
     return localStorage.getItem("token");
@@ -23,17 +23,17 @@ export default {
     this.user.authenticated = false;
   },
   checkAuth() {
-    const token = this.getToken();
-    let expireDate = localStorage.getItem("expire");
-    let userName = localStorage.getItem("user") || "noname";
-    const currentDate = new Date().valueOf();
-    if (!!token && +expireDate > currentDate) {
-      this.user.name = userName;
-      this.user.authenticated = true;
-    } else {
-      this.user.name = "";
-      this.user.authenticated = false;
-    }
+    // const token = this.getToken();
+    // let expireDate = localStorage.getItem("expire");
+    // let userName = localStorage.getItem("user") || "noname";
+    // const currentDate = new Date().valueOf();
+    // if (!!token && +expireDate > currentDate) {
+    //   this.user.name = userName;
+    //   this.user.authenticated = true;
+    // } else {
+    //   this.user.name = "";
+    //   this.user.authenticated = false;
+    // }
     return this.user.authenticated;
   },
   isAuth() {

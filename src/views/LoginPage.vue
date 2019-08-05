@@ -67,9 +67,6 @@ export default {
         username: this.name,
         password: this.pass
       };
-      if (process.env.NODE_ENV === "development") {
-        url = "http://localhost:9090/edds/api/login";
-      }
       let rightPage = auth.right_page;
       axios({
         url,

@@ -4,7 +4,6 @@ import auth from "./auth";
 import router from "./router";
 import store from "./store";
 import "./assets/sass/main.scss";
-// import "./assets/css/main.css";
 
 auth.checkAuth();
 
