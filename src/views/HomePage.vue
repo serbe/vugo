@@ -79,10 +79,10 @@ export default {
     fetchPractices() {
       if (this.user.authenticated && !this.fetched) {
         request({
-          url: "practices/near",
+          url: "practice/near",
           method: "GET"
         }).then(r => {
-          this.practicesList = r.data.practices;
+          this.practicesList = r.data.data.PracticeShort;
           if (this.practicesList) {
             this.practicesList = this.practicesList.reverse();
           }
@@ -93,10 +93,10 @@ export default {
     fetchEducations() {
       if (this.user.authenticated && !this.fetched) {
         request({
-          url: "educations/near",
+          url: "education/near",
           method: "GET"
         }).then(r => {
-          this.educationsList = r.data.educations;
+          this.educationsList = r.data.data.EducationShort;
           if (this.educationsList) {
             this.educationsList = this.educationsList.reverse();
           }
