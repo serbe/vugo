@@ -27,7 +27,7 @@ export default {
   },
   mixins: [mixList],
   mounted() {
-    this.fetchData("departments");
+    this.fetchData("department/list", "DepartmentList");
   },
   methods: {
     createList(departments) {

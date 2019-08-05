@@ -27,7 +27,7 @@ export default {
   },
   mixins: [mixList],
   mounted() {
-    this.fetchData("certificates");
+    this.fetchData("certificate/list", "CertificateList");
   },
   methods: {
     createList(certificates) {

@@ -49,7 +49,7 @@ export default {
   },
   mixins: [mixin, mixList],
   mounted() {
-    this.fetchData("companies");
+    this.fetchData("company/list", "CompanyList");
   },
   methods: {
     createList(companies) {
@@ -57,13 +57,13 @@ export default {
       if (companies) {
         list = companies.map(c => {
           const str = [c.name, c.address, c.scope_name];
-          if (c.phones.length > 0 && c.phones[0] !== "") {
+          if (c.phones) {
             str.push(c.phones.join(" "));
           }
-          if (c.faxes.length > 0 && c.faxes[0] !== "") {
+          if (c.faxes) {
             str.push(c.faxes.join(" "));
           }
-          if (c.practices.length > 0 && c.practices[0] !== "") {
+          if (c.practices) {
             str.push(c.practices.join(" "));
           }
           const nc = c;

@@ -27,7 +27,7 @@ export default {
   },
   mixins: [mixList],
   mounted() {
-    this.fetchData("kinds");
+    this.fetchData("kind/list", "KindList");
   },
   methods: {
     createList(kinds) {

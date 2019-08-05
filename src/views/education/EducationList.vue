@@ -32,7 +32,7 @@ export default {
   },
   mixins: [mixList],
   mounted() {
-    this.fetchData("educations");
+    this.fetchData("education/list", "EducationList");
   },
   methods: {
     createList(educations) {

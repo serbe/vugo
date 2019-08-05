@@ -27,7 +27,7 @@ export default {
   },
   mixins: [mixList],
   mounted() {
-    this.fetchData("ranks");
+    this.fetchData("rank/list", "RankList");
   },
   methods: {
     createList(ranks) {

@@ -26,7 +26,7 @@ export default {
     },
     telephone(value) {
       let v = value;
-      if (v !== undefined && v.length > 0) {
+      if (v && v.length > 0) {
         v = v.replace(/[^0-9]/g, "");
         if (v.length === 10) {
           v = v.replace(/(\d{3})(\d{3})(\d{2})(\d{2})/, "+7 ($1) $2-$3-$4");

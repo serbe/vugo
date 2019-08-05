@@ -27,7 +27,7 @@ export default {
   },
   mixins: [mixList],
   mounted() {
-    this.fetchData("scopes");
+    this.fetchData("scope/list", "ScopeList");
   },
   methods: {
     createList(scopes) {
