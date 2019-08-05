@@ -48,10 +48,10 @@ export default {
       if (contacts) {
         list = contacts.map(c => {
           const str = [c.name, c.company_name, c.post_name];
-          if (c.phones.length > 0 && c.phones[0] !== "") {
+          if (c.phones) {
             str.push(c.phones.join(" "));
           }
-          if (c.faxes.length > 0 && c.faxes[0] !== "") {
+          if (c.faxes) {
             str.push(c.faxes.join(" "));
           }
           const nc = c;

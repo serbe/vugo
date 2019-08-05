@@ -17,7 +17,7 @@ export default {
           url: url,
           method: "GET"
         }).then(r => {
-          this.list = this.createList(r.data[name]);
+          this.list = this.createList(r.data.data[name]);
           this.fetched = true;
         });
       }
