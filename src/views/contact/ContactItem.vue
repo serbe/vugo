@@ -44,7 +44,7 @@
       <div class="columns">
         <div class="column is-half">
           <bulma-select
-            :list="posts_go"
+            :list="post_gos"
             :selected-item="contact.post_go"
             label="Должность ГО"
             item-name="post_go"
@@ -81,12 +81,12 @@
             <bulma-input
               v-for="(email, index) in contact.emails"
               :key="index"
-              v-model="contact.emails[index].email"
+              v-model="contact.emails[index]"
               type="email"
               placeholder="Электронный адрес"
               iconLeft="envelope"
               autocomplete="email"
-              @blur="onBlur('emails', 'email')"
+              @blur="onBlur('emails')"
               :pattern="pattern"
               error="Неправильный email"
             ></bulma-input>
@@ -99,12 +99,12 @@
             <bulma-input
               v-for="(phone, index) in contact.phones"
               :key="index"
-              v-model="contact.phones[index].phone"
+              v-model="contact.phones[index]"
               type="tel"
               placeholder="Телефон"
               iconLeft="phone"
               autocomplete="tel"
-              @blur="onBlur('phones', 'phone')"
+              @blur="onBlur('phones')"
             ></bulma-input>
           </div>
         </div>
@@ -115,12 +115,12 @@
             <bulma-input
               v-for="(fax, index) in contact.faxes"
               :key="index"
-              v-model="contact.faxes[index].phone"
+              v-model="contact.faxes[index]"
               type="tel"
               placeholder="Факс"
               iconLeft="fax"
               autocomplete="tel"
-              @blur="onBlur('faxes', 'phone')"
+              @blur="onBlur('faxes')"
             ></bulma-input>
           </div>
         </div>
@@ -183,6 +183,7 @@ import BulmaSelect from "@/components/BulmaSelect";
 import Contact from "@/objects/Contact";
 import SelectItem from "@/objects/SelectItem";
 import mixin from "@/mixins/funcs";
+import mixItem from "@/mixins/mixItem";
 import request from "@/request";
 
 export default {
@@ -194,30 +195,30 @@ export default {
     "bulma-input": BulmaInput,
     "bulma-select": BulmaSelect
   },
-  mixins: [mixin],
+  mixins: [mixin, mixItem],
   data() {
     return {
       title: "",
       contact: Contact,
       companies: [SelectItem],
       posts: [SelectItem],
-      posts_go: [SelectItem],
+      post_gos: [SelectItem],
       departments: [SelectItem],
       ranks: [SelectItem],
       pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
     };
   },
   mounted() {
-    this.fetchData();
+    this.fetchItem(
+      "contact",
+      "Contact",
+      ["emails", "phones", "faxes"],
+      ["company", "post", "department", "post_go", "rank"]
+    );
   },
   methods: {
-    onBlur(arr, key) {
-      if (this.checkArray(this.contact[arr], key)) {
-        const obj = {};
-        obj.id = this.contact[arr].length + 1;
-        obj[key] = "";
-        this.contact[arr].push(obj);
-      }
+    onBlur(arr) {
+      this.contact[arr] = this.checkArray(this.contact[arr]);
     },
     onSelect(item, itemName) {
       this.contact[itemName] = item;
@@ -248,44 +249,6 @@ export default {
     // },
     delete() {
       // console.log('delete!');
-    },
-    fetchData() {
-      request({
-        url: `contacts/${this.$route.params.id}`,
-        method: "GET"
-      }).then(r => {
-        this.contact = r.data.contact;
-        this.companies = r.data.companies;
-        this.posts = r.data.posts;
-        this.departments = r.data.departments;
-        this.posts_go = r.data.posts_go;
-        this.ranks = r.data.ranks;
-        if (this.contact.emails) {
-          this.contact.emails.push({
-            id: this.contact.emails.length + 1,
-            email: ""
-          });
-        } else {
-          this.contact.emails = [{ id: 1, email: "" }];
-        }
-        if (this.contact.phones) {
-          this.contact.phones.push({
-            id: this.contact.phones.length + 1,
-            phone: ""
-          });
-        } else {
-          this.contact.phones = [{ id: 1, phone: "" }];
-        }
-        if (this.contact.faxes) {
-          this.contact.faxes.push({
-            id: this.contact.faxes.length + 1,
-            phone: ""
-          });
-        } else {
-          this.contact.faxes = [{ id: 1, phone: "" }];
-        }
-        this.isLoaded = true;
-      });
     }
   }
 };

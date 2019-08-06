@@ -31,7 +31,7 @@
             <bulma-input
               v-for="(email, index) in company.emails"
               :key="index"
-              v-model="company.emails[index].email"
+              v-model="company.emails[index]"
               type="email"
               placeholder="Электронный адрес"
               iconLeft="envelope"
@@ -49,7 +49,7 @@
             <bulma-input
               v-for="(phone, index) in company.phones"
               :key="index"
-              v-model="company.phones[index].phone"
+              v-model="company.phones[index]"
               type="tel"
               placeholder="Телефон"
               iconLeft="phone"
@@ -65,7 +65,7 @@
             <bulma-input
               v-for="(fax, index) in company.faxes"
               :key="index"
-              v-model="company.faxes[index].phone"
+              v-model="company.faxes[index]"
               type="tel"
               placeholder="Факс"
               iconLeft="phone"
@@ -76,7 +76,7 @@
         </div>
       </div>
 
-      <div class="field" v-if="company.practices" key="practices">
+      <div class="field" v-if="company.practices.length > 0" key="practices">
         <label class="label">Тренировки</label>
         <bulma-input
           v-for="practice in company.practices"
@@ -94,7 +94,7 @@
         ></bulma-input>
       </div>
 
-      <div class="field" v-if="company.contacts" key="contacts">
+      <div class="field" v-if="company.contacts.length > 0" key="contacts">
         <label class="label">Сотрудники</label>
         <bulma-input
           v-for="contact in company.contacts"
@@ -163,16 +163,17 @@ export default {
     };
   },
   mounted() {
-    this.fetchData();
+    this.fetchItem(
+      "company",
+      "Company",
+      ["emails", "phones", "faxes"],
+      ["scope"],
+      [["practice", "PracticeList"]]
+    );
   },
   methods: {
-    onBlur(arr, key) {
-      if (this.checkArray(this.company[arr], key)) {
-        const obj = {};
-        obj.id = this.company[arr].length + 1;
-        obj[key] = "";
-        this.company[arr].push(obj);
-      }
+    onBlur(arr) {
+      this.company[arr] = this.checkArray(this.company[arr]);
     },
     onSelect(item) {
       this.scope = item;
@@ -200,35 +201,6 @@ export default {
     },
     delete() {
       //  console.log('delete!');
-    },
-    fetchData() {
-      this.fetchItem("companies", ["company", "scopes"], true);
-    },
-    afterFetch() {
-      if (this.company.emails) {
-        this.company.emails.push({
-          id: this.company.emails.length + 1,
-          email: ""
-        });
-      } else {
-        this.company.emails = [{ id: 1, email: "" }];
-      }
-      if (this.company.phones) {
-        this.company.phones.push({
-          id: this.company.phones.length + 1,
-          phone: ""
-        });
-      } else {
-        this.company.phones = [{ id: 1, phone: "" }];
-      }
-      if (this.company.faxes) {
-        this.company.faxes.push({
-          id: this.company.faxes.length + 1,
-          phone: ""
-        });
-      } else {
-        this.company.faxes = [{ id: 1, phone: "" }];
-      }
     },
     customLabel(val) {
       return val.name;

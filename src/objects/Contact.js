@@ -1,6 +1,3 @@
-import Email from "@/objects/Email";
-import Phone from "@/objects/Phone";
-import Fax from "@/objects/Fax";
 import SelectItem from "@/objects/SelectItem";
 
 export default {
@@ -17,8 +14,8 @@ export default {
   post_go_id: 0,
   rank: SelectItem,
   rank_id: 0,
-  emails: [Email],
-  phones: [Phone],
-  faxes: [Fax],
+  emails: [],
+  phones: [],
+  faxes: [],
   note: ""
 };
