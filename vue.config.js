@@ -1,5 +1,10 @@
 module.exports = {
   devServer: {
-    proxy: "http://localhost:9090"
+    proxy: {
+      "/api/go/": {
+        target: "http://localhost:9090",
+        ws: true
+      }
+    }
   }
 };
