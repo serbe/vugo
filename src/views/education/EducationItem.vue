@@ -94,7 +94,7 @@ export default {
     };
   },
   mounted() {
-    this.fetchData();
+    this.fetchItem("education", "Education", [], ["contact", "post"], []);
   },
   methods: {
     submit() {
@@ -119,17 +119,6 @@ export default {
     // },
     delete() {
       // console.log('delete!')
-    },
-    fetchData() {
-      this.fetchItem("educations", ["education", "contacts", "posts"], true);
-    },
-    onSelect(item, itemName) {
-      this.education[itemName] = item;
-      this.education[`${itemName}_id`] = item.id;
-    },
-    afterFetch() {
-      this.setSelect("education", "contacts", "contact", "contact_id");
-      this.setSelect("education", "posts", "post", "post_id");
     }
   }
 };

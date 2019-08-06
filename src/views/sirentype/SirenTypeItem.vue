@@ -66,7 +66,13 @@ export default {
     };
   },
   mounted() {
-    this.fetchData();
+    this.fetchItem(
+      "company",
+      "Company",
+      ["emails", "phones", "faxes"],
+      ["scope"],
+      [["practice", "PracticeList"]]
+    );
   },
   methods: {
     submit() {
@@ -91,9 +97,6 @@ export default {
     // },
     delete() {
       // console.log('delete!');
-    },
-    fetchData() {
-      this.fetchItem("sirentypes", ["siren_type"]);
     }
   }
 };

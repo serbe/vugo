@@ -67,7 +67,7 @@ export default {
     };
   },
   mounted() {
-    this.fetchData();
+    this.fetchItem("kind", "Kind", [], [], []);
   },
   methods: {
     submit() {
@@ -92,9 +92,6 @@ export default {
     // },
     delete() {
       // console.log('delete!');
-    },
-    fetchData() {
-      this.fetchItem("kinds", ["kind"]);
     }
   }
 };

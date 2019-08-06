@@ -90,7 +90,13 @@ export default {
     };
   },
   mounted() {
-    this.fetchData();
+    this.fetchItem(
+      "certificate",
+      "Certificate",
+      [],
+      ["certificate", "contact", "company"],
+      []
+    );
   },
   methods: {
     onSelect(item, itemName) {
@@ -120,9 +126,6 @@ export default {
     // },
     delete() {
       // console.log('delete!');
-    },
-    fetchData() {
-      this.fetchItem("certificates", ["certificate", "contacts", "companies"]);
     }
   }
 };

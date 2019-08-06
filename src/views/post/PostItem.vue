@@ -48,7 +48,7 @@
 import BulmaButton from "@/components/BulmaButton";
 import BulmaInput from "@/components/BulmaInput";
 import BulmaSwitch from "@/components/BulmaSwitch";
-import Kind from "@/objects/Kind";
+import Post from "@/objects/Post";
 import mixItem from "@/mixins/mixItem";
 import mixin from "@/mixins/funcs";
 import request from "@/request";
@@ -64,11 +64,11 @@ export default {
   data() {
     return {
       title: "",
-      post: Kind
+      post: Post
     };
   },
   mounted() {
-    this.fetchData();
+    this.fetchItem("post", "Post", [], [], []);
   },
   methods: {
     submit() {
@@ -93,9 +93,6 @@ export default {
     // },
     delete() {
       // console.log('delete!');
-    },
-    fetchData() {
-      this.fetchItem("posts", ["post"]);
     }
   }
 };

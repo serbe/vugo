@@ -213,7 +213,8 @@ export default {
       "contact",
       "Contact",
       ["emails", "phones", "faxes"],
-      ["company", "post", "department", "post_go", "rank"]
+      ["company", "post", "department", "post_go", "rank"],
+      []
     );
   },
   methods: {

@@ -90,7 +90,13 @@ export default {
     };
   },
   mounted() {
-    this.fetchData();
+    this.fetchItem(
+      "practice",
+      "Practice",
+      [],
+      ["practice", "company", "kind"],
+      []
+    );
   },
   methods: {
     onSelect(item, itemName) {
@@ -119,9 +125,6 @@ export default {
     // },
     delete() {
       // console.log('delete!');
-    },
-    fetchData() {
-      this.fetchItem("practices", ["practice", "companies", "kinds"]);
     }
   }
 };

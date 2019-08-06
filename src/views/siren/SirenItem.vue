@@ -126,7 +126,13 @@ export default {
     };
   },
   mounted() {
-    this.fetchData();
+    this.fetchItem(
+      "siren",
+      "Siren",
+      [],
+      ["siren", "siren_types", "contacts", "companies"],
+      []
+    );
   },
   methods: {
     submit() {
@@ -155,21 +161,6 @@ export default {
     },
     delete() {
       // console.log('delete!');
-    },
-    fetchData() {
-      this.fetchItem(
-        "sirens",
-        ["siren", "siren_types", "contacts", "companies"],
-        true
-      );
-    },
-    afterFetch() {
-      this.setSelect("siren", "siren_types", "siren_type", "siren_type_id");
-      this.setSelect("siren", "contacts", "contact", "contact_id");
-      this.setSelect("siren", "companies", "company", "company_id");
-    },
-    setSelect(root, list, item, value) {
-      this[root][item] = this[list].find(v => v.id === this[root][value]);
     }
   }
 };

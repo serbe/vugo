@@ -60,7 +60,7 @@ export default {
     };
   },
   mounted() {
-    this.fetchData();
+    this.fetchItem("rank", "Rank", [], [], []);
   },
   methods: {
     submit() {
@@ -85,9 +85,6 @@ export default {
     // },
     delete() {
       // console.log('delete!');
-    },
-    fetchData() {
-      this.fetchItem("practices", ["rank"]);
     }
   }
 };
