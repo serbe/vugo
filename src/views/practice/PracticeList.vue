@@ -27,7 +27,7 @@ export default {
   },
   mixins: [mixList],
   mounted() {
-    this.fetchData("practice", "PracticeList");
+    this.fetchData("practice/list", "PracticeList");
   },
   methods: {
     createList(practices) {
