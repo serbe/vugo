@@ -2,24 +2,10 @@ import store from "../store";
 
 export default {
   methods: {
-    checkArray(values, key) {
-      let firstElem = -1;
-      let emptyElem = 0;
-      let fillElem = 0;
-      values.forEach((e, i) => {
-        if (e[key] === "") {
-          if (firstElem === -1) {
-            firstElem = i;
-          }
-          emptyElem += 1;
-        } else {
-          fillElem += 1;
-        }
-      });
-      if (emptyElem > 1) {
-        values.splice(firstElem, 1);
-      }
-      return fillElem === values.length;
+    checkArray(values) {
+      let newValues = values ? values.filter(e => e !== "") : [];
+      newValues.push("");
+      return newValues;
     },
     filterArray(values, key) {
       return values.filter(e => e[key] && e[key] !== "");
