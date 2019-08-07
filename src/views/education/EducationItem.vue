@@ -114,6 +114,10 @@ export default {
         this.close();
       });
     },
+    onSelect(item, itemName) {
+      this.education[itemName] = item;
+      this.education[`${itemName}_id`] = item.id;
+    },
     // close() {
     //   this.$router.back();
     // },
