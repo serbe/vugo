@@ -29,7 +29,7 @@ export default new Router({
       }
     },
     {
-      path: "/companies",
+      path: "/companys",
       name: "CompanyList",
       component: () =>
         import(/* webpackChunkName: "CompanyList" */ "./views/company/CompanyList.vue"),

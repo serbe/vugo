@@ -27,7 +27,7 @@ export default {
   },
   mixins: [mixList],
   mounted() {
-    this.fetchData("sirentype/list", "SirenTypeList");
+    this.fetchData("siren_type/list", "SirenTypeList");
   },
   methods: {
     createList(sirenTypes) {

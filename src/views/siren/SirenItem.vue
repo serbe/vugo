@@ -37,7 +37,7 @@
         iconLeft="user"
       ></bulma-select>
       <bulma-select
-        :list="companies"
+        :list="companys"
         :selected-item="siren.company"
         label="Организация"
         item-name="company"
@@ -122,7 +122,7 @@ export default {
       siren: Siren,
       siren_types: [SelectItem],
       contacts: [SelectItem],
-      companies: [SelectItem]
+      companys: [SelectItem]
     };
   },
   mounted() {
@@ -130,7 +130,7 @@ export default {
       "siren",
       "Siren",
       [],
-      ["siren", "siren_types", "contacts", "companies"],
+      ["siren_type", "contact", "company"],
       []
     );
   },

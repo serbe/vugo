@@ -2,7 +2,7 @@
   <div class="container mw768">
     <form :model="practice" id="practice">
       <bulma-select
-        :list="companies"
+        :list="companys"
         :selected-item="practice.company"
         label="Организация"
         item-name="company"
@@ -85,18 +85,12 @@ export default {
     return {
       title: "",
       practice: Practice,
-      companies: [SelectItem],
+      companys: [SelectItem],
       kinds: [SelectItem]
     };
   },
   mounted() {
-    this.fetchItem(
-      "practice",
-      "Practice",
-      [],
-      ["practice", "company", "kind"],
-      []
-    );
+    this.fetchItem("practice", "Practice", [], ["company", "kind"], []);
   },
   methods: {
     onSelect(item, itemName) {

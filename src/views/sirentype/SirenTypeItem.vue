@@ -2,20 +2,20 @@
   <div class="container mw768">
     <form :model="sirenType" id="sirenType">
       <bulma-input
-        v-model="sirenType.name"
+        v-model="siren_type.name"
         label
         placeholder="Тип сирены"
         iconLeft="tag"
       ></bulma-input>
       <bulma-input
-        v-model="sirenType.radius"
+        v-model="siren_type.radius"
         label
         placeholder="Радиус действия сирены (метры)"
         iconLeft="circle-o"
         type="number"
       ></bulma-input>
       <bulma-input
-        v-model="sirenType.note"
+        v-model="siren_type.note"
         label
         placeholder="Заметка"
         iconLeft="comment"
@@ -62,17 +62,11 @@ export default {
   data() {
     return {
       title: "",
-      sirenType: SirenType
+      siren_type: SirenType
     };
   },
   mounted() {
-    this.fetchItem(
-      "company",
-      "Company",
-      ["emails", "phones", "faxes"],
-      ["scope"],
-      [["practice", "PracticeList"]]
-    );
+    this.fetchItem("siren_type", "SirenType", [], [], []);
   },
   methods: {
     submit() {

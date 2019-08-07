@@ -52,10 +52,10 @@ export default {
     this.fetchData("company/list", "CompanyList");
   },
   methods: {
-    createList(companies) {
+    createList(companys) {
       let list = [];
-      if (companies) {
-        list = companies.map(c => {
+      if (companys) {
+        list = companys.map(c => {
           const str = [c.name, c.address, c.scope_name];
           if (c.phones) {
             str.push(c.phones.join(" "));

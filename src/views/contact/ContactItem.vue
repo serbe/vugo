@@ -9,7 +9,7 @@
       ></bulma-input>
 
       <bulma-select
-        :list="companies"
+        :list="companys"
         :selected-item="contact.company"
         label="Организация"
         item-name="company"
@@ -200,7 +200,7 @@ export default {
     return {
       title: "",
       contact: Contact,
-      companies: [SelectItem],
+      companys: [SelectItem],
       posts: [SelectItem],
       post_gos: [SelectItem],
       departments: [SelectItem],

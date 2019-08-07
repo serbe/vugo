@@ -180,7 +180,7 @@ export default {
       this.company.scope_id = item.id;
     },
     submit() {
-      let url = "companies";
+      let url = "companys";
       let method = "POST";
       if (this.$route.params.id !== "0") {
         url = `${url}/${this.$route.params.id}`;

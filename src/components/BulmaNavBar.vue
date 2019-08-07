@@ -5,7 +5,7 @@
         <template v-if="user.authenticated">
           <router-link to="/" class="navbar-item" exact>ЕДДС</router-link>
           <router-link to="/contacts" class="navbar-item">Контакты</router-link>
-          <router-link to="/companies" class="navbar-item"
+          <router-link to="/companys" class="navbar-item"
             >Организации</router-link
           >
         </template>

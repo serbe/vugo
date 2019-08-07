@@ -18,7 +18,7 @@
       ></bulma-select>
 
       <bulma-select
-        :list="companies"
+        :list="companys"
         :selected-item="certificate.company"
         item-name="company"
         label="Учебно методический центр"
@@ -86,7 +86,7 @@ export default {
       title: "",
       certificate: Certificate,
       contacts: [SelectItem],
-      companies: [SelectItem]
+      companys: [SelectItem]
     };
   },
   mounted() {
@@ -94,7 +94,7 @@ export default {
       "certificate",
       "Certificate",
       [],
-      ["certificate", "contact", "company"],
+      ["contact", "company"],
       []
     );
   },
