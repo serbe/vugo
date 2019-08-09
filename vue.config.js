@@ -1,3 +1,5 @@
+const { UnusedFilesWebpackPlugin } = require("unused-files-webpack-plugin");
+
 module.exports = {
   devServer: {
     proxy: {
@@ -6,5 +8,8 @@ module.exports = {
         ws: true
       }
     }
+  },
+  configureWebpack: {
+    plugins: [new UnusedFilesWebpackPlugin()]
   }
 };
