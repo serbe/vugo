@@ -87,7 +87,7 @@
               iconLeft="envelope"
               autocomplete="email"
               @blur="onBlur('emails')"
-              :pattern="pattern"
+              pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
               error="Неправильный email"
             ></bulma-input>
           </div>
@@ -175,11 +175,11 @@
 </template>
 
 <script>
-// import BulmaCalendar from '@/components/BulmaCalendar'
 import BulmaButton from "@/components/BulmaButton";
 import BulmaDate from "@/components/BulmaDate";
 import BulmaInput from "@/components/BulmaInput";
 import BulmaSelect from "@/components/BulmaSelect";
+// import Datepicker from 'vue-bulma-datepicker';
 import Contact from "@/objects/Contact";
 import SelectItem from "@/objects/SelectItem";
 import mixin from "@/mixins/funcs";
@@ -204,8 +204,7 @@ export default {
       posts: [SelectItem],
       post_gos: [SelectItem],
       departments: [SelectItem],
-      ranks: [SelectItem],
-      pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
+      ranks: [SelectItem]
     };
   },
   mounted() {

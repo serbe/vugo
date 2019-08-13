@@ -1,48 +1,46 @@
-import request from "@/request";
+import axios from "axios";
 
 export default {
   data() {
     return {
       fetched: false,
-      list: []
+      config: {
+        headers: { "Cache-Control": "no-cache" }, // can setup to prevent all caching
+        baseURL: "/api/go/"
+      }
     };
   },
   methods: {
     fetchItem(name, response, arrays, values, childrens) {
       if (!this.fetched) {
-        request({
-          url: `${name}/item/${this.$route.params.id}`,
-          method: "GET"
-        }).then(r => {
-          this[name] = this.removeNull(r.data.data[response]);
-          arrays.forEach(e => {
-            this[name][e] = this.checkArray(this[name][e]);
+        axios
+          .get(`${name}/item/${this.$route.params.id}`, this.config)
+          .then(r => {
+            this[name] = this.removeNull(r.data.data[response]);
+            arrays.forEach(e => {
+              this[name][e] = this.checkArray(this[name][e]);
+            });
+            values.forEach(e => {
+              this.fetchSelect(name, `${e}s`, e, `${e}_id`);
+            });
+            childrens.forEach(e => {
+              this.fetchChildren(name, e[0], e[1]);
+            });
           });
-          values.forEach(e => {
-            this.fetchSelect(name, `${e}s`, e, `${e}_id`);
-          });
-          childrens.forEach(e => {
-            this.fetchChildren(name, e[0], e[1]);
-          });
-        });
       }
     },
     fetchSelect(root, list, item, value) {
-      request({
-        url: `${item}/select`,
-        method: "GET"
-      }).then(r => {
+      axios.get(`${item}/select`, this.config).then(r => {
         this[list] = r.data.data.SelectItem;
         this.setSelect(root, list, item, value);
       });
     },
     fetchChildren(root, children, name) {
-      request({
-        url: `${root}/list/${children}/${this[root].id}`,
-        method: "GET"
-      }).then(r => {
-        this[`${children}s`] = r.data.data[name];
-      });
+      axios
+        .get(`${root}/list/${children}/${this[root].id}`, this.config)
+        .then(r => {
+          this[`${children}s`] = r.data.data[name];
+        });
     },
     setSelect(root, list, item, value) {
       this[root][item] = this[list].find(v => v.id === this[root][value]);
@@ -54,6 +52,17 @@ export default {
         }
       });
       return values;
+    },
+    postItem(url, data) {
+      console.log(data);
+      axios
+        .post(url, data, this.config)
+        .then(function(result) {
+          console.log(result);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
     // onSelect (item, name, itemName) {
     //   this[name][itemName] = item

@@ -37,7 +37,7 @@
               iconLeft="envelope"
               autocomplete="email"
               @blur="onBlur('emails', 'email')"
-              :pattern="pattern"
+              pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
               error="Неправильный email"
             ></bulma-input>
           </div>
@@ -144,7 +144,6 @@ import Company from "@/objects/Company";
 import SelectItem from "@/objects/SelectItem";
 import mixItem from "@/mixins/mixItem";
 import mixin from "@/mixins/funcs";
-import request from "@/request";
 
 export default {
   name: "CompanyItem",
@@ -158,8 +157,7 @@ export default {
     return {
       title: "",
       company: Company,
-      scopes: [SelectItem],
-      pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
+      scopes: [SelectItem]
     };
   },
   mounted() {
@@ -180,24 +178,18 @@ export default {
       this.company.scope_id = item.id;
     },
     submit() {
-      let url = "companys";
-      let method = "POST";
-      if (this.$route.params.id !== "0") {
-        url = `${url}/${this.$route.params.id}`;
-        method = "PUT";
-      }
+      let url = `company/item/${this.$route.params.id}`;
+      // let method = "POST";
+      // if (this.$route.params.id !== "0") {
+      // url = `${url}/${this.$route.params.id}`;
+      // method = "PUT";
+      // }
       const values = this.company;
       values.emails = this.filterArray(values.emails, "email");
       values.phones = this.filterArray(values.phones, "phone");
       values.faxes = this.filterArray(values.faxes, "phone");
-      request({
-        url,
-        method,
-        mode: "cors",
-        data: JSON.stringify(values)
-      }).then(() => {
-        this.close();
-      });
+      let Company = JSON.stringify({ data: { Company: values } });
+      this.postItem(url, Company);
     },
     delete() {
       //  console.log('delete!');

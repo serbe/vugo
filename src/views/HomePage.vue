@@ -3,10 +3,10 @@
     <div class="content has-text-centered">
       <div class="columns">
         <div class="column is-one-third">
-          <table v-if="educationsFetched" class="table" key="educations">
+          <table v-if="EducationShort" class="table" key="educations">
             <tbody>
               <tr
-                v-for="(item, index) in educationsList"
+                v-for="(item, index) in EducationShort"
                 :key="index"
                 :class="trClass(item.start_date)"
               >
@@ -25,10 +25,10 @@
           </table>
         </div>
         <div class="column is-one-third is-offset-one-third">
-          <table v-if="practicesFetched" class="table" key="practices">
+          <table v-if="PracticeShort" class="table" key="practices">
             <tbody>
               <tr
-                v-for="(item, index) in practicesList"
+                v-for="(item, index) in PracticeShort"
                 :key="index"
                 :class="trClass(item.date_of_practice)"
               >
@@ -58,7 +58,7 @@
 
 <script>
 import auth from "@/auth";
-import request from "@/request";
+import mixList from "@/mixins/mixList";
 
 export default {
   name: "HomePage",
@@ -66,44 +66,17 @@ export default {
     return {
       practicesFetched: false,
       educationsFetched: false,
-      practicesList: [],
-      educationsList: [],
+      PracticeShort: [],
+      EducationShort: [],
       user: auth.user
     };
   },
+  mixins: [mixList],
   mounted() {
-    this.fetchPractices();
-    this.fetchEducations();
+    this.fetchShortData("education/near", "EducationShort");
+    this.fetchShortData("practice/near", "PracticeShort");
   },
   methods: {
-    fetchPractices() {
-      if (this.user.authenticated && !this.fetched) {
-        request({
-          url: "practice/near",
-          method: "GET"
-        }).then(r => {
-          this.practicesList = r.data.data.PracticeShort;
-          if (this.practicesList) {
-            this.practicesList = this.practicesList.reverse();
-          }
-          this.practicesFetched = true;
-        });
-      }
-    },
-    fetchEducations() {
-      if (this.user.authenticated && !this.fetched) {
-        request({
-          url: "education/near",
-          method: "GET"
-        }).then(r => {
-          this.educationsList = r.data.data.EducationShort;
-          if (this.educationsList) {
-            this.educationsList = this.educationsList.reverse();
-          }
-          this.educationsFetched = true;
-        });
-      }
-    },
     trClass(date) {
       const m = new Date();
       const d = new Date(date);
