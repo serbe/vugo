@@ -1,40 +1,38 @@
 <template>
   <div class="container mw768">
-    <form :model="rank" id="rank">
-      <bulma-input
-        v-model="rank.name"
-        label
-        placeholder="Наименование чина"
-        iconLeft="tag"
-      ></bulma-input>
+    <bulma-input
+      v-model="rank.name"
+      label
+      placeholder="Наименование чина"
+      iconLeft="tag"
+    ></bulma-input>
 
-      <bulma-input
-        v-model="rank.note"
-        label
-        placeholder="Заметка"
-        iconLeft="comment"
-      ></bulma-input>
+    <bulma-input
+      v-model="rank.note"
+      label
+      placeholder="Заметка"
+      iconLeft="comment"
+    ></bulma-input>
 
-      <div class="field is-grouped is-grouped-centered">
-        <div class="control">
-          <bulma-button
-            text="Сохранить"
-            color="primary"
-            @click="submit"
-          ></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button text="Закрыть" @click="close"></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button
-            text="Удалить"
-            color="danger"
-            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
-          ></bulma-button>
-        </div>
+    <div class="field is-grouped is-grouped-centered">
+      <div class="control">
+        <bulma-button
+          text="Сохранить"
+          color="primary"
+          @click="submit"
+        ></bulma-button>
       </div>
-    </form>
+      <div class="control">
+        <bulma-button text="Закрыть" @click="close"></bulma-button>
+      </div>
+      <div class="control">
+        <bulma-button
+          text="Удалить"
+          color="danger"
+          onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+        ></bulma-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -44,7 +42,6 @@ import BulmaInput from "@/components/BulmaInput";
 import Rank from "@/objects/Rank";
 import mixItem from "@/mixins/mixItem";
 import mixin from "@/mixins/funcs";
-import request from "@/request";
 
 export default {
   name: "RankItem",
@@ -64,21 +61,12 @@ export default {
   },
   methods: {
     submit() {
-      let url = "ranks";
-      let method = "POST";
-      if (this.$route.params.id !== "0") {
-        url = `${url}/${this.$route.params.id}`;
-        method = "PUT";
-      }
       const values = this.rank;
-      request({
-        url,
-        method,
-        mode: "cors",
-        data: JSON.stringify(values)
-      }).then(() => {
-        this.close();
-      });
+      let url = `/rank/item/${this.$route.params.id}`;
+      this.postItem(url, JSON.stringify({ Rank: values }))
+        .then()
+        .catch(e => console.log("error post", e));
+      this.$router.push("/ranks");
     },
     // close() {
     //   this.$router.back();

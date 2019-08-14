@@ -1,40 +1,38 @@
 <template>
   <div class="container mw768">
-    <form :model="department" id="department">
-      <bulma-input
-        v-model="department.name"
-        label
-        placeholder="Наименование отдела"
-        iconLeft="tag"
-      ></bulma-input>
+    <bulma-input
+      v-model="department.name"
+      label
+      placeholder="Наименование отдела"
+      iconLeft="tag"
+    ></bulma-input>
 
-      <bulma-input
-        v-model="department.note"
-        label
-        placeholder="Заметка"
-        iconLeft="comment"
-      ></bulma-input>
+    <bulma-input
+      v-model="department.note"
+      label
+      placeholder="Заметка"
+      iconLeft="comment"
+    ></bulma-input>
 
-      <div class="field is-grouped is-grouped-centered">
-        <div class="control">
-          <bulma-button
-            text="Сохранить"
-            color="primary"
-            @click="submit"
-          ></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button text="Закрыть" @click="close"></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button
-            text="Удалить"
-            color="danger"
-            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
-          ></bulma-button>
-        </div>
+    <div class="field is-grouped is-grouped-centered">
+      <div class="control">
+        <bulma-button
+          text="Сохранить"
+          color="primary"
+          @click="submit"
+        ></bulma-button>
       </div>
-    </form>
+      <div class="control">
+        <bulma-button text="Закрыть" @click="close"></bulma-button>
+      </div>
+      <div class="control">
+        <bulma-button
+          text="Удалить"
+          color="danger"
+          onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+        ></bulma-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -44,7 +42,6 @@ import BulmaInput from "@/components/BulmaInput";
 import Department from "@/objects/Department";
 import mixItem from "@/mixins/mixItem";
 import mixin from "@/mixins/funcs";
-import request from "@/request";
 
 export default {
   name: "DepartmentItem",
@@ -64,21 +61,12 @@ export default {
   },
   methods: {
     submit() {
-      let url = "departments";
-      let method = "POST";
-      if (this.$route.params.id !== "0") {
-        url = `${url}/${this.$route.params.id}`;
-        method = "PUT";
-      }
       const values = this.department;
-      request({
-        url,
-        method,
-        mode: "cors",
-        data: JSON.stringify(values)
-      }).then(() => {
-        this.close();
-      });
+      let url = `/department/item/${this.$route.params.id}`;
+      this.postItem(url, JSON.stringify({ Department: values }))
+        .then()
+        .catch(e => console.log("error post", e));
+      this.$router.push("/departments");
     },
     // close() {
     //   this.$router.back();

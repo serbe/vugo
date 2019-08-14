@@ -1,47 +1,45 @@
 <template>
   <div class="container mw768">
-    <form :model="kind" id="kind">
-      <bulma-input
-        v-model="kind.name"
-        label
-        placeholder="Наименование типа тренировки"
-        iconLeft="tag"
-      ></bulma-input>
+    <bulma-input
+      v-model="kind.name"
+      label
+      placeholder="Наименование типа тренировки"
+      iconLeft="tag"
+    ></bulma-input>
 
-      <bulma-input
-        v-model="kind.short_name"
-        label
-        placeholder="Сокращенное наименование"
-        iconLeft="tag"
-      ></bulma-input>
+    <bulma-input
+      v-model="kind.short_name"
+      label
+      placeholder="Сокращенное наименование"
+      iconLeft="tag"
+    ></bulma-input>
 
-      <bulma-input
-        v-model="kind.note"
-        label
-        placeholder="Заметка"
-        iconLeft="comment"
-      ></bulma-input>
+    <bulma-input
+      v-model="kind.note"
+      label
+      placeholder="Заметка"
+      iconLeft="comment"
+    ></bulma-input>
 
-      <div class="field is-grouped is-grouped-centered">
-        <div class="control">
-          <bulma-button
-            text="Сохранить"
-            color="primary"
-            @click="submit"
-          ></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button text="Закрыть" @click="close"></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button
-            text="Удалить"
-            color="danger"
-            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
-          ></bulma-button>
-        </div>
+    <div class="field is-grouped is-grouped-centered">
+      <div class="control">
+        <bulma-button
+          text="Сохранить"
+          color="primary"
+          @click="submit"
+        ></bulma-button>
       </div>
-    </form>
+      <div class="control">
+        <bulma-button text="Закрыть" @click="close"></bulma-button>
+      </div>
+      <div class="control">
+        <bulma-button
+          text="Удалить"
+          color="danger"
+          onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+        ></bulma-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -51,7 +49,6 @@ import BulmaInput from "@/components/BulmaInput";
 import Kind from "@/objects/Kind";
 import mixItem from "@/mixins/mixItem";
 import mixin from "@/mixins/funcs";
-import request from "@/request";
 
 export default {
   name: "KindItem",
@@ -71,21 +68,12 @@ export default {
   },
   methods: {
     submit() {
-      let url = "kinds";
-      let method = "POST";
-      if (this.$route.params.id !== "0") {
-        url = `${url}/${this.$route.params.id}`;
-        method = "PUT";
-      }
       const values = this.kind;
-      request({
-        url,
-        method,
-        mode: "cors",
-        data: JSON.stringify(values)
-      }).then(() => {
-        this.close();
-      });
+      let url = `/kind/item/${this.$route.params.id}`;
+      this.postItem(url, JSON.stringify({ Kind: values }))
+        .then()
+        .catch(e => console.log("error post", e));
+      this.$router.push("/kinds");
     },
     // close() {
     //   this.$router.back();

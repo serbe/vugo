@@ -10,7 +10,7 @@ export default {
     stringArray(values) {
       return values.filter(e => e !== "");
     },
-    numbersArray(values) {
+    numberArray(values) {
       return values.filter(e => e !== "").map(e => parseInt(e, 10));
     },
     // telephone(value) {

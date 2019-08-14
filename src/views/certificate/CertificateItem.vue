@@ -1,63 +1,61 @@
 <template>
   <div class="container mw768">
-    <form :model="certificate" id="certificate">
-      <bulma-input
-        v-model="certificate.num"
-        label
-        placeholder="Серийный номер удостоверения"
-        iconLeft="tag"
-      ></bulma-input>
+    <bulma-input
+      v-model="certificate.num"
+      label
+      placeholder="Серийный номер удостоверения"
+      iconLeft="tag"
+    ></bulma-input>
 
-      <bulma-select
-        :list="contacts"
-        :selected-item="certificate.contact"
-        item-name="contact"
-        label="Полное имя"
-        @select="onSelect"
-        iconLeft="user"
-      ></bulma-select>
+    <bulma-select
+      :list="contacts"
+      :selected-item="certificate.contact"
+      item-name="contact"
+      label="Полное имя"
+      @select="onSelect"
+      iconLeft="user"
+    ></bulma-select>
 
-      <bulma-select
-        :list="companys"
-        :selected-item="certificate.company"
-        item-name="company"
-        label="Учебно методический центр"
-        @select="onSelect"
-        iconLeft="building"
-      ></bulma-select>
+    <bulma-select
+      :list="companys"
+      :selected-item="certificate.company"
+      item-name="company"
+      label="Учебно методический центр"
+      @select="onSelect"
+      iconLeft="building"
+    ></bulma-select>
 
-      <bulma-date
-        v-model="certificate.cert_date"
-        label="Дата выдачи"
-      ></bulma-date>
+    <bulma-date
+      v-model="certificate.cert_date"
+      label="Дата выдачи"
+    ></bulma-date>
 
-      <bulma-input
-        v-model="certificate.note"
-        label
-        placeholder="Заметка"
-        iconLeft="comment"
-      ></bulma-input>
+    <bulma-input
+      v-model="certificate.note"
+      label
+      placeholder="Заметка"
+      iconLeft="comment"
+    ></bulma-input>
 
-      <div class="field is-grouped is-grouped-centered">
-        <div class="control">
-          <bulma-button
-            text="Сохранить"
-            color="primary"
-            @click="submit"
-          ></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button text="Закрыть" @click="close"></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button
-            text="Удалить"
-            color="danger"
-            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
-          ></bulma-button>
-        </div>
+    <div class="field is-grouped is-grouped-centered">
+      <div class="control">
+        <bulma-button
+          text="Сохранить"
+          color="primary"
+          @click="submit"
+        ></bulma-button>
       </div>
-    </form>
+      <div class="control">
+        <bulma-button text="Закрыть" @click="close"></bulma-button>
+      </div>
+      <div class="control">
+        <bulma-button
+          text="Удалить"
+          color="danger"
+          onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+        ></bulma-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -70,7 +68,6 @@ import Certificate from "@/objects/Certificate";
 import SelectItem from "@/objects/SelectItem";
 import mixItem from "@/mixins/mixItem";
 import mixin from "@/mixins/funcs";
-import request from "@/request";
 
 export default {
   name: "CertificateItem",
@@ -104,21 +101,12 @@ export default {
       this.certificate[`${itemName}_id`] = item.id;
     },
     submit() {
-      let url = "certificates";
-      let method = "POST";
-      if (this.$route.params.id !== "0") {
-        url = `${url}/${this.$route.params.id}`;
-        method = "PUT";
-      }
       const values = this.certificate;
-      request({
-        url,
-        method,
-        mode: "cors",
-        data: JSON.stringify(values)
-      }).then(() => {
-        this.close();
-      });
+      let url = `/certificate/item/${this.$route.params.id}`;
+      this.postItem(url, JSON.stringify({ Certificate: values }))
+        .then()
+        .catch(e => console.log("error post", e));
+      this.$router.push("/certificates");
     },
     // close() {
     //   // store.commit('increment', this.$router.);

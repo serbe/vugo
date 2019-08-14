@@ -1,67 +1,65 @@
 <template>
   <div class="container mw768">
-    <form :model="education" id="education">
-      <bulma-select
-        :list="contacts"
-        :selected-item="education.contact"
-        label="Полное имя обучаемого"
-        item-name="contact"
-        @select="onSelect"
-        iconLeft="user"
-      ></bulma-select>
+    <bulma-select
+      :list="contacts"
+      :selected-item="education.contact"
+      label="Полное имя обучаемого"
+      item-name="contact"
+      @select="onSelect"
+      iconLeft="user"
+    ></bulma-select>
 
-      <bulma-select
-        :list="posts"
-        :selected-item="education.post"
-        label="Должность ГО ЧС"
-        item-name="post"
-        @select="onSelect"
-        iconLeft="tag"
-      ></bulma-select>
+    <bulma-select
+      :list="posts"
+      :selected-item="education.post"
+      label="Должность ГО ЧС"
+      item-name="post"
+      @select="onSelect"
+      iconLeft="tag"
+    ></bulma-select>
 
-      <div class="columns">
-        <div class="column">
-          <bulma-date
-            v-model="education.start_date"
-            label="Дата начала обучения"
-          ></bulma-date>
-        </div>
-
-        <div class="column">
-          <bulma-date
-            v-model="education.end_date"
-            label="Дата конца обучения"
-          ></bulma-date>
-        </div>
+    <div class="columns">
+      <div class="column">
+        <bulma-date
+          v-model="education.start_date"
+          label="Дата начала обучения"
+        ></bulma-date>
       </div>
 
-      <bulma-input
-        label="Заметка"
-        placeholder="Заметка"
-        iconLeft="comment"
-        v-model="education.note"
-      ></bulma-input>
-
-      <div class="field is-grouped is-grouped-centered">
-        <div class="control">
-          <bulma-button
-            text="Сохранить"
-            color="primary"
-            @click="submit"
-          ></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button text="Закрыть" @click="close"></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button
-            text="Удалить"
-            color="danger"
-            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
-          ></bulma-button>
-        </div>
+      <div class="column">
+        <bulma-date
+          v-model="education.end_date"
+          label="Дата конца обучения"
+        ></bulma-date>
       </div>
-    </form>
+    </div>
+
+    <bulma-input
+      label="Заметка"
+      placeholder="Заметка"
+      iconLeft="comment"
+      v-model="education.note"
+    ></bulma-input>
+
+    <div class="field is-grouped is-grouped-centered">
+      <div class="control">
+        <bulma-button
+          text="Сохранить"
+          color="primary"
+          @click="submit"
+        ></bulma-button>
+      </div>
+      <div class="control">
+        <bulma-button text="Закрыть" @click="close"></bulma-button>
+      </div>
+      <div class="control">
+        <bulma-button
+          text="Удалить"
+          color="danger"
+          onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+        ></bulma-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -74,7 +72,6 @@ import Education from "@/objects/Education";
 import SelectItem from "@/objects/SelectItem";
 import mixItem from "@/mixins/mixItem";
 import mixin from "@/mixins/funcs";
-import request from "@/request";
 
 export default {
   name: "EducationItem",
@@ -98,21 +95,12 @@ export default {
   },
   methods: {
     submit() {
-      let url = "educations";
-      let method = "POST";
-      if (this.$route.params.id !== "0") {
-        url = `${url}/${this.$route.params.id}`;
-        method = "PUT";
-      }
       const values = this.education;
-      request({
-        url,
-        method,
-        mode: "cors",
-        data: JSON.stringify(values)
-      }).then(() => {
-        this.close();
-      });
+      let url = `/education/item/${this.$route.params.id}`;
+      this.postItem(url, JSON.stringify({ Education: values }))
+        .then()
+        .catch(e => console.log("error post", e));
+      this.$router.push("/educations");
     },
     onSelect(item, itemName) {
       this.education[itemName] = item;

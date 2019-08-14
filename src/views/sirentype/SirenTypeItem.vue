@@ -1,46 +1,44 @@
 <template>
   <div class="container mw768">
-    <form :model="sirenType" id="sirenType">
-      <bulma-input
-        v-model="siren_type.name"
-        label
-        placeholder="Тип сирены"
-        iconLeft="tag"
-      ></bulma-input>
-      <bulma-input
-        v-model="siren_type.radius"
-        label
-        placeholder="Радиус действия сирены (метры)"
-        iconLeft="circle-o"
-        type="number"
-      ></bulma-input>
-      <bulma-input
-        v-model="siren_type.note"
-        label
-        placeholder="Заметка"
-        iconLeft="comment"
-      ></bulma-input>
+    <bulma-input
+      v-model="siren_type.name"
+      label
+      placeholder="Тип сирены"
+      iconLeft="tag"
+    ></bulma-input>
+    <bulma-input
+      v-model="siren_type.radius"
+      label
+      placeholder="Радиус действия сирены (метры)"
+      iconLeft="circle-o"
+      type="number"
+    ></bulma-input>
+    <bulma-input
+      v-model="siren_type.note"
+      label
+      placeholder="Заметка"
+      iconLeft="comment"
+    ></bulma-input>
 
-      <div class="field is-grouped is-grouped-centered">
-        <div class="control">
-          <bulma-button
-            text="Сохранить"
-            color="primary"
-            @click="submit"
-          ></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button text="Закрыть" @click="close"></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button
-            text="Удалить"
-            color="danger"
-            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
-          ></bulma-button>
-        </div>
+    <div class="field is-grouped is-grouped-centered">
+      <div class="control">
+        <bulma-button
+          text="Сохранить"
+          color="primary"
+          @click="submit"
+        ></bulma-button>
       </div>
-    </form>
+      <div class="control">
+        <bulma-button text="Закрыть" @click="close"></bulma-button>
+      </div>
+      <div class="control">
+        <bulma-button
+          text="Удалить"
+          color="danger"
+          onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+        ></bulma-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -50,7 +48,6 @@ import BulmaInput from "@/components/BulmaInput";
 import SirenType from "@/objects/SirenType";
 import mixItem from "@/mixins/mixItem";
 import mixin from "@/mixins/funcs";
-import request from "@/request";
 
 export default {
   name: "SirenTypeItem",
@@ -70,21 +67,12 @@ export default {
   },
   methods: {
     submit() {
-      let url = "sirentypes";
-      let method = "POST";
-      if (this.$route.params.id !== "0") {
-        url = `${url}/${this.$route.params.id}`;
-        method = "PUT";
-      }
       const values = this.sirenType;
-      request({
-        url,
-        method,
-        mode: "cors",
-        data: JSON.stringify(values)
-      }).then(() => {
-        this.close();
-      });
+      let url = `/siren_type/item/${this.$route.params.id}`;
+      this.postItem(url, JSON.stringify({ SirenType: values }))
+        .then()
+        .catch(e => console.log("error post", e));
+      this.$router.push("/siren_types");
     },
     // close() {
     //   this.$router.back();

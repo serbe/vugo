@@ -1,40 +1,38 @@
 <template>
   <div class="container mw768">
-    <form :model="scope" id="scope">
-      <bulma-input
-        v-model="scope.name"
-        label
-        placeholder="Наименование сферы дефтельности"
-        iconLeft="tag"
-      ></bulma-input>
+    <bulma-input
+      v-model="scope.name"
+      label
+      placeholder="Наименование сферы дефтельности"
+      iconLeft="tag"
+    ></bulma-input>
 
-      <bulma-input
-        v-model="scope.note"
-        label
-        placeholder="Заметка"
-        iconLeft="comment"
-      ></bulma-input>
+    <bulma-input
+      v-model="scope.note"
+      label
+      placeholder="Заметка"
+      iconLeft="comment"
+    ></bulma-input>
 
-      <div class="field is-grouped is-grouped-centered">
-        <div class="control">
-          <bulma-button
-            text="Сохранить"
-            color="primary"
-            @click="submit"
-          ></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button text="Закрыть" @click="close"></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button
-            text="Удалить"
-            color="danger"
-            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
-          ></bulma-button>
-        </div>
+    <div class="field is-grouped is-grouped-centered">
+      <div class="control">
+        <bulma-button
+          text="Сохранить"
+          color="primary"
+          @click="submit"
+        ></bulma-button>
       </div>
-    </form>
+      <div class="control">
+        <bulma-button text="Закрыть" @click="close"></bulma-button>
+      </div>
+      <div class="control">
+        <bulma-button
+          text="Удалить"
+          color="danger"
+          onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+        ></bulma-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -44,7 +42,6 @@ import BulmaInput from "@/components/BulmaInput";
 import Scope from "@/objects/Scope";
 import mixItem from "@/mixins/mixItem";
 import mixin from "@/mixins/funcs";
-import request from "@/request";
 
 export default {
   name: "ScopeItem",
@@ -64,21 +61,12 @@ export default {
   },
   methods: {
     submit() {
-      let url = "scopes";
-      let method = "POST";
-      if (this.$route.params.id !== "0") {
-        url = `${url}/${this.$route.params.id}`;
-        method = "PUT";
-      }
       const values = this.scope;
-      request({
-        url,
-        method,
-        mode: "cors",
-        data: JSON.stringify(values)
-      }).then(() => {
-        this.close();
-      });
+      let url = `/scope/item/${this.$route.params.id}`;
+      this.postItem(url, JSON.stringify({ Scope: values }))
+        .then()
+        .catch(e => console.log("error post", e));
+      this.$router.push("/scopes");
     },
     // close() {
     //   this.$router.back();

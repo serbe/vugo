@@ -1,95 +1,93 @@
 <template>
   <div class="container mw768">
-    <form :model="siren" id="siren">
-      <div class="columns">
-        <div class="column is-half">
-          <bulma-input
-            v-model="siren.num_pass"
-            label
-            placeholder="Серийный номер"
-            iconLeft="tag"
-          ></bulma-input>
-        </div>
-        <div class="column is-half">
-          <bulma-select
-            :list="siren_types"
-            :selected-item="siren.siren_type"
-            label="Тип сирены"
-            item-name="siren_type"
-            @select="onSelect"
-            iconLeft="tag"
-          ></bulma-select>
-        </div>
+    <div class="columns">
+      <div class="column is-half">
+        <bulma-input
+          v-model="siren.num_pass"
+          label
+          placeholder="Серийный номер"
+          iconLeft="tag"
+        ></bulma-input>
       </div>
-
-      <bulma-input
-        v-model="siren.address"
-        label
-        placeholder="Адрес"
-        iconLeft="address-card"
-      ></bulma-input>
-      <bulma-select
-        :list="contacts"
-        :selected-item="siren.contact"
-        label="Контактное лицо"
-        item-name="contact"
-        @select="onSelect"
-        iconLeft="user"
-      ></bulma-select>
-      <bulma-select
-        :list="companys"
-        :selected-item="siren.company"
-        label="Организация"
-        item-name="company"
-        @select="onSelect"
-        iconLeft="building"
-      ></bulma-select>
-
-      <div class="columns">
-        <div class="column is-half">
-          <bulma-input
-            v-model="siren.latitude"
-            label
-            placeholder="Широта"
-            iconLeft="tag"
-          ></bulma-input>
-        </div>
-        <div class="column is-half">
-          <bulma-input
-            v-model="siren.longitude"
-            label
-            placeholder="Долгота"
-            iconLeft="tag"
-          ></bulma-input>
-        </div>
+      <div class="column is-half">
+        <bulma-select
+          :list="siren_types"
+          :selected-item="siren.siren_type"
+          label="Тип сирены"
+          item-name="siren_type"
+          @select="onSelect"
+          iconLeft="tag"
+        ></bulma-select>
       </div>
-      <bulma-input
-        v-model="siren.note"
-        label
-        placeholder="Заметка"
-        iconLeft="comment"
-      ></bulma-input>
+    </div>
 
-      <div class="field is-grouped is-grouped-centered">
-        <div class="control">
-          <bulma-button
-            text="Сохранить"
-            color="primary"
-            @click="submit"
-          ></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button text="Закрыть" @click="close"></bulma-button>
-        </div>
-        <div class="control">
-          <bulma-button
-            text="Удалить"
-            color="danger"
-            onclick="return confirm('Вы действительно хотите удалить эту запись?');"
-          ></bulma-button>
-        </div>
+    <bulma-input
+      v-model="siren.address"
+      label
+      placeholder="Адрес"
+      iconLeft="address-card"
+    ></bulma-input>
+    <bulma-select
+      :list="contacts"
+      :selected-item="siren.contact"
+      label="Контактное лицо"
+      item-name="contact"
+      @select="onSelect"
+      iconLeft="user"
+    ></bulma-select>
+    <bulma-select
+      :list="companys"
+      :selected-item="siren.company"
+      label="Организация"
+      item-name="company"
+      @select="onSelect"
+      iconLeft="building"
+    ></bulma-select>
+
+    <div class="columns">
+      <div class="column is-half">
+        <bulma-input
+          v-model="siren.latitude"
+          label
+          placeholder="Широта"
+          iconLeft="tag"
+        ></bulma-input>
       </div>
-    </form>
+      <div class="column is-half">
+        <bulma-input
+          v-model="siren.longitude"
+          label
+          placeholder="Долгота"
+          iconLeft="tag"
+        ></bulma-input>
+      </div>
+    </div>
+    <bulma-input
+      v-model="siren.note"
+      label
+      placeholder="Заметка"
+      iconLeft="comment"
+    ></bulma-input>
+
+    <div class="field is-grouped is-grouped-centered">
+      <div class="control">
+        <bulma-button
+          text="Сохранить"
+          color="primary"
+          @click="submit"
+        ></bulma-button>
+      </div>
+      <div class="control">
+        <bulma-button text="Закрыть" @click="close"></bulma-button>
+      </div>
+      <div class="control">
+        <bulma-button
+          text="Удалить"
+          color="danger"
+          onclick="return confirm('Вы действительно хотите удалить эту запись?');"
+        ></bulma-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -106,7 +104,6 @@ import SelectItem from "@/objects/SelectItem";
 import Siren from "@/objects/Siren";
 import mixItem from "@/mixins/mixItem";
 import mixin from "@/mixins/funcs";
-import request from "@/request";
 
 export default {
   name: "SirenItem",
@@ -136,21 +133,12 @@ export default {
   },
   methods: {
     submit() {
-      let url = "sirens";
-      let method = "POST";
-      if (this.$route.params.id !== "0") {
-        url = `${url}/${this.$route.params.id}`;
-        method = "PUT";
-      }
       const values = this.siren;
-      request({
-        url,
-        method,
-        mode: "cors",
-        data: JSON.stringify(values)
-      }).then(() => {
-        this.close();
-      });
+      let url = `/siren/item/${this.$route.params.id}`;
+      this.postItem(url, JSON.stringify({ Siren: values }))
+        .then()
+        .catch(e => console.log("error post", e));
+      this.$router.push("/sirens");
     },
     // close() {
     //   this.$router.back();
