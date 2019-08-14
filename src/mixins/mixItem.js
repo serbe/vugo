@@ -47,9 +47,7 @@ export default {
       return values;
     },
     postItem(url, data) {
-      request.post(url, data).then(() => {
-        this.close();
-      });
+      return request.post(url, data);
     }
   }
 };

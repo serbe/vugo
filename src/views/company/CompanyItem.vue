@@ -1,6 +1,6 @@
 <template>
   <div class="container mw768">
-    <form :model="company" id="company">
+    <form :model="company" id="company" @submit.prevent="onSubmit">
       <bulma-input
         v-model="company.name"
         label
@@ -118,7 +118,7 @@
           <bulma-button
             text="Сохранить"
             color="primary"
-            v-on:click.once="submit"
+            type="submit"
           ></bulma-button>
         </div>
         <div class="control">
@@ -169,7 +169,14 @@ export default {
       [["practice", "PracticeList"]]
     );
   },
+  watch: {
+    // при изменениях маршрута запрашиваем данные снова
+    $router: "printData"
+  },
   methods: {
+    printData() {
+      console.log(this.$router);
+    },
     onBlur(arr) {
       this.company[arr] = this.checkArray(this.company[arr]);
     },
@@ -177,13 +184,16 @@ export default {
       this.scope = item;
       this.company.scope_id = item.id;
     },
-    submit() {
+    onSubmit() {
       let url = `/company/item/${this.$route.params.id}`;
       const values = this.company;
       values.emails = this.stringArray(values.emails);
       values.phones = this.numbersArray(values.phones);
       values.faxes = this.numbersArray(values.faxes);
-      this.postItem(url, JSON.stringify({ Company: values }));
+      this.postItem(url, JSON.stringify({ Company: values }))
+        .then()
+        .catch(e => console.log("error post", e));
+      this.$router.push("/companys");
     },
     delete() {
       //  console.log('delete!');
