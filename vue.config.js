@@ -5,6 +5,7 @@ module.exports = {
     proxy: {
       "/api/go/": {
         target: "http://localhost:9090",
+        changeOrigin: true,
         ws: true
       }
     }

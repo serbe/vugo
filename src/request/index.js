@@ -1,40 +1,49 @@
-import axios from "axios";
-import auth from "@/auth";
-import router from "@/router";
-
 let baseURL = "/api/go/";
 
-const client = axios.create({
-  baseURL
-});
+// function status(response) {
+//   if (response.status >= 200 && response.status < 300) {
+//     return Promise.resolve(response);
+//   } else {
+//     return Promise.reject(new Error(response.statusText));
+//   }
+// }
 
-function request(options) {
-  if (auth.isAuth()) {
-    client.defaults.headers.common.Authorization = auth.getAuthHeader();
+// function json(response) {
+//   return response.json();
+// }
+
+export default {
+  async get(url) {
+    let response = await fetch(baseURL + url);
+    if (response.ok) return await response.json();
+    throw new Error(response.status);
+  },
+  async post(url, data) {
+    const settings = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: data
+    };
+    const response = await fetch(baseURL + url, settings);
+    // if (response.ok) return await response.json();
+    if (response.ok) return response;
+    throw new Error(response.status);
   }
+};
 
-  function onSuccess(response) {
-    return response;
-  }
-
-  function onError(error) {
-    // console.error('Request Failed:', error.config);
-    if (error.response && error.response.status === 401 && auth.isAuth()) {
-      auth.logout();
-      router.push({ name: "LoginPage" });
-      // console.error('Status:', error.response.status);
-      // console.error('Data:', error.response.data);
-      // console.error('Headers:', error.response.headers);
-    } else if (!error.response) {
-      // auth.logout();
-      router.push({ name: "LoginPage" });
-    }
-    return Promise.reject(error.response || error.message);
-  }
-
-  return client(options)
-    .then(onSuccess)
-    .catch(onError);
-}
-
-export default request;
+// export default {
+//   get(url) {
+//     fetch(baseURL + url)
+//       .then(status)
+//       .then(json)
+//       .then(function(data) {
+//         console.log("Request succeeded with JSON response", data);
+//       })
+//       .catch(function(error) {
+//         console.log("Request failed", error);
+//       });
+//   }
+// };

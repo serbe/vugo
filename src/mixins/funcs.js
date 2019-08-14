@@ -7,8 +7,11 @@ export default {
       newValues.push("");
       return newValues;
     },
-    filterArray(values, key) {
-      return values.filter(e => e[key] && e[key] !== "");
+    stringArray(values) {
+      return values.filter(e => e !== "");
+    },
+    numbersArray(values) {
+      return values.filter(e => e !== "").map(e => parseInt(e, 10));
     },
     // telephone(value) {
     //   let v = value;

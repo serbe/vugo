@@ -1,4 +1,5 @@
-import api from "@/api";
+// import api from "@/api";
+import request from "@/request";
 
 export default {
   data() {
@@ -7,29 +8,32 @@ export default {
     };
   },
   methods: {
-    async fetchItem(name, response, arrays, values, childrens) {
+    fetchItem(name, response, arrays, values, childrens) {
       if (!this.fetched) {
-        let data = await api.get(`${name}/item/${this.$route.params.id}`);
-        this[name] = this.removeNull(data.data[response]);
-        arrays.forEach(e => {
-          this[name][e] = this.checkArray(this[name][e]);
-        });
-        values.forEach(e => {
-          this.fetchSelect(name, `${e}s`, e, `${e}_id`);
-        });
-        childrens.forEach(e => {
-          this.fetchChildren(name, e[0], e[1]);
+        request.get(`${name}/item/${this.$route.params.id}`).then(r => {
+          this[name] = this.removeNull(r.data[response]);
+          arrays.forEach(e => {
+            this[name][e] = this.checkArray(this[name][e]);
+          });
+          values.forEach(e => {
+            this.fetchSelect(name, `${e}s`, e, `${e}_id`);
+          });
+          childrens.forEach(e => {
+            this.fetchChildren(name, e[0], e[1]);
+          });
         });
       }
     },
-    async fetchSelect(root, list, item, value) {
-      let apidata = await api.get(`${item}/select`);
-      this[list] = apidata.data.SelectItem;
-      this.setSelect(root, list, item, value);
+    fetchSelect(root, list, item, value) {
+      request.get(`${item}/select`).then(r => {
+        this[list] = r.data.SelectItem;
+        this.setSelect(root, list, item, value);
+      });
     },
-    async fetchChildren(root, children, name) {
-      let apidata = api.get(`${root}/list/${children}/${this[root].id}`);
-      this[`${children}s`] = apidata.data[name];
+    fetchChildren(root, children, name) {
+      request.get(`${root}/list/${children}/${this[root].id}`).then(r => {
+        this[`${children}s`] = r.data[name];
+      });
     },
     setSelect(root, list, item, value) {
       this[root][item] = this[list].find(v => v.id === this[root][value]);
@@ -42,13 +46,10 @@ export default {
       });
       return values;
     },
-    async postItem(url, data) {
-      let apidata = await api.post(url, data);
-      console.log(apidata);
+    postItem(url, data) {
+      request.post(url, data).then(() => {
+        this.close();
+      });
     }
-    // onSelect (item, name, itemName) {
-    //   this[name][itemName] = item
-    //   this[name][`${itemName}_id`] = item.id
-    // }
   }
 };

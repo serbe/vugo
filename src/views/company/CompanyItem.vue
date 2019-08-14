@@ -178,29 +178,12 @@ export default {
       this.company.scope_id = item.id;
     },
     submit() {
-      let url = `/api/go/company/item/${this.$route.params.id}`;
-      // let method = "POST";
-      // if (this.$route.params.id !== "0") {
-      // url = `${url}/${this.$route.params.id}`;
-      // method = "PUT";
-      // }
+      let url = `/company/item/${this.$route.params.id}`;
       const values = this.company;
-      values.emails = this.filterArray(values.emails, "email");
-      values.phones = this.filterArray(values.phones, "phone");
-      values.faxes = this.filterArray(values.faxes, "phone");
-      let data = JSON.stringify({ Company: values });
-      console.log(data);
-      // fetch(url, {
-      //   method: 'POST', // or 'PUT'
-      //   body: data, // data can be `string` or {object}!
-      //   headers:{
-      //     'Accept': 'application/json, text/plain, */*',
-      //     'Content-Type': 'application/json'
-      //   }
-      // }).then(res => res.json())
-      // .then(response => console.log('Success:', JSON.stringify(response)))
-      // .catch(error => console.error('Error:', error));
-      this.postItem(url, data);
+      values.emails = this.stringArray(values.emails);
+      values.phones = this.numbersArray(values.phones);
+      values.faxes = this.numbersArray(values.faxes);
+      this.postItem(url, JSON.stringify({ Company: values }));
     },
     delete() {
       //  console.log('delete!');
