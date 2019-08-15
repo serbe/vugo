@@ -1,4 +1,4 @@
-import axios from "axios";
+import request from "@/request";
 
 export default {
   data() {
@@ -17,8 +17,8 @@ export default {
         name = url;
       }
       if (!this.fetched) {
-        axios.get(url, this.config).then(r => {
-          this.list = this.createList(r.data.data[name]);
+        request.get(url).then(r => {
+          this.list = this.createList(r.data[name]);
           this.fetched = true;
         });
       }
@@ -27,8 +27,8 @@ export default {
       if (!name) {
         name = url;
       }
-      axios.get(url, this.config).then(r => {
-        this[name] = r.data.data[name];
+      request.get(url).then(r => {
+        this[name] = r.data[name];
       });
     }
   }

@@ -40,7 +40,6 @@
 import BulmaInput from "@/components/BulmaInput";
 import BulmaButton from "@/components/BulmaButton";
 import auth from "@/auth";
-import axios from "axios";
 
 export default {
   name: "LoginPage",
@@ -68,11 +67,12 @@ export default {
         password: this.pass
       };
       let rightPage = auth.right_page;
-      axios({
+      let settings = {
         url,
         method: "POST",
         data
-      }).then(r => {
+      };
+      fetch(url, settings).then(r => {
         if (r.data.token && r.data.token !== "") {
           auth.login(r.data);
           router.push({ name: rightPage });
