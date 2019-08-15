@@ -133,8 +133,9 @@ export default {
   },
   methods: {
     submit() {
-      const values = this.siren;
-      let url = `/siren/item/${this.$route.params.id}`;
+      let values = this.siren;
+      values = this.cleanFields(values);
+      let url = `siren/item/${this.$route.params.id}`;
       this.postItem(url, JSON.stringify({ Siren: values }))
         .then()
         .catch(e => console.log("error post", e));

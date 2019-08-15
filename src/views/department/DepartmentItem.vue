@@ -61,8 +61,9 @@ export default {
   },
   methods: {
     submit() {
-      const values = this.department;
-      let url = `/department/item/${this.$route.params.id}`;
+      let values = this.department;
+      values = this.cleanFields(values);
+      let url = `department/item/${this.$route.params.id}`;
       this.postItem(url, JSON.stringify({ Department: values }))
         .then()
         .catch(e => console.log("error post", e));

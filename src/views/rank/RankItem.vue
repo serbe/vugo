@@ -61,8 +61,9 @@ export default {
   },
   methods: {
     submit() {
-      const values = this.rank;
-      let url = `/rank/item/${this.$route.params.id}`;
+      let values = this.rank;
+      values = this.cleanFields(values);
+      let url = `rank/item/${this.$route.params.id}`;
       this.postItem(url, JSON.stringify({ Rank: values }))
         .then()
         .catch(e => console.log("error post", e));

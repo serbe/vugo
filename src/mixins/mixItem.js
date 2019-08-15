@@ -47,6 +47,17 @@ export default {
     },
     postItem(url, data) {
       return request.post(url, data);
+    },
+    cleanFields(values) {
+      Object.keys(values).forEach(key => {
+        if (
+          !Array.isArray(values[key]) &&
+          (values[key] === undefined || values[key] === "")
+        ) {
+          delete values[key];
+        }
+      });
+      return values;
     }
   }
 };

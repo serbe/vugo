@@ -95,8 +95,9 @@ export default {
   },
   methods: {
     submit() {
-      const values = this.education;
-      let url = `/education/item/${this.$route.params.id}`;
+      let values = this.education;
+      values = this.cleanFields(values);
+      let url = `education/item/${this.$route.params.id}`;
       this.postItem(url, JSON.stringify({ Education: values }))
         .then()
         .catch(e => console.log("error post", e));

@@ -176,11 +176,12 @@ export default {
       this.company.scope_id = item.id;
     },
     submit() {
-      const values = this.company;
+      let values = this.company;
       values.emails = this.stringArray(values.emails);
       values.phones = this.numberArray(values.phones);
       values.faxes = this.numberArray(values.faxes);
-      let url = `/company/item/${this.$route.params.id}`;
+      values = this.cleanFields(values);
+      let url = `company/item/${this.$route.params.id}`;
       this.postItem(url, JSON.stringify({ Company: values }))
         .then()
         .catch(e => console.log("error post", e));

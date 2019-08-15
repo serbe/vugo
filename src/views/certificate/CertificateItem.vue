@@ -101,8 +101,9 @@ export default {
       this.certificate[`${itemName}_id`] = item.id;
     },
     submit() {
-      const values = this.certificate;
-      let url = `/certificate/item/${this.$route.params.id}`;
+      let values = this.certificate;
+      values = this.cleanFields(values);
+      let url = `certificate/item/${this.$route.params.id}`;
       this.postItem(url, JSON.stringify({ Certificate: values }))
         .then()
         .catch(e => console.log("error post", e));

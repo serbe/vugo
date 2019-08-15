@@ -222,12 +222,13 @@ export default {
       this.contact[`${itemName}_id`] = item.id;
     },
     submit() {
-      const values = this.contact;
+      let values = this.contact;
       values.emails = this.stringArray(values.emails);
       values.phones = this.numberArray(values.phones);
       values.faxes = this.numberArray(values.faxes);
-      let url = `/contact/item/${this.$route.params.id}`;
-      this.postItem(url, JSON.stringify({ Contact: values }))
+      let contact = this.cleanFields(values);
+      let url = `contact/item/${this.$route.params.id}`;
+      this.postItem(url, JSON.stringify({ Contact: contact }))
         .then()
         .catch(e => console.log("error post", e));
       this.$router.push("/contacts");

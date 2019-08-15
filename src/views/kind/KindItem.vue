@@ -68,8 +68,9 @@ export default {
   },
   methods: {
     submit() {
-      const values = this.kind;
-      let url = `/kind/item/${this.$route.params.id}`;
+      let values = this.kind;
+      values = this.cleanFields(values);
+      let url = `kind/item/${this.$route.params.id}`;
       this.postItem(url, JSON.stringify({ Kind: values }))
         .then()
         .catch(e => console.log("error post", e));

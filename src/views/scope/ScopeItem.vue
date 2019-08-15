@@ -61,8 +61,9 @@ export default {
   },
   methods: {
     submit() {
-      const values = this.scope;
-      let url = `/scope/item/${this.$route.params.id}`;
+      let values = this.scope;
+      values = this.cleanFields(values);
+      let url = `scope/item/${this.$route.params.id}`;
       this.postItem(url, JSON.stringify({ Scope: values }))
         .then()
         .catch(e => console.log("error post", e));

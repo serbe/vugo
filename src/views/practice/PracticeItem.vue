@@ -95,8 +95,9 @@ export default {
       this.practice[`${itemName}_id`] = item.id;
     },
     submit() {
-      const values = this.practice;
-      let url = `/practice/item/${this.$route.params.id}`;
+      let values = this.practice;
+      values = this.cleanFields(values);
+      let url = `practice/item/${this.$route.params.id}`;
       this.postItem(url, JSON.stringify({ Practice: values }))
         .then()
         .catch(e => console.log("error post", e));
