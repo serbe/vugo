@@ -101,6 +101,7 @@
 
 <script>
 import auth from "@/auth";
+import mixItem from "@/mixins/mixItem";
 import BulmaButton from "@/components/BulmaButton";
 
 export default {
@@ -116,9 +117,14 @@ export default {
       user: auth.user
     };
   },
+  mixins: [mixItem],
   methods: {
     logout() {
       auth.logout();
+      let url = `logout`;
+      this.postItem(url, JSON.stringify(true))
+        .then()
+        .catch(e => console.log("error login", e));
       this.$router.push({ name: "/login" });
     },
     toggle() {

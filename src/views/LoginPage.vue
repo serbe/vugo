@@ -39,7 +39,8 @@
 <script>
 import BulmaInput from "@/components/BulmaInput";
 import BulmaButton from "@/components/BulmaButton";
-import auth from "@/auth";
+import mixItem from "@/mixins/mixItem";
+// import auth from "@/auth";
 
 export default {
   name: "LoginPage",
@@ -55,29 +56,21 @@ export default {
       rememberMe: true
     };
   },
+  mixins: [mixItem],
   mounted() {
     // Can set query parameter here for auth redirect or just do it silently in login redirect.
   },
   methods: {
     login() {
-      const router = this.$router;
-      let url = "/edds/api/login";
+      // const router = this.$router;
       const data = {
         username: this.name,
         password: this.pass
       };
-      let rightPage = auth.right_page;
-      let settings = {
-        url,
-        method: "POST",
-        data
-      };
-      fetch(url, settings).then(r => {
-        if (r.data.token && r.data.token !== "") {
-          auth.login(r.data);
-          router.push({ name: rightPage });
-        }
-      });
+      let url = `login`;
+      this.postItem(url, JSON.stringify(data))
+        .then()
+        .catch(e => console.log("error login", e));
     },
     close_login() {
       this.$router.push("/");
