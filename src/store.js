@@ -31,6 +31,7 @@ const store = new Vuex.Store({
   },
   actions: {
     add_from(context, path) {
+      // console.log(path);
       context.commit("push", path);
     },
     login({ commit }, data) {

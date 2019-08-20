@@ -279,6 +279,7 @@ let router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
+  store.dispatch("add_from", from.path);
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn) {
       next();

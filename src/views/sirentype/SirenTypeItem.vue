@@ -67,13 +67,13 @@ export default {
   },
   methods: {
     submit() {
-      let values = this.sirenType;
+      let values = this.siren_type;
       values = this.cleanFields(values);
       let url = `siren_type/item/${this.$route.params.id}`;
       this.postItem(url, { SirenType: values })
         .then()
         .catch(e => console.log("error post", e));
-      this.$router.push("/siren_types");
+      this.$router.push("/sirentypes");
     },
     // close() {
     //   this.$router.back();
