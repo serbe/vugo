@@ -57,7 +57,6 @@
 </template>
 
 <script>
-import auth from "@/auth";
 import mixList from "@/mixins/mixList";
 
 export default {
@@ -67,8 +66,7 @@ export default {
       practicesFetched: false,
       educationsFetched: false,
       PracticeShort: [],
-      EducationShort: [],
-      user: auth.user
+      EducationShort: []
     };
   },
   mixins: [mixList],

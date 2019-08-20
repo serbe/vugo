@@ -40,7 +40,6 @@
 import BulmaInput from "@/components/BulmaInput";
 import BulmaButton from "@/components/BulmaButton";
 import mixItem from "@/mixins/mixItem";
-// import auth from "@/auth";
 
 export default {
   name: "LoginPage",
@@ -67,10 +66,9 @@ export default {
         username: this.name,
         password: this.pass
       };
-      let url = `login`;
-      this.postItem(url, JSON.stringify(data))
-        .then()
-        .catch(e => console.log("error login", e));
+      this.$store.dispatch("login", data).then(() => {
+        this.$router.push("/");
+      });
     },
     close_login() {
       this.$router.push("/");

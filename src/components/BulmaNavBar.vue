@@ -2,7 +2,7 @@
   <div class="container">
     <nav class="navbar">
       <div class="navbar-brand">
-        <template v-if="user.authenticated">
+        <template v-if="isLoggedIn">
           <router-link to="/" class="navbar-item" exact>ЕДДС</router-link>
           <router-link to="/contacts" class="navbar-item">Контакты</router-link>
           <router-link to="/companys" class="navbar-item"
@@ -30,7 +30,7 @@
 
       <div id="navMenu" class="navbar-menu" :class="active">
         <div class="navbar-start">
-          <template v-if="user.authenticated">
+          <template v-if="isLoggedIn">
             <router-link to="/sirens" class="navbar-item">Сирены</router-link>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Справочники</a>
@@ -79,11 +79,11 @@
             </div>
           </template>
         </div>
-        <div class="navbar-end">
+        <div v-if="isLoggedIn" class="navbar-end">
           <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">{{ user.name }}</a>
+            <a class="navbar-link">{{ user }}</a>
             <div class="navbar-dropdown is-right">
-              <div v-if="user.authenticated" class="field navbar-item">
+              <div class="field navbar-item">
                 <bulma-button
                   text="Выход"
                   color="info"
@@ -100,7 +100,6 @@
 </template>
 
 <script>
-import auth from "@/auth";
 import mixItem from "@/mixins/mixItem";
 import BulmaButton from "@/components/BulmaButton";
 
@@ -113,19 +112,23 @@ export default {
     return {
       active: "",
       tabShow: false,
-      tabSirenShow: false,
-      user: auth.user
+      tabSirenShow: false
     };
   },
   mixins: [mixItem],
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    },
+    user() {
+      return this.$store.getters.loggedUser;
+    }
+  },
   methods: {
     logout() {
-      auth.logout();
-      let url = `logout`;
-      this.postItem(url, JSON.stringify(true))
-        .then()
-        .catch(e => console.log("error login", e));
-      this.$router.push({ name: "/login" });
+      this.$store.dispatch("logout").then(() => {
+        this.$router.push("/login");
+      });
     },
     toggle() {
       this.active = this.active === "" ? "is-active" : "";

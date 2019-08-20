@@ -1,9 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
+import store from "./store.js";
 
 Vue.use(Router);
 
-export default new Router({
+let router = new Router({
   linkActiveClass: "is-active",
   mode: "history",
   base: process.env.BASE_URL,
@@ -276,3 +277,38 @@ export default new Router({
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next();
+      return;
+    }
+    next("/login");
+  } else {
+    next();
+  }
+});
+
+// router.beforeEach((to, from, next) => {
+//   store.dispatch("add_from", from.path);
+//   if (to.matched.some(record => record.meta.title)) {
+//     document.title = to.meta.title;
+//   }
+//   if (to.matched.some(record => record.meta.requiresAuth)) {
+//     if (!auth.isAuth()) {
+//       if (to.name !== "login") {
+//         auth.right_page = to.name;
+//       }
+//       next({
+//         path: "/login"
+//       });
+//     } else {
+//       next();
+//     }
+//   } else {
+//     next();
+//   }
+// });
+
+export default router;

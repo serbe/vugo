@@ -1,4 +1,4 @@
-const { UnusedFilesWebpackPlugin } = require("unused-files-webpack-plugin");
+// const { UnusedFilesWebpackPlugin } = require("unused-files-webpack-plugin");
 
 module.exports = {
   devServer: {
@@ -11,6 +11,6 @@ module.exports = {
     }
   },
   configureWebpack: {
-    plugins: [new UnusedFilesWebpackPlugin()]
+    // plugins: [new UnusedFilesWebpackPlugin()]
   }
 };

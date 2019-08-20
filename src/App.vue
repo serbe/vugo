@@ -19,6 +19,21 @@ export default {
   name: "app",
   components: {
     "bulma-navbar": BulmaNavBar
+  },
+  mounted() {
+    this.$store
+      .dispatch("check")
+      .then(() => {
+        // this.$router.push("/");
+      })
+      .catch(() => {
+        this.$router.push("/login");
+      });
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    }
   }
 };
 </script>
