@@ -136,7 +136,7 @@ export default {
       let values = this.siren;
       values = this.cleanFields(values);
       let url = `siren/item/${this.$route.params.id}`;
-      this.postItem(url, JSON.stringify({ Siren: values }))
+      this.postItem(url, { Siren: values })
         .then()
         .catch(e => console.log("error post", e));
       this.$router.push("/sirens");

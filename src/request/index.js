@@ -1,27 +1,24 @@
 let baseURL = "/api/go/";
 
 export default {
-  async get(url) {
+  get(url) {
     const settings = {
       method: "GET",
       headers: { "Cache-Control": "no-cache" }
     };
-    let response = await fetch(baseURL + url, settings);
-    if (response.ok) return await response.json();
-    throw new Error(response.status);
+    return fetch(baseURL + url, settings).then(r => r.json());
   },
-  async post(url, data) {
+  post(url, data) {
     const settings = {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body: data
+      body: JSON.stringify(data)
     };
-    const response = await fetch(baseURL + url, settings);
-    if (response.ok) return response;
-    throw new Error(response.status);
+    return fetch(baseURL + url, settings).then(r => r.json());
+    // .then(r => r.json())
   }
 };
 

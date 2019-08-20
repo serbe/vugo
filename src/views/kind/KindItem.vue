@@ -71,7 +71,7 @@ export default {
       let values = this.kind;
       values = this.cleanFields(values);
       let url = `kind/item/${this.$route.params.id}`;
-      this.postItem(url, JSON.stringify({ Kind: values }))
+      this.postItem(url, { Kind: values })
         .then()
         .catch(e => console.log("error post", e));
       this.$router.push("/kinds");

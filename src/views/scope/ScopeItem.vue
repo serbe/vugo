@@ -64,7 +64,7 @@ export default {
       let values = this.scope;
       values = this.cleanFields(values);
       let url = `scope/item/${this.$route.params.id}`;
-      this.postItem(url, JSON.stringify({ Scope: values }))
+      this.postItem(url, { Scope: values })
         .then()
         .catch(e => console.log("error post", e));
       this.$router.push("/scopes");

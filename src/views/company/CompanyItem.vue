@@ -182,7 +182,7 @@ export default {
       values.faxes = this.numberArray(values.faxes);
       values = this.cleanFields(values);
       let url = `company/item/${this.$route.params.id}`;
-      this.postItem(url, JSON.stringify({ Company: values }))
+      this.postItem(url, { Company: values })
         .then()
         .catch(e => console.log("error post", e));
       this.$router.push("/companys");

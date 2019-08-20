@@ -228,7 +228,7 @@ export default {
       values.faxes = this.numberArray(values.faxes);
       let contact = this.cleanFields(values);
       let url = `contact/item/${this.$route.params.id}`;
-      this.postItem(url, JSON.stringify({ Contact: contact }))
+      this.postItem(url, { Contact: contact })
         .then()
         .catch(e => console.log("error post", e));
       this.$router.push("/contacts");

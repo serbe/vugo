@@ -70,7 +70,7 @@ export default {
       let values = this.sirenType;
       values = this.cleanFields(values);
       let url = `siren_type/item/${this.$route.params.id}`;
-      this.postItem(url, JSON.stringify({ SirenType: values }))
+      this.postItem(url, { SirenType: values })
         .then()
         .catch(e => console.log("error post", e));
       this.$router.push("/siren_types");

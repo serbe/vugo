@@ -98,7 +98,7 @@ export default {
       let values = this.practice;
       values = this.cleanFields(values);
       let url = `practice/item/${this.$route.params.id}`;
-      this.postItem(url, JSON.stringify({ Practice: values }))
+      this.postItem(url, { Practice: values })
         .then()
         .catch(e => console.log("error post", e));
       this.$router.push("/practices");

@@ -98,7 +98,7 @@ export default {
       let values = this.education;
       values = this.cleanFields(values);
       let url = `education/item/${this.$route.params.id}`;
-      this.postItem(url, JSON.stringify({ Education: values }))
+      this.postItem(url, { Education: values })
         .then()
         .catch(e => console.log("error post", e));
       this.$router.push("/educations");
