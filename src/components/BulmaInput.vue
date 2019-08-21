@@ -1,81 +1,42 @@
 <template>
   <div class="field">
     <label v-if="getLabel" class="label" key="InputLabel">{{ getLabel }}</label>
-    <div :class="classList">
-      <a v-if="hyper" :href="hyper">
-        <input
-          ref="input"
-          :class="inputClassList"
-          :type="type"
-          :name="name"
-          :placeholder="placeholder"
-          :value="value"
-          :disabled="disabled"
-          :readonly="readonly"
-          :autocomplete="autocomplete"
-          @input="onInput"
-          @blur="onBlur"
-          @keyup="onKeyup"
-          :required="required"
-          :autofocus="autofocus"
-        />
-        <bulma-icon
-          v-if="iconLeft"
-          :size="size"
-          position="left"
-          :icon="iconLeft"
-          :color="color"
-          key="InputIconLeft"
-        />
-        <bulma-icon
-          v-if="iconRight"
-          :size="size"
-          position="right"
-          :icon="iconRight"
-          :color="color"
-          key="InputIconRight"
-        />
-        <p v-if="isError" class="help is-danger" key="InputError">
-          {{ error }}
-        </p>
-      </a>
-      <template v-else>
-        <input
-          ref="input"
-          :class="inputClassList"
-          :type="type"
-          :name="name"
-          :placeholder="placeholder"
-          :value="value"
-          :disabled="disabled"
-          :readonly="readonly"
-          :autocomplete="autocomplete"
-          @input="onInput"
-          @blur="onBlur"
-          @keyup="onKeyup"
-          :required="required"
-          :autofocus="autofocus"
-        />
-        <bulma-icon
-          v-if="iconLeft"
-          :size="size"
-          position="left"
-          :icon="iconLeft"
-          :color="color"
-          key="InputIconLeft"
-        />
-        <bulma-icon
-          v-if="iconRight"
-          :size="size"
-          position="right"
-          :icon="iconRight"
-          :color="color"
-          key="InputIconRight"
-        />
-        <p v-if="isError" class="help is-danger" key="InputError">
-          {{ error }}
-        </p>
-      </template>
+    <div :class="classList" @click="click">
+      <input
+        ref="input"
+        :class="inputClassList"
+        :type="type"
+        :name="name"
+        :placeholder="placeholder"
+        :value="value"
+        :disabled="disabled"
+        :readonly="readonly"
+        :autocomplete="autocomplete"
+        @input="onInput"
+        @blur="onBlur"
+        @keyup="onKeyup"
+        :required="required"
+        :autofocus="autofocus"
+      />
+      <bulma-icon
+        v-if="iconLeft"
+        :size="size"
+        position="left"
+        :icon="iconLeft"
+        :color="color"
+        key="InputIconLeft"
+      />
+      <bulma-icon
+        v-if="iconRight"
+        :size="size"
+        position="right"
+        :icon="iconRight"
+        :color="color"
+        key="InputIconRight"
+      />
+      <p v-if="isError" class="help is-danger" key="InputError">
+        {{ error }}
+      </p>
     </div>
   </div>
 </template>
@@ -228,6 +189,11 @@ export default {
     }
   },
   methods: {
+    click() {
+      if (this.hyper) {
+        this.$router.push(this.hyper);
+      }
+    },
     onInput(event) {
       const val = event.target.value;
       this.$emit("input", val);
