@@ -104,18 +104,10 @@ export default {
       let values = this.certificate;
       values = this.cleanFields(values);
       let url = `certificate/item/${this.$route.params.id}`;
-      this.postItem(url, { Certificate: values })
-        .then()
-        .catch(e => console.log("error post", e));
-      this.$router.push("/certificates");
+      this.postItem(url, { Certificate: values });
+      this.close();
     },
-    // close() {
-    //   // store.commit('increment', this.$router.);
-    //   this.$router.back();
-    // },
-    delete() {
-      // console.log('delete!');
-    }
+    delete() {}
   }
 };
 </script>

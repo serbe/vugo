@@ -1,5 +1,3 @@
-import store from "../store";
-
 export default {
   methods: {
     checkArray(values) {
@@ -36,10 +34,7 @@ export default {
     //   return v;
     // },
     close() {
-      let current_path = this.$router.currentRoute.path;
-      let last = store.getters.last;
-      store.dispatch("add_from", current_path);
-      this.$router.push(last);
+      this.$router.back();
     }
   }
 };

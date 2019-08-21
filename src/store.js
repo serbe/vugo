@@ -6,14 +6,10 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    history: ["/"],
     status: "",
     user: localStorage.getItem("user") || ""
   },
   mutations: {
-    push(state, path) {
-      state.history.push(path);
-    },
     auth_request(state) {
       state.status = "loading";
     },
@@ -30,10 +26,6 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    add_from(context, path) {
-      // console.log(path);
-      context.commit("push", path);
-    },
     login({ commit }, data) {
       return new Promise((resolve, reject) => {
         commit("auth_request");
@@ -101,13 +93,6 @@ const store = new Vuex.Store({
     }
   },
   getters: {
-    last: state => {
-      if (state && state.history && state.history.length > 1) {
-        return state.history[state.history.length - 1];
-      } else {
-        return "/";
-      }
-    },
     isLoggedIn: state => !!state.user,
     loggedUser: state => state.user,
     authStatus: state => state.status

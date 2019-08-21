@@ -64,17 +64,10 @@ export default {
       let values = this.rank;
       values = this.cleanFields(values);
       let url = `rank/item/${this.$route.params.id}`;
-      this.postItem(url, { Rank: values })
-        .then()
-        .catch(e => console.log("error post", e));
-      this.$router.push("/ranks");
+      this.postItem(url, { Rank: values });
+      this.close();
     },
-    // close() {
-    //   this.$router.back();
-    // },
-    delete() {
-      // console.log('delete!');
-    }
+    delete() {}
   }
 };
 </script>

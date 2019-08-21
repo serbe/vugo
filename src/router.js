@@ -279,7 +279,6 @@ let router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  store.dispatch("add_from", from.path);
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn) {
       next();
@@ -290,26 +289,5 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
-
-// router.beforeEach((to, from, next) => {
-//   store.dispatch("add_from", from.path);
-//   if (to.matched.some(record => record.meta.title)) {
-//     document.title = to.meta.title;
-//   }
-//   if (to.matched.some(record => record.meta.requiresAuth)) {
-//     if (!auth.isAuth()) {
-//       if (to.name !== "login") {
-//         auth.right_page = to.name;
-//       }
-//       next({
-//         path: "/login"
-//       });
-//     } else {
-//       next();
-//     }
-//   } else {
-//     next();
-//   }
-// });
 
 export default router;

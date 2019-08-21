@@ -182,14 +182,10 @@ export default {
       values.faxes = this.numberArray(values.faxes);
       values = this.cleanFields(values);
       let url = `company/item/${this.$route.params.id}`;
-      this.postItem(url, { Company: values })
-        .then()
-        .catch(e => console.log("error post", e));
-      this.$router.push("/companys");
+      this.postItem(url, { Company: values });
+      this.close();
     },
-    delete() {
-      //  console.log('delete!');
-    },
+    delete() {},
     customLabel(val) {
       return val.name;
     }

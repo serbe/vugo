@@ -177,7 +177,6 @@ import BulmaButton from "@/components/BulmaButton";
 import BulmaDate from "@/components/BulmaDate";
 import BulmaInput from "@/components/BulmaInput";
 import BulmaSelect from "@/components/BulmaSelect";
-// import Datepicker from 'vue-bulma-datepicker';
 import Contact from "@/objects/Contact";
 import SelectItem from "@/objects/SelectItem";
 import mixin from "@/mixins/funcs";
@@ -186,7 +185,6 @@ import mixItem from "@/mixins/mixItem";
 export default {
   name: "ContactItem",
   components: {
-    // 'bulma-calendar': BulmaCalendar,
     "bulma-button": BulmaButton,
     "bulma-date": BulmaDate,
     "bulma-input": BulmaInput,
@@ -228,17 +226,10 @@ export default {
       values.faxes = this.numberArray(values.faxes);
       let contact = this.cleanFields(values);
       let url = `contact/item/${this.$route.params.id}`;
-      this.postItem(url, { Contact: contact })
-        .then()
-        .catch(e => console.log("error post", e));
-      this.$router.push("/contacts");
+      this.postItem(url, { Contact: contact });
+      this.close();
     },
-    // close() {
-    //   window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
-    // },
-    delete() {
-      // console.log('delete!');
-    }
+    delete() {}
   }
 };
 </script>

@@ -23,9 +23,7 @@ export default {
   mounted() {
     this.$store
       .dispatch("check")
-      .then(() => {
-        // this.$router.push("/");
-      })
+      .then()
       .catch(() => {
         this.$router.push("/login");
       });

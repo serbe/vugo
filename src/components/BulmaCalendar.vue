@@ -54,7 +54,6 @@
 </template>
 
 <script>
-// import DatePicker from 'bulma-calendar/datepicker'
 import { DatepickerLangs } from "./calendar";
 export default {
   name: "BulmaCalentar",
@@ -75,21 +74,16 @@ export default {
   },
   mounted() {
     this.datepicker_langs = DatepickerLangs;
-    // this._id = 'datePicker' + ( new Date() ).getTime() + Math.floor(Math.random() * Math.floor(9999));
     this.lang =
       typeof this.datepicker_langs[this.lang] !== "undefined"
         ? this.lang
         : "ru";
-    // Set the startDate to the input value
     if (this.element.value) {
       this.options.startDate = new Date(this.element.value);
     }
     this.month = this.options.startDate.getMonth();
     this.year = this.options.startDate.getFullYear();
     this.day = this.options.startDate.getDate();
-    // this.open = false
-    // this._build()
-    // this._bindEvents()
   },
   methods: {
     getDayName(day) {

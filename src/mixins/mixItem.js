@@ -46,7 +46,10 @@ export default {
       return values;
     },
     postItem(url, data) {
-      return request.post(url, data);
+      request
+        .post(url, data)
+        .then()
+        .catch(e => console.log("error post", e));
     },
     cleanFields(values) {
       Object.keys(values).forEach(key => {

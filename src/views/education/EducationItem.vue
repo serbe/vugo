@@ -98,21 +98,14 @@ export default {
       let values = this.education;
       values = this.cleanFields(values);
       let url = `education/item/${this.$route.params.id}`;
-      this.postItem(url, { Education: values })
-        .then()
-        .catch(e => console.log("error post", e));
-      this.$router.push("/educations");
+      this.postItem(url, { Education: values });
+      this.close();
     },
     onSelect(item, itemName) {
       this.education[itemName] = item;
       this.education[`${itemName}_id`] = item.id;
     },
-    // close() {
-    //   this.$router.back();
-    // },
-    delete() {
-      // console.log('delete!')
-    }
+    delete() {}
   }
 };
 </script>

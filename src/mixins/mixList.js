@@ -5,7 +5,7 @@ export default {
     return {
       fetched: false,
       config: {
-        headers: { "Cache-Control": "no-cache" }, // can setup to prevent all caching
+        headers: { "Cache-Control": "no-cache" },
         baseURL: "/api/go/"
       },
       list: []

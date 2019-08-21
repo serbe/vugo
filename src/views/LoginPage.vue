@@ -56,22 +56,18 @@ export default {
     };
   },
   mixins: [mixItem],
-  mounted() {
-    // Can set query parameter here for auth redirect or just do it silently in login redirect.
-  },
   methods: {
     login() {
-      // const router = this.$router;
       const data = {
         username: this.name,
         password: this.pass
       };
       this.$store.dispatch("login", data).then(() => {
-        this.$router.push("/");
+        this.$router.back();
       });
     },
     close_login() {
-      this.$router.push("/");
+      this.$router.back();
     },
     onKeyup(event) {
       if (event.event.key === "Enter") {

@@ -92,11 +92,6 @@
 </template>
 
 <script>
-// Radio     string    `sql:"radio,null"      json:"radio"      form:"radio"      query:"radio"`
-// Panel      string    `sql:"desk,null"       json:"desk"       form:"desk"       query:"desk"`
-// Stage     int64     `sql:"stage,null"      json:"stage"      form:"stage"      query:"stage"`
-// Own       string    `sql:"own,null"        json:"own"        form:"own"        query:"own"`
-
 import BulmaButton from "@/components/BulmaButton";
 import BulmaInput from "@/components/BulmaInput";
 import BulmaSelect from "@/components/BulmaSelect";
@@ -136,21 +131,14 @@ export default {
       let values = this.siren;
       values = this.cleanFields(values);
       let url = `siren/item/${this.$route.params.id}`;
-      this.postItem(url, { Siren: values })
-        .then()
-        .catch(e => console.log("error post", e));
-      this.$router.push("/sirens");
+      this.postItem(url, { Siren: values });
+      this.close();
     },
-    // close() {
-    //   this.$router.back();
-    // },
     onSelect(item, itemName) {
       this.siren[itemName] = item;
       this.siren[`${itemName}_id`] = item.id;
     },
-    delete() {
-      // console.log('delete!');
-    }
+    delete() {}
   }
 };
 </script>

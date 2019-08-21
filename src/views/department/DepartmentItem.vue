@@ -64,17 +64,10 @@ export default {
       let values = this.department;
       values = this.cleanFields(values);
       let url = `department/item/${this.$route.params.id}`;
-      this.postItem(url, { Department: values })
-        .then()
-        .catch(e => console.log("error post", e));
-      this.$router.push("/departments");
+      this.postItem(url, { Department: values });
+      this.close();
     },
-    // close() {
-    //   this.$router.back();
-    // },
-    delete() {
-      // console.log('delete!')
-    }
+    delete() {}
   }
 };
 </script>
