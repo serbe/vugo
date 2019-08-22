@@ -8,8 +8,7 @@
     ></bulma-input>
 
     <bulma-switch
-      :checked="post.go"
-      v-model="post.go"
+      :value="true"
       label="Должность по гражданской обороне"
     ></bulma-switch>
 
@@ -69,14 +68,7 @@ export default {
   },
   methods: {
     submit() {
-      let values = this.post;
-      if (values.go === "") {
-        values.go = false;
-      }
-      values = this.cleanFields(values);
-      let url = `post/item/${this.$route.params.id}`;
-      this.postItem(url, { Post: values });
-      this.close();
+      this.submitItem("post", "Post", [], []);
     },
     delete() {}
   }

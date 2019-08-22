@@ -95,11 +95,7 @@ export default {
       this.practice[`${itemName}_id`] = item.id;
     },
     submit() {
-      let values = this.practice;
-      values = this.cleanFields(values);
-      let url = `practice/item/${this.$route.params.id}`;
-      this.postItem(url, { Practice: values });
-      this.close();
+      this.submitItem("practice", "Practice", [], []);
     },
     delete() {}
   }

@@ -220,14 +220,7 @@ export default {
       this.contact[`${itemName}_id`] = item.id;
     },
     submit() {
-      let values = this.contact;
-      values.emails = this.stringArray(values.emails);
-      values.phones = this.numberArray(values.phones);
-      values.faxes = this.numberArray(values.faxes);
-      let contact = this.cleanFields(values);
-      let url = `contact/item/${this.$route.params.id}`;
-      this.postItem(url, { Contact: contact });
-      this.close();
+      this.submitItem("contact", "Contact", ["emails"], ["phones", "faxes"]);
     },
     delete() {}
   }

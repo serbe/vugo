@@ -101,11 +101,7 @@ export default {
       this.certificate[`${itemName}_id`] = item.id;
     },
     submit() {
-      let values = this.certificate;
-      values = this.cleanFields(values);
-      let url = `certificate/item/${this.$route.params.id}`;
-      this.postItem(url, { Certificate: values });
-      this.close();
+      this.submitItem("certificate", "Certificate", [], []);
     },
     delete() {}
   }

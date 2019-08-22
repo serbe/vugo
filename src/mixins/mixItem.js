@@ -61,6 +61,22 @@ export default {
         }
       });
       return values;
+    },
+    submitItem(name, jsonName, stringChildrens, numberChildrens) {
+      let values = {};
+      values[jsonName] = this[name];
+      stringChildrens.forEach(e => {
+        values[jsonName][e] = values[jsonName][e].filter(e => e !== "");
+      });
+      numberChildrens.forEach(e => {
+        values[jsonName][e] = values[jsonName][e]
+          .filter(e => e !== "")
+          .map(e => parseInt(e, 10));
+      });
+      values[jsonName] = this.cleanFields(values[jsonName]);
+      let url = `${name}/item/${this.$route.params.id}`;
+      this.postItem(url, values);
+      this.close();
     }
   }
 };

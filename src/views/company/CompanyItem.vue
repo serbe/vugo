@@ -176,14 +176,7 @@ export default {
       this.company.scope_id = item.id;
     },
     submit() {
-      let values = this.company;
-      values.emails = this.stringArray(values.emails);
-      values.phones = this.numberArray(values.phones);
-      values.faxes = this.numberArray(values.faxes);
-      values = this.cleanFields(values);
-      let url = `company/item/${this.$route.params.id}`;
-      this.postItem(url, { Company: values });
-      this.close();
+      this.submitItem("company", "Company", ["emails"], ["phones", "faxes"]);
     },
     delete() {},
     customLabel(val) {

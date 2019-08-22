@@ -95,11 +95,7 @@ export default {
   },
   methods: {
     submit() {
-      let values = this.education;
-      values = this.cleanFields(values);
-      let url = `education/item/${this.$route.params.id}`;
-      this.postItem(url, { Education: values });
-      this.close();
+      this.submitItem("education", "Education", [], []);
     },
     onSelect(item, itemName) {
       this.education[itemName] = item;

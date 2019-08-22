@@ -128,11 +128,7 @@ export default {
   },
   methods: {
     submit() {
-      let values = this.siren;
-      values = this.cleanFields(values);
-      let url = `siren/item/${this.$route.params.id}`;
-      this.postItem(url, { Siren: values });
-      this.close();
+      this.submitItem("siren", "Siren", [], []);
     },
     onSelect(item, itemName) {
       this.siren[itemName] = item;

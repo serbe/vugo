@@ -61,11 +61,7 @@ export default {
   },
   methods: {
     submit() {
-      let values = this.department;
-      values = this.cleanFields(values);
-      let url = `department/item/${this.$route.params.id}`;
-      this.postItem(url, { Department: values });
-      this.close();
+      this.submitItem("department", "Department", [], []);
     },
     delete() {}
   }

@@ -68,11 +68,7 @@ export default {
   },
   methods: {
     submit() {
-      let values = this.kind;
-      values = this.cleanFields(values);
-      let url = `kind/item/${this.$route.params.id}`;
-      this.postItem(url, { Kind: values });
-      this.close();
+      this.submitItem("kind", "Kind", [], []);
     },
     delete() {}
   }

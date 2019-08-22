@@ -61,11 +61,7 @@ export default {
   },
   methods: {
     submit() {
-      let values = this.scope;
-      values = this.cleanFields(values);
-      let url = `scope/item/${this.$route.params.id}`;
-      this.postItem(url, { Scope: values });
-      this.close();
+      this.submitItem("scope", "Scope", [], []);
     },
     delete() {}
   }

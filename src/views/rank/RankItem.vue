@@ -61,11 +61,7 @@ export default {
   },
   methods: {
     submit() {
-      let values = this.rank;
-      values = this.cleanFields(values);
-      let url = `rank/item/${this.$route.params.id}`;
-      this.postItem(url, { Rank: values });
-      this.close();
+      this.submitItem("rank", "Rank", [], []);
     },
     delete() {}
   }
