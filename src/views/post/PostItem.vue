@@ -8,7 +8,7 @@
     ></bulma-input>
 
     <bulma-switch
-      :value="true"
+      v-model="post.go"
       label="Должность по гражданской обороне"
     ></bulma-switch>
 

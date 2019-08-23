@@ -4,10 +4,11 @@
     <p class="control">
       <label class="switch" :class="classObject">
         <input
+          v-model="computedValue"
           type="checkbox"
+          @click.stop
           :name="name"
           :disabled="disabled"
-          v-model="value"
         />
       </label>
     </p>
@@ -18,20 +19,13 @@
 export default {
   name: "BulmaSwitch",
   props: {
+    value: Boolean,
     disabled: {
-      type: Boolean,
-      default: false
-    },
-    isFullwidth: {
       type: Boolean,
       default: false
     },
     type: String,
     size: String,
-    checked: {
-      type: Boolean,
-      default: false
-    },
     name: String,
     label: {
       type: [String, Boolean],
@@ -40,16 +34,19 @@ export default {
   },
   data() {
     return {
-      value: null
+      newValue: this.value
     };
   },
-  // beforeMount() {
-  //   this.value = this.checked;
-  // },
-  mounted() {
-    this.$emit("input", (this.value = !!this.checked));
-  },
   computed: {
+    computedValue: {
+      get() {
+        return this.newValue;
+      },
+      set(value) {
+        this.newValue = value;
+        this.$emit("input", value);
+      }
+    },
     getLabel() {
       return this.label;
     },
@@ -57,13 +54,13 @@ export default {
       return {
         [`is-${this.type}`]: this.type,
         [`is-${this.size}`]: this.size,
-        checked: this.value
+        checked: this.newValue
       };
     }
   },
   watch: {
-    value(val) {
-      this.$emit("input", val);
+    value(value) {
+      this.newValue = value;
     }
   }
 };
