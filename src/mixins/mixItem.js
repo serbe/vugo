@@ -49,7 +49,8 @@ export default {
       request
         .post(url, data)
         .then()
-        .catch(e => console.log("error post", e));
+        .catch();
+      // .catch(e => console.log("error post", e));
     },
     cleanFields(values) {
       Object.keys(values).forEach(key => {
