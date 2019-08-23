@@ -39,7 +39,7 @@ export default {
     },
     removeNull(values) {
       Object.keys(values).forEach(key => {
-        if (!values[key]) {
+        if (values[key] === null) {
           values[key] = "";
         }
       });
