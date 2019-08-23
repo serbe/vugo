@@ -13,13 +13,13 @@
       :tableData="list"
       tableClasses="is-narrow is-striped fullwidth"
       :headClasses="[
-        '',
+        'min200',
         'is-hidden-mobile',
         'is-hidden-touch',
-        'w9 nowrap',
-        'is-hidden-mobile w9 nowrap'
+        'w9 nowrap min130',
+        'is-hidden-mobile w9 nowrap min130'
       ]"
-      :cellTypes="['text', 'text', 'text', 'array', 'array']"
+      :cellTypes="['text', 'text', 'text', 'phones', 'phones']"
       pagination
       hyper
       search
@@ -64,3 +64,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.min130 {
+  min-width: 130px !important;
+}
+
+.min200 {
+  min-width: 200px !important;
+}
+</style>

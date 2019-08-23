@@ -24,11 +24,11 @@
         '',
         'is-hidden-touch',
         'is-hidden-mobile',
-        'w9 nowrap',
-        'is-hidden-touch w9 nowrap',
-        'is-hidden-touch is-hidden-desktop-only w9 nowrap'
+        'w9 nowrap min130',
+        'is-hidden-touch w9 nowrap min130',
+        'is-hidden-touch is-hidden-desktop-only w9 nowrap min90'
       ]"
-      :cellTypes="['text', 'text', 'text', 'array', 'array', 'array']"
+      :cellTypes="['text', 'text', 'text', 'phones', 'phones', 'array']"
       pagination
       hyper
       search
@@ -76,3 +76,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.min90 {
+  min-width: 90px !important;
+}
+
+.min130 {
+  min-width: 130px !important;
+}
+</style>

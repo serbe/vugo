@@ -89,7 +89,6 @@ export default {
     classList() {
       return {
         pagination: true,
-        "is-centered": this.centered,
         [`is-${this.position}`]: this.position,
         [`is-${this.size}`]: this.size
       };
