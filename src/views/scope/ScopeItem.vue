@@ -47,13 +47,13 @@ export default {
   name: "ScopeItem",
   components: {
     "bulma-button": BulmaButton,
-    "bulma-input": BulmaInput
+    "bulma-input": BulmaInput,
   },
   mixins: [mixin, mixItem],
   data() {
     return {
       title: "",
-      scope: Scope
+      scope: Scope,
     };
   },
   mounted() {
@@ -63,8 +63,8 @@ export default {
     submit() {
       this.submitItem("scope", "Scope", [], []);
     },
-    delete() {}
-  }
+    delete() {},
+  },
 };
 </script>
 

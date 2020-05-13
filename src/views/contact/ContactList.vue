@@ -7,7 +7,7 @@
         'Организация',
         'Должность',
         'Телефон',
-        'Факс'
+        'Факс',
       ]"
       :columns="['name', 'company_name', 'post_name', 'phones', 'faxes']"
       :tableData="list"
@@ -17,7 +17,7 @@
         'is-hidden-mobile',
         'is-hidden-touch',
         'w9 nowrap min130',
-        'is-hidden-mobile w9 nowrap min130'
+        'is-hidden-mobile w9 nowrap min130',
       ]"
       :cellTypes="['text', 'text', 'text', 'phones', 'phones']"
       pagination
@@ -36,7 +36,7 @@ import mixin from "@/mixins/funcs";
 export default {
   name: "ContactList",
   components: {
-    "bulma-table": BulmaTable
+    "bulma-table": BulmaTable,
   },
   mixins: [mixin, mixList],
   mounted() {
@@ -46,7 +46,7 @@ export default {
     createList(contacts) {
       let list = [];
       if (contacts) {
-        list = contacts.map(c => {
+        list = contacts.map((c) => {
           const str = [c.name, c.company_name, c.post_name];
           if (c.phones) {
             str.push(c.phones.join(" "));
@@ -60,8 +60,8 @@ export default {
         });
       }
       return list;
-    }
-  }
+    },
+  },
 };
 </script>
 

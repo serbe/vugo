@@ -58,26 +58,21 @@ import BulmaIcon from "@/components/BulmaIcon";
 export default {
   name: "BulmaButton",
   components: {
-    "bulma-icon": BulmaIcon
+    "bulma-icon": BulmaIcon,
   },
   props: {
+    text: String,
     tag: {
       type: String,
       default: "a",
-      validator: value => ["a", "button", "submit", "reset"].includes(value)
-    },
-    text: {
-      type: [String, Boolean],
-      default: false
+      validator: (value) => ["a", "button", "submit", "reset"].includes(value),
     },
     color: {
-      type: [String, Boolean],
-      default: false,
-      validator: value =>
+      type: String,
+      validator: (value) =>
         !value ||
         [
           "white",
-          "light",
           "dark",
           "black",
           "text",
@@ -86,67 +81,31 @@ export default {
           "info",
           "success",
           "warning",
-          "danger"
-        ].includes(value)
+          "danger",
+        ].includes(value),
     },
+    light: Boolean,
     size: {
-      type: [String, Boolean],
-      default: false,
-      validator: value =>
-        !value || ["small", "normal", "medium", "large"].includes(value)
+      type: String,
+      validator: (value) =>
+        !value || ["small", "normal", "medium", "large"].includes(value),
     },
-    fullwidth: {
-      type: Boolean,
-      default: false
-    },
-    outlined: {
-      type: Boolean,
-      default: false
-    },
-    inverted: {
-      type: Boolean,
-      default: false
-    },
-    rounded: {
-      type: Boolean,
-      default: false
-    },
-    hovered: {
-      type: Boolean,
-      default: false
-    },
-    focused: {
-      type: Boolean,
-      default: false
-    },
-    active: {
-      type: Boolean,
-      default: false
-    },
-    loading: {
-      type: Boolean,
-      default: false
-    },
-    static: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    iconLeft: {
-      type: [String, Boolean],
-      default: false
-    },
-    iconRight: {
-      type: [String, Boolean],
-      default: false
-    }
+    fullwidth: Boolean,
+    outlined: Boolean,
+    inverted: Boolean,
+    rounded: Boolean,
+    hovered: Boolean,
+    focused: Boolean,
+    active: Boolean,
+    loading: Boolean,
+    static: Boolean,
+    disabled: Boolean,
+    iconLeft: String,
+    iconRight: String,
   },
   data() {
     return {
-      inputType: this.tag
+      inputType: this.tag,
     };
   },
   computed: {
@@ -154,6 +113,7 @@ export default {
       return {
         button: true,
         [`is-${this.color}`]: this.color,
+        "is-light": this.light,
         [`is-${this.size}`]: this.size,
         "is-fullwidth": this.fullwidth,
         "is-outlined": this.outlined,
@@ -163,14 +123,14 @@ export default {
         "is-focused": this.focused,
         "is-active": this.active,
         "is-loading": this.loading,
-        "is-static": this.static
+        "is-static": this.static,
       };
-    }
+    },
   },
   methods: {
     click() {
       this.$emit("click");
-    }
-  }
+    },
+  },
 };
 </script>

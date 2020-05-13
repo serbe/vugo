@@ -10,24 +10,23 @@ export default {
   props: {
     icon: {
       type: String,
-      required: true
+      required: true,
     },
     color: {
-      type: [String, Boolean],
-      default: false,
-      validator: value =>
-        !value || ["info", "success", "warning", "danger"].includes(value)
+      type: String,
+      validator: (value) =>
+        !value || ["info", "success", "warning", "danger"].includes(value),
     },
     size: {
-      type: [String, Boolean],
-      default: false,
-      validator: value => !value || ["small", "medium", "large"].includes(value)
+      type: String,
+      validator: (value) =>
+        !value || ["small", "medium", "large"].includes(value),
     },
     position: {
-      type: [String],
+      type: String,
       default: "left",
-      validator: value => ["left", "right"].includes(value)
-    }
+      validator: (value) => ["left", "right"].includes(value),
+    },
   },
   computed: {
     spanClass() {
@@ -35,12 +34,12 @@ export default {
         icon: true,
         [`has-text-${this.color}`]: this.color,
         [`is-${this.size}`]: this.size,
-        [`is-${this.position}`]: this.position
+        [`is-${this.position}`]: this.position,
       };
     },
     iconClass() {
       return `fas fa-${this.icon}`;
-    }
-  }
+    },
+  },
 };
 </script>

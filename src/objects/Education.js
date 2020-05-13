@@ -8,5 +8,5 @@ export default {
   post: SelectItem,
   start_date: "",
   end_date: "",
-  note: ""
+  note: "",
 };

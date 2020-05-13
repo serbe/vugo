@@ -54,13 +54,13 @@ export default {
   components: {
     "bulma-button": BulmaButton,
     "bulma-input": BulmaInput,
-    "bulma-switch": BulmaSwitch
+    "bulma-switch": BulmaSwitch,
   },
   mixins: [mixin, mixItem],
   data() {
     return {
       title: "",
-      post: Post
+      post: Post,
     };
   },
   mounted() {
@@ -70,8 +70,8 @@ export default {
     submit() {
       this.submitItem("post", "Post", [], []);
     },
-    delete() {}
-  }
+    delete() {},
+  },
 };
 </script>
 

@@ -17,5 +17,5 @@ export default {
   longitude: "",
   stage: "",
   own: "",
-  note: ""
+  note: "",
 };

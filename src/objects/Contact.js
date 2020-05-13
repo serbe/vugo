@@ -17,5 +17,5 @@ export default {
   emails: [],
   phones: [],
   faxes: [],
-  note: ""
+  note: "",
 };

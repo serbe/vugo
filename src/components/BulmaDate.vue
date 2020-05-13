@@ -39,18 +39,15 @@ export default {
   props: {
     value: {
       type: String,
-      required: true
+      required: true,
     },
-    label: {
-      type: [String, Boolean],
-      default: false
-    }
+    label: String,
   },
   data() {
     return {
       year: 0,
       month: 0,
-      day: 0
+      day: 0,
     };
   },
   watch: {
@@ -59,7 +56,7 @@ export default {
       if (arr.length === 3) {
         [this.year, this.month, this.day] = arr;
       }
-    }
+    },
   },
   computed: {
     getLabel() {
@@ -87,7 +84,7 @@ export default {
         list.push(i.toString().length === 1 ? `0${i}` : i.toString());
       }
       return list;
-    }
+    },
   },
   methods: {
     changeDate() {
@@ -95,8 +92,8 @@ export default {
       if (date.length === 10) {
         this.$emit("input", date);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

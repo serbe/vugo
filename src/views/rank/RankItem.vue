@@ -47,13 +47,13 @@ export default {
   name: "RankItem",
   components: {
     "bulma-button": BulmaButton,
-    "bulma-input": BulmaInput
+    "bulma-input": BulmaInput,
   },
   mixins: [mixin, mixItem],
   data() {
     return {
       title: "",
-      rank: Rank
+      rank: Rank,
     };
   },
   mounted() {
@@ -63,8 +63,8 @@ export default {
     submit() {
       this.submitItem("rank", "Rank", [], []);
     },
-    delete() {}
-  }
+    delete() {},
+  },
 };
 </script>
 

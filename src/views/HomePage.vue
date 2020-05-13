@@ -66,7 +66,7 @@ export default {
       practicesFetched: false,
       educationsFetched: false,
       PracticeShort: [],
-      EducationShort: []
+      EducationShort: [],
     };
   },
   mixins: [mixList],
@@ -95,8 +95,8 @@ export default {
         )}.${date.substring(2, 4)}`;
       }
       return date;
-    }
-  }
+    },
+  },
 };
 </script>
 

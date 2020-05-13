@@ -75,7 +75,7 @@ export default {
     "bulma-button": BulmaButton,
     "bulma-date": BulmaDate,
     "bulma-input": BulmaInput,
-    "bulma-select": BulmaSelect
+    "bulma-select": BulmaSelect,
   },
   mixins: [mixin, mixItem],
   data() {
@@ -83,7 +83,7 @@ export default {
       title: "",
       practice: Practice,
       companys: [SelectItem],
-      kinds: [SelectItem]
+      kinds: [SelectItem],
     };
   },
   mounted() {
@@ -97,8 +97,8 @@ export default {
     submit() {
       this.submitItem("practice", "Practice", [], []);
     },
-    delete() {}
-  }
+    delete() {},
+  },
 };
 </script>
 

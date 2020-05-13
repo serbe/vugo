@@ -7,7 +7,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     status: "",
-    user: localStorage.getItem("user") || ""
+    user: localStorage.getItem("user") || "",
   },
   mutations: {
     auth_request(state) {
@@ -23,7 +23,7 @@ const store = new Vuex.Store({
     logout(state) {
       state.status = "";
       state.user = "";
-    }
+    },
   },
   actions: {
     login({ commit }, data) {
@@ -31,7 +31,7 @@ const store = new Vuex.Store({
         commit("auth_request");
         request
           .post("login", data)
-          .then(resp => {
+          .then((resp) => {
             if (resp.user) {
               const user = resp.user;
               localStorage.setItem("user", user);
@@ -43,7 +43,7 @@ const store = new Vuex.Store({
             }
             resolve(resp);
           })
-          .catch(err => {
+          .catch((err) => {
             commit("auth_error");
             localStorage.removeItem("user");
             reject(err);
@@ -54,12 +54,12 @@ const store = new Vuex.Store({
       return new Promise((resolve, reject) => {
         request
           .get("logout")
-          .then(resp => {
+          .then((resp) => {
             localStorage.removeItem("user");
             commit("logout");
             resolve(resp);
           })
-          .catch(err => {
+          .catch((err) => {
             localStorage.removeItem("user");
             commit("logout");
             commit("auth_error");
@@ -71,7 +71,7 @@ const store = new Vuex.Store({
       return new Promise((resolve, reject) => {
         request
           .get("check")
-          .then(resp => {
+          .then((resp) => {
             if (resp.user) {
               const user = resp.user;
               localStorage.setItem("user", user);
@@ -83,20 +83,20 @@ const store = new Vuex.Store({
             }
             resolve(resp);
           })
-          .catch(err => {
+          .catch((err) => {
             commit("auth_error");
             localStorage.removeItem("user");
             commit("logout");
             reject(err);
           });
       });
-    }
+    },
   },
   getters: {
-    isLoggedIn: state => !!state.user,
-    loggedUser: state => state.user,
-    authStatus: state => state.status
-  }
+    isLoggedIn: (state) => !!state.user,
+    loggedUser: (state) => state.user,
+    authStatus: (state) => state.status,
+  },
 });
 
 export default store;

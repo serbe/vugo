@@ -97,7 +97,7 @@ export default {
   name: "BulmaTable",
   components: {
     "bulma-pagination": BulmaPagination,
-    "bulma-table-tr": BulmaTableTr
+    "bulma-table-tr": BulmaTableTr,
   },
   data() {
     return {
@@ -105,47 +105,32 @@ export default {
       page: 1,
       list: [],
       rowsSelect: 50,
-      options: [10, 20, 30, 40, 50, 100]
+      options: [10, 20, 30, 40, 50, 100],
     };
   },
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     columns: Array,
     names: Array,
-    tableClasses: {
-      type: [String, Boolean],
-      default: false
-    },
+    tableClasses: String,
     headClasses: Array,
     cellClasses: Array,
     cellTypes: Array,
     tableData: {
       type: Array,
-      required: true
+      required: true,
     },
-    search: {
-      type: Boolean,
-      default: false
-    },
-    pagination: {
-      type: Boolean,
-      default: false
-    },
+    search: Boolean,
+    pagination: Boolean,
     rowsPerPage: {
       type: Number,
-      default: 50
+      default: 50,
     },
-    hyper: {
-      type: Boolean,
-      default: false
-    },
-    adding: {
-      type: Boolean,
-      default: false
-    }
+    hyper: Boolean,
+    adding: Boolean,
   },
   computed: {
     head() {
@@ -171,8 +156,8 @@ export default {
     filtered() {
       if (this.tableData) {
         const queryArr = this.query.toLowerCase().split(" ");
-        return this.tableData.filter(f =>
-          queryArr.every(q => f.str.includes(q))
+        return this.tableData.filter((f) =>
+          queryArr.every((q) => f.str.includes(q))
         );
       }
       return [];
@@ -182,7 +167,7 @@ export default {
     },
     perPage() {
       return Number(this.rowsSelect);
-    }
+    },
   },
   mounted() {
     if (
@@ -212,14 +197,14 @@ export default {
       if (num !== this.page) {
         this.page = num;
       }
-    }
+    },
   },
   watch: {
     query(val) {
       this.query = val;
       this.page = 1;
-    }
-  }
+    },
+  },
 };
 </script>
 

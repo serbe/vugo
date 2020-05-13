@@ -105,7 +105,7 @@ export default {
   components: {
     "bulma-button": BulmaButton,
     "bulma-input": BulmaInput,
-    "bulma-select": BulmaSelect
+    "bulma-select": BulmaSelect,
   },
   mixins: [mixin, mixItem],
   data() {
@@ -114,7 +114,7 @@ export default {
       siren: Siren,
       siren_types: [SelectItem],
       contacts: [SelectItem],
-      companys: [SelectItem]
+      companys: [SelectItem],
     };
   },
   mounted() {
@@ -134,8 +134,8 @@ export default {
       this.siren[itemName] = item;
       this.siren[`${itemName}_id`] = item.id;
     },
-    delete() {}
-  }
+    delete() {},
+  },
 };
 </script>
 

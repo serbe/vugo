@@ -53,13 +53,13 @@ export default {
   name: "SirenTypeItem",
   components: {
     "bulma-button": BulmaButton,
-    "bulma-input": BulmaInput
+    "bulma-input": BulmaInput,
   },
   mixins: [mixin, mixItem],
   data() {
     return {
       title: "",
-      siren_type: SirenType
+      siren_type: SirenType,
     };
   },
   mounted() {
@@ -69,8 +69,8 @@ export default {
     submit() {
       this.submitItem("siren_type", "SirenType", [], []);
     },
-    delete() {}
-  }
+    delete() {},
+  },
 };
 </script>
 

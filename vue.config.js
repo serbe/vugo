@@ -6,11 +6,11 @@ module.exports = {
       "/api/go/": {
         target: "http://localhost:9090",
         changeOrigin: true,
-        ws: true
-      }
-    }
+        ws: true,
+      },
+    },
   },
   configureWebpack: {
     // plugins: [new UnusedFilesWebpackPlugin()]
-  }
+  },
 };

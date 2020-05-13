@@ -8,5 +8,5 @@ export default {
   kind: SelectItem,
   date_of_practice: "",
   topic: "",
-  note: ""
+  note: "",
 };

@@ -6,9 +6,9 @@ export default {
       fetched: false,
       config: {
         headers: { "Cache-Control": "no-cache" },
-        baseURL: "/api/go/"
+        baseURL: "/api/go/",
       },
-      list: []
+      list: [],
     };
   },
   methods: {
@@ -17,7 +17,7 @@ export default {
         name = url;
       }
       if (!this.fetched) {
-        request.get(url).then(r => {
+        request.get(url).then((r) => {
           this.list = this.createList(r.data[name]);
           this.fetched = true;
         });
@@ -27,9 +27,9 @@ export default {
       if (!name) {
         name = url;
       }
-      request.get(url).then(r => {
+      request.get(url).then((r) => {
         this[name] = r.data[name];
       });
-    }
-  }
+    },
+  },
 };

@@ -8,5 +8,5 @@ export default {
   company_id: 0,
   company: SelectItem,
   cert_date: "",
-  note: ""
+  note: "",
 };

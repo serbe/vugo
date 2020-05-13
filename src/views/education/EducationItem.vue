@@ -79,7 +79,7 @@ export default {
     "bulma-button": BulmaButton,
     "bulma-date": BulmaDate,
     "bulma-input": BulmaInput,
-    "bulma-select": BulmaSelect
+    "bulma-select": BulmaSelect,
   },
   mixins: [mixin, mixItem],
   data() {
@@ -87,7 +87,7 @@ export default {
       title: "",
       education: Education,
       contacts: [SelectItem],
-      posts: [SelectItem]
+      posts: [SelectItem],
     };
   },
   mounted() {
@@ -101,8 +101,8 @@ export default {
       this.education[itemName] = item;
       this.education[`${itemName}_id`] = item.id;
     },
-    delete() {}
-  }
+    delete() {},
+  },
 };
 </script>
 

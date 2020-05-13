@@ -18,7 +18,7 @@ import BulmaNavBar from "@/components/BulmaNavBar";
 export default {
   name: "app",
   components: {
-    "bulma-navbar": BulmaNavBar
+    "bulma-navbar": BulmaNavBar,
   },
   mounted() {
     this.$store
@@ -31,8 +31,8 @@ export default {
   computed: {
     isLoggedIn() {
       return this.$store.getters.isLoggedIn;
-    }
-  }
+    },
+  },
 };
 </script>
 

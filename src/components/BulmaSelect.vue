@@ -59,57 +59,42 @@ import BulmaIcon from "@/components/BulmaIcon";
 export default {
   name: "BulmaSelect",
   components: {
-    "bulma-icon": BulmaIcon
+    "bulma-icon": BulmaIcon,
   },
   props: {
     selectedItem: {
       default() {
         return {
           id: 0,
-          name: ""
+          name: "",
         };
-      }
+      },
     },
-    iconLeft: {
-      type: [String, Boolean],
-      default: false
-    },
-    iconRight: {
-      type: [String, Boolean],
-      default: false
-    },
+    iconLeft: String,
+    iconRight: String,
     color: {
-      type: [String, Boolean],
-      default: false,
-      validator: value =>
-        ["primary", "info", "success", "warning", "danger"].includes(value) ||
-        !value
+      type: String,
+      validator: (value) =>
+        !value ||
+        ["primary", "info", "success", "warning", "danger"].includes(value),
     },
     size: {
-      type: [String, Boolean],
-      default: false
+      type: String,
+      validator: (value) =>
+        !value || ["small", "medium", "large"].includes(value),
     },
-    state: {
-      type: [String, Boolean],
-      default: false
-    },
-    label: {
-      type: [String, Boolean],
-      default: false
-    },
+    state: String,
+    label: String,
     list: {
       required: true,
       default: [
         {
           id: 0,
-          name: ""
-        }
-      ]
+          name: "",
+        },
+      ],
     },
-    itemName: {
-      type: [String, Boolean],
-      default: false
-    }
+    itemName: String,
   },
   data() {
     return {
@@ -117,7 +102,7 @@ export default {
       searchText: this.selectedItem.name,
       mousedownState: false,
       placeholder: "",
-      isLoaded: false
+      isLoaded: false,
     };
   },
   computed: {
@@ -128,7 +113,7 @@ export default {
         select: true,
         "is-fullwidth": true,
         "has-icons-left": this.iconLeft,
-        "has-icons-right": this.iconRight
+        "has-icons-right": this.iconRight,
       };
     },
     inputClassList() {
@@ -136,7 +121,7 @@ export default {
         input: true,
         [`is-${this.color}`]: this.color,
         [`is-${this.size}`]: this.size,
-        [`is-${this.state}`]: this.state
+        [`is-${this.state}`]: this.state,
       };
     },
     getLabel() {
@@ -156,7 +141,7 @@ export default {
     },
     listWithFilter() {
       if (this.searchText !== "") {
-        return this.list.filter(item =>
+        return this.list.filter((item) =>
           item.name.match(new RegExp(this.searchText, "i"))
         );
       }
@@ -167,7 +152,7 @@ export default {
         return { id: this.selectedItem.id, name: this.selectedItem.name };
       }
       return { id: 0, name: "" };
-    }
+    },
   },
   methods: {
     openOptions() {
@@ -237,8 +222,8 @@ export default {
     },
     onInput(event) {
       this.searchText = event.target.value;
-    }
-  }
+    },
+  },
 };
 </script>
 

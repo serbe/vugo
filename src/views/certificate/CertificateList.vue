@@ -23,7 +23,7 @@ import mixList from "@/mixins/mixList";
 export default {
   name: "CertificateList",
   components: {
-    "bulma-table": BulmaTable
+    "bulma-table": BulmaTable,
   },
   mixins: [mixList],
   mounted() {
@@ -33,13 +33,13 @@ export default {
     createList(certificates) {
       let list = [];
       if (certificates) {
-        list = certificates.map(e => {
+        list = certificates.map((e) => {
           const str = [
             e.num,
             e.contact_name,
             e.company_name,
             e.cert_date,
-            e.note
+            e.note,
           ];
           const ne = e;
           ne.str = str.join(" ").toLowerCase();
@@ -47,7 +47,7 @@ export default {
         });
       }
       return list;
-    }
-  }
+    },
+  },
 };
 </script>

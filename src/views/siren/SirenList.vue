@@ -23,7 +23,7 @@ import mixList from "@/mixins/mixList";
 export default {
   name: "SirenList",
   components: {
-    "bulma-table": BulmaTable
+    "bulma-table": BulmaTable,
   },
   mixins: [mixList],
   mounted() {
@@ -33,14 +33,14 @@ export default {
     createList(sirens) {
       let list = [];
       if (sirens) {
-        list = sirens.map(e => {
+        list = sirens.map((e) => {
           const str = [e.name, e.note];
           e.str = str.join(" ").toLowerCase();
           return e;
         });
       }
       return list;
-    }
-  }
+    },
+  },
 };
 </script>

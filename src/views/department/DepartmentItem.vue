@@ -47,13 +47,13 @@ export default {
   name: "DepartmentItem",
   components: {
     "bulma-button": BulmaButton,
-    "bulma-input": BulmaInput
+    "bulma-input": BulmaInput,
   },
   mixins: [mixin, mixItem],
   data() {
     return {
       title: "",
-      department: Department
+      department: Department,
     };
   },
   mounted() {
@@ -63,8 +63,8 @@ export default {
     submit() {
       this.submitItem("department", "Department", [], []);
     },
-    delete() {}
-  }
+    delete() {},
+  },
 };
 </script>
 

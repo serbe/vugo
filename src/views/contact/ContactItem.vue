@@ -134,10 +134,10 @@
         readonly
         :value="
           practice.date_str +
-            ' - ' +
-            practice.kind.name +
-            ' - ' +
-            practice.topic
+          ' - ' +
+          practice.kind.name +
+          ' - ' +
+          practice.topic
         "
         iconLeft="graduation-cap"
       ></bulma-input>
@@ -188,7 +188,7 @@ export default {
     "bulma-button": BulmaButton,
     "bulma-date": BulmaDate,
     "bulma-input": BulmaInput,
-    "bulma-select": BulmaSelect
+    "bulma-select": BulmaSelect,
   },
   mixins: [mixin, mixItem],
   data() {
@@ -199,7 +199,7 @@ export default {
       posts: [SelectItem],
       post_gos: [SelectItem],
       departments: [SelectItem],
-      ranks: [SelectItem]
+      ranks: [SelectItem],
     };
   },
   mounted() {
@@ -222,8 +222,8 @@ export default {
     submit() {
       this.submitItem("contact", "Contact", ["emails"], ["phones", "faxes"]);
     },
-    delete() {}
-  }
+    delete() {},
+  },
 };
 </script>
 

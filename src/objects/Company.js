@@ -15,8 +15,8 @@ export default {
       id: 0,
       date_str: "",
       kind_name: "",
-      topic: ""
-    }
+      topic: "",
+    },
   ],
   contacts: [
     {
@@ -24,7 +24,7 @@ export default {
       name: "",
       department_name: "",
       post_name: "",
-      post_go_name: ""
-    }
-  ]
+      post_go_name: "",
+    },
+  ],
 };

@@ -45,14 +45,14 @@ export default {
   name: "LoginPage",
   components: {
     "bulma-input": BulmaInput,
-    "bulma-button": BulmaButton
+    "bulma-button": BulmaButton,
   },
   data() {
     return {
       name: "",
       pass: "",
       error: false,
-      rememberMe: true
+      rememberMe: true,
     };
   },
   mixins: [mixItem],
@@ -60,7 +60,7 @@ export default {
     login() {
       const data = {
         username: this.name,
-        password: this.pass
+        password: this.pass,
       };
       this.$store.dispatch("login", data).then(() => {
         this.$router.back();
@@ -73,8 +73,8 @@ export default {
       if (event.event.key === "Enter") {
         this.login();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

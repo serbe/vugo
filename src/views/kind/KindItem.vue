@@ -54,13 +54,13 @@ export default {
   name: "KindItem",
   components: {
     "bulma-button": BulmaButton,
-    "bulma-input": BulmaInput
+    "bulma-input": BulmaInput,
   },
   mixins: [mixin, mixItem],
   data() {
     return {
       title: "",
-      kind: Kind
+      kind: Kind,
     };
   },
   mounted() {
@@ -70,8 +70,8 @@ export default {
     submit() {
       this.submitItem("kind", "Kind", [], []);
     },
-    delete() {}
-  }
+    delete() {},
+  },
 };
 </script>
 

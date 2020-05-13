@@ -20,21 +20,19 @@ export default {
   name: "BulmaSwitch",
   props: {
     value: Boolean,
-    disabled: {
-      type: Boolean,
-      default: false
-    },
+    disabled: Boolean,
     type: String,
-    size: String,
+    size: {
+      type: String,
+      validator: (value) =>
+        !value || ["small", "medium", "large"].includes(value),
+    },
     name: String,
-    label: {
-      type: [String, Boolean],
-      default: false
-    }
+    label: String,
   },
   data() {
     return {
-      newValue: this.value
+      newValue: this.value,
     };
   },
   computed: {
@@ -45,7 +43,7 @@ export default {
       set(value) {
         this.newValue = value;
         this.$emit("input", value);
-      }
+      },
     },
     getLabel() {
       return this.label;
@@ -54,15 +52,15 @@ export default {
       return {
         [`is-${this.type}`]: this.type,
         [`is-${this.size}`]: this.size,
-        checked: this.newValue
+        checked: this.newValue,
       };
-    }
+    },
   },
   watch: {
     value(value) {
       this.newValue = value;
-    }
-  }
+    },
+  },
 };
 </script>
 

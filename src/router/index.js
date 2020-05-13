@@ -12,8 +12,8 @@ const routes = [
       import(/* webpackChunkName: "HomePage" */ "./views/HomePage.vue"),
     meta: {
       requiresAuth: true,
-      title: "ЕДДС"
-    }
+      title: "ЕДДС",
+    },
   },
   {
     path: "/login",
@@ -22,8 +22,8 @@ const routes = [
       import(/* webpackChunkName: "LoginPage" */ "./views/LoginPage.vue"),
     meta: {
       title: "Авторизация",
-      auth: false
-    }
+      auth: false,
+    },
   },
   {
     path: "/companys",
@@ -34,8 +34,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Список организаций"
-    }
+      title: "Список организаций",
+    },
   },
   {
     path: "/company/:id",
@@ -46,8 +46,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Просмотр организации"
-    }
+      title: "Просмотр организации",
+    },
   },
   {
     path: "/contacts",
@@ -58,8 +58,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Список контактов"
-    }
+      title: "Список контактов",
+    },
   },
   {
     path: "/contact/:id",
@@ -70,8 +70,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Просмотр контакта"
-    }
+      title: "Просмотр контакта",
+    },
   },
   {
     path: "/departments",
@@ -82,8 +82,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Список отделов"
-    }
+      title: "Список отделов",
+    },
   },
   {
     path: "/department/:id",
@@ -94,8 +94,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Просмотр отдела"
-    }
+      title: "Просмотр отдела",
+    },
   },
   {
     path: "/educations",
@@ -106,8 +106,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Список обучений в УМЦ"
-    }
+      title: "Список обучений в УМЦ",
+    },
   },
   {
     path: "/education/:id",
@@ -118,8 +118,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Просмотр обучения в УМЦ"
-    }
+      title: "Просмотр обучения в УМЦ",
+    },
   },
   {
     path: "/kinds",
@@ -128,8 +128,8 @@ const routes = [
       import(/* webpackChunkName: "KindList" */ "./views/kind/KindList.vue"),
     meta: {
       requiresAuth: true,
-      title: "Список типов тренировок"
-    }
+      title: "Список типов тренировок",
+    },
   },
   {
     path: "/kind/:id",
@@ -138,8 +138,8 @@ const routes = [
       import(/* webpackChunkName: "KindItem" */ "./views/kind/KindItem.vue"),
     meta: {
       requiresAuth: true,
-      title: "Просмотр типа тренировки"
-    }
+      title: "Просмотр типа тренировки",
+    },
   },
   {
     path: "/posts",
@@ -148,8 +148,8 @@ const routes = [
       import(/* webpackChunkName: "PostList" */ "./views/post/PostList.vue"),
     meta: {
       requiresAuth: true,
-      title: "Список должностей"
-    }
+      title: "Список должностей",
+    },
   },
   {
     path: "/post/:id",
@@ -158,8 +158,8 @@ const routes = [
       import(/* webpackChunkName: "PostItem" */ "./views/post/PostItem.vue"),
     meta: {
       requiresAuth: true,
-      title: "Просмотр должности"
-    }
+      title: "Просмотр должности",
+    },
   },
   {
     path: "/practices",
@@ -170,8 +170,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Список тренировок в организациях"
-    }
+      title: "Список тренировок в организациях",
+    },
   },
   {
     path: "/practice/:id",
@@ -182,8 +182,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Просмотр тренировки"
-    }
+      title: "Просмотр тренировки",
+    },
   },
   {
     path: "/ranks",
@@ -192,8 +192,8 @@ const routes = [
       import(/* webpackChunkName: "RankList" */ "./views/rank/RankList.vue"),
     meta: {
       requiresAuth: true,
-      title: "Список чинов"
-    }
+      title: "Список чинов",
+    },
   },
   {
     path: "/rank/:id",
@@ -202,8 +202,8 @@ const routes = [
       import(/* webpackChunkName: "RankItem" */ "./views/rank/RankItem.vue"),
     meta: {
       requiresAuth: true,
-      title: "Просмотр чина"
-    }
+      title: "Просмотр чина",
+    },
   },
   {
     path: "/scopes",
@@ -212,8 +212,8 @@ const routes = [
       import(/* webpackChunkName: "ScopeList" */ "./views/scope/ScopeList.vue"),
     meta: {
       requiresAuth: true,
-      title: "Список сфер деятельности"
-    }
+      title: "Список сфер деятельности",
+    },
   },
   {
     path: "/scope/:id",
@@ -222,8 +222,8 @@ const routes = [
       import(/* webpackChunkName: "ScopeItem" */ "./views/scope/ScopeItem.vue"),
     meta: {
       requiresAuth: true,
-      title: "Просмотр сферы деятельности"
-    }
+      title: "Просмотр сферы деятельности",
+    },
   },
   {
     path: "/sirentypes",
@@ -234,8 +234,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Список типов сирен"
-    }
+      title: "Список типов сирен",
+    },
   },
   {
     path: "/sirentype/:id",
@@ -246,8 +246,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Просмотр типа сирены"
-    }
+      title: "Просмотр типа сирены",
+    },
   },
   {
     path: "/sirens",
@@ -256,8 +256,8 @@ const routes = [
       import(/* webpackChunkName: "SirenList" */ "./views/siren/SirenList.vue"),
     meta: {
       requiresAuth: true,
-      title: "Список сирен"
-    }
+      title: "Список сирен",
+    },
   },
   {
     path: "/siren/:id",
@@ -266,8 +266,8 @@ const routes = [
       import(/* webpackChunkName: "SirenItem" */ "./views/siren/SirenItem.vue"),
     meta: {
       requiresAuth: true,
-      title: "Просмотр сирены"
-    }
+      title: "Просмотр сирены",
+    },
   },
   {
     path: "/certificates",
@@ -278,8 +278,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Список удостоверений"
-    }
+      title: "Список удостоверений",
+    },
   },
   {
     path: "/certificate/:id",
@@ -290,8 +290,8 @@ const routes = [
       ),
     meta: {
       requiresAuth: true,
-      title: "Просмотр удостоверения"
-    }
+      title: "Просмотр удостоверения",
+    },
   },
   {
     path: "*",
@@ -299,19 +299,19 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "NotFoundComponent" */ "./views/NotFoundComponent.vue"
-      )
-  }
+      ),
+  },
 ];
 
 const router = new VueRouter({
   linkActiveClass: "is-active",
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn) {
       next();
       return;

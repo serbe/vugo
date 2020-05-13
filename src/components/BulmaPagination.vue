@@ -52,30 +52,26 @@ export default {
   props: {
     allElems: {
       type: Number,
-      required: true
+      required: true,
     },
     page: {
       type: Number,
-      required: true
+      required: true,
     },
     perPage: {
       type: Number,
-      required: true
+      required: true,
     },
     size: {
-      type: [String, Boolean],
-      default: false,
-      validator: value => ["small", "medium", "large"].includes(value) || !value
+      type: String,
+      validator: (value) =>
+        !value || ["small", "medium", "large"].includes(value),
     },
-    rounded: {
-      type: Boolean,
-      default: false
-    },
+    rounded: Boolean,
     position: {
-      type: [String, Boolean],
-      default: false,
-      validator: value => ["centered", "right"].includes(value) || !value
-    }
+      type: String,
+      validator: (value) => !value || ["centered", "right"].includes(value),
+    },
   },
   computed: {
     value() {
@@ -90,15 +86,15 @@ export default {
       return {
         pagination: true,
         [`is-${this.position}`]: this.position,
-        [`is-${this.size}`]: this.size
+        [`is-${this.size}`]: this.size,
       };
-    }
+    },
   },
   methods: {
     onClick(num) {
       this.$emit("pagination", num);
       window.scrollTo(0, 0);
-    }
-  }
+    },
+  },
 };
 </script>

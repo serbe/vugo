@@ -106,13 +106,13 @@ import BulmaButton from "@/components/BulmaButton";
 export default {
   name: "BulmaNavBar",
   components: {
-    "bulma-button": BulmaButton
+    "bulma-button": BulmaButton,
   },
   data() {
     return {
       active: "",
       tabShow: false,
-      tabSirenShow: false
+      tabSirenShow: false,
     };
   },
   mixins: [mixItem],
@@ -122,7 +122,7 @@ export default {
     },
     user() {
       return this.$store.getters.loggedUser;
-    }
+    },
   },
   methods: {
     logout() {
@@ -140,8 +140,8 @@ export default {
     toggleSirenTab() {
       this.tabSirenShow = !this.tabSirenShow;
       this.tabShow = false;
-    }
-  }
+    },
+  },
 };
 </script>
 

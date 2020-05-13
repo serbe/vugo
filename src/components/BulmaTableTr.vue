@@ -26,12 +26,12 @@ export default {
   props: {
     type: {
       type: String,
-      default: "text"
+      default: "text",
     },
     value: {
-      required: false
+      required: false,
     },
-    cellClass: Array
+    cellClass: Array,
   },
   methods: {
     telephone(value) {
@@ -57,7 +57,7 @@ export default {
         }
         return v;
       }
-    }
-  }
+    },
+  },
 };
 </script>

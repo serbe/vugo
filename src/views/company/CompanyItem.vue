@@ -82,10 +82,10 @@
         :key="practice.id"
         :value="
           practice.date_str +
-            ' - ' +
-            practice.kind_name +
-            ' - ' +
-            practice.topic
+          ' - ' +
+          practice.kind_name +
+          ' - ' +
+          practice.topic
         "
         :hyper="'/practice/' + practice.id"
         iconLeft="history"
@@ -148,14 +148,14 @@ export default {
   components: {
     "bulma-button": BulmaButton,
     "bulma-input": BulmaInput,
-    "bulma-select": BulmaSelect
+    "bulma-select": BulmaSelect,
   },
   mixins: [mixin, mixItem],
   data() {
     return {
       title: "",
       company: Company,
-      scopes: [SelectItem]
+      scopes: [SelectItem],
     };
   },
   mounted() {
@@ -181,7 +181,7 @@ export default {
     delete() {},
     customLabel(val) {
       return val.name;
-    }
-  }
+    },
+  },
 };
 </script>

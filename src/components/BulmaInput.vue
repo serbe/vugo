@@ -1,6 +1,6 @@
 <template>
   <div class="field">
-    <label v-if="getLabel" class="label" key="InputLabel">{{ getLabel }}</label>
+    <label v-if="label" class="label" key="InputLabel">{{ label }}</label>
     <div :class="classList" @click="click">
       <input
         ref="input"
@@ -47,107 +47,52 @@ import BulmaIcon from "@/components/BulmaIcon";
 export default {
   name: "BulmaInput",
   components: {
-    "bulma-icon": BulmaIcon
+    "bulma-icon": BulmaIcon,
   },
   props: {
     value: {
       type: [String, Number, Boolean],
-      default: false
     },
     type: {
       type: String,
       default: "text",
-      validator: value =>
-        ["text", "number", "password", "email", "tel"].includes(value) || !value
+      validator: (value) =>
+        !value ||
+        ["text", "number", "password", "email", "tel"].includes(value),
     },
     color: {
-      type: [String, Boolean],
-      default: false,
-      validator: value =>
-        ["primary", "info", "success", "warning", "danger"].includes(value) ||
-        !value
+      type: String,
+      validator: (value) =>
+        !value ||
+        ["primary", "info", "success", "warning", "danger"].includes(value),
     },
     size: {
-      type: [String, Boolean],
-      default: false,
-      validator: value => ["small", "medium", "large"].includes(value) || !value
+      type: String,
+      validator: (value) =>
+        !value || ["small", "medium", "large"].includes(value),
     },
-    rounded: {
-      type: [String, Boolean],
-      default: false
-    },
-    hovered: {
-      type: [String, Boolean],
-      default: false
-    },
-    focused: {
-      type: [String, Boolean],
-      default: false
-    },
-    loading: {
-      type: [String, Boolean],
-      default: false
-    },
-    name: {
-      type: [String, Boolean],
-      default: false
-    },
-    iconLeft: {
-      type: [String, Boolean],
-      default: false
-    },
-    iconRight: {
-      type: [String, Boolean],
-      default: false
-    },
-    label: {
-      type: [String, Boolean],
-      default: false
-    },
-    placeholder: {
-      type: [String, Boolean],
-      default: false
-    },
-    autocomplete: {
-      type: [String, Boolean],
-      default: false
-    },
-    hyper: {
-      type: [String, Boolean],
-      default: false
-    },
-    id: {
-      type: [String, Boolean],
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    readonly: {
-      type: Boolean,
-      default: false
-    },
-    error: {
-      type: [String, Boolean],
-      default: false
-    },
-    pattern: {
-      type: [String, Boolean],
-      default: false
-    },
-    required: {
-      type: Boolean,
-      default: false
-    },
-    autofocus: {
-      type: Boolean,
-      default: false
-    }
+    rounded: Boolean,
+    hovered: Boolean,
+    focused: Boolean,
+    loading: Boolean,
+    name: String,
+    iconLeft: String,
+    iconRight: String,
+    label: String,
+    placeholder: String,
+    autocomplete: String,
+    hyper: String,
+    id: String,
+    disabled: Boolean,
+    readonly: Boolean,
+    error: String,
+    pattern: String,
+    required: Boolean,
+    autofocus: Boolean,
   },
   data() {
     return {
-      inputValue: this.value
+      inputValue: this.value,
     };
   },
   computed: {
@@ -156,7 +101,7 @@ export default {
         control: true,
         "is-expanded": true,
         "has-icons-left": this.iconLeft,
-        "has-icons-right": this.iconRight
+        "has-icons-right": this.iconRight,
       };
     },
     inputClassList() {
@@ -167,18 +112,8 @@ export default {
         "is-rounded": this.rounded,
         "is-hovered": this.hovered,
         "is-focused": this.focused,
-        "is-loading": this.loading
+        "is-loading": this.loading,
       };
-    },
-    getLabel() {
-      if (
-        this.label !== false &&
-        this.placeholder !== false &&
-        this.label === ""
-      ) {
-        return this.placeholder;
-      }
-      return this.label;
     },
     isError() {
       if (this.value !== "" && this.pattern) {
@@ -186,7 +121,7 @@ export default {
         return !patt.test(this.value);
       }
       return false;
-    }
+    },
   },
   methods: {
     click() {
@@ -205,7 +140,7 @@ export default {
     onKeyup(event) {
       const ret = { id: this.id, event };
       this.$emit("keyup", ret);
-    }
-  }
+    },
+  },
 };
 </script>
