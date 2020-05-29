@@ -6,7 +6,7 @@
     </section>
     <footer class="footer bot">
       <div class="container">
-        <div class="content has-text-centered">© 2019 Сочи</div>
+        <div class="content has-text-centered">© 2020 Сочи</div>
       </div>
     </footer>
   </div>

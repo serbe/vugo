@@ -2,7 +2,7 @@
   <div class="container">
     <bulma-table
       name="siren"
-      :names="['Адрес', 'Тип сирены', 'Ответственный', 'Телефоны']"
+      :names="['Тип сирены', 'Адрес', 'Ответственный', 'Телефоны']"
       :columns="['siren_type_name', 'address', 'contact_name', 'phones']"
       :tableData="list"
       tableClasses="is-narrow is-striped fullwidth"
